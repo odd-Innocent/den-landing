@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Den — 당신의 Agent, 건축을 정말로 알고 있나?</title>
+</head>
+<body>
+<title>Den — 당신의 Agent, 건축을 정말로 알고 있나?</title>
+<style>/* ===== 비율 스케일: 디자인 캔버스 1600x900. 어떤 해상도든 같은 구도가 비례 축소/확대 ===== */
+html{font-size:clamp(12px, min(1.04vw, 1.85vh), 23px)}
+@media (max-width:899px){html{font-size:clamp(12.5px, 3.6vw, 16px)}}
+
+:root{
+  --bg:#ECE7DD; --bg2:#E2DCCE; --panel:#F4F0E8;
+  --ink:#262016; --mut:#6E6252; --line:rgba(38,32,22,.16);
+  --ember:#A64F16; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
+  --dusk:#715A80; --dusk-soft:rgba(113,90,128,.12);
+  --strata:#8A7C68; --glow:rgba(166,79,22,.09);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#151110; --bg2:#1E1813; --panel:#1C1712;
+    --ink:#EDE3D3; --mut:#A29383; --line:rgba(234,224,208,.14);
+    --ember:#E98B3D; --ember-soft:rgba(233,139,61,.14); --ember-ink:#241505;
+    --dusk:#A98BBB; --dusk-soft:rgba(169,139,187,.14);
+    --strata:#7A6C58; --glow:rgba(233,139,61,.15);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151110; --bg2:#1E1813; --panel:#1C1712;
+  --ink:#EDE3D3; --mut:#A29383; --line:rgba(234,224,208,.14);
+  --ember:#E98B3D; --ember-soft:rgba(233,139,61,.14); --ember-ink:#241505;
+  --dusk:#A98BBB; --dusk-soft:rgba(169,139,187,.14);
+  --strata:#7A6C58; --glow:rgba(233,139,61,.15);
+}
+:root[data-theme="light"]{
+  --bg:#ECE7DD; --bg2:#E2DCCE; --panel:#F4F0E8;
+  --ink:#262016; --mut:#6E6252; --line:rgba(38,32,22,.16);
+  --ember:#A64F16; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
+  --dusk:#715A80; --dusk-soft:rgba(113,90,128,.12);
+  --strata:#8A7C68; --glow:rgba(166,79,22,.09);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Pretendard Variable','Pretendard','SUIT','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;
+  font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
+.display{font-weight:800;letter-spacing:-.035em}
+.mono{font-family:'JetBrains Mono','SF Mono',Consolas,monospace}
+.wrap{max-width:66.25rem;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+a{color:var(--ember)}
+::selection{background:var(--ember-soft)}
+
+/* ---------- progress bar ---------- */
+#pbar{position:fixed;top:0;left:0;height:2.5px;width:0;background:linear-gradient(90deg,var(--ember),var(--dusk));z-index:60}
+
+/* ---------- header ---------- */
+header{padding:1rem 0;position:fixed;top:0;left:0;right:0;z-index:50;
+  background:linear-gradient(var(--bg) 20%,transparent)}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:baseline;gap:0.75rem}
+.brand .name{font-weight:900;font-size:1.3125rem;letter-spacing:-.02em}
+.brand .name i{font-style:normal;color:var(--ember)}
+.brand .tag{font-size:0.7188rem;color:var(--mut);letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+#langbtn{background:none;border:1px solid var(--line);color:var(--mut);border-radius:6.1875rem;
+  padding:0.375rem 1rem;font-size:0.7812rem;font-weight:700;cursor:pointer;letter-spacing:.06em;
+  transition:color .2s,border-color .2s}
+#langbtn:hover{color:var(--ember);border-color:var(--ember)}
+
+/* ---------- hero ---------- */
+.hero{height:100svh;min-height:35rem;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;padding:0}
+#embers{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#torch{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}
+.hero-glow{position:absolute;left:-12%;top:-30%;width:66%;height:130%;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 30% 40%,var(--glow),transparent 62%);will-change:transform}
+.hero .wrap{z-index:2;will-change:transform,opacity}
+.eyebrow{font-size:0.7188rem;letter-spacing:.24em;color:var(--ember);text-transform:uppercase;margin:0 0 0.875rem;font-weight:700}
+h1{font-size:3.75rem;line-height:1.14;margin:0 0 1.25rem;font-weight:900;letter-spacing:-.04em;
+  text-wrap:balance;max-width:14.5em}
+h1 .em{color:var(--ember)}
+h1 .ch{display:inline-block;will-change:transform}
+h1 .ch{opacity:0;transform:translateY(.55em) rotate(3deg);
+  transition:opacity .35s ease,transform .5s cubic-bezier(.22,1.4,.36,1)}
+h1.on .ch{opacity:1;transform:none}
+.hero p.lede{max-width:36.25rem;font-size:1.125rem;color:var(--mut);margin:0 0 1.625rem}
+.hero p.lede b{color:var(--ink);font-weight:600}
+.cta-row{display:flex;gap:0.875rem;align-items:center;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--ember);color:var(--ember-ink);text-decoration:none;
+  padding:0.8125rem 1.75rem;border-radius:0.5625rem;font-weight:800;font-size:0.9375rem;border:1px solid transparent;
+  transition:box-shadow .2s ease,filter .2s ease;will-change:transform}
+.btn:hover{filter:brightness(1.08);box-shadow:0 0.625rem 2rem -0.625rem var(--ember)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cta-note{font-size:0.8125rem;color:var(--mut)}
+
+/* ---------- marquee ---------- */
+.marquee{border-top:1px solid var(--line);background:var(--bg2);
+  overflow:hidden;white-space:nowrap;position:absolute;bottom:0;left:0;right:0;z-index:2}
+.marquee .track{display:inline-block;padding:0.8125rem 0;will-change:transform}
+.marquee span{font-size:0.875rem;color:var(--mut);margin:0 1.625rem;letter-spacing:.02em}
+.marquee b{color:var(--ink);font-weight:700}
+.marquee i{font-style:normal;color:var(--ember);margin:0 0.25rem}
+.marquee .track{animation:mq 28s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- journey (scrollytelling) ---------- */
+.journey{height:560vh;position:relative}
+.j-sticky{position:sticky;top:0;height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;background:#171310;transition:background 60ms linear}
+.j-sticky .grain{position:absolute;inset:0;opacity:.07;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23m)' opacity='0.6'/%3E%3C/svg%3E")}
+.j-fire{position:absolute;left:50%;bottom:-16%;width:78%;height:56%;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 100%,rgba(233,139,61,.34),transparent 62%);
+  pointer-events:none;transition:opacity .5s;will-change:opacity}
+.j-inner{max-width:66.25rem;margin:0 auto;padding:0 1.5rem;width:100%;position:relative;z-index:2}
+.j-eyebrow{font-size:0.75rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(237,227,211,.55);font-weight:700;margin:0 0 0.5rem}
+.j-count{font-family:'JetBrains Mono','SF Mono',Consolas,monospace;font-size:0.8125rem;color:rgba(237,227,211,.4);margin:0 0 1.375rem}
+.j-stage{position:relative;height:11.875rem}
+.j-era{position:absolute;inset:0;opacity:0;transform:translateX(7.5rem);pointer-events:none;
+  transition:opacity .28s ease,transform .38s cubic-bezier(.22,1.4,.36,1)}
+.j-era.on{opacity:1;transform:none}
+.j-ghost{position:absolute;right:-2%;top:50%;transform:translateY(-58%);font-size:15rem;
+  font-weight:900;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(237,227,211,.10);
+  pointer-events:none;user-select:none;font-variant-numeric:tabular-nums;transition:opacity .4s}
+.j-era h3{font-size:4.25rem;line-height:1.05;margin:0 0 0.75rem;font-weight:900;letter-spacing:-.04em;
+  color:#EDE3D3}
+.j-era h3 .en{display:block;font-size:1rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(233,139,61,.9);margin-bottom:0.875rem}
+.j-era p{font-size:1.125rem;color:rgba(237,227,211,.72);max-width:26em;margin:0}
+.j-timeline{margin-top:2.125rem;position:relative;height:2.125rem}
+.j-track{position:absolute;top:0.5rem;left:0;right:0;height:2px;background:rgba(237,227,211,.16)}
+.j-fill{position:absolute;top:0.5rem;left:0;height:2px;width:0;background:linear-gradient(90deg,#E98B3D,#A98BBB)}
+.j-dot{position:absolute;top:0.5625rem;left:0;width:0.5625rem;height:0.5625rem;border-radius:50%;background:#E98B3D;
+  transform:translate(-50%,-50%);box-shadow:0 0 0.875rem 3px rgba(233,139,61,.5)}
+.j-labels{position:absolute;top:1.25rem;left:0;right:0;display:flex;justify-content:space-between}
+.j-labels span{font-size:0.75rem;letter-spacing:.06em;color:rgba(237,227,211,.42);text-transform:uppercase;
+  font-weight:600;transition:color .3s}
+.j-labels span.on{color:#E98B3D}
+/* --- 챕터 씬(이미지/이모지) — 3D 팝·둥실·틸트·반짝이 --- */
+.j-scene{position:absolute;right:5%;top:50%;transform:translateY(-54%);width:23rem;height:23rem;
+  z-index:1;perspective:60rem;pointer-events:none}
+.j-tilt{width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.j-art{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10rem;
+  filter:drop-shadow(0 1.5rem 2.5rem rgba(0,0,0,.5))}
+.j-art img{max-width:100%;max-height:100%;object-fit:contain}
+@keyframes jpop{0%{transform:scale(.35) rotate(-10deg);opacity:0}55%{transform:scale(1.1) rotate(3deg);opacity:1}
+  75%{transform:scale(.96) rotate(-1.5deg)}100%{transform:scale(1) rotate(0)}}
+.j-art.pop{animation:jpop .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes jbob{from{transform:translateY(-2.5%) rotate(-1.4deg)}to{transform:translateY(2.5%) rotate(1.4deg)}}
+.j-bob{animation:jbob 3.4s ease-in-out infinite alternate}
+.j-spark{position:absolute;width:.5rem;height:.5rem;border-radius:50%;background:#E98B3D;opacity:0}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:.95;transform:scale(1.15)}}
+.j-spark{animation:tw 2.4s ease-in-out infinite}
+@media(max-width:899px){.j-scene{display:none}}
+html.reduced .journey{height:auto}
+html.reduced .j-sticky{position:static;height:auto;padding:5rem 0}
+html.reduced .j-stage{height:auto}
+html.reduced .j-era{position:static;opacity:1;transform:none;margin-bottom:3.5rem}
+html.reduced .j-timeline{display:none}
+
+/* ---------- 본능 인터루드 ---------- */
+.instinct{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 1.5rem;position:relative;overflow:hidden}
+.instinct .big{font-size:2.5rem;line-height:1.45;font-weight:800;letter-spacing:-.03em;
+  max-width:21em;text-wrap:balance;margin:0}
+.instinct .big .em{color:var(--ember)}
+.instinct .big .w{display:inline-block}
+.instinct .big .w{opacity:.12;transform:translateY(0.5rem);transition:opacity .5s ease,transform .5s ease}
+.instinct .big .w.lit{opacity:1;transform:none}
+.instinct .small{color:var(--mut);margin:1.25rem 0 0;font-size:1rem;max-width:35rem}
+.instinct::before{content:'';position:absolute;right:-8%;top:10%;width:46%;height:80%;pointer-events:none;
+  background:radial-gradient(ellipse at 70% 50%,var(--glow),transparent 65%)}
+
+/* ---------- 리빌 (양방향 재트리거 · 방향 변형) ---------- */
+.reveal{opacity:0;transform:translateY(3.5rem);filter:blur(0.25rem);
+  transition:opacity .4s ease,transform .5s cubic-bezier(.22,1.4,.36,1),filter .4s ease;will-change:transform,opacity}
+.reveal.rv-l{transform:translateX(-4.5rem)}
+.reveal.rv-r{transform:translateX(4.5rem)}
+.reveal.rv-s{transform:translateY(2.5rem) scale(.9)}
+.reveal.in{opacity:1;transform:none;filter:none}
+.reveal.d1{transition-delay:.04s}.reveal.d2{transition-delay:.08s}.reveal.d3{transition-delay:.12s}
+
+/* ---------- sections ---------- */
+section{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:4rem 0 2.5rem}
+.sec-eyebrow{font-size:0.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin:0 0 0.625rem;font-weight:700}
+h2{font-size:2.125rem;line-height:1.28;margin:0 0 0.625rem;font-weight:800;letter-spacing:-.03em;text-wrap:balance}
+.sec-lede{max-width:40rem;color:var(--mut);margin:0 0 1.375rem;font-size:1.0625rem}
+
+/* ---------- graph ---------- */
+#graph-sec{max-width:none;padding:1.25rem 2vw 0.75rem}
+#graph-sec h2{font-size:1.125rem;margin-bottom:0.3rem;opacity:.8}
+#graph-sec .sec-lede{display:none}
+#graph-sec .sec-eyebrow{display:none}
+.graph-shell{border:1px solid var(--line);border-radius:1rem;background:var(--panel);overflow:hidden;
+  box-shadow:0 1.5rem 4.375rem -2.75rem rgba(0,0,0,.45)}
+.graph-head{display:flex;justify-content:space-between;align-items:center;gap:0.75rem;
+  padding:0.625rem 1.125rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.graph-title{font-size:1.25rem;font-weight:700}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:0.9375rem;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:0.375rem;white-space:nowrap}
+.lg{display:inline-block;width:1.375rem;height:0;border-top:2.5px solid var(--ember)}
+.lg.en{border-top-width:1.5px}
+.lg.ev{border-top:2px dashed var(--dusk)}
+.lg.ge{border-top:2px solid var(--strata)}
+.lg.pt{border-top:2px dotted var(--strata)}
+.graph-body{overflow-x:auto}
+svg.graph{display:block;max-height:78svh;min-width:40rem;width:100%;height:auto;margin:0 auto}
+.gnode{cursor:pointer}
+.gnode rect{fill:var(--bg);stroke:var(--line);stroke-width:1.2;rx:9}
+.gnode.hub rect{stroke:var(--ember);stroke-width:1.8;fill:var(--ember-soft)}
+.gnode.emo rect{stroke:var(--dusk);fill:var(--dusk-soft)}
+.gnode text{fill:var(--ink);font-size:1.0625rem;font-weight:700;font-family:inherit}
+.gnode .sub{fill:var(--mut);font-size:0.85rem;font-weight:500}
+.gnode.active rect{stroke-width:2.4}
+.gedge{fill:none;stroke-linecap:round}
+.gedge.causes{stroke:var(--ember);stroke-width:2.4}
+.gedge.enables{stroke:var(--ember);stroke-width:1.4;opacity:.85}
+.gedge.evokes{stroke:var(--dusk);stroke-width:2}
+.gedge.geneal{stroke:var(--strata);stroke-width:2}
+.gedge.part{stroke:var(--strata);stroke-width:1.6;stroke-dasharray:2 4}
+.gedge.causes,.gedge.enables{stroke-dasharray:9 7;animation:flow 1.1s linear infinite}
+.gedge.evokes{stroke-dasharray:6 5;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.gedge.dim{opacity:.12}
+.gnode.dim{opacity:.25}
+.elabel{font-size:0.8125rem;fill:var(--mut);font-family:'JetBrains Mono','SF Mono',Consolas,monospace}
+.ehead{fill:var(--ember)} .ehead.g{fill:var(--strata)} .ehead.d{fill:var(--dusk)}
+.info{display:flex;gap:1rem;align-items:flex-start;padding:0.5625rem 1rem;border-top:1px solid var(--line);min-height:3.4rem;flex-wrap:wrap}
+.info .k{font-weight:800;font-size:1.125rem;white-space:nowrap}
+.info .k .en{color:var(--mut);font-weight:500;font-size:0.7812rem;margin-left:0.375rem}
+.info .d{color:var(--mut);font-size:1rem;max-width:35rem;flex:1;min-width:15rem}
+.info .chips{display:flex;gap:0.375rem;flex-wrap:wrap}
+.chip{font-size:0.8438rem;padding:3px 0.5625rem;border-radius:6.1875rem;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+.chip.phys{border-color:var(--ember);color:var(--ember)}
+.chip.claim{border-color:var(--dusk);color:var(--dusk)}
+.info .src{font-size:0.8438rem;color:var(--mut)}
+
+/* ---------- rows / stats / steps / compare (v2 유지) ---------- */
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:12.5rem 1fr;gap:1.375rem;padding:1.125rem 0;border-bottom:1px solid var(--line)}
+.row .h{font-weight:800;font-size:1.0625rem;line-height:1.45;letter-spacing:-.02em}
+.row .b{color:var(--mut);font-size:0.9375rem;max-width:41.25rem;line-height:1.6}
+.row .b b{color:var(--ink);font-weight:600}
+@media(max-width:720px){.row{grid-template-columns:1fr;gap:0.5rem}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11.875rem,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:1rem;overflow:hidden;margin-top:0.5rem}
+.stat{background:var(--panel);padding:1.125rem 1.125rem}
+.stat .n{font-size:2.25rem;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .n .plus{color:var(--ember)}
+.stat .l{font-size:0.8125rem;color:var(--mut);margin-top:0.25rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.375rem;margin-top:0.625rem}
+.step{border-top:2px solid var(--ember);padding-top:1rem}
+.step .t{font-weight:800;margin-bottom:0.375rem}
+.step .d{color:var(--mut);font-size:0.9375rem}
+.step .d code{font-size:0.7812rem;background:var(--bg2);padding:2px 0.375rem;border-radius:0.3125rem}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:0.5rem}
+@media(max-width:820px){.compare{grid-template-columns:1fr}}
+.pane{border:1px solid var(--line);border-radius:1rem;background:var(--panel);overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease}
+.pane:hover{transform:translateY(-3px);box-shadow:0 1.125rem 3.125rem -1.875rem rgba(0,0,0,.4)}
+.pane .ph{padding:0.75rem 1.125rem;border-bottom:1px solid var(--line);font-size:0.8125rem;font-weight:800;
+  display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
+.pane .ph .who{color:var(--mut);font-weight:500}
+.pane.den .ph{background:var(--ember-soft)}
+.pane .pb{padding:1rem 1.125rem;font-size:0.9375rem;color:var(--mut)}
+.pane .pb p{margin:0 0 0.75rem}
+.pane .pb .q{color:var(--ink);font-weight:700;margin-bottom:0.875rem}
+.chain{border-left:2.5px solid var(--ember);padding:2px 0 2px 0.875rem;margin:0.75rem 0;color:var(--ink)}
+.chain .cstep{font-size:0.875rem;padding:2px 0}
+.chain .cstep .rel{color:var(--ember);font-size:0.7188rem;letter-spacing:.04em;font-weight:700}
+.chain .cstep .rel.d{color:var(--dusk)}
+.chain .cstep .sc{color:var(--mut);font-size:0.7188rem}
+.pane .src-line{font-size:0.75rem;color:var(--mut);border-top:1px dashed var(--line);padding-top:0.625rem;margin-top:0.875rem}
+.preview-note{font-size:0.7812rem;color:var(--mut);margin-top:0.75rem}
+.honest{border-left:3px solid var(--strata);background:var(--bg2);padding:0.875rem 1.25rem;border-radius:0 0.625rem 0.625rem 0;
+  max-width:40rem;font-size:0.9063rem;color:var(--mut);margin-top:0.25rem}
+.honest b{color:var(--ink)}
+.waitlist{background:var(--bg2);border:1px solid var(--line);border-radius:1rem;padding:1.875rem 1.875rem;margin:1.75rem 0 0;
+  position:relative;overflow:hidden}
+.waitlist::before{content:'';position:absolute;right:-18%;top:-40%;width:60%;height:180%;pointer-events:none;
+  background:radial-gradient(ellipse at 60% 50%,var(--glow),transparent 62%)}
+.waitlist h2{margin-bottom:0.5rem;position:relative}
+.waitlist p{color:var(--mut);max-width:35rem;margin:0 0 1.5rem;position:relative}
+.waitlist .btn{position:relative}
+footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-between;gap:0.75rem;flex-wrap:wrap}
+</style>
+
+<div id="pbar"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <span class="name">D<i>e</i>n</span>
+      <span class="tag">Spatial Why-Ontology</span>
+    </div>
+    <button id="langbtn" type="button">EN</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-glow" id="hglow"></div>
+  <canvas id="embers" aria-hidden="true"></canvas>
+  <div id="torch" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="eyebrow">지식이 아니라, 이유를 주입합니다</p>
+    <h1 class="display" id="kinetic" data-i18n-h1="1">당신의 Agent,|건축을 [정말로] 알고 있나?</h1>
+    <p class="lede" data-i18n="lede">범용 모델은 사실을 압니다. 문헌에 있는 답은 훌륭하게 인용하죠.
+    하지만 <b>"왜 이 공간이어야 하는가"</b>의 이유 사슬은 어떤 문헌에도 통째로 적혀 있지 않습니다.
+    Den은 인류가 공간을 이해해 온 방식 전체를 <b>원자 개념과 인과의 그래프</b>로 구축합니다.
+    당신의 Agent가 그 위에서 추론합니다.</p>
+    <div class="cta-row">
+      <a class="btn magnetic" href="mailto:odd.innocent@gmail.com?subject=%5BDen%5D%20%EB%8C%80%EA%B8%B0%EB%AA%85%EB%8B%A8%20%EB%93%B1%EB%A1%9D" data-i18n="cta">대기명단 등록</a>
+      <span class="cta-note" data-i18n="ctanote">베타는 자체 검증 실험 통과 후 공개됩니다</span>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="track" id="mtrack"></div>
+  </div>
+</div>
+
+<div class="journey" id="journey">
+  <div class="j-sticky" id="jsticky">
+    <div class="grain"></div>
+    <div class="j-fire" id="jfire"></div>
+    <div class="j-inner">
+      <p class="j-eyebrow" data-i18n="jeyebrow">스크롤 — 인류가 공간을 이해해 온 40,000년</p>
+      <p class="j-count mono" id="jcount">01 / 08</p>
+      <div class="j-stage" id="jstage"></div>
+      <div class="j-timeline">
+        <div class="j-track"></div>
+        <div class="j-fill" id="jfill"></div>
+        <div class="j-dot" id="jdot"></div>
+        <div class="j-labels" id="jlabels"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="instinct wrap">
+  <p class="big display" id="instinct-big" data-i18n-words="1">3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.</p>
+  <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.
+  Den은 그 이해의 계보 전체를 — 본능에서 형태까지 — 데이터로 복원합니다.</p>
+</div>
+
+<section class="wrap" id="graph-sec">
+  <p class="sec-eyebrow reveal" data-i18n="g_eyebrow">The Graph</p>
+  <h2 class="display reveal d1" data-i18n="g_h2">Agent에게 주입되는 지식의 실제 모양</h2>
+  <p class="sec-lede reveal d2" data-i18n="g_lede">아래는 Den 온톨로지에서 그대로 꺼낸 <b>중정주택(courtyard-house)</b>의 왜-사슬 일부입니다.
+  개념에 마우스를 올려 보세요 — 모든 관계에 근거·시대·기후가 붙어 있습니다.</p>
+
+  <div class="graph-shell reveal d2">
+    <div class="graph-head">
+      <span class="graph-title" data-i18n="g_title">courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가</span>
+      <div class="legend">
+        <span><i class="lg"></i><span data-i18n="lg1">물리 인과 causes</span></span>
+        <span><i class="lg en"></i><span data-i18n="lg2">가능 조건 enables</span></span>
+        <span><i class="lg ev"></i><span data-i18n="lg3">정서 evokes</span></span>
+        <span><i class="lg ge"></i><span data-i18n="lg4">계보 evolvedFrom</span></span>
+        <span><i class="lg pt"></i><span data-i18n="lg5">구성·유형 partOf·isA</span></span>
+      </div>
+    </div>
+    <div class="graph-body">
+    <svg class="graph" viewBox="0 0 920 590" role="img" aria-label="courtyard-house why-chain graph">
+      <defs>
+        <marker id="ah-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="ehead"/></marker>
+        <marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="ehead g"/></marker>
+        <marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker>
+      </defs>
+      <path class="gedge causes" data-e="arid-heat,courtyard-house" d="M212,190 C300,215 330,255 368,283" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="mud-brick,courtyard-house" d="M205,305 C270,305 300,302 362,300" marker-end="url(#ah-e)"/>
+      <path class="gedge geneal" data-e="mud-brick-house,courtyard-house" d="M218,420 C300,395 330,345 372,318" marker-end="url(#ah-g)"/>
+      <path class="gedge part" data-e="central-court,courtyard-house" d="M400,168 C410,205 420,240 428,272"/>
+      <path class="gedge enables" data-e="central-court,cross-ventilation" d="M470,140 C540,120 570,110 620,100" marker-end="url(#ah-e)"/>
+      <path class="gedge evokes" data-e="courtyard-house,family-privacy" d="M505,285 C590,268 630,258 688,247" marker-end="url(#ah-d)"/>
+      <path class="gedge evokes" data-e="courtyard-house,enclosure-security" d="M505,315 C590,330 630,342 688,352" marker-end="url(#ah-d)"/>
+      <path class="gedge geneal" data-e="courtyard-house,siheyuan" d="M395,330 C340,390 310,440 285,480" marker-end="url(#ah-g)"/>
+      <path class="gedge part" data-e="courtyard-house,roman-domus" d="M435,332 C435,390 435,450 435,492"/>
+      <path class="gedge part" data-e="courtyard-house,riad" d="M480,330 C540,395 570,440 600,478"/>
+      <path class="gedge geneal" data-e="courtyard-house,islamic-courtyard-house" d="M508,322 C620,370 700,410 762,442" marker-end="url(#ah-g)"/>
+      <text class="elabel" x="268" y="228">causes · arid</text>
+      <text class="elabel" x="268" y="292">enables</text>
+      <text class="elabel" x="262" y="382">evolvedFrom</text>
+      <text class="elabel" x="520" y="96">enables</text>
+      <text class="elabel" x="580" y="252">evokes</text>
+      <text class="elabel" x="580" y="352">evokes</text>
+      <g class="gnode" data-n="arid-heat" transform="translate(120,168)">
+        <rect width="92" height="44"/><text x="46" y="20" text-anchor="middle">건조·고온</text>
+        <text class="sub" x="46" y="34" text-anchor="middle">arid-heat</text></g>
+      <g class="gnode" data-n="mud-brick" transform="translate(113,283)">
+        <rect width="92" height="44"/><text x="46" y="20" text-anchor="middle">흙벽돌</text>
+        <text class="sub" x="46" y="34" text-anchor="middle">mud-brick</text></g>
+      <g class="gnode" data-n="mud-brick-house" transform="translate(100,398)">
+        <rect width="118" height="44"/><text x="59" y="20" text-anchor="middle">흙벽돌 주택</text>
+        <text class="sub" x="59" y="34" text-anchor="middle">mud-brick-house</text></g>
+      <g class="gnode hub" data-n="courtyard-house" transform="translate(362,272)">
+        <rect width="143" height="56"/><text x="71" y="25" text-anchor="middle">중정주택</text>
+        <text class="sub" x="71" y="42" text-anchor="middle">courtyard-house</text></g>
+      <g class="gnode" data-n="central-court" transform="translate(340,120)">
+        <rect width="130" height="48"/><text x="65" y="21" text-anchor="middle">중정 (中庭)</text>
+        <text class="sub" x="65" y="37" text-anchor="middle">8개 문명이 공유</text></g>
+      <g class="gnode" data-n="cross-ventilation" transform="translate(620,72)">
+        <rect width="128" height="48"/><text x="64" y="21" text-anchor="middle">맞통풍</text>
+        <text class="sub" x="64" y="37" text-anchor="middle">cross-ventilation</text></g>
+      <g class="gnode emo" data-n="family-privacy" transform="translate(688,222)">
+        <rect width="140" height="48"/><text x="70" y="21" text-anchor="middle">가족 프라이버시</text>
+        <text class="sub" x="70" y="37" text-anchor="middle">evokes · claimed</text></g>
+      <g class="gnode emo" data-n="enclosure-security" transform="translate(688,330)">
+        <rect width="140" height="48"/><text x="70" y="21" text-anchor="middle">에워쌈-안전감</text>
+        <text class="sub" x="70" y="37" text-anchor="middle">evokes · claimed</text></g>
+      <g class="gnode" data-n="siheyuan" transform="translate(212,482)">
+        <rect width="112" height="48"/><text x="56" y="21" text-anchor="middle">사합원</text>
+        <text class="sub" x="56" y="37" text-anchor="middle">siheyuan · 중국</text></g>
+      <g class="gnode" data-n="roman-domus" transform="translate(376,492)">
+        <rect width="118" height="48"/><text x="59" y="21" text-anchor="middle">로마 도무스</text>
+        <text class="sub" x="59" y="37" text-anchor="middle">isA · 로마</text></g>
+      <g class="gnode" data-n="riad" transform="translate(548,478)">
+        <rect width="104" height="48"/><text x="52" y="21" text-anchor="middle">리아드</text>
+        <text class="sub" x="52" y="37" text-anchor="middle">riad · 모로코</text></g>
+      <g class="gnode" data-n="islamic-courtyard-house" transform="translate(724,432)">
+        <rect width="150" height="48"/><text x="75" y="21" text-anchor="middle">이슬람 중정주택</text>
+        <text class="sub" x="75" y="37" text-anchor="middle">시리아·이라크</text></g>
+    </svg>
+    </div>
+    <div class="info" id="info">
+      <span class="k" data-i18n="info_k">개념을 선택하세요</span>
+      <span class="d" data-i18n="info_d">노드에 마우스를 올리면 정의·근거·인식론 태그가 여기 표시됩니다. 이 데이터는 데모용 요약이 아니라 Den 온톨로지의 실제 레코드입니다.</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="sec-eyebrow reveal" data-i18n="w_eyebrow">Why Different</p>
+  <h2 class="display reveal d1" data-i18n="w_h2">정보 정리가 아니라, 이해의 구조</h2>
+  <p class="sec-lede reveal d2" data-i18n="w_lede">문서를 요약해 주는 도구는 많습니다. Den이 만드는 것은 다릅니다 —
+  인간이 공간을 이해해 온 방식 그 자체의 지도입니다.</p>
+  <div class="rows">
+    <div class="row reveal">
+      <div class="h" data-i18n="r1h">문장이 아니라<br>원자 개념의 그래프</div>
+      <div class="b" data-i18n="r1b">지식을 문단으로 저장하면 검색은 되지만 추론은 안 됩니다. Den의 모든 지식은
+      <b>재사용되는 원자 개념</b>(중정·화덕·버트레스…)과 그 사이의 <b>타입 있는 관계</b>로 존재합니다.
+      같은 '중정'이 사합원과 리아드와 도무스에서 하나의 노드입니다 — 그래서 문명을 가로지르는 질문에 답할 수 있습니다.</div>
+    </div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r2h">모든 관계에<br>근거와 출처</div>
+      <div class="b" data-i18n="r2b">Den의 관계는 생성형 모델의 연상이 아닙니다. 각 인과에는 <b>조사된 근거와 출처</b>가 붙고,
+      구축 파이프라인의 검증 게이트를 통과한 것만 그래프에 들어옵니다.
+      당신의 Agent는 답과 함께 <b>"왜 그렇게 말할 수 있는지"</b>를 받습니다.</div>
+    </div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r3h">맥락(scope) 없는<br>지식은 미신입니다</div>
+      <div class="b" data-i18n="r3b">"중정은 시원하다"는 건조기후에서만 참입니다. Den의 모든 인과에는
+      <b>시대·문화권·기후·기술수준</b>이 명시되어, 건조기후의 지혜를 한대기후 프로젝트에 잘못 권하지 않습니다.</div>
+    </div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r4h">물리와 정서를<br>구분하는 인식론</div>
+      <div class="b" data-i18n="r4b">"흙벽돌은 축열한다"(물리 인과)와 "에워쌈은 안전감을 준다"(정서적 주장)는 다른 종류의 지식입니다.
+      Den은 이 둘을 <b>구분해 태깅</b>하고, 논쟁적 학설은 논쟁적이라고 정직하게 표시합니다.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="sec-eyebrow reveal" data-i18n="s_eyebrow">Scale</p>
+  <h2 class="display reveal d1" data-i18n="s_h2">뿌리부터 전부, 지금도 자라는 중</h2>
+  <p class="sec-lede reveal d2" data-i18n="s_lede">영장류의 둥지에서 메타버스 주거까지 — 24개 지식 축이 하나의 그래프로 연결됩니다.</p>
+  <div class="stats reveal d2">
+    <div class="stat"><div class="n" data-count="1354">1,354</div><div class="l" data-i18n="st1">L1 골격 개념 — 정밀 감사 통과</div></div>
+    <div class="stat"><div class="n" data-count="40000" data-plus="1">40,000<span class="plus">+</span></div><div class="l" data-i18n="st2">L2 세부 원자 개념 (구축 진행 중)</div></div>
+    <div class="stat"><div class="n" data-count="51000" data-plus="1">51,000<span class="plus">+</span></div><div class="l" data-i18n="st3">근거 붙은 관계</div></div>
+    <div class="stat"><div class="n" data-count="24">24</div><div class="l" data-i18n="st4">지식 축 — 주거·구조·죽음·이동·유희까지</div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="sec-eyebrow reveal" data-i18n="h_eyebrow">How It Works</p>
+  <h2 class="display reveal d1" data-i18n="h_h2">지금 쓰는 Agent, 그대로</h2>
+  <p class="sec-lede reveal d2" data-i18n="h_lede">Den은 새 챗봇이 아닙니다. 당신이 이미 쓰는 Claude·GPT Agent에 지식층을 꽂는 방식입니다.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="t" data-i18n="sp1t">1 — 연결</div>
+      <div class="d" data-i18n="sp1d">MCP 설정 한 줄로 당신의 Agent가 Den에 연결됩니다. 별도 앱도, 워크플로 변경도 없습니다.</div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2 — 질의</div>
+      <div class="d" data-i18n="sp2d">Agent에게 평소처럼 묻습니다. Agent가 필요할 때 Den의 <code>answer-why</code>·<code>path-between</code> 도구를 스스로 호출합니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3 — 이유 사슬</div>
+      <div class="d" data-i18n="sp3d">답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건(scope), 출처까지. 판단은 당신과 당신의 Agent가 합니다.</div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="sec-eyebrow reveal" data-i18n="p_eyebrow">Preview</p>
+  <h2 class="display reveal d1" data-i18n="p_h2">같은 질문, 다른 깊이</h2>
+  <p class="sec-lede reveal d2" data-i18n="p_lede">"중정주택을 요즘 주거에 적용할 만한가?" — 같은 질문에 대한 두 응답의 구조를 비교해 보세요.</p>
+  <div class="compare">
+    <div class="pane reveal">
+      <div class="ph"><span data-i18n="pn1t">일반 Agent</span> <span class="who" data-i18n="pn1w">지식: 사전학습</span></div>
+      <div class="pb">
+        <p class="q" data-i18n="pnq">중정주택, 적용할 만한가요?</p>
+        <p data-i18n="pn1b">중정주택은 채광과 통풍에 유리하고 프라이버시 확보에 좋은 전통적 형식입니다.
+        현대 주거에서도 중정을 도입하면 자연 채광과 개방감을 얻을 수 있습니다.
+        다만 면적 효율과 시공 비용을 고려해야 합니다.</p>
+        <p style="font-size:12.5px" data-i18n="pn1n">— 그럴듯합니다. 하지만 <b>어느 기후에서, 왜, 어떤 조건일 때</b> 유효한지는 알 수 없습니다.</p>
+      </div>
+    </div>
+    <div class="pane den reveal d1">
+      <div class="ph"><span data-i18n="pn2t">Den을 주입한 Agent</span> <span class="who" data-i18n="pn2w">지식: 왜-사슬 + 근거</span></div>
+      <div class="pb">
+        <p class="q" data-i18n="pnq2">중정주택, 적용할 만한가요?</p>
+        <p data-i18n="pn2a">대지 조건부터 확인해야 합니다. 중정의 냉각 이득은 조건부입니다:</p>
+        <div class="chain">
+          <div class="cstep"><span class="rel">causes · scope: arid</span><br><span data-i18n="pc1">건조·고온 기후 → 중정 형식 <span class="sc">(9개 문명 수렴)</span></span></div>
+          <div class="cstep"><span class="rel">enables</span><br><span data-i18n="pc2">중정 → 맞통풍·야간 복사냉각</span></div>
+          <div class="cstep"><span class="rel d">evokes · claimed</span><br><span data-i18n="pc3">중정 → 가족 프라이버시·에워쌈-안전감 <span class="sc">(기후 무관 유효)</span></span></div>
+        </div>
+        <p data-i18n="pn2b">온대습윤 대지라면 <b>냉각 근거는 약해지고</b>, 프라이버시·중심성 가치는 남습니다.
+        형태를 베끼지 말고 성립 조건을 검토하세요.</p>
+        <div class="src-line" data-i18n="pn2s">근거: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou 외 — 관계별 출처 첨부</div>
+      </div>
+    </div>
+  </div>
+  <p class="preview-note" data-i18n="pnote">※ 구성 미리보기입니다. 라이브 데모는 자체 검증 실험(비교 성능 입증)을 통과한 뒤에만 공개합니다.</p>
+</section>
+
+<section class="wrap">
+  <p class="sec-eyebrow reveal" data-i18n="o_eyebrow">Honesty</p>
+  <h2 class="display reveal d1" data-i18n="o_h2">과장하지 않겠습니다</h2>
+  <div class="honest reveal d2" data-i18n="o_body">
+    Den은 지금 온톨로지를 구축하는 중입니다. 우리는 <b>검증 실험을 통과한 것만 공개</b>합니다 —
+    그것이 "근거 있는 지식"을 파는 프로젝트가 지켜야 할 최소한이라고 믿습니다.
+    대기명단에 등록하시면 베타가 열릴 때 가장 먼저 알려드립니다.
+  </div>
+
+  <div class="waitlist reveal">
+    <h2 class="display" data-i18n="wl_h2">당신의 Agent에게, 이유를.</h2>
+    <p data-i18n="wl_p">베타 공개 시 우선 초대와 구축 과정 기록(왜-사슬 사례 시리즈)을 보내드립니다.</p>
+    <a class="btn magnetic" href="mailto:odd.innocent@gmail.com?subject=%5BDen%5D%20%EB%8C%80%EA%B8%B0%EB%AA%85%EB%8B%A8%20%EB%93%B1%EB%A1%9D&body=%EC%86%8C%EC%86%8D%2F%EC%97%AD%ED%95%A0%3A%20%0A%EC%93%B0%EB%8A%94%20Agent%3A%20" data-i18n="wl_cta">대기명단 등록</a>
+  </div>
+  <footer style="padding:26px 0 0">
+    <span><b>Den</b> · <span data-i18n="ft1">인간 공간 이해의 온톨로지</span></span>
+    <span data-i18n="ft2">Beta 준비 중 · © 2026 Den</span>
+  </footer>
+</section>
+
+<script>
+(function(){
+  // 모션 기본 ON. 끄려면 ?motion=off (OS 동작줄이기 설정에 좌우되지 않음 — 마케팅 페이지 우선)
+  var reduced = /[?&]motion=off/.test(location.search);
+  if (reduced) document.documentElement.classList.add('reduced');
+
+  /* ================= i18n ================= */
+  var I18N = {
+    ko: {
+      eyebrow:'지식이 아니라, 이유를 주입합니다',
+      h1:'당신의 Agent,|건축을 [정말로] 알고 있나?',
+      lede:'범용 모델은 사실을 압니다. 문헌에 있는 답은 훌륭하게 인용하죠. 하지만 <b>"왜 이 공간이어야 하는가"</b>의 이유 사슬은 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 인류가 공간을 이해해 온 방식 전체를 <b>원자 개념과 인과의 그래프</b>로 구축합니다. 당신의 Agent가 그 위에서 추론합니다.',
+      cta:'대기명단 등록', ctanote:'베타는 자체 검증 실험 통과 후 공개됩니다',
+      jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
+      instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
+      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다. Den은 그 이해의 계보 전체를 — 본능에서 형태까지 — 데이터로 복원합니다.',
+      g_eyebrow:'The Graph', g_h2:'Agent에게 주입되는 지식의 실제 모양',
+      g_lede:'아래는 Den 온톨로지에서 그대로 꺼낸 <b>중정주택(courtyard-house)</b>의 왜-사슬 일부입니다. 개념에 마우스를 올려 보세요 — 모든 관계에 근거·시대·기후가 붙어 있습니다.',
+      g_title:'courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가',
+      lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg4:'계보 evolvedFrom', lg5:'구성·유형 partOf·isA',
+      info_k:'개념을 선택하세요',
+      info_d:'노드에 마우스를 올리면 정의·근거·인식론 태그가 여기 표시됩니다. 이 데이터는 데모용 요약이 아니라 Den 온톨로지의 실제 레코드입니다.',
+      w_eyebrow:'Why Different', w_h2:'정보 정리가 아니라, 이해의 구조',
+      w_lede:'문서를 요약해 주는 도구는 많습니다. Den이 만드는 것은 다릅니다 — 인간이 공간을 이해해 온 방식 그 자체의 지도입니다.',
+      r1h:'문장이 아니라<br>원자 개념의 그래프',
+      r1b:'지식을 문단으로 저장하면 검색은 되지만 추론은 안 됩니다. Den의 모든 지식은 <b>재사용되는 원자 개념</b>(중정·화덕·버트레스…)과 그 사이의 <b>타입 있는 관계</b>로 존재합니다. 같은 \'중정\'이 사합원과 리아드와 도무스에서 하나의 노드입니다 — 그래서 문명을 가로지르는 질문에 답할 수 있습니다.',
+      r2h:'모든 관계에<br>근거와 출처',
+      r2b:'Den의 관계는 생성형 모델의 연상이 아닙니다. 각 인과에는 <b>조사된 근거와 출처</b>가 붙고, 구축 파이프라인의 검증 게이트를 통과한 것만 그래프에 들어옵니다. 당신의 Agent는 답과 함께 <b>"왜 그렇게 말할 수 있는지"</b>를 받습니다.',
+      r3h:'맥락(scope) 없는<br>지식은 미신입니다',
+      r3b:'"중정은 시원하다"는 건조기후에서만 참입니다. Den의 모든 인과에는 <b>시대·문화권·기후·기술수준</b>이 명시되어, 건조기후의 지혜를 한대기후 프로젝트에 잘못 권하지 않습니다.',
+      r4h:'물리와 정서를<br>구분하는 인식론',
+      r4b:'"흙벽돌은 축열한다"(물리 인과)와 "에워쌈은 안전감을 준다"(정서적 주장)는 다른 종류의 지식입니다. Den은 이 둘을 <b>구분해 태깅</b>하고, 논쟁적 학설은 논쟁적이라고 정직하게 표시합니다.',
+      s_eyebrow:'Scale', s_h2:'뿌리부터 전부, 지금도 자라는 중',
+      s_lede:'영장류의 둥지에서 메타버스 주거까지 — 24개 지식 축이 하나의 그래프로 연결됩니다.',
+      st1:'L1 골격 개념 — 정밀 감사 통과', st2:'L2 세부 원자 개념 (구축 진행 중)', st3:'근거 붙은 관계', st4:'지식 축 — 주거·구조·죽음·이동·유희까지',
+      h_eyebrow:'How It Works', h_h2:'지금 쓰는 Agent, 그대로',
+      h_lede:'Den은 새 챗봇이 아닙니다. 당신이 이미 쓰는 Claude·GPT Agent에 지식층을 꽂는 방식입니다.',
+      sp1t:'1 — 연결', sp1d:'MCP 설정 한 줄로 당신의 Agent가 Den에 연결됩니다. 별도 앱도, 워크플로 변경도 없습니다.',
+      sp2t:'2 — 질의', sp2d:'Agent에게 평소처럼 묻습니다. Agent가 필요할 때 Den의 <code>answer-why</code>·<code>path-between</code> 도구를 스스로 호출합니다.',
+      sp3t:'3 — 이유 사슬', sp3d:'답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건(scope), 출처까지. 판단은 당신과 당신의 Agent가 합니다.',
+      p_eyebrow:'Preview', p_h2:'같은 질문, 다른 깊이',
+      p_lede:'"중정주택을 요즘 주거에 적용할 만한가?" — 같은 질문에 대한 두 응답의 구조를 비교해 보세요.',
+      pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'중정주택, 적용할 만한가요?', pnq2:'중정주택, 적용할 만한가요?',
+      pn1b:'중정주택은 채광과 통풍에 유리하고 프라이버시 확보에 좋은 전통적 형식입니다. 현대 주거에서도 중정을 도입하면 자연 채광과 개방감을 얻을 수 있습니다. 다만 면적 효율과 시공 비용을 고려해야 합니다.',
+      pn1n:'— 그럴듯합니다. 하지만 <b>어느 기후에서, 왜, 어떤 조건일 때</b> 유효한지는 알 수 없습니다.',
+      pn2t:'Den을 주입한 Agent', pn2w:'지식: 왜-사슬 + 근거',
+      pn2a:'대지 조건부터 확인해야 합니다. 중정의 냉각 이득은 조건부입니다:',
+      pc1:'건조·고온 기후 → 중정 형식 <span class="sc">(9개 문명 수렴)</span>',
+      pc2:'중정 → 맞통풍·야간 복사냉각',
+      pc3:'중정 → 가족 프라이버시·에워쌈-안전감 <span class="sc">(기후 무관 유효)</span>',
+      pn2b:'온대습윤 대지라면 <b>냉각 근거는 약해지고</b>, 프라이버시·중심성 가치는 남습니다. 형태를 베끼지 말고 성립 조건을 검토하세요.',
+      pn2s:'근거: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou 외 — 관계별 출처 첨부',
+      pnote:'※ 구성 미리보기입니다. 라이브 데모는 자체 검증 실험(비교 성능 입증)을 통과한 뒤에만 공개합니다.',
+      o_eyebrow:'Honesty', o_h2:'과장하지 않겠습니다',
+      o_body:'Den은 지금 온톨로지를 구축하는 중입니다. 우리는 <b>검증 실험을 통과한 것만 공개</b>합니다 — 그것이 "근거 있는 지식"을 파는 프로젝트가 지켜야 할 최소한이라고 믿습니다. 대기명단에 등록하시면 베타가 열릴 때 가장 먼저 알려드립니다.',
+      wl_h2:'당신의 Agent에게, 이유를.', wl_p:'베타 공개 시 우선 초대와 구축 과정 기록(왜-사슬 사례 시리즈)을 보내드립니다.', wl_cta:'대기명단 등록',
+      ft1:'인간 공간 이해의 온톨로지', ft2:'Beta 준비 중 · © 2026 Den',
+      eras:[
+        ['야외','Open Air','지붕 없는 밤 — 인류는 시야와 도주로로 안전을 쟀습니다. 그 계산이 아직 당신 안에 있습니다.'],
+        ['동굴','The Den','첫 번째 벽. 등 뒤가 안전해지자 비로소 마음이 다른 곳을 볼 수 있었습니다.'],
+        ['화덕','Hearth','불이 중심을 만들었습니다 — 모든 거실과 식탁의 조상.'],
+        ['움집','Pit-House','땅을 파 온기를 저장했습니다. 인류 최초의 단열 설계.'],
+        ['중정','Courtyard','하늘을 소유하는 법. 아홉 문명이 서로 모른 채 같은 답에 도달했습니다.'],
+        ['도시','City','잉여가 이웃을 만들고, 이웃이 규칙을 만들었습니다.'],
+        ['고층','High-Rise','철과 엘리베이터가 땅을 수직으로 접었습니다.'],
+        ['가상','Virtual','몸 없이 거주하는 최초의 세대 — 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.']
+      ],
+      langbtn:'EN'
+    },
+    en: {
+      eyebrow:'We inject reasons, not just knowledge',
+      h1:'Does your Agent|[really] know architecture?',
+      lede:'General models know facts — they cite the literature beautifully. But the chain of reasons behind <b>"why this space, why this form"</b> is written in no single document. Den builds the entire history of how humans have understood space as a <b>graph of atomic concepts and causality</b>. Your agent reasons on top of it.',
+      cta:'Join the waitlist', ctanote:'Beta opens only after our validation experiments pass',
+      jeyebrow:'Scroll — 40,000 years of understanding space',
+      instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
+      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.',
+      g_eyebrow:'The Graph', g_h2:'What actually gets injected into your Agent',
+      g_lede:'Below is a slice of the <b>courtyard-house</b> why-chain, taken directly from the Den ontology. Hover over a concept — every relation carries evidence, era, and climate.',
+      g_title:'courtyard-house — why nine civilizations converged on one form',
+      lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg4:'lineage evolvedFrom', lg5:'part / type',
+      info_k:'Select a concept',
+      info_d:'Hover a node to see its definition, evidence, and epistemic tags. This is not demo copy — these are actual records from the Den ontology.',
+      w_eyebrow:'Why Different', w_h2:'Not information tidying — the structure of understanding',
+      w_lede:'Plenty of tools summarize documents. Den builds something else: a map of how humans have understood space itself.',
+      r1h:'A graph of atomic concepts,<br>not paragraphs',
+      r1b:'Store knowledge as paragraphs and you can search it — but not reason over it. Every piece of Den is a <b>reusable atomic concept</b> (courtyard, hearth, buttress…) connected by <b>typed relations</b>. The same \'courtyard\' is one node in the siheyuan, the riad, and the domus — which is why cross-civilization questions become answerable.',
+      r2h:'Evidence and sources<br>on every relation',
+      r2b:'Den\'s relations are not generative associations. Every causal link carries <b>researched evidence with sources</b>, and only what passes our validation gates enters the graph. Your agent receives not just an answer, but <b>why it can be said</b>.',
+      r3h:'Knowledge without scope<br>is superstition',
+      r3b:'"Courtyards are cool" is true only in arid climates. Every causal link in Den is scoped by <b>era, culture, climate, and technology level</b> — so arid-climate wisdom never gets misapplied to a subarctic project.',
+      r4h:'An epistemology that separates<br>physics from feeling',
+      r4b:'"Mud brick stores heat" (physical causation) and "enclosure feels safe" (an emotional claim) are different kinds of knowledge. Den <b>tags them separately</b>, and marks contested theories as contested — honestly.',
+      s_eyebrow:'Scale', s_h2:'Everything from the roots — and still growing',
+      s_lede:'From primate nests to metaverse dwellings — 24 axes of knowledge, connected in one graph.',
+      st1:'L1 skeleton concepts — audit passed', st2:'L2 atomic concepts (in progress)', st3:'evidence-backed relations', st4:'knowledge axes — dwelling, structure, death, mobility, play',
+      h_eyebrow:'How It Works', h_h2:'Your current Agent, unchanged',
+      h_lede:'Den is not another chatbot. It is a knowledge layer that plugs into the Claude or GPT agent you already use.',
+      sp1t:'1 — Connect', sp1d:'One line of MCP config connects your agent to Den. No new app, no workflow change.',
+      sp2t:'2 — Ask', sp2d:'Ask your agent as you always do. When needed, it calls Den\'s <code>answer-why</code> and <code>path-between</code> tools on its own.',
+      sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.',
+      p_eyebrow:'Preview', p_h2:'Same question, different depth',
+      p_lede:'"Is a courtyard house worth applying to modern housing?" — compare the structure of two answers.',
+      pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Is a courtyard house worth applying?', pnq2:'Is a courtyard house worth applying?',
+      pn1b:'Courtyard houses are a traditional form with good daylighting, ventilation, and privacy. Introducing a courtyard in modern housing can bring natural light and openness. However, floor-area efficiency and construction cost should be considered.',
+      pn1n:'— Plausible. But you can\'t tell <b>in which climate, why, and under what conditions</b> it holds.',
+      pn2t:'Agent + Den', pn2w:'knowledge: why-chains + evidence',
+      pn2a:'Check the site conditions first. The cooling benefit of a courtyard is conditional:',
+      pc1:'Arid heat → courtyard form <span class="sc">(nine civilizations converged)</span>',
+      pc2:'Courtyard → cross-ventilation · nocturnal radiant cooling',
+      pc3:'Courtyard → family privacy · enclosure-security <span class="sc">(valid regardless of climate)</span>',
+      pn2b:'On a humid temperate site, <b>the cooling argument weakens</b> — while privacy and centrality remain. Don\'t copy the form; examine its conditions.',
+      pn2s:'Evidence: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou — sources attached per relation',
+      pnote:'※ A structural preview. The live demo opens only after our validation experiments prove the comparison.',
+      o_eyebrow:'Honesty', o_h2:'We will not oversell',
+      o_body:'Den is still under construction. We publish <b>only what passes validation experiments</b> — the minimum standard for a project that sells evidence-backed knowledge. Join the waitlist and you\'ll be the first to know when beta opens.',
+      wl_h2:'Give your Agent its reasons.', wl_p:'Waitlist members get priority beta invites and our build-log series of why-chain cases.', wl_cta:'Join the waitlist',
+      ft1:'An ontology of human spatial understanding', ft2:'Beta coming soon · © 2026 Den',
+      eras:[
+        ['Open Air','E0','Nights without a roof — safety was measured in sightlines and escape routes. That calculus still runs in you.'],
+        ['The Den','Cave','The first wall. With a safe back, the mind could finally look elsewhere.'],
+        ['Hearth','Fire','Fire created the center — ancestor of every living room and table.'],
+        ['Pit-House','Earth','Digging down to bank warmth. Humanity\'s first insulation design.'],
+        ['Courtyard','Sky','How to own the sky. Nine civilizations reached the same answer, unaware of each other.'],
+        ['City','Surplus','Surplus made neighbors, and neighbors made rules.'],
+        ['High-Rise','Steel','Steel and the elevator folded land vertically.'],
+        ['Virtual','Now','The first generation to dwell without a body — yet the instincts remain. Den maps them.']
+      ],
+      langbtn:'한국어'
+    }
+  };
+  var GDATA = {
+    ko: {
+      'courtyard-house':{ko:'중정주택',kind:'space_type · L1 골격',def:'중정을 중심으로 방이 내향 배치된 주택 형식. 메소포타미아·그리스·로마·중국·이슬람권 등 아홉 문명이 서로 독립적으로 같은 형식에 수렴했다.',chips:[['phys','물리 인과 4'],['claim','정서 evokes 2'],['','계보 9']],src:'L1 정밀 감사 통과 레코드'},
+      'arid-heat':{ko:'건조·고온',kind:'quality · 기후 압력',def:'강한 일사와 낮은 습도의 반건조 기후 압력. 이 조건이 중정 형식을 낳았다 — scope 없이 옮기면 지식이 미신이 된다.',chips:[['phys','physical_causal · consensus'],['','scope: arid']],src:'조사 근거: 건조기후 향토주거 문헌'},
+      'mud-brick':{ko:'흙벽돌',kind:'material',def:'햇볕에 말린 흙벽돌. 중정주택의 가능 조건(enables) — 있어야 가능하지만 그것만으로 충분하진 않은 관계.',chips:[['phys','enables · necessary']],src:'L1 재료 축 레코드'},
+      'mud-brick-house':{ko:'흙벽돌 주택',kind:'physical_object · 계보 조상',def:'최초의 항구적 지상 주택 계보. 다실 흙벽돌 주택이 방을 중정 둘레로 내향 배치하며 중정주택으로 발전했다.',chips:[['','evolvedFrom · 계보']],src:'근거: PPNB 신석기 주거 전환 연구'},
+      'central-court':{ko:'중정 (中庭)',kind:'space_type · L2 원자',def:'방들에 둘러싸여 하늘로 열린 중심 마당. 안달루시아 파티오·사합원·리아드·하벨리 등 8개 문명 주거형이 이 하나의 원자를 공유한다 — 재사용이 온톨로지의 힘이다.',chips:[['phys','8개 주거형에 partOf'],['','L2 · 근거 첨부']],src:'근거: The Courtyard Houses of Syria — Muslim Heritage'},
+      'cross-ventilation':{ko:'맞통풍',kind:'process · L2',def:'중정이 만드는 압력차가 실내 공기를 관통시키는 통풍. 중정 냉각 성능의 물리적 메커니즘.',chips:[['phys','physical_causal · consensus']],src:'근거: 건조기후 패시브 냉각 문헌'},
+      'family-privacy':{ko:'가족 프라이버시',kind:'emotion_instinct',def:'가족 생활이 외부 시선에서 보호된다는 감각. 물리 인과가 아니라 정서적 주장(claimed)으로 분리 태깅된다 — Den의 인식론 이원 원칙.',chips:[['claim','evokes · claimed']],src:'인식론: physical과 분리 태깅'},
+      'enclosure-security':{ko:'에워쌈-안전감',kind:'emotion_instinct',def:'닫힌 경계가 주는 보호받는 느낌. 인류가 동굴(den)에서부터 학습한 공간 본능의 하나로, 기후와 무관하게 유효한 가치.',chips:[['claim','evokes · claimed']],src:'감정·본능 축 레코드'},
+      'siheyuan':{ko:'사합원',kind:'physical_object · 지역 파생',def:'사방의 채가 중정을 완전히 에워싼 중국 북부의 위계형 중정주택. 중정주택 계보의 동아시아 분기.',chips:[['','evolvedFrom courtyard-house']],src:'근거: Siheyuan 문헌'},
+      'roman-domus':{ko:'로마 도무스',kind:'space_type · 유형',def:'아트리움과 페리스타일, 두 개의 중정을 가진 로마 상류층 도시주택. 중정주택의 지중해 실현.',chips:[['','isA courtyard-house']],src:'L1 골격 레코드'},
+      'riad':{ko:'리아드',kind:'space_type · 유형',def:'내향 정원 중정을 가진 모로코의 전통 주거. 이슬람 중정 전통의 마그레브 분기.',chips:[['','isA courtyard-house']],src:'L2 주거 축 레코드'},
+      'islamic-courtyard-house':{ko:'이슬람 중정주택',kind:'space_type · 지역 파생',def:'하람릭(가족)과 살람릭(손님)의 위계, 말카프(풍탑)와 수반을 갖춘 시리아·이라크의 중정주택.',chips:[['','evolvedFrom courtyard-house'],['phys','malqaf → 증발냉각']],src:'근거: Muslim Heritage'}
+    },
+    en: {
+      'courtyard-house':{ko:'Courtyard house',kind:'space_type · L1 skeleton',def:'A dwelling type with rooms arranged inward around a central court. Nine civilizations — Mesopotamia, Greece, Rome, China, the Islamic world — converged on this form independently.',chips:[['phys','4 physical links'],['claim','2 evokes'],['','9 lineage']],src:'L1 audited record'},
+      'arid-heat':{ko:'Arid heat',kind:'quality · climate pressure',def:'Semi-arid pressure of strong sun and low humidity. This condition produced the courtyard form — moved without scope, the knowledge becomes superstition.',chips:[['phys','physical_causal · consensus'],['','scope: arid']],src:'Evidence: arid vernacular literature'},
+      'mud-brick':{ko:'Mud brick',kind:'material',def:'Sun-dried earth brick. An enabling condition for the courtyard house — necessary, but not sufficient on its own.',chips:[['phys','enables · necessary']],src:'L1 materials record'},
+      'mud-brick-house':{ko:'Mud-brick house',kind:'physical_object · ancestor',def:'The first permanent above-ground dwelling lineage. Multi-room mud-brick houses evolved into courtyard houses by turning rooms inward.',chips:[['','evolvedFrom · lineage']],src:'Evidence: PPNB Neolithic transition studies'},
+      'central-court':{ko:'Central court',kind:'space_type · L2 atom',def:'A yard open to the sky, enclosed by rooms. Eight civilizations\' dwelling types — Andalusian patio, siheyuan, riad, haveli — share this single atom. Reuse is the power of an ontology.',chips:[['phys','partOf 8 dwelling types'],['','L2 · evidenced']],src:'Evidence: The Courtyard Houses of Syria — Muslim Heritage'},
+      'cross-ventilation':{ko:'Cross-ventilation',kind:'process · L2',def:'Pressure-difference airflow driven by the court. The physical mechanism behind courtyard cooling.',chips:[['phys','physical_causal · consensus']],src:'Evidence: passive cooling literature'},
+      'family-privacy':{ko:'Family privacy',kind:'emotion_instinct',def:'The sense that family life is shielded from outside gaze. Tagged as an emotional claim, not physical causation — Den\'s dual epistemology.',chips:[['claim','evokes · claimed']],src:'Epistemics: tagged separately from physics'},
+      'enclosure-security':{ko:'Enclosure-security',kind:'emotion_instinct',def:'The feeling of protection a closed boundary gives. A spatial instinct humanity learned from the den itself — valid in any climate.',chips:[['claim','evokes · claimed']],src:'Emotion-instinct axis record'},
+      'siheyuan':{ko:'Siheyuan',kind:'physical_object · regional descendant',def:'North-Chinese hierarchical courtyard house, fully enclosed on four sides. The East Asian branch of the courtyard lineage.',chips:[['','evolvedFrom courtyard-house']],src:'Evidence: Siheyuan literature'},
+      'roman-domus':{ko:'Roman domus',kind:'space_type · type',def:'Roman urban house with two courts — atrium and peristyle. The Mediterranean realization of the courtyard type.',chips:[['','isA courtyard-house']],src:'L1 skeleton record'},
+      'riad':{ko:'Riad',kind:'space_type · type',def:'Moroccan dwelling with an inward garden court. The Maghreb branch of the Islamic courtyard tradition.',chips:[['','isA courtyard-house']],src:'L2 dwelling record'},
+      'islamic-courtyard-house':{ko:'Islamic courtyard house',kind:'space_type · regional descendant',def:'Syrian-Iraqi courtyard house with haramlik/salamlik hierarchy, windcatcher (malqaf) and water basin.',chips:[['','evolvedFrom courtyard-house'],['phys','malqaf → evaporative cooling']],src:'Evidence: Muslim Heritage'}
+    }
+  };
+  var lang = 'ko';
+  try{ lang = localStorage.getItem('den-lang') || 'ko'; }catch(e){}
+
+  function splitKinetic(el, tpl){
+    el.innerHTML='';
+    var lines = tpl.split('|');
+    lines.forEach(function(line, li){
+      if (li>0) el.appendChild(document.createElement('br'));
+      var parts = line.split(/(\[[^\]]+\])/);
+      parts.forEach(function(part){
+        var em = /^\[.*\]$/.test(part);
+        var txt = em ? part.slice(1,-1) : part;
+        var holder = em ? document.createElement('span') : el;
+        if (em){ holder.className='em'; el.appendChild(holder); }
+        Array.from(txt).forEach(function(chr){
+          if (chr===' '){ holder.appendChild(document.createTextNode(' ')); return; }
+          var s=document.createElement('span'); s.className='ch'; s.textContent=chr;
+          holder.appendChild(s);
+        });
+      });
+    });
+    var chs = el.querySelectorAll('.ch');
+    chs.forEach(function(c,i){ c.style.transitionDelay = (0.018*i)+'s'; });
+    el.classList.remove('on');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ el.classList.add('on'); }); });
+  }
+
+  function splitWords(el, tpl){
+    el.innerHTML='';
+    var parts = tpl.split(/(\[[^\]]+\])/);
+    parts.forEach(function(part){
+      var em = /^\[.*\]$/.test(part);
+      var txt = em ? part.slice(1,-1) : part;
+      txt.split(' ').forEach(function(w,i,arr){
+        if(!w){ el.appendChild(document.createTextNode(' ')); return; }
+        var s=document.createElement('span'); s.className='w'+(em?' em':''); s.textContent=w;
+        el.appendChild(s);
+        el.appendChild(document.createTextNode(' '));
+      });
+    });
+  }
+
+  var eraColors = [
+    [14,15,20],[23,19,16],[38,23,14],[30,25,18],[47,38,24],[32,36,43],[27,36,48],[36,26,50]
+  ];
+  var jstage = document.getElementById('jstage');
+  var jlabels = document.getElementById('jlabels');
+
+  function applyLang(){
+    var D = I18N[lang];
+    document.documentElement.lang = (lang==='ko'?'ko':'en');
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      if (D[k]!==undefined) el.innerHTML = D[k];
+    });
+    document.getElementById('langbtn').textContent = D.langbtn;
+    splitKinetic(document.getElementById('kinetic'), D.h1);
+    var ib = document.getElementById('instinct-big');
+    splitWords(ib, D.instbig); litWords();
+    // journey eras
+    jstage.innerHTML=''; jlabels.innerHTML='';
+    D.eras.forEach(function(e,i){
+      var div=document.createElement('div'); div.className='j-era'+(i===jIdx?' on':''); div.dataset.i=i;
+      div.innerHTML='<h3><span class="en">'+(lang==='ko'?('Chapter 0'+(i+1)+' — '+['Open Air','The Den','Hearth','Pit-House','Courtyard','City','High-Rise','Virtual'][i]):e[1])+'</span>'+e[0]+'</h3><p>'+e[2]+'</p>';
+      jstage.appendChild(div);
+      var lb=document.createElement('span'); lb.textContent=e[0]; jlabels.appendChild(lb);
+    });
+    var gh=document.createElement('div'); gh.className='j-ghost'; gh.id='jghost'; gh.textContent='0'+(jIdx+1);
+    jstage.appendChild(gh);
+    jLabelEls = [];
+    refreshJourneyRefs();
+    jlabels.querySelectorAll('span').forEach(function(el,i){ el.classList.toggle('on', i<=jIdx); });
+  }
+  document.getElementById('langbtn').addEventListener('click',function(){
+    lang = (lang==='ko'?'en':'ko');
+    try{ localStorage.setItem('den-lang',lang); }catch(e){}
+    applyLang();
+  });
+
+  /* ================= embers + torch + parallax ================= */
+  var cv = document.getElementById('embers');
+  var torch = document.getElementById('torch');
+  var hglow = document.getElementById('hglow');
+  var mx = -999, my = -999, tmx = -999, tmy = -999;
+  if (cv && !reduced) {
+    var ctx = cv.getContext('2d'), P = [], emberColor = '#E98B3D';
+    function readColor(){
+      emberColor = getComputedStyle(document.documentElement).getPropertyValue('--ember').trim() || emberColor;
+    }
+    readColor();
+    new MutationObserver(readColor).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readColor); }catch(e){}
+    function size(){
+      var r = cv.parentElement.getBoundingClientRect();
+      cv.width = r.width * devicePixelRatio; cv.height = r.height * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    size(); addEventListener('resize', size);
+    function spawn(init){
+      var h = cv.height/devicePixelRatio, w = cv.width/devicePixelRatio;
+      return { x: Math.random()*w, y: init? Math.random()*h : h+8,
+        r: .8+Math.random()*2.1, v: .25+Math.random()*.6,
+        sway: Math.random()*Math.PI*2, sa: .2+Math.random()*.55,
+        life: .3+Math.random()*.7 };
+    }
+    for (var i=0;i<56;i++) P.push(spawn(true));
+    (function tick(){
+      var h = cv.height/devicePixelRatio, w = cv.width/devicePixelRatio;
+      ctx.clearRect(0,0,w,h);
+      for (var i=0;i<P.length;i++){
+        var p = P[i];
+        p.y -= p.v; p.sway += .013;
+        p.x += Math.sin(p.sway)*p.sa*.35;
+        // 커서 척력 — 불씨가 손길을 피해 흔들림
+        var dx = p.x - tmx, dy = p.y - tmy, d2 = dx*dx+dy*dy;
+        if (d2 < 8000){ var f = (8000-d2)/8000; p.x += dx*f*.03; p.y += dy*f*.03; }
+        var fade = Math.min(1, p.y/(h*.5));
+        if (p.y < -8) P[i] = spawn(false);
+        ctx.globalAlpha = .6 * fade * p.life;
+        ctx.fillStyle = emberColor;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(tick);
+    })();
+  }
+  var hero = document.querySelector('.hero');
+  if (hero && !reduced && matchMedia('(pointer:fine)').matches){
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      mx = e.clientX - r.left; my = e.clientY - r.top;
+      torch.style.opacity = 1;
+    });
+    hero.addEventListener('mouseleave', function(){ torch.style.opacity = 0; mx=-999;my=-999; });
+    (function torchTick(){
+      tmx += (mx-tmx)*.08; tmy += (my-tmy)*.08;
+      torch.style.background = 'radial-gradient(35rem circle at '+tmx+'px '+tmy+'px, var(--glow), transparent 62%)';
+      if (hglow) hglow.style.transform = 'translate('+((tmx-400)*.02)+'px,'+((tmy-300)*.02)+'px)';
+      requestAnimationFrame(torchTick);
+    })();
+  }
+
+  /* ================= magnetic buttons ================= */
+  if (!reduced && matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.magnetic').forEach(function(b){
+      b.addEventListener('mousemove', function(e){
+        var r = b.getBoundingClientRect();
+        var dx = e.clientX - (r.left+r.width/2), dy = e.clientY - (r.top+r.height/2);
+        b.style.transform = 'translate('+dx*.14+'px,'+dy*.22+'px)';
+      });
+      b.addEventListener('mouseleave', function(){ b.style.transform=''; });
+    });
+  }
+
+  /* ================= marquee ================= */
+  var ATOMS = ['hearth 화덕','central-court 중정','malqaf 풍탑','flying-buttress 플라잉버트레스','ondol 온돌','tsuboniwa 쓰보니와','bastion 능보','chinampa 치남파','qanat 카나트','stoa 스토아','pendentive 펜덴티브','ha-ha 하하월','voussoir 홍예석','engawa 툇마루','impluvium 임플루비움','ziggurat 지구라트','mashrabiya 마슈라비야','hypocaust 하이포코스트','tumulus 봉분','agora 아고라','jali 잘리','trullo 트룰로','genkan 겐칸','caravanserai 카라반세라이'];
+  var mt = document.getElementById('mtrack');
+  var half = ATOMS.map(function(a){ var p=a.split(' '); return '<span><b>'+p[0]+'</b><i>·</i>'+p.slice(1).join(' ')+'</span>'; }).join('');
+  mt.innerHTML = half + half;
+
+  /* ================= scroll engine (rAF) ================= */
+  var pbar = document.getElementById('pbar');
+  var journey = document.getElementById('journey');
+  var jsticky = document.getElementById('jsticky');
+  var jfill = document.getElementById('jfill');
+  var jdot = document.getElementById('jdot');
+  var jfire = document.getElementById('jfire');
+  var jcount = document.getElementById('jcount');
+  var jIdx = 0, jEras = [], jLabelEls = [];
+  /* 챕터 씬: assets/era-01.png..era-08.png 있으면 사용, 없으면 이모지 폴백 */
+  var ERA_EMOJI = ['🌌','🕳️','🔥','⛺','⛲','🏘️','🏙️','🥽'];
+  var jscene=null, jart=null;
+  (function buildScene(){
+    if (!jsticky) return;
+    jscene = document.createElement('div'); jscene.className='j-scene';
+    var tilt = document.createElement('div'); tilt.className='j-tilt';
+    var bob = document.createElement('div'); bob.className='j-bob'; bob.style.width='100%'; bob.style.height='100%';
+    jart = document.createElement('div'); jart.className='j-art';
+    bob.appendChild(jart); tilt.appendChild(bob); jscene.appendChild(tilt);
+    for (var k=0;k<5;k++){
+      var sp=document.createElement('span'); sp.className='j-spark';
+      sp.style.left=(8+Math.random()*84)+'%'; sp.style.top=(6+Math.random()*88)+'%';
+      sp.style.animationDelay=(Math.random()*2.4)+'s';
+      sp.style.width=sp.style.height=(0.3+Math.random()*0.45)+'rem';
+      jscene.appendChild(sp);
+    }
+    jsticky.appendChild(jscene);
+    if (matchMedia('(pointer:fine)').matches){
+      jsticky.addEventListener('mousemove', function(e){
+        var r=jsticky.getBoundingClientRect();
+        var rx=((e.clientY-r.top)/r.height-.5)*-14, ry=((e.clientX-r.left)/r.width-.5)*18;
+        tilt.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';
+      });
+      jsticky.addEventListener('mouseleave', function(){ tilt.style.transform=''; });
+    }
+    setEra(0);
+  })();
+  function setEra(i){
+    if (!jart) return;
+    jart.textContent = ERA_EMOJI[i];
+    jart.classList.remove('pop'); void jart.offsetWidth; jart.classList.add('pop');
+  }
+  function refreshJourneyRefs(){
+    jEras = Array.prototype.slice.call(jstage.querySelectorAll('.j-era'));
+    jLabelEls = Array.prototype.slice.call(jlabels.querySelectorAll('span'));
+  }
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function jTickColors(p){
+    var seg = p*(eraColors.length-1);
+    var i = Math.min(eraColors.length-2, Math.floor(seg));
+    var f = seg - i;
+    var c0 = eraColors[i], c1 = eraColors[i+1];
+    var r = Math.round(lerp(c0[0],c1[0],f)), g = Math.round(lerp(c0[1],c1[1],f)), b = Math.round(lerp(c0[2],c1[2],f));
+    jsticky.style.background = 'rgb('+r+','+g+','+b+')';
+  }
+  var heroWrap = document.querySelector('.hero .wrap');
+  var heroEl = document.querySelector('.hero');
+  var lastY = -1;
+  function onScroll(){
+    var y = scrollY, vh = innerHeight;
+    var doc = document.documentElement.scrollHeight - vh;
+    pbar.style.width = (doc>0 ? (y/doc*100) : 0) + '%';
+    if (heroWrap && !reduced){
+      var hh = heroEl.offsetHeight || 1;
+      var hp = Math.min(1, y/hh);
+      heroWrap.style.transform = 'translateY('+(hp*-60)+'px)';
+      heroWrap.style.opacity = String(1 - hp*.9);
+    }
+    if (journey && !reduced){
+      var top = journey.offsetTop, hgt = journey.offsetHeight - vh;
+      var p = Math.max(0, Math.min(1, (y - top)/hgt));
+      var idx = Math.min(7, Math.floor(p*8));
+      if (idx !== jIdx){
+        jIdx = idx;
+        jEras.forEach(function(el,i){ el.classList.toggle('on', i===idx); });
+        jLabelEls.forEach(function(el,i){ el.classList.toggle('on', i<=idx); });
+        jcount.textContent = '0'+(idx+1)+' / 08';
+        var gh=document.getElementById('jghost'); if(gh) gh.textContent='0'+(idx+1);
+        setEra(idx);
+        jfire.style.opacity = (idx>=2 && idx<=4) ? 1 : (idx===1?0.55:0.25);
+      }
+      jTickColors(p);
+      jfill.style.width = (p*100)+'%';
+      jdot.style.left = (p*100)+'%';
+    }
+  }
+  addEventListener('scroll', function(){
+    if (lastY === scrollY) return;
+    lastY = scrollY;
+    requestAnimationFrame(onScroll);
+  }, {passive:true});
+
+  /* ===== 페이징 엔진: 휠 즉시 다음 챕터로 (CSS 스냅의 settle 지연 제거) ===== */
+  var PAGING = !reduced && matchMedia('(pointer:fine)').matches && innerWidth >= 900;
+  if (PAGING){
+    var pages = [], animating = false, coolUntil = 0, accum = 0;
+    function buildPages(){
+      var vh = innerHeight;
+      pages = [0];
+      if (journey){
+        var jTop = journey.offsetTop, jH = journey.offsetHeight - vh;
+        for (var k=0;k<8;k++) pages.push(Math.round(jTop + ((k+0.5)/8)*jH));
+      }
+      document.querySelectorAll('.instinct, section').forEach(function(el){
+        pages.push(el.offsetTop);
+      });
+      pages.sort(function(a,b){return a-b});
+    }
+    buildPages();
+    addEventListener('resize', buildPages);
+    setTimeout(buildPages, 600); // 폰트/이미지 로드 후 오프셋 보정
+    function nearestIdx(){
+      var y = scrollY, best = 0, bd = 1e9;
+      for (var i=0;i<pages.length;i++){ var d = Math.abs(pages[i]-y); if (d<bd){bd=d;best=i;} }
+      return best;
+    }
+    function goTo(y){
+      animating = true;
+      var start = scrollY, dist = y - start, t0 = performance.now();
+      var D = 380 + Math.min(220, Math.abs(dist)/innerHeight*60); // 380~600ms, 즉시 시작
+      function step(t){
+        var k = Math.min(1,(t-t0)/D), e = 1-Math.pow(1-k,3); // easeOutCubic — 초반이 빠름(쓕)
+        scrollTo(0, start + dist*e);
+        if (k<1) requestAnimationFrame(step);
+        else { animating = false; coolUntil = performance.now()+130; accum = 0; }
+      }
+      requestAnimationFrame(step);
+    }
+    function page(dir){
+      var i = nearestIdx();
+      var next = Math.max(0, Math.min(pages.length-1, i+dir));
+      if (next !== i) goTo(pages[next]);
+    }
+    addEventListener('wheel', function(e){
+      e.preventDefault();
+      var now = performance.now();
+      if (animating || now < coolUntil) return;
+      accum += e.deltaY;
+      if (Math.abs(accum) < 28) return;   // 트랙팩 미세 입력 무시, 임계 넘으면 즉시
+      var dir = accum > 0 ? 1 : -1;
+      accum = 0;
+      page(dir);
+    }, {passive:false});
+    addEventListener('keydown', function(e){
+      if (animating) return;
+      if (e.key==='PageDown' || e.key===' ' || e.key==='ArrowDown'){ e.preventDefault(); page(1); }
+      else if (e.key==='PageUp' || e.key==='ArrowUp'){ e.preventDefault(); page(-1); }
+      else if (e.key==='Home'){ e.preventDefault(); goTo(0); }
+      else if (e.key==='End'){ e.preventDefault(); goTo(document.documentElement.scrollHeight); }
+    });
+  }
+
+  /* ================= reveals / counters / instinct words ================= */
+  var toReveal = document.querySelectorAll('.reveal');
+  if (!reduced && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.target.classList.toggle('in', e.isIntersecting); });
+    },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    toReveal.forEach(function(el){ io.observe(el); });
+  } else { toReveal.forEach(function(el){ el.classList.add('in'); }); }
+  // 방향 변형 자동 부여: 행·페인·스텝이 좌우 번갈아 슬라이드
+  document.querySelectorAll('.row.reveal').forEach(function(el,i){ el.classList.add(i%2? 'rv-r':'rv-l'); });
+  document.querySelectorAll('.pane.reveal').forEach(function(el,i){ el.classList.add(i%2? 'rv-r':'rv-l'); });
+  document.querySelectorAll('.step.reveal').forEach(function(el,i){ el.classList.add('rv-s'); });
+  document.querySelectorAll('.stats.reveal, .graph-shell.reveal, .waitlist.reveal, .honest.reveal').forEach(function(el){ el.classList.add('rv-s'); });
+
+  var nums = document.querySelectorAll('.stat .n');
+  if (!reduced && 'IntersectionObserver' in window){
+    var io2 = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return; io2.unobserve(e.target);
+        var el = e.target, target = parseInt(el.dataset.count,10);
+        var plus = el.dataset.plus ? '<span class="plus">+</span>' : '';
+        var start = null;
+        function step(ts){
+          if(!start) start = ts;
+          var k = Math.min(1,(ts-start)/1400), ease = 1-Math.pow(1-k,3);
+          el.innerHTML = Math.round(target*ease).toLocaleString() + plus;
+          if(k<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    },{threshold:.4});
+    nums.forEach(function(n){ io2.observe(n); });
+  }
+
+  function litWords(){
+    var ws = document.querySelectorAll('#instinct-big .w');
+    if (reduced || !('IntersectionObserver' in window)){ ws.forEach(function(w){w.classList.add('lit')}); return; }
+    var io3 = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return; io3.unobserve(e.target);
+        var all = Array.prototype.slice.call(document.querySelectorAll('#instinct-big .w'));
+        all.forEach(function(w,i){ setTimeout(function(){ w.classList.add('lit'); }, i*55); });
+      });
+    },{threshold:.35});
+    var big = document.getElementById('instinct-big');
+    if (big) io3.observe(big);
+  }
+
+  /* ================= graph interaction ================= */
+  var info = document.getElementById('info');
+  var nodes = document.querySelectorAll('.gnode');
+  var edges = document.querySelectorAll('.gedge');
+  function touching(a,b){
+    var t=false;
+    edges.forEach(function(e){var p=e.dataset.e.split(',');
+      if((p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)) t=true;});
+    return t;
+  }
+  function show(id){
+    var d = GDATA[lang][id]; if(!d) return;
+    var chips = d.chips.map(function(c){
+      return '<span class="chip '+c[0]+'">'+c[1]+'</span>';}).join('');
+    info.innerHTML = '<span class="k">'+d.ko+'<span class="en">'+id+' · '+d.kind+'</span></span>'
+      +'<span class="d">'+d.def+'<br><span class="src">'+d.src+'</span></span>'
+      +'<span class="chips">'+chips+'</span>';
+    nodes.forEach(function(n){
+      n.classList.toggle('dim', n.dataset.n!==id && !touching(n.dataset.n,id));
+      n.classList.toggle('active', n.dataset.n===id);
+    });
+    edges.forEach(function(e){
+      var pair = e.dataset.e.split(',');
+      e.classList.toggle('dim', pair.indexOf(id)<0);
+    });
+  }
+  function clearSel(){
+    nodes.forEach(function(n){n.classList.remove('dim','active')});
+    edges.forEach(function(e){e.classList.remove('dim')});
+  }
+  nodes.forEach(function(n){
+    n.addEventListener('mouseenter',function(){show(n.dataset.n)});
+    n.addEventListener('click',function(){show(n.dataset.n)});
+    n.setAttribute('tabindex','0');
+    n.addEventListener('focus',function(){show(n.dataset.n)});
+  });
+  document.querySelector('svg.graph').addEventListener('mouseleave',clearSel);
+
+  /* init */
+  applyLang();
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
