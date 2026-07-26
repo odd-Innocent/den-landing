@@ -360,6 +360,19 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
   Den은 그 이해의 계보 전체를 — 본능에서 형태까지 — 데이터로 복원합니다.</p>
 </div>
 
+<!-- 09 전환점(2026-07-26 개편): 여정이 끝난 감정을 실무 문제로 넘긴다.
+     PI 결정 — 히어로와 01~08 여정의 감성은 그대로 두고, 그 '이후'를 다시 쓴다. -->
+<section class="wrap" id="turn-sec">
+  <p class="sec-eyebrow reveal" data-i18n="t_eyebrow">The Gap</p>
+  <h2 class="display reveal d1" data-i18n="t_h2">그런데 당신의 Agent는<br>이 4만 년을 모릅니다</h2>
+  <p class="sec-lede reveal d2" data-i18n="t_lede">Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 기후·구법·법규 아래에서만
+  참인지는 모릅니다. 그래서 그럴듯하게 틀립니다 — 그리고 틀렸다는 사실조차 말해주지 않습니다.</p>
+  <div class="cta-row reveal d3" style="margin-top:1.5rem">
+    <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
+    <span class="cta-note" data-i18n="t_note">승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오</span>
+  </div>
+</section>
+
 <section class="wrap" id="graph-sec">
   <p class="sec-eyebrow reveal" data-i18n="g_eyebrow">The Graph</p>
   <h2 class="display reveal d1" data-i18n="g_h2">Agent에게 주입되는 지식의 실제 모양</h2>
@@ -504,6 +517,19 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
     <div class="step reveal d2"><div class="t" data-i18n="sp3t">3 — 이유 사슬</div>
       <div class="d" data-i18n="sp3d">답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건(scope), 출처까지. 판단은 당신과 당신의 Agent가 합니다.</div></div>
   </div>
+
+  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다. -->
+  <div class="steps" style="margin-top:1.25rem">
+    <div class="step reveal"><div class="t" data-i18n="ch1t">웹 커넥터</div>
+      <div class="d" data-i18n="ch1d">Claude·ChatGPT 웹에서 커넥터 주소만 붙여넣습니다.
+      헤더 설정이 없는 환경을 위해 <b>개인 전용 URL</b>을 발급합니다.</div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="ch2t">Claude Code · IDE</div>
+      <div class="d" data-i18n="ch2d"><code>Authorization: Bearer &lt;키&gt;</code> 한 줄.
+      MCP 설정 파일에 서버를 추가하면 끝입니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="ch3t">데스크톱 (.mcpb)</div>
+      <div class="d" data-i18n="ch3d">번들을 설치하고 키를 입력하면 OS 키체인에 안전하게 보관됩니다.</div></div>
+  </div>
+  <p class="preview-note" data-i18n="ch_note">채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.</p>
 </section>
 
 <section class="wrap">
@@ -540,13 +566,49 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
   <p class="preview-note" data-i18n="pnote">※ 구성 미리보기입니다. 라이브 데모는 자체 검증 실험(비교 성능 입증)을 통과한 뒤에만 공개합니다.</p>
 </section>
 
+<!-- 11 기권 시연(2026-07-26 개편, PI 채택): Den 의 핵심 차별점을 **말이 아니라 보여준다**.
+     범위 안이면 근거를 붙여 답하고, 범위 밖이면 침묵한다 — 그럴듯한 오답이 환각보다 나쁘기 때문. -->
+<section class="wrap" id="abstain-sec">
+  <p class="sec-eyebrow reveal" data-i18n="ab_eyebrow">Silence</p>
+  <h2 class="display reveal d1" data-i18n="ab_h2">모르면, 침묵합니다</h2>
+  <p class="sec-lede reveal d2" data-i18n="ab_lede">대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다.
+  Den은 관련 지식이 없으면 <b>비워서 돌려보냅니다</b> — 그럴듯한 오답은 환각보다 나쁘기 때문입니다.</p>
+  <div class="compare">
+    <div class="pane den reveal">
+      <div class="ph"><span data-i18n="ab1t">범위 안 — 건축</span> <span class="who" data-i18n="ab1w">근거를 붙여 답한다</span></div>
+      <div class="pb">
+        <p class="q" data-i18n="ab1q">철근 최소 피복두께 기준은?</p>
+        <div class="chain">
+          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c1">수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm</span></div>
+          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c2">옥외·흙에 접하지 않는 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
+        </div>
+        <div class="src-line" data-i18n="ab1s">근거: KDS 14 20 콘크리트구조 설계기준</div>
+      </div>
+    </div>
+    <div class="pane reveal d1">
+      <div class="ph"><span data-i18n="ab2t">범위 밖 — 비건축</span> <span class="who" data-i18n="ab2w">지어내지 않는다</span></div>
+      <div class="pb">
+        <p class="q" data-i18n="ab2q">양자컴퓨터 오류정정 방식은?</p>
+        <p data-i18n="ab2a" style="opacity:.85">관련 전공자료 없음.</p>
+        <p style="font-size:12.5px" data-i18n="ab2n">— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아
+        "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="cta-row reveal d2" style="margin-top:1.75rem">
+    <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
+    <span class="cta-note" data-i18n="ab_note">승인되면 직접 키를 발급하십니다</span>
+  </div>
+</section>
+
 <section class="wrap">
   <p class="sec-eyebrow reveal" data-i18n="o_eyebrow">Honesty</p>
   <h2 class="display reveal d1" data-i18n="o_h2">과장하지 않겠습니다</h2>
   <div class="honest reveal d2" data-i18n="o_body">
-    Den은 지금 온톨로지를 구축하는 중입니다. 우리는 <b>검증 실험을 통과한 것만 공개</b>합니다 —
+    Den은 지금도 온톨로지를 넓히는 중입니다. 우리는 <b>검증 실험을 통과한 것만 공개</b>합니다 —
     그것이 "근거 있는 지식"을 파는 프로젝트가 지켜야 할 최소한이라고 믿습니다.
-    대기명단에 등록하시면 베타가 열릴 때 가장 먼저 알려드립니다.
+    그래서 아직 모르는 영역이 있고, 그런 질문에는 답을 만들어내는 대신 <b>비워서 돌려드립니다</b>.
+    얼리 액세스는 그 상태를 함께 확인해 주실 분들께 승인제로 엽니다.
   </div>
 
   <div class="waitlist reveal">
@@ -569,6 +631,23 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
   /* ================= i18n ================= */
   var I18N = {
     ko: {
+      t_eyebrow:'The Gap', t_h2:'그런데 당신의 Agent는<br>이 4만 년을 모릅니다',
+      t_lede:'Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 기후·구법·법규 아래에서만 참인지는 모릅니다. 그래서 그럴듯하게 틀립니다 — 그리고 틀렸다는 사실조차 말해주지 않습니다.',
+      t_note:'승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오',
+      ab_eyebrow:'Silence', ab_h2:'모르면, 침묵합니다',
+      ab_lede:'대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 관련 지식이 없으면 <b>비워서 돌려보냅니다</b> — 그럴듯한 오답은 환각보다 나쁘기 때문입니다.',
+      ab1t:'범위 안 — 건축', ab1w:'근거를 붙여 답한다', ab1q:'철근 최소 피복두께 기준은?',
+      ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
+      ab1c2:'옥외·흙에 접하지 않는 보·기둥 40mm · 슬래브 D35 이하 20mm',
+      ab1s:'근거: KDS 14 20 콘크리트구조 설계기준',
+      ab2t:'범위 밖 — 비건축', ab2w:'지어내지 않는다', ab2q:'양자컴퓨터 오류정정 방식은?',
+      ab2a:'관련 전공자료 없음.',
+      ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
+      ab_note:'승인되면 직접 키를 발급하십니다',
+      ch1t:'웹 커넥터', ch1d:'Claude·ChatGPT 웹에서 커넥터 주소만 붙여넣습니다. 헤더 설정이 없는 환경을 위해 <b>개인 전용 URL</b>을 발급합니다.',
+      ch2t:'Claude Code · IDE', ch2d:'<code>Authorization: Bearer &lt;키&gt;</code> 한 줄. MCP 설정 파일에 서버를 추가하면 끝입니다.',
+      ch3t:'데스크톱 (.mcpb)', ch3d:'번들을 설치하고 키를 입력하면 OS 키체인에 안전하게 보관됩니다.',
+      ch_note:'채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.',
       eyebrow:'지식이 아니라, 이유를 주입합니다',
       h1:'당신의 Agent,|건축을 [정말로] 알고 있나?',
       lede:'범용 모델은 사실을 압니다. 문헌에 있는 답은 훌륭하게 인용하죠. 하지만 <b>"왜 이 공간이어야 하는가"</b>의 이유 사슬은 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 인류가 공간을 이해해 온 방식 전체를 <b>원자 개념과 인과의 그래프</b>로 구축합니다. 당신의 Agent가 그 위에서 추론합니다.',
@@ -630,6 +709,23 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
       langbtn:'EN'
     },
     en: {
+      t_eyebrow:'The Gap', t_h2:'But your Agent<br>knows none of these 40,000 years',
+      t_lede:'Agents know sentences. They do not know why a form was arrived at, or under which climate, construction method and code it holds true. So they are plausibly wrong — and never tell you they are.',
+      t_note:'Approval-based · See what Den does below, first',
+      ab_eyebrow:'Silence', ab_h2:'When it does not know, it stays silent',
+      ab_lede:'Most AI keeps producing sentences even where it knows nothing. Den <b>returns empty</b> when it holds no relevant knowledge — a plausible wrong answer is worse than a hallucination.',
+      ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
+      ab1c1:'Cast under water 100mm · permanently buried against soil 75mm',
+      ab1c2:'Beams/columns not exposed 40mm · slabs D35 or less 20mm',
+      ab1s:'Source: KDS 14 20 Concrete Structure Design Code',
+      ab2t:'Out of scope — non-architecture', ab2w:'does not invent', ab2q:'How does quantum error correction work?',
+      ab2a:'No relevant domain material.',
+      ab2n:'— The empty response <b>is</b> the honest answer. Your Agent reads this signal, says "outside Den\'s scope", and does not drag in clauses that do not exist.',
+      ab_note:'Once approved, you issue your own key',
+      ch1t:'Web connector', ch1d:'Paste the connector URL into Claude or ChatGPT on the web. A <b>private URL</b> is issued for environments without header support.',
+      ch2t:'Claude Code · IDE', ch2d:'One line: <code>Authorization: Bearer &lt;key&gt;</code>. Add the server to your MCP config and you are done.',
+      ch3t:'Desktop (.mcpb)', ch3d:'Install the bundle, enter your key, and it is stored safely in the OS keychain.',
+      ch_note:'Use a different key per channel — if one leaks, the rest stay protected.',
       eyebrow:'We inject reasons, not just knowledge',
       h1:'Does your Agent|[really] know architecture?',
       lede:'General models know facts — they cite the literature beautifully. But the chain of reasons behind <b>"why this space, why this form"</b> is written in no single document. Den builds the entire history of how humans have understood space as a <b>graph of atomic concepts and causality</b>. Your agent reasons on top of it.',
