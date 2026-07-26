@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Den — 당신의 Agent, 건축을 정말로 알고 있나?</title>
+<!-- 웹폰트 로드(2026-07-26): 종전에는 font-family 에 Pretendard 를 적기만 하고 불러오지 않아,
+     설치되지 않은 기기에서 Malgun Gothic 등으로 떨어져 조판이 무너졌다. -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 </head>
 <body>
 <title>Den — 당신의 Agent, 건축을 정말로 알고 있나?</title>
@@ -62,6 +69,8 @@ header{padding:1rem 0;position:fixed;top:0;left:0;right:0;z-index:50;
 header .wrap{display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:baseline;gap:0.75rem}
 .brand .name{font-weight:900;font-size:1.3125rem;letter-spacing:-.02em}
+.brand .logo{display:block;height:2.05rem;width:auto;filter:drop-shadow(0 0 12px var(--ember-soft))}
+@media(max-width:720px){.brand .logo{height:1.7rem}.brand .tag{display:none}}
 .brand .name i{font-style:normal;color:var(--ember)}
 .brand .tag{font-size:0.7188rem;color:var(--mut);letter-spacing:.16em;text-transform:uppercase;font-weight:500}
 #langbtn{background:none;border:1px solid var(--line);color:var(--mut);border-radius:6.1875rem;
@@ -293,7 +302,13 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
 <header>
   <div class="wrap">
     <div class="brand">
-      <span class="name">D<i>e</i>n</span>
+      <!-- 로고(2026-07-26): D의 속공간에 동굴·화덕·사람 — den/ember 은유의 형상.
+           라이트 배경엔 잉크색, 다크 배경엔 흰색 판본을 쓴다(원본은 흰색 단색이라
+           라이트용은 알파를 보존한 채 RGB만 잉크색으로 바꾼 변형본). -->
+      <picture>
+        <source srcset="assets/logo/den-full-light.png" media="(prefers-color-scheme: dark)">
+        <img class="logo" src="assets/logo/den-full-dark.png" alt="Den" width="96" height="40">
+      </picture>
       <span class="tag">Spatial Why-Ontology</span>
     </div>
     <button id="langbtn" type="button">EN</button>
