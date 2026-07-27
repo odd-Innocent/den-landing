@@ -365,6 +365,17 @@ svg.graph{max-height:62svh;min-width:46rem}
 .fine,.src-line,.preview-note{color:var(--mut)}
 /* 잔불이 글 위로 비치지 않도록 본문 레이어를 확실히 올린다 */
 section,.instinct,.hero,header,footer{position:relative;z-index:1}
+
+/* ══ 모바일 스크롤 정합 (2026-07-27, PI) ═══════════════════
+   증상: 위로 스크롤하면 칸이 딱 맞고, 아래로 스크롤하면 밀린다.
+   원인: 전면 섹션이 100svh(=주소창이 **보일 때**의 높이). 아래로 내리면 주소창이
+        숨어 뷰포트가 커지는데 섹션은 그대로라 다음 칸이 비어져 보인다.
+   해법: 100dvh(현재 실제 뷰포트) — 주소창 상태와 무관하게 항상 화면을 채운다.
+        vh 는 구형 브라우저 폴백. (그래프 max-height 는 svh 유지 — 그건 '넘치지 않게'
+        하는 상한이라 가장 작은 값이 맞다.) */
+.hero{height:100vh;height:100dvh}
+.instinct{min-height:100vh;min-height:100dvh}
+section{min-height:100vh;min-height:100dvh}
 </style>
 
 <div id="pbar"></div>
@@ -425,7 +436,7 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
 
 <div class="instinct wrap">
   <p class="big display" id="instinct-big" data-i18n-words="1">3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.</p>
-  <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.</p>
+  <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.</p>
 </div>
 
 <!-- 09 전환점(2026-07-26 개편): 여정이 끝난 감정을 실무 문제로 넘긴다.
@@ -670,7 +681,7 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
       cta:'얼리 액세스 신청',
       jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'4만 년의 계보와<br>오늘의 법규가 한 그래프에',
+      instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'4만 년의 계보와<br>오늘의 법규가 한 그래프에',
       g_lede:'Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
       g_title:'apartment — Den 이 실제로 반환한 관계',
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg5:'법규·대조 requires', lg4:'계보 evolvedFrom',
@@ -708,7 +719,7 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
         ['동굴','The Den','첫 번째 벽. 등 뒤가 안전해지자 비로소 마음이 다른 곳을 볼 수 있었습니다.'],
         ['화덕','Hearth','불이 중심을 만들었습니다 — 모든 거실과 식탁의 조상.'],
         ['움집','Pit-House','땅을 파 온기를 저장했습니다. 인류 최초의 단열 설계.'],
-        ['중정','Courtyard','하늘을 소유하는 법. 아홉 문명이 서로 모른 채 같은 답에 도달했습니다.'],
+        ['정주','Settling','떠나지 않기로 했습니다. 집은 지어 두는 것이 되었고, 땅은 누군가의 것이 되었습니다.'],
         ['도시','City','잉여가 이웃을 만들고, 이웃이 규칙을 만들었습니다.'],
         ['고층','High-Rise','철과 엘리베이터가 땅을 수직으로 접었습니다.'],
         ['가상','Virtual','몸 없이 거주하는 최초의 세대 — 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.']
@@ -739,7 +750,7 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
       cta:'Request early access',
       jeyebrow:'Scroll — 40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'Forty thousand years of lineage<br>and today\'s building code, in one graph',
+      instsmall:'That instinct made the cave, the hearth, the settlement, the city.<br>Den restores that lineage as data.', g_h2:'Forty thousand years of lineage<br>and today\'s building code, in one graph',
       g_lede:'What Den actually returns for "apartment." Hover a concept.',
       g_title:'apartment — what Den actually returns',
       lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg5:'statutory / contrast', lg4:'lineage evolvedFrom',
@@ -777,7 +788,7 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
         ['The Den','Cave','The first wall. With a safe back, the mind could finally look elsewhere.'],
         ['Hearth','Fire','Fire created the center — ancestor of every living room and table.'],
         ['Pit-House','Earth','Digging down to bank warmth. Humanity\'s first insulation design.'],
-        ['Courtyard','Sky','How to own the sky. Nine civilizations reached the same answer, unaware of each other.'],
+        ['Settling','Roots','We chose not to leave. Houses became things you keep, and land became someone\'s.'],
         ['City','Surplus','Surplus made neighbors, and neighbors made rules.'],
         ['High-Rise','Steel','Steel and the elevator folded land vertically.'],
         ['Virtual','Now','The first generation to dwell without a body — yet the instincts remain. Den maps them.']
