@@ -171,7 +171,8 @@ h1.on .ch{opacity:1;transform:none}
 .j-fill{position:absolute;top:0.5rem;left:0;height:2px;width:0;background:linear-gradient(90deg,#E98B3D,#A98BBB)}
 .j-dot{position:absolute;top:0.5625rem;left:0;width:0.5625rem;height:0.5625rem;border-radius:50%;background:#E98B3D;
   transform:translate(-50%,-50%);box-shadow:0 0 0.875rem 3px rgba(233,139,61,.5)}
-.j-labels{position:absolute;top:1.25rem;left:0;right:0;display:flex;justify-content:space-between}
+.j-labels{position:absolute;top:1.25rem;left:0;right:0;display:grid;grid-template-columns:repeat(8,1fr)}
+.j-labels span{text-align:center}
 .j-labels span{font-size:var(--t-2xs);letter-spacing:.06em;color:rgba(237,227,211,.42);text-transform:uppercase;
   font-weight:600;transition:color .3s}
 .j-labels span.on{color:#E98B3D}
@@ -400,29 +401,6 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
 .stat.hi .n{color:var(--ember)}
 .stat.hi .l{color:var(--ink);font-weight:600}
 
-/* ② 본능 섹션의 벽이 잘 안 보인다(PI). --glow 는 .09 알파로 너무 옅었다.
-      벽 형상이 읽히도록 세우고, 그 안에서 빛이 배어나오게 한다. */
-.instinct::before{
-  background:
-    radial-gradient(ellipse at 72% 50%, rgba(141,67,19,.20), transparent 62%),
-    linear-gradient(100deg, transparent 0%, rgba(141,67,19,.07) 38%, rgba(141,67,19,.13) 100%);
-}
-@media (prefers-color-scheme: dark){
-  .instinct::before{
-    background:
-      radial-gradient(ellipse at 72% 50%, rgba(233,139,61,.26), transparent 62%),
-      linear-gradient(100deg, transparent 0%, rgba(233,139,61,.08) 38%, rgba(233,139,61,.16) 100%);
-  }
-}
-:root[data-theme="dark"] .instinct::before{
-  background:
-    radial-gradient(ellipse at 72% 50%, rgba(233,139,61,.26), transparent 62%),
-    linear-gradient(100deg, transparent 0%, rgba(233,139,61,.08) 38%, rgba(233,139,61,.16) 100%);
-}
-
-/* ③ 개념 정보 패널: 상단=이름·관계, 하단=설명. 설명 길이가 제각각이라
-      한 줄로 두면 높이가 변해 그래프가 밀렸다 → 2단 + 높이 고정. */
-.info{display:block;padding:0.75rem 1rem}
 .info-top{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;
           min-height:1.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--line)}
 .info-body{display:flex;flex-direction:column;gap:0.25rem;
@@ -431,29 +409,6 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
 .info .src{font-size:var(--t-sm);color:var(--mut)}
 @media (max-width:720px){ .info-body{height:5.5rem} }
 
-/* ══ 모바일 관계도(2026-07-27, PI "옆으로 스크롤해야 전체가 보인다") ══
-   SVG 는 viewBox 920 기준이라 360px 화면에서 0.36 배로 줄어든다 — 한글이 7px 이 되어
-   읽을 수 없다. 그래서 '줄여 맞추기' 가 아니라 **같은 데이터를 목록으로** 바꾼다.
-   데이터는 SVG 의 data-e(간선)와 GDATA 에서 그대로 읽으므로 따로 관리하지 않는다. */
-.glist{display:none}
-@media (max-width:720px){
-  .graph-body{display:none}
-  .glist{display:block;padding:0.25rem 0 0.5rem}
-  .glist .hub{display:flex;align-items:baseline;gap:0.5rem;padding:0.75rem 1rem;
-              border-bottom:1px solid var(--line)}
-  .glist .hub b{font-size:var(--t-xl);font-weight:800}
-  .glist .hub span{font-size:var(--t-sm);color:var(--mut)}
-  .glist ul{list-style:none;margin:0;padding:0}
-  .glist li{display:grid;grid-template-columns:5.5rem 1fr;gap:0.625rem;align-items:baseline;
-            padding:0.5625rem 1rem;border-bottom:1px solid var(--line)}
-  .glist li:last-child{border-bottom:0}
-  .glist .rel{font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
-              font-size:var(--t-xs);color:var(--mut);white-space:nowrap}
-  .glist .rel.causes,.glist .rel.enables{color:var(--ember)}
-  .glist .nm{font-weight:700;font-size:var(--t-md)}
-  .glist .sub{display:block;font-weight:500;font-size:var(--t-sm);color:var(--mut);margin-top:0.125rem}
-  svg.graph{min-width:0}
-}
 
 
 /* ══ 여정 챕터 스냅 (2026-07-27, PI) ═══════════════════════
@@ -466,6 +421,41 @@ html{scroll-snap-type:y proximity}
 .j-snaps{position:absolute;inset:0;pointer-events:none;z-index:0}
 .j-snaps i{display:block;height:12.5%;scroll-snap-align:start}
 @media (prefers-reduced-motion:reduce){ html{scroll-snap-type:none} }
+
+/* ── 본능 섹션의 벽 (2026-07-27 재수정, PI "주황색 박스만 보인다")
+   내가 넣은 linear-gradient 가 요소 사각형(right:-8% top:10% 46%×80%)을 끝까지 채워
+   **테두리가 그대로 드러났다.** 색을 진하게 한 것이 아니라 경계를 만든 것이 문제였다.
+   → 방사 그라디언트 하나만 쓰고, 상자 끝에 닿기 훨씬 전에 transparent 로 소멸시킨다. */
+.instinct::before{
+  right:-14%; top:2%; width:58%; height:96%;
+  background:radial-gradient(ellipse 62% 54% at 68% 50%,
+             rgba(141,67,19,.16) 0%, rgba(141,67,19,.09) 34%, transparent 72%);
+  filter:blur(1.5rem);
+}
+@media (prefers-color-scheme: dark){
+  .instinct::before{background:radial-gradient(ellipse 62% 54% at 68% 50%,
+             rgba(233,139,61,.20) 0%, rgba(233,139,61,.11) 34%, transparent 72%)}
+}
+:root[data-theme="dark"] .instinct::before{
+  background:radial-gradient(ellipse 62% 54% at 68% 50%,
+             rgba(233,139,61,.20) 0%, rgba(233,139,61,.11) 34%, transparent 72%);
+}
+
+/* 챕터 전환 시 점·채움이 라벨로 부드럽게 이동(값은 이산, 움직임은 연속) */
+.j-fill,.j-dot{transition:width .38s cubic-bezier(.22,.9,.3,1),left .38s cubic-bezier(.22,.9,.3,1)}
+@media (prefers-reduced-motion:reduce){ .j-fill,.j-dot{transition:none} }
+
+/* ══ 모바일 관계 그래프 (2026-07-27 재설계, PI "노드 연결된 그래프가 더 중요") ══
+   목록으로 바꿨더니 연결이 안 보인다는 지적 — 되돌리고 **세로 레일 그래프**로 다시 그렸다.
+   가로 920 viewBox 를 360px 에 욱여넣으면 한글이 7px 이 되므로, 모바일은 폭 380 의
+   별도 배치를 쓴다(≈0.95배로 렌더 → 글자가 실제 크기). 교차하는 간선이 없어 겹침이 없다. */
+.graph-body-m{display:none}
+svg.graph-m{display:block;width:100%;height:auto}
+svg.graph-m .gedge.rail{stroke:var(--line);stroke-width:2;stroke-dasharray:none;animation:none}
+@media (max-width:720px){
+  .graph-body{display:none}
+  .graph-body-m{display:block;padding:0.5rem 0.75rem 0.75rem}
+}
 </style>
 
 <div id="pbar"></div>
@@ -621,7 +611,46 @@ html{scroll-snap-type:y proximity}
         <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
     </svg>
     </div>
-    <div class="glist" id="glist" aria-label="관계 목록"></div>
+    <div class="graph-body-m">
+    <svg class="graph-m" viewBox="0 0 380 1150" role="img" aria-label="apartment 관계 그래프">
+      <defs><marker id="mh-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead"/></marker><marker id="mh-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead g"/></marker><marker id="mh-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker></defs>
+      <path class="gedge rail" d="M34,76 L34,1105"/>
+      <path class="gedge geneal" data-e="apartment,insula" d="M34,145 L66,145" marker-end="url(#ah-g)"/>
+      <text class="elabel" x="66" y="110">evolvedFrom</text>
+      <g class="gnode" data-n="insula" transform="translate(66,118)"><rect width="296" height="54" rx="9"/><text x="14" y="23">인술라</text><text class="sub" x="14" y="41">로마 임대주거</text></g>
+      <path class="gedge geneal" data-e="apartment,tenement" d="M34,241 L66,241" marker-end="url(#ah-g)"/>
+      <text class="elabel" x="66" y="206">evolvedFrom</text>
+      <g class="gnode" data-n="tenement" transform="translate(66,214)"><rect width="296" height="54" rx="9"/><text x="14" y="23">테너먼트</text><text class="sub" x="14" y="41">산업도시 노동자</text></g>
+      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M34,337 L66,337" marker-end="url(#ah-g)"/>
+      <text class="elabel" x="66" y="302">evolvedFrom</text>
+      <g class="gnode" data-n="haussmann-apartment" transform="translate(66,310)"><rect width="296" height="54" rx="9"/><text x="14" y="23">오스만 아파트</text><text class="sub" x="14" y="41">파리 층별 계층</text></g>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M34,433 L66,433" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="398">requires</text>
+      <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(66,406)"><rect width="296" height="54" rx="9"/><text x="14" y="23">대피공간 3㎡</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M34,529 L66,529" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="494">requires</text>
+      <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(66,502)"><rect width="296" height="54" rx="9"/><text x="14" y="23">세대 대피공간 2㎡</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M34,625 L66,625" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="590">requires</text>
+      <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(66,598)"><rect width="296" height="54" rx="9"/><text x="14" y="23">특별피난계단 16층</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
+      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M34,721 L66,721" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="686">grounded_in</text>
+      <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(66,694)"><rect width="296" height="54" rx="9"/><text x="14" y="23">리모델링 완화</text><text class="sub" x="14" y="41">norm_clause · KR</text></g>
+      <path class="gedge enables" data-e="apartment,urban-density" d="M34,817 L66,817" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="782">enables</text>
+      <g class="gnode" data-n="urban-density" transform="translate(66,790)"><rect width="296" height="54" rx="9"/><text x="14" y="23">도시 밀도</text><text class="sub" x="14" y="41">quality</text></g>
+      <path class="gedge enables" data-e="apartment,household-autonomy" d="M34,913 L66,913" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="878">enables</text>
+      <g class="gnode" data-n="household-autonomy" transform="translate(66,886)"><rect width="296" height="54" rx="9"/><text x="14" y="23">세대 독립성</text><text class="sub" x="14" y="41">quality</text></g>
+      <path class="gedge evokes" data-e="apartment,anonymity" d="M34,1009 L66,1009" marker-end="url(#ah-d)"/>
+      <text class="elabel" x="66" y="974">evokes</text>
+      <g class="gnode emo" data-n="anonymity" transform="translate(66,982)"><rect width="296" height="54" rx="9"/><text x="14" y="23">익명성</text><text class="sub" x="14" y="41">정서 — claimed</text></g>
+      <path class="gedge part" data-e="apartment,suburban-house" d="M34,1105 L66,1105" marker-end="url(#mh-e)"/>
+      <text class="elabel" x="66" y="1070">contrasts</text>
+      <g class="gnode" data-n="suburban-house" transform="translate(66,1078)"><rect width="296" height="54" rx="9"/><text x="14" y="23">교외 단독주택</text><text class="sub" x="14" y="41">대조 축</text></g>
+      <g class="gnode hub" data-n="apartment" transform="translate(20,14)"><rect width="340" height="62" rx="10"/><text x="16" y="26">아파트</text><text class="sub" x="16" y="46">apartment · space_type</text></g>
+    </svg>
+    </div>
     <div class="info" id="info">
       <div class="info-top"><span class="k" data-i18n="info_k">개념을 선택하세요</span></div>
       <div class="info-body"><span class="d" data-i18n="info_d">정의와 근거가 표시됩니다.</span></div>
@@ -1005,35 +1034,8 @@ html{scroll-snap-type:y proximity}
     lang = (lang==='ko'?'en':'ko');
     try{ localStorage.setItem('den-lang',lang); }catch(e){}
     applyLang();
-    if (typeof buildGlist === 'function') buildGlist();   // 언어 전환 시 목록도 다시
 
   });
-
-  /* 모바일 관계 목록(2026-07-27) — SVG 를 축소하면 한글이 읽히지 않으므로
-     같은 데이터를 목록으로 낸다. 출처는 SVG 의 data-e/data-n 과 GDATA 하나뿐이다. */
-  function buildGlist(){
-    var host = document.getElementById('glist');
-    if (!host) return;
-    var svg = document.querySelector('svg.graph');
-    if (!svg) return;
-    var G = (typeof GDATA !== 'undefined' && GDATA[lang]) ? GDATA[lang] : {};
-    var labels = [].map.call(svg.querySelectorAll('text.elabel'), function(t){ return t.textContent.trim(); });
-    var eds = [].slice.call(svg.querySelectorAll('path.gedge'));
-    if (!eds.length) return;
-    var hubId = (eds[0].dataset.e || ',').split(',')[0];
-    var hub = G[hubId] || {ko: hubId, kind: ''};
-    var html = '<div class="hub"><b>' + hub.ko + '</b><span>' + (hub.kind || '') + '</span></div><ul>';
-    eds.forEach(function(e, i){
-      var to = (e.dataset.e || ',').split(',')[1];
-      var d = G[to]; if (!d) return;
-      var rel = labels[i] || '';
-      var cls = /causes|enables/.test(rel) ? ' ' + rel : '';
-      html += '<li><span class="rel' + cls + '">' + rel + '</span>'
-            + '<span class="nm">' + d.ko + '<span class="sub">' + (d.src || d.kind || '') + '</span></span></li>';
-    });
-    host.innerHTML = html + '</ul>';
-  }
-  buildGlist();
 
   /* ================= embers + torch + parallax ================= */
   var cv = document.getElementById('embers');
@@ -1203,8 +1205,12 @@ html{scroll-snap-type:y proximity}
         jfire.style.opacity = (idx>=2 && idx<=4) ? 1 : (idx===1?0.55:0.25);
       }
       jTickColors(p);
-      jfill.style.width = (p*100)+'%';
-      jdot.style.left = (p*100)+'%';
+      // 챕터 라벨 중심에 딱 멈추게(2026-07-27, PI "글씨 위치에 딱 안 멈춘다").
+        // 종전에는 연속 진도율(p*100%)이라 8등분 라벨 중심과 구조적으로 어긋났다.
+        // 라벨은 repeat(8,1fr) 그리드의 각 칸 중앙 → 칸 i 의 중심은 (i+0.5)/8.
+        var _c = ((Math.min(7, Math.floor(p*8)) + 0.5) / 8) * 100;
+        jfill.style.width = _c + '%';
+        jdot.style.left = _c + '%';
     }
   }
   addEventListener('scroll', function(){
