@@ -387,19 +387,17 @@ svg.graph{max-height:62svh}
 
 
 <section class="wrap" id="graph-sec">
-  <h2 class="display reveal d1" data-i18n="g_h2">Agent에게 건네지는 지식의 실제 모양</h2>
-  <p class="sec-lede reveal d2" data-i18n="g_lede">중정주택의 왜-사슬. 개념에 마우스를 올려 보십시오.</p>
+  <h2 class="display reveal d1" data-i18n="g_h2">관계마다 근거가 붙습니다</h2>
+  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 "중정"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.</p>
 
   <div class="graph-shell reveal d2">
     <div class="graph-head">
-      <span class="graph-title" data-i18n="g_title">courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가</span>
+      <span class="graph-title" data-i18n="g_title">courtyard — Den 이 실제로 반환한 관계</span>
       <div class="legend">
         <span><i class="lg"></i><span data-i18n="lg1">물리 인과 causes</span></span>
         <span><i class="lg en"></i><span data-i18n="lg2">가능 조건 enables</span></span>
-        <span><i class="lg ev"></i><span data-i18n="lg3">정서 evokes</span></span>
-        <span><i class="lg ge"></i><span data-i18n="lg4">계보 evolvedFrom</span></span>
-        <span><i class="lg pt"></i><span data-i18n="lg5">구성·유형 partOf·isA</span></span>
-      </div>
+          <span><i class="lg ev"></i><span data-i18n="lg3">정서 evokes</span></span>
+        </div>
     </div>
     <div class="graph-body">
     <svg class="graph" viewBox="0 0 920 590" role="img" aria-label="courtyard-house why-chain graph">
@@ -411,64 +409,44 @@ svg.graph{max-height:62svh}
         <marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker>
       </defs>
-      <path class="gedge causes" data-e="arid-heat,courtyard-house" d="M212,190 C300,215 330,255 368,283" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="mud-brick,courtyard-house" d="M205,305 C270,305 300,302 362,300" marker-end="url(#ah-e)"/>
-      <path class="gedge geneal" data-e="mud-brick-house,courtyard-house" d="M218,420 C300,395 330,345 372,318" marker-end="url(#ah-g)"/>
-      <path class="gedge part" data-e="central-court,courtyard-house" d="M400,168 C410,205 420,240 428,272"/>
-      <path class="gedge enables" data-e="central-court,cross-ventilation" d="M470,140 C540,120 570,110 620,100" marker-end="url(#ah-e)"/>
-      <path class="gedge evokes" data-e="courtyard-house,family-privacy" d="M505,285 C590,268 630,258 688,247" marker-end="url(#ah-d)"/>
-      <path class="gedge evokes" data-e="courtyard-house,enclosure-security" d="M505,315 C590,330 630,342 688,352" marker-end="url(#ah-d)"/>
-      <path class="gedge geneal" data-e="courtyard-house,siheyuan" d="M395,330 C340,390 310,440 285,480" marker-end="url(#ah-g)"/>
-      <path class="gedge part" data-e="courtyard-house,roman-domus" d="M435,332 C435,390 435,450 435,492"/>
-      <path class="gedge part" data-e="courtyard-house,riad" d="M480,330 C540,395 570,440 600,478"/>
-      <path class="gedge geneal" data-e="courtyard-house,islamic-courtyard-house" d="M508,322 C620,370 700,410 762,442" marker-end="url(#ah-g)"/>
-      <text class="elabel" x="268" y="228">causes · arid</text>
-      <text class="elabel" x="268" y="292">enables</text>
-      <text class="elabel" x="262" y="382">evolvedFrom</text>
-      <text class="elabel" x="520" y="96">enables</text>
-      <text class="elabel" x="580" y="252">evokes</text>
-      <text class="elabel" x="580" y="352">evokes</text>
-      <g class="gnode" data-n="arid-heat" transform="translate(120,168)">
-        <rect width="92" height="44"/><text x="46" y="20" text-anchor="middle">건조·고온</text>
-        <text class="sub" x="46" y="34" text-anchor="middle">arid-heat</text></g>
-      <g class="gnode" data-n="mud-brick" transform="translate(113,283)">
-        <rect width="92" height="44"/><text x="46" y="20" text-anchor="middle">흙벽돌</text>
-        <text class="sub" x="46" y="34" text-anchor="middle">mud-brick</text></g>
-      <g class="gnode" data-n="mud-brick-house" transform="translate(100,398)">
-        <rect width="118" height="44"/><text x="59" y="20" text-anchor="middle">흙벽돌 주택</text>
-        <text class="sub" x="59" y="34" text-anchor="middle">mud-brick-house</text></g>
-      <g class="gnode hub" data-n="courtyard-house" transform="translate(362,272)">
-        <rect width="143" height="56"/><text x="71" y="25" text-anchor="middle">중정주택</text>
-        <text class="sub" x="71" y="42" text-anchor="middle">courtyard-house</text></g>
-      <g class="gnode" data-n="central-court" transform="translate(340,120)">
-        <rect width="130" height="48"/><text x="65" y="21" text-anchor="middle">중정 (中庭)</text>
-        <text class="sub" x="65" y="37" text-anchor="middle">8개 문명이 공유</text></g>
-      <g class="gnode" data-n="cross-ventilation" transform="translate(620,72)">
-        <rect width="128" height="48"/><text x="64" y="21" text-anchor="middle">맞통풍</text>
-        <text class="sub" x="64" y="37" text-anchor="middle">cross-ventilation</text></g>
-      <g class="gnode emo" data-n="family-privacy" transform="translate(688,222)">
-        <rect width="140" height="48"/><text x="70" y="21" text-anchor="middle">가족 프라이버시</text>
-        <text class="sub" x="70" y="37" text-anchor="middle">evokes · claimed</text></g>
-      <g class="gnode emo" data-n="enclosure-security" transform="translate(688,330)">
-        <rect width="140" height="48"/><text x="70" y="21" text-anchor="middle">에워쌈-안전감</text>
-        <text class="sub" x="70" y="37" text-anchor="middle">evokes · claimed</text></g>
-      <g class="gnode" data-n="siheyuan" transform="translate(212,482)">
-        <rect width="112" height="48"/><text x="56" y="21" text-anchor="middle">사합원</text>
-        <text class="sub" x="56" y="37" text-anchor="middle">siheyuan · 중국</text></g>
-      <g class="gnode" data-n="roman-domus" transform="translate(376,492)">
-        <rect width="118" height="48"/><text x="59" y="21" text-anchor="middle">로마 도무스</text>
-        <text class="sub" x="59" y="37" text-anchor="middle">isA · 로마</text></g>
-      <g class="gnode" data-n="riad" transform="translate(548,478)">
-        <rect width="104" height="48"/><text x="52" y="21" text-anchor="middle">리아드</text>
-        <text class="sub" x="52" y="37" text-anchor="middle">riad · 모로코</text></g>
-      <g class="gnode" data-n="islamic-courtyard-house" transform="translate(724,432)">
-        <rect width="150" height="48"/><text x="75" y="21" text-anchor="middle">이슬람 중정주택</text>
-        <text class="sub" x="75" y="37" text-anchor="middle">시리아·이라크</text></g>
+                  <path class="gedge causes" data-e="courtyard,courtyard-shade" d="M290,295 C418,295 432,51 560,51" marker-end="url(#ah-e)"/>
+      <path class="gedge causes" data-e="courtyard,court-glow" d="M290,295 C418,295 432,147 560,147" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="courtyard,courtyard-cooling" d="M290,295 C418,295 432,243 560,243" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="courtyard,courtyard-breeze" d="M290,295 C418,295 432,339 560,339" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="courtyard,courtyard-hush" d="M290,295 C418,295 432,435 560,435" marker-end="url(#ah-e)"/>
+      <path class="gedge evokes" data-e="courtyard,biophilia" d="M290,295 C418,295 432,531 560,531" marker-end="url(#ah-d)"/>
+      <text class="elabel" x="474" y="39">causes</text>
+      <text class="elabel" x="474" y="135">causes</text>
+      <text class="elabel" x="474" y="231">enables</text>
+      <text class="elabel" x="474" y="327">enables</text>
+      <text class="elabel" x="474" y="423">enables</text>
+      <text class="elabel" x="474" y="519">evokes</text>
+      <g class="gnode hub" data-n="courtyard" transform="translate(118,263)">
+        <rect width="172" height="64"/><text x="86" y="27" text-anchor="middle">중정</text>
+        <text class="sub" x="86" y="46" text-anchor="middle">courtyard · space_type</text></g>
+      <g class="gnode" data-n="courtyard-shade" transform="translate(560,22)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 그늘</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">ScienceDirect · 학술</text></g>
+      <g class="gnode" data-n="court-glow" transform="translate(560,118)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">안뜰 빛</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">ScienceDirect · 학술</text></g>
+      <g class="gnode" data-n="courtyard-cooling" transform="translate(560,214)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">패시브 냉각</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">MDPI · 학술</text></g>
+      <g class="gnode" data-n="courtyard-breeze" transform="translate(560,310)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 바람</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">Hapres</text></g>
+      <g class="gnode" data-n="courtyard-hush" transform="translate(560,406)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 정적</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">Fraunhofer</text></g>
+      <g class="gnode" data-n="biophilia" transform="translate(560,502)">
+        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">생명친화 본능</text>
+        <text class="sub" x="122" y="42" text-anchor="middle">정서 — 주장(claimed)</text></g>
     </svg>
     </div>
     <div class="info" id="info">
       <span class="k" data-i18n="info_k">개념을 선택하세요</span>
-      <span class="d" data-i18n="info_d">정의·근거·인식론 태그가 표시됩니다.</span>
+      <span class="d" data-i18n="info_d">정의·관계·출처·적용 조건이 표시됩니다.</span>
     </div>
   </div>
 </section>
@@ -624,12 +602,12 @@ svg.graph{max-height:62svh}
       cta:'얼리 액세스 신청',
       jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'Agent에게 건네지는 지식의 실제 모양',
-      g_lede:'중정주택의 왜-사슬. 개념에 마우스를 올려 보십시오.',
-      g_title:'courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가',
+      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'관계마다 근거가 붙습니다',
+      g_lede:'Den이 "중정"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
+      g_title:'courtyard — Den 이 실제로 반환한 관계',
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg4:'계보 evolvedFrom', lg5:'구성·유형 partOf·isA',
       info_k:'개념을 선택하세요',
-      info_d:'정의·근거·인식론 태그가 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
+      info_d:'정의·관계·출처·적용 조건이 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
       w_lede:'요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.',
       r1h:'문단째로 주면<br>Agent도 헤맵니다',
       r1b:'사합원·리아드·도무스의 중정은 같은 개념입니다. Den은 그 하나를 건넵니다. 문단 열 개가 아니라.',
@@ -693,12 +671,12 @@ svg.graph{max-height:62svh}
       cta:'Request early access',
       jeyebrow:'Scroll — 40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'What actually gets injected into your Agent',
-      g_lede:'The why-chain of the courtyard house. Hover a concept — evidence, era and climate follow.',
+      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'Every relation carries its evidence',
+      g_lede:'What Den actually returns for "courtyard." Hover a concept.',
       g_title:'courtyard-house — why nine civilizations converged on one form',
       lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg4:'lineage evolvedFrom', lg5:'part / type',
       info_k:'Select a concept',
-      info_d:'Hover a node to see its definition, evidence, and epistemic tags. This is not demo copy — these are actual records from the Den ontology.', w_h2:'Den does not create information.<br>It selects.',
+      info_d:'Definition, relation, source and scope.', w_h2:'Den does not create information.<br>It selects.',
       w_lede:'Plenty of tools summarize. Den filters, and hands over only what holds.',
       r1h:'A graph of atomic concepts,<br>not paragraphs',
       r1b:'Store knowledge as paragraphs and you can search it — but not reason over it. Every piece of Den is a <b>reusable atomic concept</b> (courtyard, hearth, buttress…) connected by <b>typed relations</b>. The same \'courtyard\' is one node in the siheyuan, the riad, and the domus — which is why cross-civilization questions become answerable.',
@@ -749,35 +727,25 @@ svg.graph{max-height:62svh}
   
   };
   var GDATA = {
-    ko: {
-      'courtyard-house':{ko:'중정주택',kind:'space_type · L1 골격',def:'중정을 중심으로 방이 내향 배치된 주택 형식. 메소포타미아·그리스·로마·중국·이슬람권 등 아홉 문명이 서로 독립적으로 같은 형식에 수렴했다.',chips:[['phys','물리 인과 4'],['claim','정서 evokes 2'],['','계보 9']],src:'L1 정밀 감사 통과 레코드'},
-      'arid-heat':{ko:'건조·고온',kind:'quality · 기후 압력',def:'강한 일사와 낮은 습도의 반건조 기후 압력. 이 조건이 중정 형식을 낳았다 — scope 없이 옮기면 지식이 미신이 된다.',chips:[['phys','physical_causal · consensus'],['','scope: arid']],src:'조사 근거: 건조기후 향토주거 문헌'},
-      'mud-brick':{ko:'흙벽돌',kind:'material',def:'햇볕에 말린 흙벽돌. 중정주택의 가능 조건(enables) — 있어야 가능하지만 그것만으로 충분하진 않은 관계.',chips:[['phys','enables · necessary']],src:'L1 재료 축 레코드'},
-      'mud-brick-house':{ko:'흙벽돌 주택',kind:'physical_object · 계보 조상',def:'최초의 항구적 지상 주택 계보. 다실 흙벽돌 주택이 방을 중정 둘레로 내향 배치하며 중정주택으로 발전했다.',chips:[['','evolvedFrom · 계보']],src:'근거: PPNB 신석기 주거 전환 연구'},
-      'central-court':{ko:'중정 (中庭)',kind:'space_type · L2 원자',def:'방들에 둘러싸여 하늘로 열린 중심 마당. 안달루시아 파티오·사합원·리아드·하벨리 등 8개 문명 주거형이 이 하나의 원자를 공유한다 — 재사용이 온톨로지의 힘이다.',chips:[['phys','8개 주거형에 partOf'],['','L2 · 근거 첨부']],src:'근거: The Courtyard Houses of Syria — Muslim Heritage'},
-      'cross-ventilation':{ko:'맞통풍',kind:'process · L2',def:'중정이 만드는 압력차가 실내 공기를 관통시키는 통풍. 중정 냉각 성능의 물리적 메커니즘.',chips:[['phys','physical_causal · consensus']],src:'근거: 건조기후 패시브 냉각 문헌'},
-      'family-privacy':{ko:'가족 프라이버시',kind:'emotion_instinct',def:'가족 생활이 외부 시선에서 보호된다는 감각. 물리 인과가 아니라 정서적 주장(claimed)으로 분리 태깅된다 — Den의 인식론 이원 원칙.',chips:[['claim','evokes · claimed']],src:'인식론: physical과 분리 태깅'},
-      'enclosure-security':{ko:'에워쌈-안전감',kind:'emotion_instinct',def:'닫힌 경계가 주는 보호받는 느낌. 인류가 동굴(den)에서부터 학습한 공간 본능의 하나로, 기후와 무관하게 유효한 가치.',chips:[['claim','evokes · claimed']],src:'감정·본능 축 레코드'},
-      'siheyuan':{ko:'사합원',kind:'physical_object · 지역 파생',def:'사방의 채가 중정을 완전히 에워싼 중국 북부의 위계형 중정주택. 중정주택 계보의 동아시아 분기.',chips:[['','evolvedFrom courtyard-house']],src:'근거: Siheyuan 문헌'},
-      'roman-domus':{ko:'로마 도무스',kind:'space_type · 유형',def:'아트리움과 페리스타일, 두 개의 중정을 가진 로마 상류층 도시주택. 중정주택의 지중해 실현.',chips:[['','isA courtyard-house']],src:'L1 골격 레코드'},
-      'riad':{ko:'리아드',kind:'space_type · 유형',def:'내향 정원 중정을 가진 모로코의 전통 주거. 이슬람 중정 전통의 마그레브 분기.',chips:[['','isA courtyard-house']],src:'L2 주거 축 레코드'},
-      'islamic-courtyard-house':{ko:'이슬람 중정주택',kind:'space_type · 지역 파생',def:'하람릭(가족)과 살람릭(손님)의 위계, 말카프(풍탑)와 수반을 갖춘 시리아·이라크의 중정주택.',chips:[['','evolvedFrom courtyard-house'],['phys','malqaf → 증발냉각']],src:'근거: Muslim Heritage'}
-    },
-    en: {
-      'courtyard-house':{ko:'Courtyard house',kind:'space_type · L1 skeleton',def:'A dwelling type with rooms arranged inward around a central court. Nine civilizations — Mesopotamia, Greece, Rome, China, the Islamic world — converged on this form independently.',chips:[['phys','4 physical links'],['claim','2 evokes'],['','9 lineage']],src:'L1 audited record'},
-      'arid-heat':{ko:'Arid heat',kind:'quality · climate pressure',def:'Semi-arid pressure of strong sun and low humidity. This condition produced the courtyard form — moved without scope, the knowledge becomes superstition.',chips:[['phys','physical_causal · consensus'],['','scope: arid']],src:'Evidence: arid vernacular literature'},
-      'mud-brick':{ko:'Mud brick',kind:'material',def:'Sun-dried earth brick. An enabling condition for the courtyard house — necessary, but not sufficient on its own.',chips:[['phys','enables · necessary']],src:'L1 materials record'},
-      'mud-brick-house':{ko:'Mud-brick house',kind:'physical_object · ancestor',def:'The first permanent above-ground dwelling lineage. Multi-room mud-brick houses evolved into courtyard houses by turning rooms inward.',chips:[['','evolvedFrom · lineage']],src:'Evidence: PPNB Neolithic transition studies'},
-      'central-court':{ko:'Central court',kind:'space_type · L2 atom',def:'A yard open to the sky, enclosed by rooms. Eight civilizations\' dwelling types — Andalusian patio, siheyuan, riad, haveli — share this single atom. Reuse is the power of an ontology.',chips:[['phys','partOf 8 dwelling types'],['','L2 · evidenced']],src:'Evidence: The Courtyard Houses of Syria — Muslim Heritage'},
-      'cross-ventilation':{ko:'Cross-ventilation',kind:'process · L2',def:'Pressure-difference airflow driven by the court. The physical mechanism behind courtyard cooling.',chips:[['phys','physical_causal · consensus']],src:'Evidence: passive cooling literature'},
-      'family-privacy':{ko:'Family privacy',kind:'emotion_instinct',def:'The sense that family life is shielded from outside gaze. Tagged as an emotional claim, not physical causation — Den\'s dual epistemology.',chips:[['claim','evokes · claimed']],src:'Epistemics: tagged separately from physics'},
-      'enclosure-security':{ko:'Enclosure-security',kind:'emotion_instinct',def:'The feeling of protection a closed boundary gives. A spatial instinct humanity learned from the den itself — valid in any climate.',chips:[['claim','evokes · claimed']],src:'Emotion-instinct axis record'},
-      'siheyuan':{ko:'Siheyuan',kind:'physical_object · regional descendant',def:'North-Chinese hierarchical courtyard house, fully enclosed on four sides. The East Asian branch of the courtyard lineage.',chips:[['','evolvedFrom courtyard-house']],src:'Evidence: Siheyuan literature'},
-      'roman-domus':{ko:'Roman domus',kind:'space_type · type',def:'Roman urban house with two courts — atrium and peristyle. The Mediterranean realization of the courtyard type.',chips:[['','isA courtyard-house']],src:'L1 skeleton record'},
-      'riad':{ko:'Riad',kind:'space_type · type',def:'Moroccan dwelling with an inward garden court. The Maghreb branch of the Islamic courtyard tradition.',chips:[['','isA courtyard-house']],src:'L2 dwelling record'},
-      'islamic-courtyard-house':{ko:'Islamic courtyard house',kind:'space_type · regional descendant',def:'Syrian-Iraqi courtyard house with haramlik/salamlik hierarchy, windcatcher (malqaf) and water basin.',chips:[['','evolvedFrom courtyard-house'],['phys','malqaf → evaporative cooling']],src:'Evidence: Muslim Heritage'}
-    }
-  };
+      ko: {
+        'courtyard':{ko:'중정',kind:'space_type · L1 골격',def:'건물이 둘러싼 열린 마당. Den 은 여기서 뻗는 관계마다 근거·출처·적용 조건을 따로 붙인다.',chips:[['phys','causes 2'],['','enables 3'],['claim','evokes 1']],src:'Den 실제 반환'},
+        'courtyard-shade':{ko:'중정 그늘',kind:'quality · causes',def:'높은 벽, 처마, 식재가 중정 바닥과 벽에 만드는 국소적 그늘과 낮은 복사열.',chips:[['phys','causes']],src:'ScienceDirect · 학술'},
+        'court-glow':{ko:'안뜰 빛',kind:'quality · causes',def:'안뜰의 하늘빛과 반사벽이 주변 방으로 낮은 대비의 빛을 공급해 중심에서 가장 밝고 깊은 방으로 갈수록 어두워지는 품질.',chips:[['phys','causes']],src:'ScienceDirect · 학술'},
+        'courtyard-cooling':{ko:'패시브 냉각',kind:'process · enables',def:'중정의 그늘, 높은 벽, 식생, 물, 야간 냉기 저장, 통풍을 이용해 더운 기후의 열 부하와 사적 노출을 함께 완충하는 패시브 조절.',chips:[['phys','enables']],src:'MDPI · 학술'},
+        'courtyard-breeze':{ko:'중정 바람',kind:'quality · enables',def:'그늘진 안뜰, 벽체 축열, 물, 식재, 높은 배출부가 결합해 인접 실로 흘러드는 완만하고 방향성 있는 냉기류 품질.',chips:[['phys','enables']],src:'Hapres'},
+        'courtyard-hush':{ko:'중정 정적',kind:'quality · enables',def:'건물에 둘러싸인 마당이 거리 소음을 차폐하고 내부 생활음을 낮게 모아, 사적·도시적 피난처처럼 느껴지는 고요.',chips:[['phys','enables']],src:'Fraunhofer'},
+        'biophilia':{ko:'생명친화 본능',kind:'emotion_instinct · evokes',def:'생명·자연 과정에 주의를 집중하고 친화하려는 선천적 경향으로, 자연 의존적 진화사에 뿌리를 둔다고 가정된다.',chips:[['claim','evokes']],src:'정서 — 주장(claimed)'}
+      },
+      en: {
+        'courtyard':{ko:'Courtyard',kind:'space_type · L1 backbone',def:'An open yard enclosed by building. Den attaches evidence, source and scope to every relation leaving it.',chips:[['phys','L1 backbone']],src:'Den live output'},
+        'courtyard-shade':{ko:'Courtyard shade',kind:'quality · causes',def:'Local shade and reduced radiant heat produced on the court floor and walls by high walls, eaves and planting.',chips:[['phys','causes']],src:'ScienceDirect · academic'},
+        'court-glow':{ko:'Court glow',kind:'quality · causes',def:'Sky light and reflecting walls supply low-contrast light to surrounding rooms — brightest at the centre, dimmer with depth.',chips:[['phys','causes']],src:'ScienceDirect · academic'},
+        'courtyard-cooling':{ko:'Passive cooling',kind:'process · enables',def:'Passive regulation buffering both heat load and exposure using shade, high walls, planting, water, night-cool storage and ventilation.',chips:[['phys','enables']],src:'MDPI · academic'},
+        'courtyard-breeze':{ko:'Courtyard breeze',kind:'quality · enables',def:'A gentle directional cool current into adjoining rooms, formed by shade, wall mass, water, planting and a high outlet.',chips:[['phys','enables']],src:'Hapres'},
+        'courtyard-hush':{ko:'Courtyard hush',kind:'quality · enables',def:'The yard shields street noise and gathers interior sound low — a private, urban refuge quiet.',chips:[['phys','enables']],src:'Fraunhofer'},
+        'biophilia':{ko:'Biophilia',kind:'emotion_instinct · evokes',def:'An innate tendency to attend and affiliate to life and natural processes, presumed rooted in a nature-dependent evolutionary history.',chips:[['claim','evokes']],src:'affective — claimed'}
+      }
+    };
   var lang = 'ko';
   try{ lang = localStorage.getItem('den-lang') || 'ko'; }catch(e){}
 
