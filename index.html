@@ -11,6 +11,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+
+<!-- 링크 미리보기·파비콘(2026-07-27): og/twitter 메타가 **하나도 없어서** 카카오톡·슬랙·
+     트위터 어디에 붙여넣어도 로고가 뜨지 않았다. assets/logo/og.png 는 로컬에만 있고
+     게시 저장소에 올라간 적도 없어 404 였다(publish_landing.sh 기본값이 index.html 뿐). -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png">
+<link rel="apple-touch-icon" href="assets/logo/den-mark-ember.png">
+<meta name="description" content="Den은 당신의 Agent에게 AEC 지식을 정확하게 큐레이팅합니다. 수치에는 조문이, 관계에는 근거가 붙습니다.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Den">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://den.archi/">
+<meta property="og:title" content="Den — 당신의 Agent는 건축을 정말로 알고 있나요?">
+<meta property="og:description" content="Den은 당신의 Agent에게 AEC 지식을 정확하게 큐레이팅합니다. 수치에는 조문이, 관계에는 근거가 붙습니다.">
+<meta property="og:image" content="https://den.archi/assets/logo/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Den — 당신의 Agent는 건축을 정말로 알고 있나요?">
+<meta name="twitter:description" content="수치에는 조문이, 관계에는 근거가 붙습니다.">
+<meta name="twitter:image" content="https://den.archi/assets/logo/og.png">
 </head>
 <body>
 <title>Den — 당신의 Agent, 건축을 정말로 알고 있나?</title>
@@ -376,6 +396,67 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
 .hero{height:100vh;height:100dvh}
 .instinct{min-height:100vh;min-height:100dvh}
 section{min-height:100vh;min-height:100dvh}
+
+/* ══ 2026-07-27 PI 지적 2차 ════════════════════════════════ */
+
+/* ① den 이 만든 값(95.3% · +20.0%p)만 다른 색으로 — 나머지는 기준선이다 */
+.stat.hi .n{color:var(--ember)}
+.stat.hi .l{color:var(--ink);font-weight:600}
+
+/* ② 본능 섹션의 벽이 잘 안 보인다(PI). --glow 는 .09 알파로 너무 옅었다.
+      벽 형상이 읽히도록 세우고, 그 안에서 빛이 배어나오게 한다. */
+.instinct::before{
+  background:
+    radial-gradient(ellipse at 72% 50%, rgba(141,67,19,.20), transparent 62%),
+    linear-gradient(100deg, transparent 0%, rgba(141,67,19,.07) 38%, rgba(141,67,19,.13) 100%);
+}
+@media (prefers-color-scheme: dark){
+  .instinct::before{
+    background:
+      radial-gradient(ellipse at 72% 50%, rgba(233,139,61,.26), transparent 62%),
+      linear-gradient(100deg, transparent 0%, rgba(233,139,61,.08) 38%, rgba(233,139,61,.16) 100%);
+  }
+}
+:root[data-theme="dark"] .instinct::before{
+  background:
+    radial-gradient(ellipse at 72% 50%, rgba(233,139,61,.26), transparent 62%),
+    linear-gradient(100deg, transparent 0%, rgba(233,139,61,.08) 38%, rgba(233,139,61,.16) 100%);
+}
+
+/* ③ 개념 정보 패널: 상단=이름·관계, 하단=설명. 설명 길이가 제각각이라
+      한 줄로 두면 높이가 변해 그래프가 밀렸다 → 2단 + 높이 고정. */
+.info{display:block;padding:0.75rem 1rem}
+.info-top{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;
+          min-height:1.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--line)}
+.info-body{display:flex;flex-direction:column;gap:0.25rem;
+           height:4.25rem;overflow-y:auto;padding-top:0.5rem}
+.info-body .d{max-width:none;min-height:0}
+.info .src{font-size:var(--t-sm);color:var(--mut)}
+@media (max-width:720px){ .info-body{height:5.5rem} }
+
+/* ══ 모바일 관계도(2026-07-27, PI "옆으로 스크롤해야 전체가 보인다") ══
+   SVG 는 viewBox 920 기준이라 360px 화면에서 0.36 배로 줄어든다 — 한글이 7px 이 되어
+   읽을 수 없다. 그래서 '줄여 맞추기' 가 아니라 **같은 데이터를 목록으로** 바꾼다.
+   데이터는 SVG 의 data-e(간선)와 GDATA 에서 그대로 읽으므로 따로 관리하지 않는다. */
+.glist{display:none}
+@media (max-width:720px){
+  .graph-body{display:none}
+  .glist{display:block;padding:0.25rem 0 0.5rem}
+  .glist .hub{display:flex;align-items:baseline;gap:0.5rem;padding:0.75rem 1rem;
+              border-bottom:1px solid var(--line)}
+  .glist .hub b{font-size:var(--t-xl);font-weight:800}
+  .glist .hub span{font-size:var(--t-sm);color:var(--mut)}
+  .glist ul{list-style:none;margin:0;padding:0}
+  .glist li{display:grid;grid-template-columns:5.5rem 1fr;gap:0.625rem;align-items:baseline;
+            padding:0.5625rem 1rem;border-bottom:1px solid var(--line)}
+  .glist li:last-child{border-bottom:0}
+  .glist .rel{font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
+              font-size:var(--t-xs);color:var(--mut);white-space:nowrap}
+  .glist .rel.causes,.glist .rel.enables{color:var(--ember)}
+  .glist .nm{font-weight:700;font-size:var(--t-md)}
+  .glist .sub{display:block;font-weight:500;font-size:var(--t-sm);color:var(--mut);margin-top:0.125rem}
+  svg.graph{min-width:0}
+}
 </style>
 
 <div id="pbar"></div>
@@ -404,7 +485,6 @@ section{min-height:100vh;min-height:100dvh}
   <div class="hero-glow" id="hglow"></div>
   <div id="torch" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow" data-i18n="eyebrow">지식이 아니라, 이유를 주입합니다</p>
     <h1 class="display" id="kinetic" data-i18n-h1="1">당신의 Agent는|건축을 [정말로] 알고 있나요?</h1>
     <p class="lede" data-i18n="lede">AI는 사실을 압니다. 이유는 모릅니다.<br>왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 알지 못합니다.<br>Den은 그 이유의 사슬을 그래프로 만들어 Agent에게 큐레이팅합니다.</p>
     <div class="cta-row">
@@ -421,7 +501,7 @@ section{min-height:100vh;min-height:100dvh}
     <div class="grain"></div>
     <div class="j-fire" id="jfire"></div>
     <div class="j-inner">
-      <p class="j-eyebrow" data-i18n="jeyebrow">스크롤 — 인류가 공간을 이해해 온 40,000년</p>
+      <p class="j-eyebrow" data-i18n="jeyebrow">인류가 공간을 이해해 온 40,000년</p>
       <p class="j-count mono" id="jcount">01 / 08</p>
       <div class="j-stage" id="jstage"></div>
       <div class="j-timeline">
@@ -444,7 +524,6 @@ section{min-height:100vh;min-height:100dvh}
 
 
 <section class="wrap" id="graph-sec">
-  <h2 class="display reveal d1" data-i18n="g_h2">4만 년의 계보와<br>오늘의 법규가 한 그래프에</h2>
   <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.</p>
 
   <div class="graph-shell reveal d2">
@@ -528,9 +607,10 @@ section{min-height:100vh;min-height:100dvh}
         <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
     </svg>
     </div>
+    <div class="glist" id="glist" aria-label="관계 목록"></div>
     <div class="info" id="info">
-      <span class="k" data-i18n="info_k">개념을 선택하세요</span>
-      <span class="d" data-i18n="info_d">정의·관계·근거 등급이 표시됩니다.</span>
+      <div class="info-top"><span class="k" data-i18n="info_k">개념을 선택하세요</span></div>
+      <div class="info-body"><span class="d" data-i18n="info_d">정의와 근거가 표시됩니다.</span></div>
     </div>
   </div>
 </section>
@@ -563,12 +643,12 @@ section{min-height:100vh;min-height:100dvh}
     <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프론티어 모델 2종. 국가기술자격 기출 192문항, 같은 조건. 단독 점수는 166/192로 정확히 같았습니다.</p>
     <div class="stats reveal d2">
       <div class="stat"><div class="n" data-count="86.5" data-dec="1" data-suffix="%">86.5%</div><div class="l" data-i18n="e1">모델 A·B 단독 — 동일</div></div>
-      <div class="stat"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den을 붙였을 때</div></div>
+      <div class="stat hi"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den을 붙였을 때</div></div>
       <div class="stat"><div class="n" data-count="8.9" data-dec="1" data-prefix="+" data-suffix="%p">+8.9%p</div><div class="l" data-i18n="e3">Den이 만든 차이</div></div>
-      <div class="stat"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 — 가장 어려운 자격</div></div>
+      <div class="stat hi"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 — 가장 어려운 자격</div></div>
     </div>
     <p class="sec-lede reveal d2" data-i18n="e_kick">모델을 바꾸는 것으로는 오르지 않았습니다. Den을 붙였을 때 올랐습니다.</p>
-    <p class="fine reveal d2" data-i18n="e_note">※ 모델 A 86.5→95.3(+8.9%p) · 모델 B 86.5→93.8(+7.3%p). 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다. 차이만 Den의 기여입니다.</p>
+    <p class="fine reveal d2" data-i18n="e_note">※ 모델 A 86.5→95.3(+8.9%p) · 모델 B 86.5→93.8(+7.3%p). 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다.</p>
   </section>
 
 <section class="wrap">
@@ -588,7 +668,6 @@ section{min-height:100vh;min-height:100dvh}
 
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="p_h2">실무를 위한<br>정확한 지식을 제공합니다.</h2>
-  <p class="sec-lede reveal d2" data-i18n="p_lede">"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.</p>
   <div class="compare">
     <div class="pane reveal">
       <div class="ph"><span data-i18n="pn1t">일반 Agent</span> <span class="who" data-i18n="pn1w">지식: 사전학습</span></div>
@@ -675,18 +754,18 @@ section{min-height:100vh;min-height:100dvh}
       ab2a:'관련 전공자료 없음.',
       ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
       ch_note:'',
-      eyebrow:'지식이 아니라, 이유를 주입합니다',
+      eyebrow:'',
       h1:'당신의 Agent는|건축을 [정말로] 알고 있나요?',
       lede:'AI는 사실을 압니다. 이유는 모릅니다.<br>왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 알지 못합니다.<br>Den은 그 이유의 사슬을 그래프로 만들어 Agent에게 큐레이팅합니다.',
       cta:'얼리 액세스 신청',
-      jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
+      jeyebrow:'인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'4만 년의 계보와<br>오늘의 법규가 한 그래프에',
+      instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'',
       g_lede:'Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
       g_title:'apartment — Den 이 실제로 반환한 관계',
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg5:'법규·대조 requires', lg4:'계보 evolvedFrom',
       info_k:'개념을 선택하세요',
-      info_d:'정의·관계·근거 등급이 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
+      info_d:'정의와 근거가 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
       w_lede:'요약해 주는 도구는 많습니다. Den은 근거가 붙은 것만 골라 건넵니다.',
       r1h:'문단째로 주면<br>Agent도 헤맵니다',
       r1b:'"아파트"는 하나의 개념입니다. 인술라에서 이어진 계보와 오늘의 대피공간 기준이 같은 노드에 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.',
@@ -700,7 +779,7 @@ section{min-height:100vh;min-height:100dvh}
       sp1t:'1 — 연결', sp1d:'설정 한 줄. Claude·ChatGPT·Gemini 어디서나.',
       sp2t:'2 — 질의', sp2d:'평소처럼 물어보시면 됩니다.',
       sp3t:'3 — 이유 사슬', sp3d:'답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.', p_h2:'실무를 위한<br>정확한 지식을 제공합니다.',
-      p_lede:'"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.',
+      p_lede:'',
       pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
       pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
       pn1n:'— 맞는 말입니다. 그런데 <b>전단력이 커지면 이 값이 절반이 됩니다.</b> 그 조건을 말하지 않았습니다.',
@@ -732,7 +811,7 @@ section{min-height:100vh;min-height:100dvh}
       e3:'Den이 만든 차이',
       e4:'기능장 — 가장 어려운 자격',
       e_kick:'모델을 바꾸는 것으로는 오르지 않았습니다. Den을 붙였을 때 올랐습니다.',
-      e_note:'※ 모델 A 86.5→95.3(+8.9%p) · 모델 B 86.5→93.8(+7.3%p). 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다. 차이만 Den의 기여입니다.'
+      e_note:'※ 모델 A 86.5→95.3(+8.9%p) · 모델 B 86.5→93.8(+7.3%p). 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다.'
     },
       en: { ab_h2:'When it does not know, it stays silent',
       ab_lede:'Most AI writes a sentence even when it does not know. Den does not.',
@@ -744,18 +823,18 @@ section{min-height:100vh;min-height:100dvh}
       ab2a:'No relevant domain material.',
       ab2n:'— The empty response <b>is</b> the honest answer. Your Agent reads this signal, says "outside Den\'s scope", and does not drag in clauses that do not exist.',
       ch_note:'',
-      eyebrow:'We inject reasons, not just knowledge',
+      eyebrow:'',
       h1:'Does your Agent|[really] know architecture?',
       lede:'AI knows facts. It does not know why.<br>Why a form was arrived at, and when it holds — that it cannot tell you.<br>Den builds that chain of reasons and curates it for your Agent.',
       cta:'Request early access',
-      jeyebrow:'Scroll — 40,000 years of understanding space',
+      jeyebrow:'40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct made the cave, the hearth, the settlement, the city.<br>Den restores that lineage as data.', g_h2:'Forty thousand years of lineage<br>and today\'s building code, in one graph',
+      instsmall:'That instinct made the cave, the hearth, the settlement, the city.<br>Den restores that lineage as data.', g_h2:'',
       g_lede:'What Den actually returns for "apartment." Hover a concept.',
       g_title:'apartment — what Den actually returns',
       lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg5:'statutory / contrast', lg4:'lineage evolvedFrom',
       info_k:'Select a concept',
-      info_d:'Definition, relation and evidence tier.', w_h2:'Den does not create information.<br>It selects.',
+      info_d:'Definition and evidence appear here.', w_h2:'Den does not create information.<br>It selects.',
       w_lede:'Plenty of tools summarize. Den hands over only what carries its evidence.',
       r1h:'A graph of atomic concepts,<br>not paragraphs',
       r1b:'"Apartment" is one concept. The lineage from the Roman insula and today\'s refuge-area rule hang on the same node. Not paragraphs retrieved — a concept handed over.',
@@ -769,7 +848,7 @@ section{min-height:100vh;min-height:100dvh}
       sp1t:'1 — Connect', sp1d:'One line of MCP config connects your agent to Den. No new app, no workflow change.',
       sp2t:'2 — Ask', sp2d:'Ask your agent as you always do. When needed, it calls Den\'s <code>answer-why</code> and <code>path-between</code> tools on its own.',
       sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.', p_h2:'Precise knowledge,<br>for practice.',
-      p_lede:'"Is the courtyard house worth applying to housing today?" — one question, two answers.',
+      p_lede:'',
       pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Is a courtyard house worth applying?', pnq2:'Is a courtyard house worth applying?',
       pn1b:'Courtyard houses are a traditional form with good daylighting, ventilation, and privacy. Introducing a courtyard in modern housing can bring natural light and openness. However, floor-area efficiency and construction cost should be considered.',
       pn1n:'— Plausible. But you can\'t tell <b>in which climate, why, and under what conditions</b> it holds.',
@@ -801,7 +880,7 @@ section{min-height:100vh;min-height:100dvh}
       e3:'What Den added',
       e4:'Master Craftsman — the hardest tier',
       e_kick:'Changing the model did not move it. Adding Den did.',
-      e_note:'※ Model A 86.5→95.3 (+8.9%p) · Model B 86.5→93.8 (+7.3%p). These are public past exams, so both sides carry memorized answers and the absolute scores read high. Only the difference is Den\'s contribution.',
+      e_note:'※ Model A 86.5→95.3 (+8.9%p) · Model B 86.5→93.8 (+7.3%p). These are public past exams, so both sides carry memorized answers and the absolute scores read high.',
     },
   
   };
@@ -912,8 +991,35 @@ section{min-height:100vh;min-height:100dvh}
     lang = (lang==='ko'?'en':'ko');
     try{ localStorage.setItem('den-lang',lang); }catch(e){}
     applyLang();
+    if (typeof buildGlist === 'function') buildGlist();   // 언어 전환 시 목록도 다시
 
   });
+
+  /* 모바일 관계 목록(2026-07-27) — SVG 를 축소하면 한글이 읽히지 않으므로
+     같은 데이터를 목록으로 낸다. 출처는 SVG 의 data-e/data-n 과 GDATA 하나뿐이다. */
+  function buildGlist(){
+    var host = document.getElementById('glist');
+    if (!host) return;
+    var svg = document.querySelector('svg.graph');
+    if (!svg) return;
+    var G = (typeof GDATA !== 'undefined' && GDATA[lang]) ? GDATA[lang] : {};
+    var labels = [].map.call(svg.querySelectorAll('text.elabel'), function(t){ return t.textContent.trim(); });
+    var eds = [].slice.call(svg.querySelectorAll('path.gedge'));
+    if (!eds.length) return;
+    var hubId = (eds[0].dataset.e || ',').split(',')[0];
+    var hub = G[hubId] || {ko: hubId, kind: ''};
+    var html = '<div class="hub"><b>' + hub.ko + '</b><span>' + (hub.kind || '') + '</span></div><ul>';
+    eds.forEach(function(e, i){
+      var to = (e.dataset.e || ',').split(',')[1];
+      var d = G[to]; if (!d) return;
+      var rel = labels[i] || '';
+      var cls = /causes|enables/.test(rel) ? ' ' + rel : '';
+      html += '<li><span class="rel' + cls + '">' + rel + '</span>'
+            + '<span class="nm">' + d.ko + '<span class="sub">' + (d.src || d.kind || '') + '</span></span></li>';
+    });
+    host.innerHTML = html + '</ul>';
+  }
+  buildGlist();
 
   /* ================= embers + torch + parallax ================= */
   var cv = document.getElementById('embers');
@@ -1219,9 +1325,17 @@ section{min-height:100vh;min-height:100dvh}
     var d = GDATA[lang][id]; if(!d) return;
     var chips = d.chips.map(function(c){
       return '<span class="chip '+c[0]+'">'+c[1]+'</span>';}).join('');
-    info.innerHTML = '<span class="k">'+d.ko+'<span class="en">'+id+' · '+d.kind+'</span></span>'
-      +'<span class="d">'+d.def+'<br><span class="src">'+d.src+'</span></span>'
-      +'<span class="chips">'+chips+'</span>';
+    // 2단 구조(2026-07-27, PI): 상단=개념명·관계, 하단=설명.
+      // 설명 길이가 제각각이라 한 줄에 담으면 패널 높이가 변해 레이아웃이 밀렸다.
+      info.innerHTML =
+        '<div class="info-top">'
+      +   '<span class="k">'+d.ko+'<span class="en">'+id+' · '+d.kind+'</span></span>'
+      +   '<span class="chips">'+chips+'</span>'
+      + '</div>'
+      + '<div class="info-body">'
+      +   '<span class="d">'+d.def+'</span>'
+      +   '<span class="src">'+d.src+'</span>'
+      + '</div>';
     nodes.forEach(function(n){
       n.classList.toggle('dim', n.dataset.n!==id && !touching(n.dataset.n,id));
       n.classList.toggle('active', n.dataset.n===id);
