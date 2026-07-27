@@ -321,11 +321,32 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 .instinct .big{font-size:clamp(1.5rem,1.05rem+2.1vw,2.5rem)}
 
 /* 그래프 시연 80% — 다른 섹션 프레임과 크기를 맞춘다(PI 2026-07-27) */
+
+/* 그래프: 크기만 80%로. 내용은 den 반환 그대로 전부 싣는다(PI 2026-07-27) */
 .graph-shell{max-width:53rem;margin-left:auto;margin-right:auto}
-svg.graph{max-height:62svh}
+svg.graph{max-height:62svh;min-width:46rem}
+
+/* ── 배경: 잔불·반딧불 (PI 요청) ─────────────────────────────
+   den 의 은유가 동굴 속 불이다. 스크롤 내내 은은하게 일렁이게 한다.
+   canvas 없이 CSS 만으로 — 저부하, 그리고 기존 ?motion=off 제어를 그대로 따른다. */
+#embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#embers i{position:absolute;display:block;border-radius:50%;
+  background:radial-gradient(circle,var(--ember) 0%,rgba(166,79,22,.55) 40%,transparent 70%);
+  opacity:0;will-change:transform,opacity;
+  animation:drift var(--dur,22s) ease-in-out var(--del,0s) infinite}
+@keyframes drift{
+  0%{opacity:0;transform:translate3d(0,0,0) scale(.7)}
+  12%{opacity:var(--peak,.5)}
+  50%{transform:translate3d(var(--dx,30px),-46vh,0) scale(1.15)}
+  78%{opacity:calc(var(--peak,.5) * .45)}
+  100%{opacity:0;transform:translate3d(calc(var(--dx,30px) * 1.7),-92vh,0) scale(.8)}
+}
+.reduced #embers{display:none}
+@media (max-width:720px){ #embers i:nth-child(n+13){display:none} }
 </style>
 
 <div id="pbar"></div>
+<div id="embers" aria-hidden="true"></div>
 
 <header>
   <div class="wrap">
@@ -387,16 +408,18 @@ svg.graph{max-height:62svh}
 
 
 <section class="wrap" id="graph-sec">
-  <h2 class="display reveal d1" data-i18n="g_h2">관계마다 근거가 붙습니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 "중정"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.</p>
+  <h2 class="display reveal d1" data-i18n="g_h2">4만 년의 계보와<br>오늘의 법규가 한 그래프에</h2>
+  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.</p>
 
   <div class="graph-shell reveal d2">
     <div class="graph-head">
-      <span class="graph-title" data-i18n="g_title">courtyard — Den 이 실제로 반환한 관계</span>
+      <span class="graph-title" data-i18n="g_title">apartment — Den 이 실제로 반환한 관계</span>
       <div class="legend">
-        <span><i class="lg"></i><span data-i18n="lg1">물리 인과 causes</span></span>
-        <span><i class="lg en"></i><span data-i18n="lg2">가능 조건 enables</span></span>
+          <span><i class="lg"></i><span data-i18n="lg1">물리 인과 causes</span></span>
+          <span><i class="lg en"></i><span data-i18n="lg2">가능 조건 enables</span></span>
           <span><i class="lg ev"></i><span data-i18n="lg3">정서 evokes</span></span>
+          <span><i class="lg ge"></i><span data-i18n="lg4">계보 evolvedFrom</span></span>
+          <span><i class="lg pt"></i><span data-i18n="lg5">법규·대조 requires</span></span>
         </div>
     </div>
     <div class="graph-body">
@@ -409,44 +432,69 @@ svg.graph{max-height:62svh}
         <marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker>
       </defs>
-                  <path class="gedge causes" data-e="courtyard,courtyard-shade" d="M290,295 C418,295 432,51 560,51" marker-end="url(#ah-e)"/>
-      <path class="gedge causes" data-e="courtyard,court-glow" d="M290,295 C418,295 432,147 560,147" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="courtyard,courtyard-cooling" d="M290,295 C418,295 432,243 560,243" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="courtyard,courtyard-breeze" d="M290,295 C418,295 432,339 560,339" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="courtyard,courtyard-hush" d="M290,295 C418,295 432,435 560,435" marker-end="url(#ah-e)"/>
-      <path class="gedge evokes" data-e="courtyard,biophilia" d="M290,295 C418,295 432,531 560,531" marker-end="url(#ah-d)"/>
-      <text class="elabel" x="474" y="39">causes</text>
-      <text class="elabel" x="474" y="135">causes</text>
-      <text class="elabel" x="474" y="231">enables</text>
-      <text class="elabel" x="474" y="327">enables</text>
-      <text class="elabel" x="474" y="423">enables</text>
-      <text class="elabel" x="474" y="519">evokes</text>
-      <g class="gnode hub" data-n="courtyard" transform="translate(118,263)">
-        <rect width="172" height="64"/><text x="86" y="27" text-anchor="middle">중정</text>
-        <text class="sub" x="86" y="46" text-anchor="middle">courtyard · space_type</text></g>
-      <g class="gnode" data-n="courtyard-shade" transform="translate(560,22)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 그늘</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">ScienceDirect · 학술</text></g>
-      <g class="gnode" data-n="court-glow" transform="translate(560,118)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">안뜰 빛</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">ScienceDirect · 학술</text></g>
-      <g class="gnode" data-n="courtyard-cooling" transform="translate(560,214)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">패시브 냉각</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">MDPI · 학술</text></g>
-      <g class="gnode" data-n="courtyard-breeze" transform="translate(560,310)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 바람</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">Hapres</text></g>
-      <g class="gnode" data-n="courtyard-hush" transform="translate(560,406)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">중정 정적</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">Fraunhofer</text></g>
-      <g class="gnode" data-n="biophilia" transform="translate(560,502)">
-        <rect width="244" height="58"/><text x="122" y="24" text-anchor="middle">생명친화 본능</text>
-        <text class="sub" x="122" y="42" text-anchor="middle">정서 — 주장(claimed)</text></g>
+                        <path class="gedge geneal" data-e="apartment,insula" d="M368,288 C278,288 308,124 218,124" marker-end="url(#ah-g)"/>
+      <path class="gedge geneal" data-e="apartment,tenement" d="M368,288 C278,288 308,228 218,228" marker-end="url(#ah-g)"/>
+      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M368,288 C278,288 308,332 218,332" marker-end="url(#ah-g)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M552,288 C632,288 588,41 668,41" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M552,288 C632,288 588,111 668,111" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M552,288 C632,288 588,181 668,181" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M552,288 C632,288 588,251 668,251" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="apartment,urban-density" d="M368,288 C278,288 396,495 306,495" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="apartment,household-autonomy" d="M460,324 C460,394 406,398 406,468" marker-end="url(#ah-e)"/>
+      <path class="gedge evokes" data-e="apartment,anonymity" d="M460,324 C460,394 572,398 572,468" marker-end="url(#ah-d)"/>
+      <path class="gedge part" data-e="apartment,suburban-house" d="M552,288 C632,288 574,495 654,495" marker-end="url(#ah-e)"/>
+      <text class="elabel" x="260" y="112">evolvedFrom</text>
+      <text class="elabel" x="260" y="216">evolvedFrom</text>
+      <text class="elabel" x="260" y="320">evolvedFrom</text>
+      <text class="elabel" x="564" y="29">requires</text>
+      <text class="elabel" x="564" y="99">requires</text>
+      <text class="elabel" x="564" y="169">requires</text>
+      <text class="elabel" x="564" y="239">grounded_in</text>
+      <text class="elabel" x="348" y="483">enables</text>
+      <text class="elabel" x="376" y="454">enables</text>
+      <text class="elabel" x="542" y="454">evokes</text>
+      <text class="elabel" x="550" y="483">contrasts</text>
+      <g class="gnode hub" data-n="apartment" transform="translate(368,252)">
+        <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle">아파트</text>
+        <text class="sub" x="92" y="50" text-anchor="middle">apartment · space_type</text></g>
+      <g class="gnode" data-n="insula" transform="translate(28,96)">
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">인술라</text>
+        <text class="sub" x="95" y="41" text-anchor="middle">로마 임대주거</text></g>
+      <g class="gnode" data-n="tenement" transform="translate(28,200)">
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">테너먼트</text>
+        <text class="sub" x="95" y="41" text-anchor="middle">산업도시 노동자</text></g>
+      <g class="gnode" data-n="haussmann-apartment" transform="translate(28,304)">
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">오스만 아파트</text>
+        <text class="sub" x="95" y="41" text-anchor="middle">파리 층별 계층</text></g>
+      <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(668,14)">
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">대피공간 3㎡</text>
+        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+      <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(668,84)">
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">세대 대피공간 2㎡</text>
+        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+      <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(668,154)">
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">특별피난계단 16층</text>
+        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+      <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(668,224)">
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">리모델링 완화</text>
+        <text class="sub" x="118" y="41" text-anchor="middle">norm_clause · KR</text></g>
+      <g class="gnode" data-n="urban-density" transform="translate(150,468)">
+        <rect width="156" height="54"/><text x="78" y="23" text-anchor="middle">도시 밀도</text>
+        <text class="sub" x="78" y="41" text-anchor="middle">quality</text></g>
+      <g class="gnode" data-n="household-autonomy" transform="translate(322,468)">
+        <rect width="168" height="54"/><text x="84" y="23" text-anchor="middle">세대 독립성</text>
+        <text class="sub" x="84" y="41" text-anchor="middle">quality</text></g>
+      <g class="gnode emo" data-n="anonymity" transform="translate(506,468)">
+        <rect width="132" height="54"/><text x="66" y="23" text-anchor="middle">익명성</text>
+        <text class="sub" x="66" y="41" text-anchor="middle">정서 — claimed</text></g>
+      <g class="gnode" data-n="suburban-house" transform="translate(654,468)">
+        <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle">교외 단독주택</text>
+        <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
     </svg>
     </div>
     <div class="info" id="info">
       <span class="k" data-i18n="info_k">개념을 선택하세요</span>
-      <span class="d" data-i18n="info_d">정의·관계·출처·적용 조건이 표시됩니다.</span>
+      <span class="d" data-i18n="info_d">정의·관계·근거 등급이 표시됩니다.</span>
     </div>
   </div>
 </section>
@@ -559,14 +607,11 @@ svg.graph{max-height:62svh}
       </div>
     </div>
   </div>
-  <div class="cta-row reveal d2" style="margin-top:1.75rem">
-    <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
-  </div>
 </section>
 
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="o_h2">빈 곳은 쓰시는 분이<br>가장 먼저 압니다</h2>
-  <div class="honest reveal d2" data-i18n="o_body">Den은 공개된 규범과 문헌에서만 자랍니다. 건축·도시·토목·시공·유지관리 — 아직 얇은 곳이 있습니다. 어디가 비었는지는 도면 앞에 앉은 분이 가장 먼저 압니다. 쓰시는 것만으로 기여가 됩니다.</div>
+  <h2 class="display reveal d1" data-i18n="o_h2">Den의 여정에 기여해 주세요</h2>
+  <div class="honest reveal d2" data-i18n="o_body">건축·도시·토목·시공·유지관리 — 쓰시는 것만으로 기여가 됩니다.</div>
 
   <div class="waitlist reveal">
     <h2 class="display" data-i18n="wl_h2">당신의 Agent에게,<br>건축의 맥락을.</h2>
@@ -602,12 +647,12 @@ svg.graph{max-height:62svh}
       cta:'얼리 액세스 신청',
       jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'관계마다 근거가 붙습니다',
-      g_lede:'Den이 "중정"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
-      g_title:'courtyard — Den 이 실제로 반환한 관계',
-      lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes',
+      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'4만 년의 계보와<br>오늘의 법규가 한 그래프에',
+      g_lede:'Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
+      g_title:'apartment — Den 이 실제로 반환한 관계',
+      lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg5:'법규·대조 requires', lg4:'계보 evolvedFrom',
       info_k:'개념을 선택하세요',
-      info_d:'정의·관계·출처·적용 조건이 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
+      info_d:'정의·관계·근거 등급이 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
       w_lede:'요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.',
       r1h:'문단째로 주면<br>Agent도 헤맵니다',
       r1b:'"중정"은 하나의 개념입니다. 그 아래에 그늘·냉각·바람·정적이 각각 근거를 달고 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.',
@@ -631,8 +676,8 @@ svg.graph{max-height:62svh}
       pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하 — 절반</span>',
       pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
       pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
-      pn2s:'Den이 실제로 반환한 전공자료입니다. 다듬지 않았습니다.', o_h2:'빈 곳은 쓰시는 분이<br>가장 먼저 압니다',
-      o_body:'Den은 공개된 규범과 문헌에서만 자랍니다. 건축·도시·토목·시공·유지관리 — 아직 얇은 곳이 있습니다. 어디가 비었는지는 도면 앞에 앉은 분이 가장 먼저 압니다. 쓰시는 것만으로 기여가 됩니다.',
+      pn2s:'Den이 실제로 반환한 전공자료입니다. 다듬지 않았습니다.', o_h2:'Den의 여정에 기여해 주세요',
+      o_body:'건축·도시·토목·시공·유지관리 — 쓰시는 것만으로 기여가 됩니다.',
       wl_h2:'당신의 Agent에게,<br>건축의 맥락을.', wl_cta:'얼리 액세스 신청',
       ft1:'인간 공간 이해의 온톨로지', ft2:'© 2026 Den', ftg:'베타 가이드',
       eras:[
@@ -671,12 +716,12 @@ svg.graph{max-height:62svh}
       cta:'Request early access',
       jeyebrow:'Scroll — 40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'Every relation carries its evidence',
-      g_lede:'What Den actually returns for "courtyard." Hover a concept.',
-      g_title:'courtyard-house — why nine civilizations converged on one form',
-      lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes',
+      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'Forty thousand years of lineage<br>and today\'s building code, in one graph',
+      g_lede:'What Den actually returns for "apartment." Hover a concept.',
+      g_title:'apartment — what Den actually returns',
+      lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg5:'statutory / contrast', lg4:'lineage evolvedFrom',
       info_k:'Select a concept',
-      info_d:'Definition, relation, source and scope.', w_h2:'Den does not create information.<br>It selects.',
+      info_d:'Definition, relation and evidence tier.', w_h2:'Den does not create information.<br>It selects.',
       w_lede:'Plenty of tools summarize. Den filters, and hands over only what holds.',
       r1h:'A graph of atomic concepts,<br>not paragraphs',
       r1b:'"Courtyard" is one concept. Shade, cooling, breeze and hush hang beneath it, each with its own evidence. Not paragraphs retrieved — a concept handed over.',
@@ -700,8 +745,8 @@ svg.graph{max-height:62svh}
       pc2:'Courtyard → cross-ventilation · nocturnal radiant cooling',
       pc3:'Courtyard → family privacy · enclosure-security <span class="sc">(valid regardless of climate)</span>',
       pn2b:'On a humid temperate site, <b>the cooling argument weakens</b> — while privacy and centrality remain. Don\'t copy the form; examine its conditions.',
-      pn2s:'Evidence: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou — sources attached per relation', o_h2:'You will find the gaps<br>before we do',
-      o_body:'Den grows only from published codes and literature. Architecture, urbanism, civil, construction, maintenance — some areas are still thin. The person at the drawing finds the blanks first. Using it is already a contribution.',
+      pn2s:'Evidence: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou — sources attached per relation', o_h2:'Join Den\'s journey',
+      o_body:'Architecture, urbanism, civil, construction, maintenance — using it is already a contribution.',
       wl_h2:'Give your Agent<br>the context.', wl_cta:'Request early access',
       ft1:'An ontology of human spatial understanding', ft2:'© 2026 Den', ftg:'Beta guide',
       eras:[
@@ -728,22 +773,32 @@ svg.graph{max-height:62svh}
   };
   var GDATA = {
       ko: {
-        'courtyard':{ko:'중정',kind:'space_type · L1 골격',def:'건물이 둘러싼 열린 마당. Den 은 여기서 뻗는 관계마다 근거·출처·적용 조건을 따로 붙인다.',chips:[['phys','causes 2'],['','enables 3'],['claim','evokes 1']],src:'Den 실제 반환'},
-        'courtyard-shade':{ko:'중정 그늘',kind:'quality · causes',def:'높은 벽, 처마, 식재가 중정 바닥과 벽에 만드는 국소적 그늘과 낮은 복사열.',chips:[['phys','causes']],src:'ScienceDirect · 학술'},
-        'court-glow':{ko:'안뜰 빛',kind:'quality · causes',def:'안뜰의 하늘빛과 반사벽이 주변 방으로 낮은 대비의 빛을 공급해 중심에서 가장 밝고 깊은 방으로 갈수록 어두워지는 품질.',chips:[['phys','causes']],src:'ScienceDirect · 학술'},
-        'courtyard-cooling':{ko:'패시브 냉각',kind:'process · enables',def:'중정의 그늘, 높은 벽, 식생, 물, 야간 냉기 저장, 통풍을 이용해 더운 기후의 열 부하와 사적 노출을 함께 완충하는 패시브 조절.',chips:[['phys','enables']],src:'MDPI · 학술'},
-        'courtyard-breeze':{ko:'중정 바람',kind:'quality · enables',def:'그늘진 안뜰, 벽체 축열, 물, 식재, 높은 배출부가 결합해 인접 실로 흘러드는 완만하고 방향성 있는 냉기류 품질.',chips:[['phys','enables']],src:'Hapres'},
-        'courtyard-hush':{ko:'중정 정적',kind:'quality · enables',def:'건물에 둘러싸인 마당이 거리 소음을 차폐하고 내부 생활음을 낮게 모아, 사적·도시적 피난처처럼 느껴지는 고요.',chips:[['phys','enables']],src:'Fraunhofer'},
-        'biophilia':{ko:'생명친화 본능',kind:'emotion_instinct · evokes',def:'생명·자연 과정에 주의를 집중하고 친화하려는 선천적 경향으로, 자연 의존적 진화사에 뿌리를 둔다고 가정된다.',chips:[['claim','evokes']],src:'정서 — 주장(claimed)'}
+        'apartment':{ko:'아파트',kind:'space_type · L1 골격',def:'한 건물에 독립 세대들이 반복 수용된 집합주거.',chips:[['phys','L1 골격']],src:'Den 실제 반환'},
+        'insula':{ko:'인술라',kind:'physical_object · evolvedFrom',def:'로마 도시의 하층·중간층 다수가 거주한 다층 집합주거 또는 임대 블록으로, 단독 상류층 주택인 도무스와 사회적·공간적으로 대비된다.',chips:[['','evolvedFrom']],src:'계보'},
+        'tenement':{ko:'테너먼트',kind:'physical_object · evolvedFrom',def:'산업도시 노동자를 수용한 협소·과밀 다층 임대주택.',chips:[['','evolvedFrom']],src:'계보'},
+        'haussmann-apartment':{ko:'오스만 아파트',kind:'physical_object · evolvedFrom',def:'층별 계층분화를 가진 파리 부르주아 임대 아파트.',chips:[['','evolvedFrom']],src:'계보'},
+        'kr-spec-apartment-refuge-common-3m2':{ko:'대피공간 3㎡',kind:'spec_value · requires',def:'아파트 4층 이상 인접 세대 공동 대피공간 최소 바닥면적에 적용되는 KR 법규 수치 기준: 3 m2.',chips:[['phys','requires']],src:'KR 법규 수치'},
+        'kr-spec-apartment-refuge-private-2m2':{ko:'세대 대피공간 2㎡',kind:'spec_value · requires',def:'아파트 4층 이상 각 세대별 대피공간 최소 바닥면적에 적용되는 KR 법규 수치 기준: 2 m2.',chips:[['phys','requires']],src:'KR 법규 수치'},
+        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'특별피난계단 16층',kind:'spec_value · requires',def:'공동주택 특별피난계단 설치 대상 상층 기준에 적용되는 KR 법규 수치 기준: 16 floor_count.',chips:[['phys','requires']],src:'KR 법규 수치'},
+        'kr-ba-08-remodel':{ko:'리모델링 완화',kind:'norm_clause · grounded_in',def:'리모델링이 쉬운 공동주택은 용적률ㆍ높이ㆍ일조 기준의 일부 완화를 받을 수 있다. 완화 폭은 하위령 기준 안에서 제한된다.',chips:[['phys','grounded_in']],src:'KR 조문'},
+        'urban-density':{ko:'도시 밀도',kind:'quality · enables',def:'한정 면적에 인구가 조밀하게 집중된 상태.',chips:[['phys','enables']],src:'가능 조건'},
+        'household-autonomy':{ko:'세대 독립성',kind:'quality · enables',def:'각 집이 조리, 수면, 저장, 수리, 전시, 의례를 자체적으로 수행할 수 있어 마을 안에서 독립성과 반복성을 갖는 성질.',chips:[['phys','enables']],src:'가능 조건'},
+        'anonymity':{ko:'익명성',kind:'emotion_instinct · evokes',def:'밀집 주거에서 서로를 모르는 익명적 감각.',chips:[['claim','evokes']],src:'정서 — 주장(claimed)'},
+        'suburban-house':{ko:'교외 단독주택',kind:'physical_object · contrasts',def:'자동차·융자로 대량공급된 교외 단독주택.',chips:[['','contrasts']],src:'대조 축'}
       },
       en: {
-        'courtyard':{ko:'Courtyard',kind:'space_type · L1 backbone',def:'An open yard enclosed by building. Den attaches evidence, source and scope to every relation leaving it.',chips:[['phys','L1 backbone']],src:'Den live output'},
-        'courtyard-shade':{ko:'Courtyard shade',kind:'quality · causes',def:'Local shade and reduced radiant heat produced on the court floor and walls by high walls, eaves and planting.',chips:[['phys','causes']],src:'ScienceDirect · academic'},
-        'court-glow':{ko:'Court glow',kind:'quality · causes',def:'Sky light and reflecting walls supply low-contrast light to surrounding rooms — brightest at the centre, dimmer with depth.',chips:[['phys','causes']],src:'ScienceDirect · academic'},
-        'courtyard-cooling':{ko:'Passive cooling',kind:'process · enables',def:'Passive regulation buffering both heat load and exposure using shade, high walls, planting, water, night-cool storage and ventilation.',chips:[['phys','enables']],src:'MDPI · academic'},
-        'courtyard-breeze':{ko:'Courtyard breeze',kind:'quality · enables',def:'A gentle directional cool current into adjoining rooms, formed by shade, wall mass, water, planting and a high outlet.',chips:[['phys','enables']],src:'Hapres'},
-        'courtyard-hush':{ko:'Courtyard hush',kind:'quality · enables',def:'The yard shields street noise and gathers interior sound low — a private, urban refuge quiet.',chips:[['phys','enables']],src:'Fraunhofer'},
-        'biophilia':{ko:'Biophilia',kind:'emotion_instinct · evokes',def:'An innate tendency to attend and affiliate to life and natural processes, presumed rooted in a nature-dependent evolutionary history.',chips:[['claim','evokes']],src:'affective — claimed'}
+        'apartment':{ko:'Apartment',kind:'space_type · L1 backbone',def:'Repeated independent households stacked in one building.',chips:[['phys','L1 backbone']],src:'Den live output'},
+        'insula':{ko:'Insula',kind:'physical_object · evolvedFrom',def:'Roman multi-storey rental block housing the urban lower and middle classes, socially and spatially opposed to the elite domus.',chips:[['','evolvedFrom']],src:'lineage'},
+        'tenement':{ko:'Tenement',kind:'physical_object · evolvedFrom',def:'Cramped, overcrowded multi-storey rental housing for industrial-city workers.',chips:[['','evolvedFrom']],src:'lineage'},
+        'haussmann-apartment':{ko:'Haussmann apartment',kind:'physical_object · evolvedFrom',def:'The Parisian bourgeois rental apartment, stratified floor by floor.',chips:[['','evolvedFrom']],src:'lineage'},
+        'kr-spec-apartment-refuge-common-3m2':{ko:'Refuge area 3 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for the shared refuge space between adjoining units above the 4th floor: 3 m².',chips:[['phys','requires']],src:'KR statutory value'},
+        'kr-spec-apartment-refuge-private-2m2':{ko:'Private refuge 2 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for each unit\'s own refuge space above the 4th floor: 2 m².',chips:[['phys','requires']],src:'KR statutory value'},
+        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'Special escape stair, 16F',kind:'spec_value · requires',def:'KR statutory trigger for special escape stairs in multi-unit housing: 16 floors.',chips:[['phys','requires']],src:'KR statutory value'},
+        'kr-ba-08-remodel':{ko:'Remodelling relief',kind:'norm_clause · grounded_in',def:'Multi-unit housing designed for easy remodelling may receive partial relief on floor-area ratio, height and daylight rules, bounded by subordinate decree.',chips:[['phys','grounded_in']],src:'KR statutory clause'},
+        'urban-density':{ko:'Urban density',kind:'quality · enables',def:'Population densely concentrated within a limited area.',chips:[['phys','enables']],src:'enabling condition'},
+        'household-autonomy':{ko:'Household autonomy',kind:'quality · enables',def:'Each dwelling can cook, sleep, store, repair, display and ritualize on its own — autonomous and repeatable within the settlement.',chips:[['phys','enables']],src:'enabling condition'},
+        'anonymity':{ko:'Anonymity',kind:'emotion_instinct · evokes',def:'The sense of not knowing one another in dense housing.',chips:[['claim','evokes']],src:'affective — claimed'},
+        'suburban-house':{ko:'Suburban house',kind:'physical_object · contrasts',def:'The detached suburban house, mass-supplied by car and mortgage.',chips:[['','contrasts']],src:'contrast axis'}
       }
     };
   var lang = 'ko';
@@ -823,6 +878,29 @@ svg.graph{max-height:62svh}
     lang = (lang==='ko'?'en':'ko');
     try{ localStorage.setItem('den-lang',lang); }catch(e){}
     applyLang();
+
+  /* ── 잔불·반딧불 배경 (2026-07-27, PI 요청) ─────────────────
+     den 은유가 동굴 속 불이다. 스크롤 내내 은은히 떠오르게 한다.
+     ?motion=off 면 아예 만들지 않는다(OS 설정이 아니라 우리 스위치를 따른다 — §20.39). */
+  (function(){
+    if (reduced) return;
+    var host = document.getElementById('embers');
+    if (!host) return;
+    var N = window.innerWidth < 720 ? 12 : 22, f = document.createDocumentFragment();
+    for (var i = 0; i < N; i++){
+      var e = document.createElement('i');
+      var sz = 2 + Math.random() * 4.5;                 // 2~6.5px
+      e.style.width = e.style.height = sz.toFixed(1) + 'px';
+      e.style.left  = (Math.random() * 100).toFixed(2) + '%';
+      e.style.top   = (72 + Math.random() * 34).toFixed(2) + '%';   // 화면 아래에서 시작
+      e.style.setProperty('--dur',  (16 + Math.random() * 20).toFixed(1) + 's');
+      e.style.setProperty('--del',  (-Math.random() * 30).toFixed(1) + 's');
+      e.style.setProperty('--dx',   ((Math.random() - 0.5) * 140).toFixed(0) + 'px');
+      e.style.setProperty('--peak', (0.22 + Math.random() * 0.4).toFixed(2));  // 은은하게
+      f.appendChild(e);
+    }
+    host.appendChild(f);
+  })();
   });
 
   /* ================= embers + torch + parallax ================= */
