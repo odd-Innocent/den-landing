@@ -457,6 +457,21 @@ section{min-height:100vh;min-height:100dvh}
   .glist .sub{display:block;font-weight:500;font-size:var(--t-sm);color:var(--mut);margin-top:0.125rem}
   svg.graph{min-width:0}
 }
+
+/* ══ 스크롤 스냅 (2026-07-27, PI "PC 처럼 딱딱 멈추지 않는다") ══
+   진단 정정: 스냅이 깨진 게 아니라 **처음부터 없었다**(scroll-snap 선언 0건).
+   PC 에서 딱딱 멈춰 보인 건 휠 입력이 이산적이라 우연히 경계 근처에 서기 때문이고,
+   모바일 관성 스크롤에서는 아무 데나 멈춘다. → 스냅을 명시한다.
+
+   proximity 를 쓴다(mandatory 아님): 여정(.journey)은 560vh 안에서 스크롤 비율로
+   챕터를 바꾸는 연속 구간이라 강제 스냅하면 챕터가 튄다. proximity 는 경계 근처에서만
+   붙어, 여정 안에서는 자유 스크롤이 유지된다. */
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+.hero,.instinct,section{scroll-snap-align:start;scroll-snap-stop:normal}
+/* 여정은 연속 구간 — 시작점에만 붙고 내부는 자유롭게 */
+.journey{scroll-snap-align:start}
+.journey .j-sticky{scroll-snap-align:none}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 </style>
 
 <div id="pbar"></div>
