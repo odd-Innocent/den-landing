@@ -593,9 +593,10 @@ svg.graph{max-height:62svh;min-width:46rem}
         <p class="q" data-i18n="ab1q">철근 최소 피복두께 기준은?</p>
         <div class="chain">
           <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c1">수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm</span></div>
-          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c2">옥외·흙에 접하지 않는 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
+          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c2">흙·옥외공기에 직접 노출 — D19 이상 50mm · D16 이하 40mm</span></div>
+            <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c3">직접 접하지 않음 — 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
         </div>
-        <div class="src-line" data-i18n="ab1s">근거: KDS 14 20 콘크리트구조 설계기준</div>
+        <div class="src-line" data-i18n="ab1s">Den이 반환한 전공자료(practice_rule) 그대로입니다.</div>
       </div>
     </div>
     <div class="pane reveal d1">
@@ -635,8 +636,8 @@ svg.graph{max-height:62svh;min-width:46rem}
       ab_lede:'대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 그러지 않습니다.',
       ab1t:'범위 안 — 건축', ab1w:'근거를 붙여 답한다', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
-      ab1c2:'옥외·흙에 접하지 않는 보·기둥 40mm · 슬래브 D35 이하 20mm',
-      ab1s:'근거: KDS 14 20 콘크리트구조 설계기준',
+      ab1c3:'직접 접하지 않음 — 보·기둥 40mm · 슬래브 D35 이하 20mm', ab1c2:'흙·옥외공기에 직접 노출 — D19 이상 50mm · D16 이하 40mm',
+      ab1s:'Den이 반환한 전공자료(practice_rule) 그대로입니다.',
       ab2t:'범위 밖 — 비건축', ab2w:'지어내지 않는다', ab2q:'양자컴퓨터 오류정정 방식은?',
       ab2a:'관련 전공자료 없음.',
       ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
@@ -703,9 +704,9 @@ svg.graph{max-height:62svh;min-width:46rem}
       en: { ab_h2:'When it does not know, it stays silent',
       ab_lede:'Most AI writes a sentence even when it does not know. Den does not.',
       ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
-      ab1c1:'Cast under water 100mm · permanently buried against soil 75mm',
-      ab1c2:'Beams/columns not exposed 40mm · slabs D35 or less 20mm',
-      ab1s:'Source: KDS 14 20 Concrete Structure Design Code',
+      ab1c1:'Cast under water 100mm · permanently buried against earth 75mm',
+      ab1c3:'Not directly exposed — beams/columns 40mm · slabs D35− 20mm', ab1c2:'Directly exposed to earth or weather — D19+ 50mm · D16− 40mm',
+      ab1s:'Exactly what Den returned (practice_rule).',
       ab2t:'Out of scope — non-architecture', ab2w:'does not invent', ab2q:'How does quantum error correction work?',
       ab2a:'No relevant domain material.',
       ab2n:'— The empty response <b>is</b> the honest answer. Your Agent reads this signal, says "outside Den\'s scope", and does not drag in clauses that do not exist.',
