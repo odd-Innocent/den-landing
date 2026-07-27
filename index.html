@@ -445,16 +445,11 @@ html{scroll-snap-type:y proximity}
 .j-fill,.j-dot{transition:width .38s cubic-bezier(.22,.9,.3,1),left .38s cubic-bezier(.22,.9,.3,1)}
 @media (prefers-reduced-motion:reduce){ .j-fill,.j-dot{transition:none} }
 
-/* ══ 모바일 관계 그래프 (2026-07-27 재설계, PI "노드 연결된 그래프가 더 중요") ══
-   목록으로 바꿨더니 연결이 안 보인다는 지적 — 되돌리고 **세로 레일 그래프**로 다시 그렸다.
-   가로 920 viewBox 를 360px 에 욱여넣으면 한글이 7px 이 되므로, 모바일은 폭 380 의
-   별도 배치를 쓴다(≈0.95배로 렌더 → 글자가 실제 크기). 교차하는 간선이 없어 겹침이 없다. */
-.graph-body-m{display:none}
-svg.graph-m{display:block;width:100%;height:auto}
-svg.graph-m .gedge.rail{stroke:var(--line);stroke-width:2;stroke-dasharray:none;animation:none}
+/* ══ 모바일 (2026-07-27, PI "모바일에서는 관계 그래프 안 보여주는 게 낫다")
+   가로 920 viewBox 를 360px 에 넣으면 한글이 7px, 세로로 다시 그리면 화면 3배 길이가 된다.
+   둘 다 얻는 게 없어 **모바일에서는 그래프를 내린다.** 데스크톱에서는 그대로 보인다. */
 @media (max-width:720px){
-  .graph-body{display:none}
-  .graph-body-m{display:block;padding:0.5rem 0.75rem 0.75rem}
+  .graph-shell{display:none}
 }
 </style>
 
@@ -609,46 +604,6 @@ svg.graph-m .gedge.rail{stroke:var(--line);stroke-width:2;stroke-dasharray:none;
       <g class="gnode" data-n="suburban-house" transform="translate(654,468)">
         <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle">교외 단독주택</text>
         <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
-    </svg>
-    </div>
-    <div class="graph-body-m">
-    <svg class="graph-m" viewBox="0 0 380 1150" role="img" aria-label="apartment 관계 그래프">
-      <defs><marker id="mh-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead"/></marker><marker id="mh-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead g"/></marker><marker id="mh-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker></defs>
-      <path class="gedge rail" d="M34,76 L34,1105"/>
-      <path class="gedge geneal" data-e="apartment,insula" d="M34,145 L66,145" marker-end="url(#ah-g)"/>
-      <text class="elabel" x="66" y="110">evolvedFrom</text>
-      <g class="gnode" data-n="insula" transform="translate(66,118)"><rect width="296" height="54" rx="9"/><text x="14" y="23">인술라</text><text class="sub" x="14" y="41">로마 임대주거</text></g>
-      <path class="gedge geneal" data-e="apartment,tenement" d="M34,241 L66,241" marker-end="url(#ah-g)"/>
-      <text class="elabel" x="66" y="206">evolvedFrom</text>
-      <g class="gnode" data-n="tenement" transform="translate(66,214)"><rect width="296" height="54" rx="9"/><text x="14" y="23">테너먼트</text><text class="sub" x="14" y="41">산업도시 노동자</text></g>
-      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M34,337 L66,337" marker-end="url(#ah-g)"/>
-      <text class="elabel" x="66" y="302">evolvedFrom</text>
-      <g class="gnode" data-n="haussmann-apartment" transform="translate(66,310)"><rect width="296" height="54" rx="9"/><text x="14" y="23">오스만 아파트</text><text class="sub" x="14" y="41">파리 층별 계층</text></g>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M34,433 L66,433" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="398">requires</text>
-      <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(66,406)"><rect width="296" height="54" rx="9"/><text x="14" y="23">대피공간 3㎡</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M34,529 L66,529" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="494">requires</text>
-      <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(66,502)"><rect width="296" height="54" rx="9"/><text x="14" y="23">세대 대피공간 2㎡</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M34,625 L66,625" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="590">requires</text>
-      <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(66,598)"><rect width="296" height="54" rx="9"/><text x="14" y="23">특별피난계단 16층</text><text class="sub" x="14" y="41">spec_value · KR</text></g>
-      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M34,721 L66,721" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="686">grounded_in</text>
-      <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(66,694)"><rect width="296" height="54" rx="9"/><text x="14" y="23">리모델링 완화</text><text class="sub" x="14" y="41">norm_clause · KR</text></g>
-      <path class="gedge enables" data-e="apartment,urban-density" d="M34,817 L66,817" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="782">enables</text>
-      <g class="gnode" data-n="urban-density" transform="translate(66,790)"><rect width="296" height="54" rx="9"/><text x="14" y="23">도시 밀도</text><text class="sub" x="14" y="41">quality</text></g>
-      <path class="gedge enables" data-e="apartment,household-autonomy" d="M34,913 L66,913" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="878">enables</text>
-      <g class="gnode" data-n="household-autonomy" transform="translate(66,886)"><rect width="296" height="54" rx="9"/><text x="14" y="23">세대 독립성</text><text class="sub" x="14" y="41">quality</text></g>
-      <path class="gedge evokes" data-e="apartment,anonymity" d="M34,1009 L66,1009" marker-end="url(#ah-d)"/>
-      <text class="elabel" x="66" y="974">evokes</text>
-      <g class="gnode emo" data-n="anonymity" transform="translate(66,982)"><rect width="296" height="54" rx="9"/><text x="14" y="23">익명성</text><text class="sub" x="14" y="41">정서 — claimed</text></g>
-      <path class="gedge part" data-e="apartment,suburban-house" d="M34,1105 L66,1105" marker-end="url(#mh-e)"/>
-      <text class="elabel" x="66" y="1070">contrasts</text>
-      <g class="gnode" data-n="suburban-house" transform="translate(66,1078)"><rect width="296" height="54" rx="9"/><text x="14" y="23">교외 단독주택</text><text class="sub" x="14" y="41">대조 축</text></g>
-      <g class="gnode hub" data-n="apartment" transform="translate(20,14)"><rect width="340" height="62" rx="10"/><text x="16" y="26">아파트</text><text class="sub" x="16" y="46">apartment · space_type</text></g>
     </svg>
     </div>
     <div class="info" id="info">
