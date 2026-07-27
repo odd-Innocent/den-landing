@@ -319,6 +319,10 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 .j-art{font-size:clamp(4.5rem,16vw,10rem)}
 .j-era h3{font-size:clamp(2.75rem,1.2rem+6.5vw,4.25rem)}
 .instinct .big{font-size:clamp(1.5rem,1.05rem+2.1vw,2.5rem)}
+
+/* 그래프 시연 80% — 다른 섹션 프레임과 크기를 맞춘다(PI 2026-07-27) */
+.graph-shell{max-width:53rem;margin-left:auto;margin-right:auto}
+svg.graph{max-height:62svh}
 </style>
 
 <div id="pbar"></div>
@@ -333,7 +337,6 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
         <source srcset="assets/logo/den-full-light.png" media="(prefers-color-scheme: dark)">
         <img class="logo" src="assets/logo/den-full-dark.png" alt="Den" width="96" height="40">
       </picture>
-      <span class="tag">Spatial Why-Ontology</span>
     </div>
     <button id="langbtn" type="button">EN</button>
   </div>
@@ -345,11 +348,10 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
   <div id="torch" aria-hidden="true"></div>
   <div class="wrap">
     <p class="eyebrow" data-i18n="eyebrow">지식이 아니라, 이유를 주입합니다</p>
-    <h1 class="display" id="kinetic" data-i18n-h1="1">당신의 Agent,|건축을 [정말로] 알고 있나?</h1>
-    <p class="lede" data-i18n="lede">AI는 사실을 압니다. 이유는 모릅니다. 왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 그 이유의 사슬을 그래프로 만듭니다.</p>
+    <h1 class="display" id="kinetic" data-i18n-h1="1">당신의 Agent는|건축을 [정말로] 알고 있나요?</h1>
+    <p class="lede" data-i18n="lede">AI는 사실을 압니다. 이유는 모릅니다.<br>왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 알지 못합니다.<br>Den은 그 이유의 사슬을 그래프로 만들어 Agent에게 큐레이팅합니다.</p>
     <div class="cta-row">
       <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
-      <span class="cta-note" data-i18n="ctanote">승인되면 전용 링크로 접속 키를 직접 발급하십니다 · 가이드는 하단 링크</span>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
@@ -382,21 +384,11 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 
 <!-- 09 전환점(2026-07-26 개편): 여정이 끝난 감정을 실무 문제로 넘긴다.
      PI 결정 — 히어로와 01~08 여정의 감성은 그대로 두고, 그 '이후'를 다시 쓴다. -->
-<section class="wrap" id="turn-sec">
-  <p class="sec-eyebrow reveal" data-i18n="t_eyebrow">The Gap</p>
-  <h2 class="display reveal d1" data-i18n="t_h2">그런데 Agent는<br>이 4만 년을 모릅니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="t_lede">Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 조건에서만 참인지는 모릅니다.
-  그래서 그럴듯하게 틀리고, 틀렸다는 사실조차 말하지 않습니다.</p>
-  <div class="cta-row reveal d3" style="margin-top:1.5rem">
-    <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
-    <span class="cta-note" data-i18n="t_note">승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오</span>
-  </div>
-</section>
+
 
 <section class="wrap" id="graph-sec">
-  <p class="sec-eyebrow reveal" data-i18n="g_eyebrow">The Graph</p>
-  <h2 class="display reveal d1" data-i18n="g_h2">Agent에게 주입되는 지식의 실제 모양</h2>
-  <p class="sec-lede reveal d2" data-i18n="g_lede">중정주택의 왜-사슬. 개념에 마우스를 올리면 근거·시대·기후가 따라옵니다.</p>
+  <h2 class="display reveal d1" data-i18n="g_h2">Agent에게 건네지는 지식의 실제 모양</h2>
+  <p class="sec-lede reveal d2" data-i18n="g_lede">중정주택의 왜-사슬. 개념에 마우스를 올려 보십시오.</p>
 
   <div class="graph-shell reveal d2">
     <div class="graph-head">
@@ -482,108 +474,92 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 </section>
 
 <section class="wrap">
-  <p class="sec-eyebrow reveal" data-i18n="w_eyebrow">Why Different</p>
-  <h2 class="display reveal d1" data-i18n="w_h2">정보 정리가 아니라, 이해의 구조</h2>
-  <p class="sec-lede reveal d2" data-i18n="w_lede">요약하는 도구는 많습니다. Den은 지도를 만듭니다.</p>
+  <h2 class="display reveal d1" data-i18n="w_h2">Den은 정보를 만들지 않습니다.<br>고릅니다.</h2>
+  <p class="sec-lede reveal d2" data-i18n="w_lede">요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.</p>
   <div class="rows">
     <div class="row reveal">
-      <div class="h" data-i18n="r1h">문장이 아니라<br>원자 개념의 그래프</div>
-      <div class="b" data-i18n="r1b">문단은 검색되지만 추론되지 않습니다. Den의 지식은 원자 개념과 관계로 존재합니다. 사합원·리아드·도무스의 중정이 하나의 노드입니다.</div>
+      <div class="h" data-i18n="r1h">문단째로 주면<br>Agent도 헤맵니다</div>
+      <div class="b" data-i18n="r1b">사합원·리아드·도무스의 중정은 같은 개념입니다. Den은 그 하나를 건넵니다. 문단 열 개가 아니라.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r2h">모든 관계에<br>근거와 출처</div>
-      <div class="b" data-i18n="r2b">연상이 아닙니다. 모든 인과에 근거와 출처가 붙습니다. 검증을 통과한 것만 그래프에 들어옵니다.</div>
+      <div class="h" data-i18n="r2h">"~라고 합니다"는<br>근거가 아닙니다</div>
+      <div class="b" data-i18n="r2b">모든 인과에 출처가 붙습니다. 붙지 않은 것은 그래프에 들어오지 못합니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r3h">맥락(scope) 없는<br>지식은 미신입니다</div>
-      <div class="b" data-i18n="r3b">중정은 건조기후에서만 시원합니다. 모든 인과에 시대·기후·기술수준이 붙습니다. 조건 없는 지혜는 위험합니다.</div>
+      <div class="h" data-i18n="r3h">조건 없는 지혜는<br>현장에서 사고가 됩니다</div>
+      <div class="b" data-i18n="r3b">중정은 건조기후에서만 시원합니다. Den은 언제·어디서 참인지를 함께 건넵니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r4h">물리와 정서를<br>구분하는 인식론</div>
-      <div class="b" data-i18n="r4b">흙벽돌의 축열은 물리, 에워쌈의 안전감은 주장. Den은 둘을 구분하고, 논쟁적인 것은 논쟁적이라 표시합니다.</div>
+      <div class="h" data-i18n="r4h">축열은 물리,<br>아늑함은 주장입니다</div>
+      <div class="b" data-i18n="r4b">Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 말합니다.</div>
     </div>
   </div>
 </section>
 
 <section class="wrap">
-  <p class="sec-eyebrow reveal" data-i18n="s_eyebrow">Scale</p>
-  <h2 class="display reveal d1" data-i18n="s_h2">뿌리부터 전부, 지금도 자라는 중</h2>
-  <p class="sec-lede reveal d2" data-i18n="s_lede">영장류의 둥지에서 메타버스 주거까지 — 24개 지식 축이 하나의 그래프로 연결됩니다.</p>
-  <div class="stats reveal d2">
-    <div class="stat"><div class="n" data-count="1354">1,354</div><div class="l" data-i18n="st1">L1 골격 개념 — 정밀 감사 통과</div></div>
-    <div class="stat"><div class="n" data-count="40000" data-plus="1">40,000<span class="plus">+</span></div><div class="l" data-i18n="st2">L2 세부 원자 개념 (구축 진행 중)</div></div>
-    <div class="stat"><div class="n" data-count="51000" data-plus="1">51,000<span class="plus">+</span></div><div class="l" data-i18n="st3">근거 붙은 관계</div></div>
-    <div class="stat"><div class="n" data-count="24">24</div><div class="l" data-i18n="st4">지식 축 — 주거·구조·죽음·이동·유희까지</div></div>
-  </div>
-</section>
+    <h2 class="display reveal d1" data-i18n="e_h2">같은 Agent.<br>Den 하나만 붙였습니다.</h2>
+    <p class="sec-lede reveal d2" data-i18n="e_lede">국가기술자격 기출 192문항. 같은 모델, 같은 조건에서 측정했습니다.</p>
+    <div class="stats reveal d2">
+      <div class="stat"><div class="n" data-count="86.5" data-dec="1" data-suffix="%">86.5%</div><div class="l" data-i18n="e1">Agent 단독</div></div>
+      <div class="stat"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Agent + Den</div></div>
+      <div class="stat"><div class="n" data-count="8.9" data-dec="1" data-prefix="+" data-suffix="%p">+8.9%p</div><div class="l" data-i18n="e3">Den이 만든 차이</div></div>
+      <div class="stat"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 — 가장 어려운 자격</div></div>
+    </div>
+    <p class="sec-lede reveal d2" data-i18n="e_kick">쉬운 문제는 Agent도 맞힙니다. 어려워질수록 벌어집니다.</p>
+    <p class="fine reveal d2" data-i18n="e_note">※ 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다. 차이만 Den의 기여입니다.</p>
+  </section>
 
 <section class="wrap">
-  <p class="sec-eyebrow reveal" data-i18n="h_eyebrow">How It Works</p>
-  <h2 class="display reveal d1" data-i18n="h_h2">지금 쓰는 Agent, 그대로</h2>
-  <p class="sec-lede reveal d2" data-i18n="h_lede">새 챗봇이 아닙니다. 쓰시던 Agent에 지식층을 꽂습니다.</p>
+  <h2 class="display reveal d1" data-i18n="h_h2">쓰시던 Agent 그대로</h2>
+  <p class="sec-lede reveal d2" data-i18n="h_lede">설치할 앱도, 바꿀 습관도 없습니다.</p>
   <div class="steps">
     <div class="step reveal"><div class="t" data-i18n="sp1t">1 — 연결</div>
-      <div class="d" data-i18n="sp1d">MCP 설정 한 줄. 별도 앱도, 워크플로 변경도 없습니다.</div></div>
+      <div class="d" data-i18n="sp1d">설정 한 줄. Claude·ChatGPT·Gemini 어디서나.</div></div>
     <div class="step reveal d1"><div class="t" data-i18n="sp2t">2 — 질의</div>
-      <div class="d" data-i18n="sp2d">평소처럼 물으면 Agent가 필요할 때 Den을 부릅니다.</div></div>
+      <div class="d" data-i18n="sp2d">평소처럼 물어보시면 됩니다.</div></div>
     <div class="step reveal d2"><div class="t" data-i18n="sp3t">3 — 이유 사슬</div>
-      <div class="d" data-i18n="sp3d">답이 아니라 <b>근거 사슬</b>이 옵니다 — 인과 경로, 적용 조건, 출처.</div></div>
+      <div class="d" data-i18n="sp3d">답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.</div></div>
   </div>
 
   <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다. -->
-  <div class="steps" style="margin-top:1.25rem">
-    <div class="step reveal"><div class="t" data-i18n="ch1t">웹 커넥터</div>
-      <div class="d" data-i18n="ch1d">Claude·ChatGPT 웹에서 커넥터 주소만 붙여넣습니다.
-      헤더 설정이 없는 환경을 위해 <b>개인 전용 URL</b>을 발급합니다.</div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="ch2t">Claude Code · IDE</div>
-      <div class="d" data-i18n="ch2d"><code>Authorization: Bearer &lt;키&gt;</code> 한 줄.
-      MCP 설정 파일에 서버를 추가하면 끝입니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="ch3t">데스크톱 (.mcpb)</div>
-      <div class="d" data-i18n="ch3d">번들을 설치하고 키를 입력하면 OS 키체인에 안전하게 보관됩니다.</div></div>
-  </div>
+  
   <p class="preview-note" data-i18n="ch_note">채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.</p>
 </section>
 
 <section class="wrap">
-  <p class="sec-eyebrow reveal" data-i18n="p_eyebrow">Preview</p>
-  <h2 class="display reveal d1" data-i18n="p_h2">같은 질문, 다른 깊이</h2>
-  <p class="sec-lede reveal d2" data-i18n="p_lede">"중정주택, 요즘 주거에 적용할 만한가?" — 같은 질문, 두 개의 답.</p>
+  <h2 class="display reveal d1" data-i18n="p_h2">현장에서 틀리면<br>다시 못 짓습니다</h2>
+  <p class="sec-lede reveal d2" data-i18n="p_lede">"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.</p>
   <div class="compare">
     <div class="pane reveal">
       <div class="ph"><span data-i18n="pn1t">일반 Agent</span> <span class="who" data-i18n="pn1w">지식: 사전학습</span></div>
       <div class="pb">
-        <p class="q" data-i18n="pnq">중정주택, 적용할 만한가요?</p>
-        <p data-i18n="pn1b">중정주택은 채광과 통풍에 유리하고 프라이버시 확보에 좋은 전통적 형식입니다.
-        현대 주거에서도 중정을 도입하면 자연 채광과 개방감을 얻을 수 있습니다.
-        다만 면적 효율과 시공 비용을 고려해야 합니다.</p>
-        <p style="font-size:12.5px" data-i18n="pn1n">— 그럴듯합니다. 하지만 <b>어느 기후에서, 왜, 어떤 조건일 때</b> 유효한지는 알 수 없습니다.</p>
+        <p class="q" data-i18n="pnq">RC 보 스터럽 최대 간격은?</p>
+        <p data-i18n="pn1b">수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.</p>
+        <p style="font-size:12.5px" data-i18n="pn1n">— 맞는 말입니다. 그런데 <b>전단력이 커지면 이 값이 절반이 됩니다.</b> 그 조건을 말하지 않았습니다.</p>
       </div>
     </div>
     <div class="pane den reveal d1">
-      <div class="ph"><span data-i18n="pn2t">Den을 주입한 Agent</span> <span class="who" data-i18n="pn2w">지식: 왜-사슬 + 근거</span></div>
+      <div class="ph"><span data-i18n="pn2t">Den을 주입한 Agent</span> <span class="who" data-i18n="pn2w">지식: Den 전공자료</span></div>
       <div class="pb">
-        <p class="q" data-i18n="pnq2">중정주택, 적용할 만한가요?</p>
-        <p data-i18n="pn2a">대지 조건부터 확인해야 합니다. 중정의 냉각 이득은 조건부입니다:</p>
+        <p class="q" data-i18n="pnq2">RC 보 스터럽 최대 간격은?</p>
+        <p data-i18n="pn2a">조건에 따라 두 갈래입니다.</p>
         <div class="chain">
-          <div class="cstep"><span class="rel">causes · scope: arid</span><br><span data-i18n="pc1">건조·고온 기후 → 중정 형식 <span class="sc">(9개 문명 수렴)</span></span></div>
-          <div class="cstep"><span class="rel">enables</span><br><span data-i18n="pc2">중정 → 맞통풍·야간 복사냉각</span></div>
-          <div class="cstep"><span class="rel d">evokes · claimed</span><br><span data-i18n="pc3">중정 → 가족 프라이버시·에워쌈-안전감 <span class="sc">(기후 무관 유효)</span></span></div>
+          <div class="cstep"><span class="rel">causes · scope: arid</span><br><span data-i18n="pc1">Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span></span></div>
+          <div class="cstep"><span class="rel">enables</span><br><span data-i18n="pc2">Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하 — 절반</span></span></div>
+          <div class="cstep"><span class="rel d">evokes · claimed</span><br><span data-i18n="pc3">Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span></span></div>
         </div>
-        <p data-i18n="pn2b">온대습윤 대지라면 <b>냉각 근거는 약해지고</b>, 프라이버시·중심성 가치는 남습니다.
-        형태를 베끼지 말고 성립 조건을 검토하세요.</p>
-        <div class="src-line" data-i18n="pn2s">근거: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou 외 — 관계별 출처 첨부</div>
+        <p data-i18n="pn2b">전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.</p>
+        <div class="src-line" data-i18n="pn2s">Den이 실제로 반환한 전공자료입니다. 다듬지 않았습니다.</div>
       </div>
     </div>
   </div>
-  <p class="preview-note" data-i18n="pnote">실제 그래프 레코드로 구성한 예시입니다.</p>
 </section>
 
 <!-- 11 기권 시연(2026-07-26 개편, PI 채택): Den 의 핵심 차별점을 **말이 아니라 보여준다**.
      범위 안이면 근거를 붙여 답하고, 범위 밖이면 침묵한다 — 그럴듯한 오답이 환각보다 나쁘기 때문. -->
 <section class="wrap" id="abstain-sec">
-  <p class="sec-eyebrow reveal" data-i18n="ab_eyebrow">Silence</p>
   <h2 class="display reveal d1" data-i18n="ab_h2">모르면, 침묵합니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="ab_lede">대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 비워서 돌려보냅니다.</p>
+  <p class="sec-lede reveal d2" data-i18n="ab_lede">대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 그러지 않습니다.</p>
   <div class="compare">
     <div class="pane den reveal">
       <div class="ph"><span data-i18n="ab1t">범위 안 — 건축</span> <span class="who" data-i18n="ab1w">근거를 붙여 답한다</span></div>
@@ -601,25 +577,21 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
       <div class="pb">
         <p class="q" data-i18n="ab2q">양자컴퓨터 오류정정 방식은?</p>
         <p data-i18n="ab2a" style="opacity:.85">관련 전공자료 없음.</p>
-        <p style="font-size:12.5px" data-i18n="ab2n">— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아
-        "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.</p>
+        <p style="font-size:12.5px" data-i18n="ab2n">— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.</p>
       </div>
     </div>
   </div>
   <div class="cta-row reveal d2" style="margin-top:1.75rem">
     <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
-    <span class="cta-note" data-i18n="ab_note">승인되면 직접 키를 발급하십니다</span>
   </div>
 </section>
 
 <section class="wrap">
-  <p class="sec-eyebrow reveal" data-i18n="o_eyebrow">Honesty</p>
-  <h2 class="display reveal d1" data-i18n="o_h2">아직 모르는 것이 있습니다</h2>
-  <div class="honest reveal d2" data-i18n="o_body">Den의 지식은 국내 규범과 공개 문헌에서만 자랍니다. 아직 얇은 영역이 있고, 그런 질문에는 답을 만들지 않고 비워서 돌려드립니다. 그 빈칸이 어디인지 함께 확인해 주실 분들께 얼리 액세스를 엽니다.</div>
+  <h2 class="display reveal d1" data-i18n="o_h2">빈 곳은 쓰시는 분이<br>가장 먼저 압니다</h2>
+  <div class="honest reveal d2" data-i18n="o_body">Den은 공개된 규범과 문헌에서만 자랍니다. 건축·도시·토목·시공·유지관리 — 아직 얇은 곳이 있습니다. 어디가 비었는지는 도면 앞에 앉은 분이 가장 먼저 압니다. 쓰시는 것만으로 기여가 됩니다.</div>
 
   <div class="waitlist reveal">
-    <h2 class="display" data-i18n="wl_h2">당신의 Agent에게, 이유를.</h2>
-    <p data-i18n="wl_p">검토 후 승인해 드립니다.</p>
+    <h2 class="display" data-i18n="wl_h2">당신의 Agent에게,<br>건축의 맥락을.</h2>
     <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="wl_cta">얼리 액세스 신청</a>
   </div>
   <footer style="padding:26px 0 0">
@@ -636,12 +608,8 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 
   /* ================= i18n ================= */
   var I18N = {
-    ko: {
-      t_eyebrow:'The Gap', t_h2:'그런데 Agent는<br>이 4만 년을 모릅니다',
-      t_lede:'Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 조건에서만 참인지는 모릅니다. 그래서 그럴듯하게 틀리고, 틀렸다는 사실조차 말하지 않습니다.',
-      t_note:'승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오',
-      ab_eyebrow:'Silence', ab_h2:'모르면, 침묵합니다',
-      ab_lede:'대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 비워서 돌려보냅니다.',
+    ko: { ab_h2:'모르면, 침묵합니다',
+      ab_lede:'대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 그러지 않습니다.',
       ab1t:'범위 안 — 건축', ab1w:'근거를 붙여 답한다', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
       ab1c2:'옥외·흙에 접하지 않는 보·기둥 40mm · 슬래브 D35 이하 20mm',
@@ -649,58 +617,45 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
       ab2t:'범위 밖 — 비건축', ab2w:'지어내지 않는다', ab2q:'양자컴퓨터 오류정정 방식은?',
       ab2a:'관련 전공자료 없음.',
       ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
-      ab_note:'승인되면 직접 키를 발급하십니다',
-      ch1t:'웹 커넥터', ch1d:'Claude·ChatGPT 웹에서 커넥터 주소만 붙여넣습니다. 헤더 설정이 없는 환경을 위해 <b>개인 전용 URL</b>을 발급합니다.',
-      ch2t:'Claude Code · IDE', ch2d:'<code>Authorization: Bearer &lt;키&gt;</code> 한 줄. MCP 설정 파일에 서버를 추가하면 끝입니다.',
-      ch3t:'데스크톱 (.mcpb)', ch3d:'번들을 설치하고 키를 입력하면 OS 키체인에 안전하게 보관됩니다.',
       ch_note:'채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.',
       eyebrow:'지식이 아니라, 이유를 주입합니다',
-      h1:'당신의 Agent,|건축을 [정말로] 알고 있나?',
-      lede:'AI는 사실을 압니다. 이유는 모릅니다. 왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 그 이유의 사슬을 그래프로 만듭니다.',
-      cta:'얼리 액세스 신청', ctanote:'승인되면 전용 링크로 접속 키를 직접 발급하십니다 · 가이드는 하단 링크',
+      h1:'당신의 Agent는|건축을 [정말로] 알고 있나요?',
+      lede:'AI는 사실을 압니다. 이유는 모릅니다.<br>왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 알지 못합니다.<br>Den은 그 이유의 사슬을 그래프로 만들어 Agent에게 큐레이팅합니다.',
+      cta:'얼리 액세스 신청',
       jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.',
-      g_eyebrow:'The Graph', g_h2:'Agent에게 주입되는 지식의 실제 모양',
-      g_lede:'중정주택의 왜-사슬. 개념에 마우스를 올리면 근거·시대·기후가 따라옵니다.',
+      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'Agent에게 건네지는 지식의 실제 모양',
+      g_lede:'중정주택의 왜-사슬. 개념에 마우스를 올려 보십시오.',
       g_title:'courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가',
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg4:'계보 evolvedFrom', lg5:'구성·유형 partOf·isA',
       info_k:'개념을 선택하세요',
-      info_d:'정의·근거·인식론 태그가 표시됩니다.',
-      w_eyebrow:'Why Different', w_h2:'정보 정리가 아니라, 이해의 구조',
-      w_lede:'요약하는 도구는 많습니다. Den은 지도를 만듭니다.',
-      r1h:'문장이 아니라<br>원자 개념의 그래프',
-      r1b:'문단은 검색되지만 추론되지 않습니다. Den의 지식은 원자 개념과 관계로 존재합니다. 사합원·리아드·도무스의 중정이 하나의 노드입니다.',
-      r2h:'모든 관계에<br>근거와 출처',
-      r2b:'연상이 아닙니다. 모든 인과에 근거와 출처가 붙습니다. 검증을 통과한 것만 그래프에 들어옵니다.',
-      r3h:'맥락(scope) 없는<br>지식은 미신입니다',
-      r3b:'중정은 건조기후에서만 시원합니다. 모든 인과에 시대·기후·기술수준이 붙습니다. 조건 없는 지혜는 위험합니다.',
-      r4h:'물리와 정서를<br>구분하는 인식론',
-      r4b:'흙벽돌의 축열은 물리, 에워쌈의 안전감은 주장. Den은 둘을 구분하고, 논쟁적인 것은 논쟁적이라 표시합니다.',
-      s_eyebrow:'Scale', s_h2:'뿌리부터 전부, 지금도 자라는 중',
-      s_lede:'영장류의 둥지에서 메타버스 주거까지 — 24개 지식 축이 하나의 그래프로 연결됩니다.',
-      st1:'L1 골격 개념 — 정밀 감사 통과', st2:'L2 세부 원자 개념 (구축 진행 중)', st3:'근거 붙은 관계', st4:'지식 축 — 주거·구조·죽음·이동·유희까지',
-      h_eyebrow:'How It Works', h_h2:'지금 쓰는 Agent, 그대로',
-      h_lede:'새 챗봇이 아닙니다. 쓰시던 Agent에 지식층을 꽂습니다.',
-      sp1t:'1 — 연결', sp1d:'MCP 설정 한 줄. 별도 앱도, 워크플로 변경도 없습니다.',
-      sp2t:'2 — 질의', sp2d:'평소처럼 물으면 Agent가 필요할 때 Den을 부릅니다.',
-      sp3t:'3 — 이유 사슬', sp3d:'답이 아니라 <b>근거 사슬</b>이 옵니다 — 인과 경로, 적용 조건, 출처.',
-      p_eyebrow:'Preview', p_h2:'같은 질문, 다른 깊이',
-      p_lede:'"중정주택, 요즘 주거에 적용할 만한가?" — 같은 질문, 두 개의 답.',
-      pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'중정주택, 적용할 만한가요?', pnq2:'중정주택, 적용할 만한가요?',
-      pn1b:'중정주택은 채광과 통풍에 유리하고 프라이버시 확보에 좋은 전통적 형식입니다. 현대 주거에서도 중정을 도입하면 자연 채광과 개방감을 얻을 수 있습니다. 다만 면적 효율과 시공 비용을 고려해야 합니다.',
-      pn1n:'— 그럴듯합니다. 하지만 <b>어느 기후에서, 왜, 어떤 조건일 때</b> 유효한지는 알 수 없습니다.',
-      pn2t:'Den을 주입한 Agent', pn2w:'지식: 왜-사슬 + 근거',
-      pn2a:'대지 조건부터 확인해야 합니다. 중정의 냉각 이득은 조건부입니다:',
-      pc1:'건조·고온 기후 → 중정 형식 <span class="sc">(9개 문명 수렴)</span>',
-      pc2:'중정 → 맞통풍·야간 복사냉각',
-      pc3:'중정 → 가족 프라이버시·에워쌈-안전감 <span class="sc">(기후 무관 유효)</span>',
-      pn2b:'온대습윤 대지라면 <b>냉각 근거는 약해지고</b>, 프라이버시·중심성 가치는 남습니다. 형태를 베끼지 말고 성립 조건을 검토하세요.',
-      pn2s:'근거: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou 외 — 관계별 출처 첨부',
-      pnote:'실제 그래프 레코드로 구성한 예시입니다.',
-      o_eyebrow:'Honesty', o_h2:'아직 모르는 것이 있습니다',
-      o_body:'Den의 지식은 국내 규범과 공개 문헌에서만 자랍니다. 아직 얇은 영역이 있고, 그런 질문에는 답을 만들지 않고 비워서 돌려드립니다. 그 빈칸이 어디인지 함께 확인해 주실 분들께 얼리 액세스를 엽니다.',
-      wl_h2:'당신의 Agent에게, 이유를.', wl_p:'검토 후 승인해 드립니다.', wl_cta:'얼리 액세스 신청',
+      info_d:'정의·근거·인식론 태그가 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
+      w_lede:'요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.',
+      r1h:'문단째로 주면<br>Agent도 헤맵니다',
+      r1b:'사합원·리아드·도무스의 중정은 같은 개념입니다. Den은 그 하나를 건넵니다. 문단 열 개가 아니라.',
+      r2h:'"~라고 합니다"는<br>근거가 아닙니다',
+      r2b:'모든 인과에 출처가 붙습니다. 붙지 않은 것은 그래프에 들어오지 못합니다.',
+      r3h:'조건 없는 지혜는<br>현장에서 사고가 됩니다',
+      r3b:'중정은 건조기후에서만 시원합니다. Den은 언제·어디서 참인지를 함께 건넵니다.',
+      r4h:'축열은 물리,<br>아늑함은 주장입니다',
+      r4b:'Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 말합니다.', h_h2:'쓰시던 Agent 그대로',
+      h_lede:'설치할 앱도, 바꿀 습관도 없습니다.',
+      sp1t:'1 — 연결', sp1d:'설정 한 줄. Claude·ChatGPT·Gemini 어디서나.',
+      sp2t:'2 — 질의', sp2d:'평소처럼 물어보시면 됩니다.',
+      sp3t:'3 — 이유 사슬', sp3d:'답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.', p_h2:'현장에서 틀리면<br>다시 못 짓습니다',
+      p_lede:'"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.',
+      pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
+      pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
+      pn1n:'— 맞는 말입니다. 그런데 <b>전단력이 커지면 이 값이 절반이 됩니다.</b> 그 조건을 말하지 않았습니다.',
+      pn2t:'Den을 주입한 Agent', pn2w:'지식: Den 전공자료',
+      pn2a:'조건에 따라 두 갈래입니다.',
+      pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span>',
+      pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하 — 절반</span>',
+      pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
+      pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
+      pn2s:'Den이 실제로 반환한 전공자료입니다. 다듬지 않았습니다.', o_h2:'빈 곳은 쓰시는 분이<br>가장 먼저 압니다',
+      o_body:'Den은 공개된 규범과 문헌에서만 자랍니다. 건축·도시·토목·시공·유지관리 — 아직 얇은 곳이 있습니다. 어디가 비었는지는 도면 앞에 앉은 분이 가장 먼저 압니다. 쓰시는 것만으로 기여가 됩니다.',
+      wl_h2:'당신의 Agent에게,<br>건축의 맥락을.', wl_cta:'얼리 액세스 신청',
       ft1:'인간 공간 이해의 온톨로지', ft2:'© 2026 Den', ftg:'베타 가이드',
       eras:[
         ['야외','Open Air','지붕 없는 밤 — 인류는 시야와 도주로로 안전을 쟀습니다. 그 계산이 아직 당신 안에 있습니다.'],
@@ -712,14 +667,18 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
         ['고층','High-Rise','철과 엘리베이터가 땅을 수직으로 접었습니다.'],
         ['가상','Virtual','몸 없이 거주하는 최초의 세대 — 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.']
       ],
-      langbtn:'EN'
+      langbtn:'EN',
+    e_h2:'같은 Agent.<br>Den 하나만 붙였습니다.',
+      e_lede:'국가기술자격 기출 192문항. 같은 모델, 같은 조건에서 측정했습니다.',
+      e1:'Agent 단독',
+      e2:'Agent + Den',
+      e3:'Den이 만든 차이',
+      e4:'기능장 — 가장 어려운 자격',
+      e_kick:'쉬운 문제는 Agent도 맞힙니다. 어려워질수록 벌어집니다.',
+      e_note:'※ 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다. 차이만 Den의 기여입니다.'
     },
-    en: {
-      t_eyebrow:'The Gap', t_h2:'But your Agent<br>knows none of these 40,000 years',
-      t_lede:'Agents know sentences. They do not know why a form was arrived at, or under which climate, construction method and code it holds true. So they are plausibly wrong — and never tell you they are.',
-      t_note:'Approval-based · See what Den does below, first',
-      ab_eyebrow:'Silence', ab_h2:'When it does not know, it stays silent',
-      ab_lede:'Most AI writes a sentence even when it does not know. Den returns empty.',
+      en: { ab_h2:'When it does not know, it stays silent',
+      ab_lede:'Most AI writes a sentence even when it does not know. Den does not.',
       ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
       ab1c1:'Cast under water 100mm · permanently buried against soil 75mm',
       ab1c2:'Beams/columns not exposed 40mm · slabs D35 or less 20mm',
@@ -727,26 +686,20 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
       ab2t:'Out of scope — non-architecture', ab2w:'does not invent', ab2q:'How does quantum error correction work?',
       ab2a:'No relevant domain material.',
       ab2n:'— The empty response <b>is</b> the honest answer. Your Agent reads this signal, says "outside Den\'s scope", and does not drag in clauses that do not exist.',
-      ab_note:'Once approved, you issue your own key',
-      ch1t:'Web connector', ch1d:'Paste the connector URL into Claude or ChatGPT on the web. A <b>private URL</b> is issued for environments without header support.',
-      ch2t:'Claude Code · IDE', ch2d:'One line: <code>Authorization: Bearer &lt;key&gt;</code>. Add the server to your MCP config and you are done.',
-      ch3t:'Desktop (.mcpb)', ch3d:'Install the bundle, enter your key, and it is stored safely in the OS keychain.',
       ch_note:'Use a different key per channel — if one leaks, the rest stay protected.',
       eyebrow:'We inject reasons, not just knowledge',
       h1:'Does your Agent|[really] know architecture?',
-      lede:'General models know facts — they cite the literature beautifully. But the chain of reasons behind <b>"why this space, why this form"</b> is written in no single document. Den builds the entire history of how humans have understood space as a <b>graph of atomic concepts and causality</b>. Your agent reasons on top of it.',
-      cta:'Request early access', ctanote:'Once approved, you issue your own key from a private link',
+      lede:'AI knows facts. It does not know why.<br>Why a form was arrived at, and when it holds — that it cannot tell you.<br>Den builds that chain of reasons and curates it for your Agent.',
+      cta:'Request early access',
       jeyebrow:'Scroll — 40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and you, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.',
-      g_eyebrow:'The Graph', g_h2:'What actually gets injected into your Agent',
+      instsmall:'That instinct built the cave, the hearth, the courtyard, the city. Den restores the full genealogy of that understanding — from instinct to form — as data.', g_h2:'What actually gets injected into your Agent',
       g_lede:'The why-chain of the courtyard house. Hover a concept — evidence, era and climate follow.',
       g_title:'courtyard-house — why nine civilizations converged on one form',
       lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg4:'lineage evolvedFrom', lg5:'part / type',
       info_k:'Select a concept',
-      info_d:'Hover a node to see its definition, evidence, and epistemic tags. This is not demo copy — these are actual records from the Den ontology.',
-      w_eyebrow:'Why Different', w_h2:'Not information tidying — the structure of understanding',
-      w_lede:'Plenty of tools summarize. Den builds a map.',
+      info_d:'Hover a node to see its definition, evidence, and epistemic tags. This is not demo copy — these are actual records from the Den ontology.', w_h2:'Den does not create information.<br>It selects.',
+      w_lede:'Plenty of tools summarize. Den filters, and hands over only what holds.',
       r1h:'A graph of atomic concepts,<br>not paragraphs',
       r1b:'Store knowledge as paragraphs and you can search it — but not reason over it. Every piece of Den is a <b>reusable atomic concept</b> (courtyard, hearth, buttress…) connected by <b>typed relations</b>. The same \'courtyard\' is one node in the siheyuan, the riad, and the domus — which is why cross-civilization questions become answerable.',
       r2h:'Evidence and sources<br>on every relation',
@@ -754,16 +707,11 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
       r3h:'Knowledge without scope<br>is superstition',
       r3b:'"Courtyards are cool" is true only in arid climates. Every causal link in Den is scoped by <b>era, culture, climate, and technology level</b> — so arid-climate wisdom never gets misapplied to a subarctic project.',
       r4h:'An epistemology that separates<br>physics from feeling',
-      r4b:'"Mud brick stores heat" (physical causation) and "enclosure feels safe" (an emotional claim) are different kinds of knowledge. Den <b>tags them separately</b>, and marks contested theories as contested — honestly.',
-      s_eyebrow:'Scale', s_h2:'Everything from the roots — and still growing',
-      s_lede:'From primate nests to metaverse dwellings — 24 axes of knowledge, connected in one graph.',
-      st1:'L1 skeleton concepts — audit passed', st2:'L2 atomic concepts (in progress)', st3:'evidence-backed relations', st4:'knowledge axes — dwelling, structure, death, mobility, play',
-      h_eyebrow:'How It Works', h_h2:'Your current Agent, unchanged',
-      h_lede:'Not a new chatbot. A knowledge layer for the Agent you already use.',
+      r4b:'"Mud brick stores heat" (physical causation) and "enclosure feels safe" (an emotional claim) are different kinds of knowledge. Den <b>tags them separately</b>, and marks contested theories as contested — honestly.', h_h2:'The Agent you already use',
+      h_lede:'Nothing to install. Nothing to relearn.',
       sp1t:'1 — Connect', sp1d:'One line of MCP config connects your agent to Den. No new app, no workflow change.',
       sp2t:'2 — Ask', sp2d:'Ask your agent as you always do. When needed, it calls Den\'s <code>answer-why</code> and <code>path-between</code> tools on its own.',
-      sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.',
-      p_eyebrow:'Preview', p_h2:'Same question, different depth',
+      sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.', p_h2:'Get it wrong on site,<br>and you don\'t rebuild.',
       p_lede:'"Is the courtyard house worth applying to housing today?" — one question, two answers.',
       pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Is a courtyard house worth applying?', pnq2:'Is a courtyard house worth applying?',
       pn1b:'Courtyard houses are a traditional form with good daylighting, ventilation, and privacy. Introducing a courtyard in modern housing can bring natural light and openness. However, floor-area efficiency and construction cost should be considered.',
@@ -774,11 +722,9 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
       pc2:'Courtyard → cross-ventilation · nocturnal radiant cooling',
       pc3:'Courtyard → family privacy · enclosure-security <span class="sc">(valid regardless of climate)</span>',
       pn2b:'On a humid temperate site, <b>the cooling argument weakens</b> — while privacy and centrality remain. Don\'t copy the form; examine its conditions.',
-      pn2s:'Evidence: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou — sources attached per relation',
-      pnote:'Built from real graph records.',
-      o_eyebrow:'Honesty', o_h2:'There are things Den does not know',
-      o_body:'Den\'s knowledge grows only from published codes and literature. Some areas are still thin, and for those questions it returns nothing rather than inventing an answer. Early access is open to those who will help us find where the blanks are.',
-      wl_h2:'Give your Agent its reasons.', wl_p:'Reviewed, then approved.', wl_cta:'Request early access',
+      pn2s:'Evidence: The Courtyard Houses of Syria (Muslim Heritage) · UNESCO Fujian Tulou — sources attached per relation', o_h2:'You will find the gaps<br>before we do',
+      o_body:'Den grows only from published codes and literature. Architecture, urbanism, civil, construction, maintenance — some areas are still thin. The person at the drawing finds the blanks first. Using it is already a contribution.',
+      wl_h2:'Give your Agent<br>the context.', wl_cta:'Request early access',
       ft1:'An ontology of human spatial understanding', ft2:'© 2026 Den', ftg:'Beta guide',
       eras:[
         ['Open Air','E0','Nights without a roof — safety was measured in sightlines and escape routes. That calculus still runs in you.'],
@@ -790,8 +736,17 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
         ['High-Rise','Steel','Steel and the elevator folded land vertically.'],
         ['Virtual','Now','The first generation to dwell without a body — yet the instincts remain. Den maps them.']
       ],
-      langbtn:'한국어'
-    }
+      langbtn:'한국어',
+      e_h2:'Same Agent.<br>We added only Den.',
+      e_lede:'192 national licensing exam questions. Same model, same conditions.',
+      e1:'Agent alone',
+      e2:'Agent + Den',
+      e3:'What Den added',
+      e4:'Master Craftsman — the hardest tier',
+      e_kick:'The Agent gets the easy ones. The gap opens where it gets hard.',
+      e_note:'※ These are public past exams, so both sides carry memorized answers and the absolute scores read high. Only the difference is Den\'s contribution.',
+    },
+  
   };
   var GDATA = {
     ko: {
@@ -1154,13 +1109,17 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
     var io2 = new IntersectionObserver(function(es){
       es.forEach(function(e){
         if(!e.isIntersecting) return; io2.unobserve(e.target);
-        var el = e.target, target = parseInt(el.dataset.count,10);
-        var plus = el.dataset.plus ? '<span class="plus">+</span>' : '';
+        var el = e.target, target = parseFloat(el.dataset.count);
+          var plus = el.dataset.plus ? '<span class="plus">+</span>' : '';
+          // 소수 자릿수·접두·접미(2026-07-27 벤치마크). 미지정 시 기존 정수 동작 그대로.
+          var dec = el.dataset.dec ? parseInt(el.dataset.dec,10) : 0;
+          var pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
         var start = null;
         function step(ts){
           if(!start) start = ts;
           var k = Math.min(1,(ts-start)/1400), ease = 1-Math.pow(1-k,3);
-          el.innerHTML = Math.round(target*ease).toLocaleString() + plus;
+          var _v = target*ease;
+            el.innerHTML = pre + (dec ? _v.toFixed(dec) : Math.round(_v).toLocaleString()) + suf + plus;
           if(k<1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
