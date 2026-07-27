@@ -51,7 +51,11 @@ html{font-size:clamp(12px, min(1.04vw, 1.85vh), 23px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:'Pretendard Variable','Pretendard','SUIT','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;
-  font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  /* ★한글 줄바꿈(2026-07-27): keep-all 이 없으면 브라우저가 **어절 중간에서** 줄을 끊는다.
+     한글 사이트가 '번역된 것 같다'고 느껴지는 가장 큰 기술적 원인이다.
+     text-wrap:pretty 는 지원 브라우저에서 마지막 줄 고아 단어를 줄여준다. */
+  word-break:keep-all; overflow-wrap:break-word; text-wrap:pretty}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.045;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
 .display{font-weight:800;letter-spacing:-.035em}
@@ -357,7 +361,7 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
 <div class="instinct wrap">
   <p class="big display" id="instinct-big" data-i18n-words="1">3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.</p>
   <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.
-  Den은 그 이해의 계보 전체를 — 본능에서 형태까지 — 데이터로 복원합니다.</p>
+  Den은 그 계보를 데이터로 복원합니다.</p>
 </div>
 
 <!-- 09 전환점(2026-07-26 개편): 여정이 끝난 감정을 실무 문제로 넘긴다.
@@ -365,8 +369,8 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
 <section class="wrap" id="turn-sec">
   <p class="sec-eyebrow reveal" data-i18n="t_eyebrow">The Gap</p>
   <h2 class="display reveal d1" data-i18n="t_h2">그런데 당신의 Agent는<br>이 4만 년을 모릅니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="t_lede">Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 기후·구법·법규 아래에서만
-  참인지는 모릅니다. 그래서 그럴듯하게 틀립니다 — 그리고 틀렸다는 사실조차 말해주지 않습니다.</p>
+  <p class="sec-lede reveal d2" data-i18n="t_lede">Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 조건에서만 참인지는 모릅니다.
+  그래서 그럴듯하게 틀리고, 틀렸다는 사실조차 말하지 않습니다.</p>
   <div class="cta-row reveal d3" style="margin-top:1.5rem">
     <a class="btn magnetic" href="https://mcp.den.archi/signup" data-i18n="cta">얼리 액세스 신청</a>
     <span class="cta-note" data-i18n="t_note">승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오</span>
@@ -457,7 +461,7 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
     </div>
     <div class="info" id="info">
       <span class="k" data-i18n="info_k">개념을 선택하세요</span>
-      <span class="d" data-i18n="info_d">노드에 마우스를 올리면 정의·근거·인식론 태그가 여기 표시됩니다. 이 데이터는 데모용 요약이 아니라 Den 온톨로지의 실제 레코드입니다.</span>
+      <span class="d" data-i18n="info_d">노드에 마우스를 올리면 정의·근거·인식론 태그가 표시됩니다.</span>
     </div>
   </div>
 </section>
@@ -465,8 +469,8 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
 <section class="wrap">
   <p class="sec-eyebrow reveal" data-i18n="w_eyebrow">Why Different</p>
   <h2 class="display reveal d1" data-i18n="w_h2">정보 정리가 아니라, 이해의 구조</h2>
-  <p class="sec-lede reveal d2" data-i18n="w_lede">문서를 요약해 주는 도구는 많습니다. Den이 만드는 것은 다릅니다 —
-  인간이 공간을 이해해 온 방식 그 자체의 지도입니다.</p>
+  <p class="sec-lede reveal d2" data-i18n="w_lede">요약해 주는 도구는 많습니다. Den은 지도를 만듭니다 —
+  인간이 공간을 이해해 온 방식의 지도.</p>
   <div class="rows">
     <div class="row reveal">
       <div class="h" data-i18n="r1h">문장이 아니라<br>원자 개념의 그래프</div>
@@ -487,8 +491,8 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
     </div>
     <div class="row reveal">
       <div class="h" data-i18n="r4h">물리와 정서를<br>구분하는 인식론</div>
-      <div class="b" data-i18n="r4b">"흙벽돌은 축열한다"(물리 인과)와 "에워쌈은 안전감을 준다"(정서적 주장)는 다른 종류의 지식입니다.
-      Den은 이 둘을 <b>구분해 태깅</b>하고, 논쟁적 학설은 논쟁적이라고 정직하게 표시합니다.</div>
+      <div class="b" data-i18n="r4b">흙벽돌의 축열은 물리이고, 에워쌈의 안전감은 주장입니다.
+      Den은 둘을 구분해 태깅하고, 논쟁적 학설은 논쟁적이라 표시합니다.<b>구분해 태깅</b>하고, 논쟁적 학설은 논쟁적이라고 정직하게 표시합니다.</div>
     </div>
   </div>
 </section>
@@ -513,9 +517,9 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
     <div class="step reveal"><div class="t" data-i18n="sp1t">1 — 연결</div>
       <div class="d" data-i18n="sp1d">MCP 설정 한 줄로 당신의 Agent가 Den에 연결됩니다. 별도 앱도, 워크플로 변경도 없습니다.</div></div>
     <div class="step reveal d1"><div class="t" data-i18n="sp2t">2 — 질의</div>
-      <div class="d" data-i18n="sp2d">Agent에게 평소처럼 묻습니다. Agent가 필요할 때 Den의 <code>answer-why</code>·<code>path-between</code> 도구를 스스로 호출합니다.</div></div>
+      <div class="d" data-i18n="sp2d">평소처럼 물으면 됩니다. Agent가 필요할 때 Den 도구를 스스로 호출합니다.</div></div>
     <div class="step reveal d2"><div class="t" data-i18n="sp3t">3 — 이유 사슬</div>
-      <div class="d" data-i18n="sp3d">답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건(scope), 출처까지. 판단은 당신과 당신의 Agent가 합니다.</div></div>
+      <div class="d" data-i18n="sp3d">답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건, 출처까지.</div></div>
   </div>
 
   <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다. -->
@@ -632,7 +636,7 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
   var I18N = {
     ko: {
       t_eyebrow:'The Gap', t_h2:'그런데 당신의 Agent는<br>이 4만 년을 모릅니다',
-      t_lede:'Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 기후·구법·법규 아래에서만 참인지는 모릅니다. 그래서 그럴듯하게 틀립니다 — 그리고 틀렸다는 사실조차 말해주지 않습니다.',
+      t_lede:'Agent는 문장을 압니다. 왜 그 형식에 도달했는지, 어떤 조건에서만 참인지는 모릅니다. 그래서 그럴듯하게 틀리고, 틀렸다는 사실조차 말하지 않습니다.',
       t_note:'승인제로 운영합니다 · 아래에서 Den이 무엇을 하는지 먼저 보십시오',
       ab_eyebrow:'Silence', ab_h2:'모르면, 침묵합니다',
       ab_lede:'대부분의 AI는 모르는 것 앞에서도 문장을 만듭니다. Den은 관련 지식이 없으면 <b>비워서 돌려보냅니다</b> — 그럴듯한 오답은 환각보다 나쁘기 때문입니다.',
@@ -650,35 +654,35 @@ footer{color:var(--mut);font-size:0.75rem;display:flex;justify-content:space-bet
       ch_note:'채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.',
       eyebrow:'지식이 아니라, 이유를 주입합니다',
       h1:'당신의 Agent,|건축을 [정말로] 알고 있나?',
-      lede:'범용 모델은 사실을 압니다. 문헌에 있는 답은 훌륭하게 인용하죠. 하지만 <b>"왜 이 공간이어야 하는가"</b>의 이유 사슬은 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 인류가 공간을 이해해 온 방식 전체를 <b>원자 개념과 인과의 그래프</b>로 구축합니다. 당신의 Agent가 그 위에서 추론합니다.',
+      lede:'AI는 사실을 압니다. 이유는 모릅니다. 왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 어떤 문헌에도 통째로 적혀 있지 않습니다. Den은 그 이유의 사슬을 그래프로 만듭니다.',
       cta:'얼리 액세스 신청', ctanote:'승인되면 전용 링크로 접속 키를 직접 발급하십니다 · 가이드는 하단 링크',
       jeyebrow:'스크롤 — 인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 당신은 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다. Den은 그 이해의 계보 전체를 — 본능에서 형태까지 — 데이터로 복원합니다.',
+      instsmall:'그 본능이 동굴을, 화덕을, 중정을, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.',
       g_eyebrow:'The Graph', g_h2:'Agent에게 주입되는 지식의 실제 모양',
-      g_lede:'아래는 Den 온톨로지에서 그대로 꺼낸 <b>중정주택(courtyard-house)</b>의 왜-사슬 일부입니다. 개념에 마우스를 올려 보세요 — 모든 관계에 근거·시대·기후가 붙어 있습니다.',
+      g_lede:'중정주택의 왜-사슬입니다. 개념에 마우스를 올려 보십시오 — 모든 관계에 근거·시대·기후가 붙어 있습니다.',
       g_title:'courtyard-house — 왜 아홉 문명이 같은 형식에 도달했는가',
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg4:'계보 evolvedFrom', lg5:'구성·유형 partOf·isA',
       info_k:'개념을 선택하세요',
-      info_d:'노드에 마우스를 올리면 정의·근거·인식론 태그가 여기 표시됩니다. 이 데이터는 데모용 요약이 아니라 Den 온톨로지의 실제 레코드입니다.',
+      info_d:'노드에 마우스를 올리면 정의·근거·인식론 태그가 표시됩니다.',
       w_eyebrow:'Why Different', w_h2:'정보 정리가 아니라, 이해의 구조',
-      w_lede:'문서를 요약해 주는 도구는 많습니다. Den이 만드는 것은 다릅니다 — 인간이 공간을 이해해 온 방식 그 자체의 지도입니다.',
+      w_lede:'요약해 주는 도구는 많습니다. Den은 지도를 만듭니다 — 인간이 공간을 이해해 온 방식의 지도.',
       r1h:'문장이 아니라<br>원자 개념의 그래프',
-      r1b:'지식을 문단으로 저장하면 검색은 되지만 추론은 안 됩니다. Den의 모든 지식은 <b>재사용되는 원자 개념</b>(중정·화덕·버트레스…)과 그 사이의 <b>타입 있는 관계</b>로 존재합니다. 같은 \'중정\'이 사합원과 리아드와 도무스에서 하나의 노드입니다 — 그래서 문명을 가로지르는 질문에 답할 수 있습니다.',
+      r1b:'문단으로 저장하면 검색은 되지만 추론이 안 됩니다. Den의 지식은 원자 개념과 타입 있는 관계로 존재합니다. 사합원·리아드·도무스의 중정이 하나의 노드입니다.',
       r2h:'모든 관계에<br>근거와 출처',
-      r2b:'Den의 관계는 생성형 모델의 연상이 아닙니다. 각 인과에는 <b>조사된 근거와 출처</b>가 붙고, 구축 파이프라인의 검증 게이트를 통과한 것만 그래프에 들어옵니다. 당신의 Agent는 답과 함께 <b>"왜 그렇게 말할 수 있는지"</b>를 받습니다.',
+      r2b:'연상이 아닙니다. 모든 인과에 근거와 출처가 붙고, 검증 게이트를 통과한 것만 그래프에 들어옵니다. Agent는 답과 함께 근거를 받습니다.',
       r3h:'맥락(scope) 없는<br>지식은 미신입니다',
-      r3b:'"중정은 시원하다"는 건조기후에서만 참입니다. Den의 모든 인과에는 <b>시대·문화권·기후·기술수준</b>이 명시되어, 건조기후의 지혜를 한대기후 프로젝트에 잘못 권하지 않습니다.',
+      r3b:'중정은 건조기후에서만 시원합니다. 모든 인과에 시대·기후·기술수준이 명시됩니다. 건조기후의 지혜를 한대기후에 권하지 않습니다.',
       r4h:'물리와 정서를<br>구분하는 인식론',
-      r4b:'"흙벽돌은 축열한다"(물리 인과)와 "에워쌈은 안전감을 준다"(정서적 주장)는 다른 종류의 지식입니다. Den은 이 둘을 <b>구분해 태깅</b>하고, 논쟁적 학설은 논쟁적이라고 정직하게 표시합니다.',
+      r4b:'흙벽돌의 축열은 물리이고, 에워쌈의 안전감은 주장입니다. Den은 둘을 구분해 태깅하고, 논쟁적 학설은 논쟁적이라 표시합니다.',
       s_eyebrow:'Scale', s_h2:'뿌리부터 전부, 지금도 자라는 중',
       s_lede:'영장류의 둥지에서 메타버스 주거까지 — 24개 지식 축이 하나의 그래프로 연결됩니다.',
       st1:'L1 골격 개념 — 정밀 감사 통과', st2:'L2 세부 원자 개념 (구축 진행 중)', st3:'근거 붙은 관계', st4:'지식 축 — 주거·구조·죽음·이동·유희까지',
       h_eyebrow:'How It Works', h_h2:'지금 쓰는 Agent, 그대로',
       h_lede:'Den은 새 챗봇이 아닙니다. 당신이 이미 쓰는 Claude·GPT Agent에 지식층을 꽂는 방식입니다.',
       sp1t:'1 — 연결', sp1d:'MCP 설정 한 줄로 당신의 Agent가 Den에 연결됩니다. 별도 앱도, 워크플로 변경도 없습니다.',
-      sp2t:'2 — 질의', sp2d:'Agent에게 평소처럼 묻습니다. Agent가 필요할 때 Den의 <code>answer-why</code>·<code>path-between</code> 도구를 스스로 호출합니다.',
-      sp3t:'3 — 이유 사슬', sp3d:'답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건(scope), 출처까지. 판단은 당신과 당신의 Agent가 합니다.',
+      sp2t:'2 — 질의', sp2d:'평소처럼 물으면 됩니다. Agent가 필요할 때 Den 도구를 스스로 호출합니다.',
+      sp3t:'3 — 이유 사슬', sp3d:'답이 아니라 <b>근거 사슬</b>이 돌아옵니다 — 인과 경로, 적용 조건, 출처까지.',
       p_eyebrow:'Preview', p_h2:'같은 질문, 다른 깊이',
       p_lede:'"중정주택을 요즘 주거에 적용할 만한가?" — 같은 질문에 대한 두 응답의 구조를 비교해 보세요.',
       pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'중정주택, 적용할 만한가요?', pnq2:'중정주택, 적용할 만한가요?',
