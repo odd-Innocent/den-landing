@@ -20,10 +20,10 @@ html{font-size:clamp(12px, min(1.04vw, 1.85vh), 23px)}
 
 :root{
   --bg:#ECE7DD; --bg2:#E2DCCE; --panel:#F4F0E8;
-  --ink:#262016; --mut:#6E6252; --line:rgba(38,32,22,.16);
-  --ember:#A64F16; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
+  --ink:#262016; --mut:#524A3E; --line:rgba(38,32,22,.16);
+  --ember:#8D4313; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
   --dusk:#715A80; --dusk-soft:rgba(113,90,128,.12);
-  --strata:#8A7C68; --glow:rgba(166,79,22,.09);
+  --strata:#6C6151; --glow:rgba(166,79,22,.09);
   /* 타입 스케일 — 임의값 23종을 7단계로(2026-07-27) */
   --t-2xs:0.75rem; --t-xs:0.8125rem; --t-sm:0.875rem; --t-md:0.9375rem;
   --t-lg:1.125rem; --t-xl:1.25rem;
@@ -31,25 +31,25 @@ html{font-size:clamp(12px, min(1.04vw, 1.85vh), 23px)}
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#151110; --bg2:#1E1813; --panel:#1C1712;
-    --ink:#EDE3D3; --mut:#A29383; --line:rgba(234,224,208,.14);
+    --ink:#EDE3D3; --mut:#AB9E8F; --line:rgba(234,224,208,.14);
     --ember:#E98B3D; --ember-soft:rgba(233,139,61,.14); --ember-ink:#241505;
     --dusk:#A98BBB; --dusk-soft:rgba(169,139,187,.14);
-    --strata:#7A6C58; --glow:rgba(233,139,61,.15);
+    --strata:#9B9182; --glow:rgba(233,139,61,.15);
   }
 }
 :root[data-theme="dark"]{
   --bg:#151110; --bg2:#1E1813; --panel:#1C1712;
-  --ink:#EDE3D3; --mut:#A29383; --line:rgba(234,224,208,.14);
+  --ink:#EDE3D3; --mut:#AB9E8F; --line:rgba(234,224,208,.14);
   --ember:#E98B3D; --ember-soft:rgba(233,139,61,.14); --ember-ink:#241505;
   --dusk:#A98BBB; --dusk-soft:rgba(169,139,187,.14);
-  --strata:#7A6C58; --glow:rgba(233,139,61,.15);
+  --strata:#9B9182; --glow:rgba(233,139,61,.15);
 }
 :root[data-theme="light"]{
   --bg:#ECE7DD; --bg2:#E2DCCE; --panel:#F4F0E8;
-  --ink:#262016; --mut:#6E6252; --line:rgba(38,32,22,.16);
-  --ember:#A64F16; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
+  --ink:#262016; --mut:#524A3E; --line:rgba(38,32,22,.16);
+  --ember:#8D4313; --ember-soft:rgba(166,79,22,.12); --ember-ink:#FFF6EC;
   --dusk:#715A80; --dusk-soft:rgba(113,90,128,.12);
-  --strata:#8A7C68; --glow:rgba(166,79,22,.09);
+  --strata:#6C6151; --glow:rgba(166,79,22,.09);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -355,6 +355,16 @@ svg.graph{max-height:62svh;min-width:46rem}
   .waitlist{flex-direction:column;align-items:flex-start}
   .waitlist .btn{margin-left:0}
 }
+
+/* ══ 2026-07-27 가독성 (PI: "글씨가 잘 안 보인다") ══════════
+   측정: --mut 4.82:1 · --ember 4.54:1 — WCAG 최소선(4.5)을 겨우 넘는 값이었다.
+   최소선은 "읽을 수 있다" 이지 "편하다" 가 아니다. 본문을 AAA(7:1) 로 올린다.
+   --strata 는 3.30 으로 본문 기준 **미달**이었다 → 4.92.
+   여기에 잔불이 전 페이지를 덮으면서(같은 날 내 변경) 글자 뒤 노이즈가 겹쳤다 → 알파 하향. */
+.sec-lede,.info .d,.instinct .small,.row .b,.step .d{color:var(--mut);font-weight:450}
+.fine,.src-line,.preview-note{color:var(--mut)}
+/* 잔불이 글 위로 비치지 않도록 본문 레이어를 확실히 올린다 */
+section,.instinct,.hero,header,footer{position:relative;z-index:1}
 </style>
 
 <div id="pbar"></div>
@@ -920,7 +930,7 @@ svg.graph{max-height:62svh;min-width:46rem}
         sway: Math.random()*Math.PI*2, sa: .2+Math.random()*.55,
         life: .3+Math.random()*.7 };
     }
-    var _N = Math.min(96, Math.max(40, Math.round(innerWidth*innerHeight/16000)));
+    var _N = Math.min(64, Math.max(28, Math.round(innerWidth*innerHeight/26000)));
       for (var i=0;i<_N;i++) P.push(spawn(true));
     (function tick(){
       var h = cv.height/devicePixelRatio, w = cv.width/devicePixelRatio;
@@ -934,7 +944,11 @@ svg.graph{max-height:62svh;min-width:46rem}
         if (d2 < 8000){ var f = (8000-d2)/8000; p.x += dx*f*.03; p.y += dy*f*.03; }
         var fade = Math.min(1, p.y/(h*.5));
         if (p.y < -8) P[i] = spawn(false);
-        ctx.globalAlpha = .6 * fade * p.life;
+        // 전 페이지로 확장(2026-07-27)하면서 알파를 낮춘다 — 히어로 전용이던 .6 은
+        // 밝은 본문 배경에서 글자 뒤 노이즈가 된다. 라이트 모드에서 더 눌러 준다.
+        var _isDark = getComputedStyle(document.documentElement)
+                        .getPropertyValue('--bg').trim().toLowerCase().indexOf('#1') === 0;
+        ctx.globalAlpha = (_isDark ? .42 : .22) * fade * p.life;
         ctx.fillStyle = emberColor;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
       }
