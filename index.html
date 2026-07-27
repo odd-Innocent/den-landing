@@ -393,9 +393,6 @@ section,.instinct,.hero,header,footer{position:relative;z-index:1}
    해법: 100dvh(현재 실제 뷰포트) — 주소창 상태와 무관하게 항상 화면을 채운다.
         vh 는 구형 브라우저 폴백. (그래프 max-height 는 svh 유지 — 그건 '넘치지 않게'
         하는 상한이라 가장 작은 값이 맞다.) */
-.hero{height:100vh;height:100dvh}
-.instinct{min-height:100vh;min-height:100dvh}
-section{min-height:100vh;min-height:100dvh}
 
 /* ══ 2026-07-27 PI 지적 2차 ════════════════════════════════ */
 
@@ -458,20 +455,17 @@ section{min-height:100vh;min-height:100dvh}
   svg.graph{min-width:0}
 }
 
-/* ══ 스크롤 스냅 (2026-07-27, PI "PC 처럼 딱딱 멈추지 않는다") ══
-   진단 정정: 스냅이 깨진 게 아니라 **처음부터 없었다**(scroll-snap 선언 0건).
-   PC 에서 딱딱 멈춰 보인 건 휠 입력이 이산적이라 우연히 경계 근처에 서기 때문이고,
-   모바일 관성 스크롤에서는 아무 데나 멈춘다. → 스냅을 명시한다.
 
-   proximity 를 쓴다(mandatory 아님): 여정(.journey)은 560vh 안에서 스크롤 비율로
-   챕터를 바꾸는 연속 구간이라 강제 스냅하면 챕터가 튄다. proximity 는 경계 근처에서만
-   붙어, 여정 안에서는 자유 스크롤이 유지된다. */
-html{scroll-snap-type:y proximity;scroll-behavior:smooth}
-.hero,.instinct,section{scroll-snap-align:start;scroll-snap-stop:normal}
-/* 여정은 연속 구간 — 시작점에만 붙고 내부는 자유롭게 */
-.journey{scroll-snap-align:start}
-.journey .j-sticky{scroll-snap-align:none}
-@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+/* ══ 여정 챕터 스냅 (2026-07-27, PI) ═══════════════════════
+   요구: 01~08 은 딱딱 맞고, 그 이후는 자연스럽게.
+   → 스냅점을 **여정 안에만** 만든다. 이후 섹션에는 scroll-snap-align 을 주지 않으므로
+     자유 스크롤이 그대로 유지된다.
+   앞선 시도(전역 스냅 + dvh)는 되돌렸다 — 섹션까지 스냅되며 크기가 틀어졌고,
+   dvh 는 주소창 상태에 따라 값이 변해 스크롤 중 리플로우를 일으켰다. */
+html{scroll-snap-type:y proximity}
+.j-snaps{position:absolute;inset:0;pointer-events:none;z-index:0}
+.j-snaps i{display:block;height:12.5%;scroll-snap-align:start}
+@media (prefers-reduced-motion:reduce){ html{scroll-snap-type:none} }
 </style>
 
 <div id="pbar"></div>
@@ -512,6 +506,11 @@ html{scroll-snap-type:y proximity;scroll-behavior:smooth}
 </div>
 
 <div class="journey" id="journey">
+  <!-- 챕터 스냅 앵커(2026-07-27, PI "01~08 은 딱딱 맞춰주고 이후는 자연스럽게").
+       여정은 560vh 안에서 스크롤 비율로 챕터를 바꾸는 구조라 스냅 대상이 없었다.
+       12.5% 씩 8칸을 절대배치로 깔아 챕터 경계에만 스냅점을 만든다.
+       절대배치라 sticky 흐름에 영향이 없고, 이후 섹션에는 스냅을 걸지 않는다. -->
+  <div class="j-snaps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="j-sticky" id="jsticky">
     <div class="grain"></div>
     <div class="j-fire" id="jfire"></div>
