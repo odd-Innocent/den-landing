@@ -303,29 +303,22 @@ svg.graph{display:block;max-height:78svh;min-width:40rem;width:100%;height:auto;
 .waitlist .btn{position:relative}
 footer{color:var(--mut);font-size:var(--t-2xs);display:flex;justify-content:space-between;gap:0.75rem;flex-wrap:wrap}
 
-/* ══ 2026-07-27 조판·리듬 정비 ══════════════════════════════
-   ① h1/h2 가 고정 크기이고 모바일 재정의가 없었다 — 360px 에서 넘쳤다
-   ② 섹션 8개가 전부 동일한 100svh 슬라이드 — 리듬이 없었다
-   ③ prefers-reduced-motion 미대응
+/* ══ 2026-07-27 조판 정비 ═══════════════════════════════════
+   h1 / .j-era h3 / .instinct .big 등 디스플레이 타입이 고정 크기이고
+   모바일 재정의가 전무했다(전 브레이크포인트 확인). 360px 에서 넘쳤다.
+   clamp 상한은 기존 고정값 그대로라 데스크톱 외관은 변하지 않는다.
+
+   ★되돌림(같은 날): prefers-reduced-motion 일괄 차단과 섹션 교대 배경은
+     내가 요청 없이 넣은 것이고, 전자가 마퀴·jbob·jpop·tw 를 전부 정지시켰다.
+     이 사이트는 움직임이 콘텐츠다. 접근성은 나중에 장식 모션만 범위를 좁혀 다룬다.
    ══════════════════════════════════════════════════════ */
 h1{font-size:clamp(2.125rem,1.05rem+4.8vw,3.75rem)}
 h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 .stat .n{font-size:clamp(1.75rem,1.45rem+1.5vw,2.25rem)}
 .j-ghost{font-size:clamp(6rem,22vw,15rem)}
 .j-art{font-size:clamp(4.5rem,16vw,10rem)}
-
-/* 지층(strata)처럼 교대 — den 의 주제 그대로가 리듬이 된다 */
 .j-era h3{font-size:clamp(2.75rem,1.2rem+6.5vw,4.25rem)}
 .instinct .big{font-size:clamp(1.5rem,1.05rem+2.1vw,2.5rem)}
-
-/* 지층(strata)처럼 교대 — den 의 주제 그대로가 리듬이 된다 */
-section:nth-of-type(even){background:var(--bg2)}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
-    transition-duration:.01ms!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none;filter:none}
-}
 </style>
 
 <div id="pbar"></div>
