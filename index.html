@@ -187,8 +187,7 @@ html.reduced .j-timeline{display:none}
 .instinct .big .w{opacity:.12;transform:translateY(0.5rem);transition:opacity .5s ease,transform .5s ease}
 .instinct .big .w.lit{opacity:1;transform:none}
 .instinct .small{color:var(--mut);margin:1.25rem 0 0;font-size:1rem;max-width:35rem}
-.instinct::before{content:'';position:absolute;right:-8%;top:10%;width:46%;height:80%;pointer-events:none;
-  background:radial-gradient(ellipse at 70% 50%,var(--glow),transparent 65%)}
+.instinct::before{content:'';position:absolute;right:-8%;top:10%;width:46%;height:80%;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 70% 50%,var(--glow),transparent 65%);animation:wallbreath 9s ease-in-out infinite}
 
 /* ---------- 리빌 (양방향 재트리거 · 방향 변형) ---------- */
 .reveal{opacity:0;transform:translateY(3.5rem);filter:blur(0.25rem);
@@ -326,6 +325,36 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 .graph-shell{max-width:53rem;margin-left:auto;margin-right:auto}
 svg.graph{max-height:62svh;min-width:46rem}
 
+
+/* ══ 2026-07-27 PI 지적 반영 ═══════════════════════════════
+
+   ① 본능 섹션: 우측 벽 비주얼 위로 잔불이 아래→위로 지나가 어색하다.
+      벽 **안에서** 빛이 배어나오도록 호흡시킨다(입자는 그대로 두되 벽이 주역이 되게). */
+@keyframes wallbreath{
+  0%,100%{opacity:.55;transform:scale(1) translateY(0)}
+  50%    {opacity:1;  transform:scale(1.07) translateY(-1.5%)}
+}
+/* 벽이 있는 구간에서는 잔불을 눌러 시선을 벽으로 모은다 */
+.instinct{isolation:isolate}
+
+/* ② 그래프 정보 패널이 노드마다 글 길이가 달라 높이가 변한다 → 레이아웃이 덜컹거린다.
+   최소 높이를 고정해 호버 중 흔들림을 없앤다. */
+.info{min-height:5.5rem;align-items:center}
+.info .d{min-height:2.8rem}
+
+/* ③ 간선 라벨이 엣지·노드와 겹쳐 읽히지 않는다 → 배경색 후광을 둘러 분리한다. */
+.elabel{paint-order:stroke;stroke:var(--panel);stroke-width:3.5px;stroke-linejoin:round}
+.gnode text{paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.gnode.hub text{stroke:var(--ember-soft)}
+
+/* ④ 마지막 CTA 는 제목 아래가 아니라 오른쪽 끝에(PI) */
+.waitlist{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.waitlist h2{margin:0;flex:1 1 20rem}
+.waitlist .btn{flex:0 0 auto;margin-left:auto}
+@media (max-width:720px){
+  .waitlist{flex-direction:column;align-items:flex-start}
+  .waitlist .btn{margin-left:0}
+}
 </style>
 
 <div id="pbar"></div>
@@ -418,28 +447,28 @@ svg.graph{max-height:62svh;min-width:46rem}
         <marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker>
       </defs>
-                        <path class="gedge geneal" data-e="apartment,insula" d="M368,288 C278,288 308,124 218,124" marker-end="url(#ah-g)"/>
+      <path class="gedge geneal" data-e="apartment,insula" d="M368,268 C278,268 308,124 218,124" marker-end="url(#ah-g)"/>
       <path class="gedge geneal" data-e="apartment,tenement" d="M368,288 C278,288 308,228 218,228" marker-end="url(#ah-g)"/>
-      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M368,288 C278,288 308,332 218,332" marker-end="url(#ah-g)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M552,288 C632,288 588,41 668,41" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M552,288 C632,288 588,111 668,111" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M552,288 C632,288 588,181 668,181" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M552,288 C632,288 588,251 668,251" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="apartment,urban-density" d="M368,288 C278,288 396,495 306,495" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="apartment,household-autonomy" d="M460,324 C460,394 406,398 406,468" marker-end="url(#ah-e)"/>
-      <path class="gedge evokes" data-e="apartment,anonymity" d="M460,324 C460,394 572,398 572,468" marker-end="url(#ah-d)"/>
-      <path class="gedge part" data-e="apartment,suburban-house" d="M552,288 C632,288 574,495 654,495" marker-end="url(#ah-e)"/>
-      <text class="elabel" x="260" y="112">evolvedFrom</text>
-      <text class="elabel" x="260" y="216">evolvedFrom</text>
-      <text class="elabel" x="260" y="320">evolvedFrom</text>
-      <text class="elabel" x="564" y="29">requires</text>
-      <text class="elabel" x="564" y="99">requires</text>
-      <text class="elabel" x="564" y="169">requires</text>
-      <text class="elabel" x="564" y="239">grounded_in</text>
-      <text class="elabel" x="348" y="483">enables</text>
-      <text class="elabel" x="376" y="454">enables</text>
-      <text class="elabel" x="542" y="454">evokes</text>
-      <text class="elabel" x="550" y="483">contrasts</text>
+      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M368,308 C278,308 308,332 218,332" marker-end="url(#ah-g)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M552,265 C634,265 586,41 668,41" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M552,280 C634,280 586,111 668,111" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M552,296 C634,296 586,181 668,181" marker-end="url(#ah-e)"/>
+      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M552,311 C634,311 586,251 668,251" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="apartment,urban-density" d="M394,324 C394,386 228,406 228,468" marker-end="url(#ah-e)"/>
+      <path class="gedge enables" data-e="apartment,household-autonomy" d="M438,324 C438,386 406,406 406,468" marker-end="url(#ah-e)"/>
+      <path class="gedge evokes" data-e="apartment,anonymity" d="M482,324 C482,386 572,406 572,468" marker-end="url(#ah-d)"/>
+      <path class="gedge part" data-e="apartment,suburban-house" d="M526,324 C526,386 752,406 752,468" marker-end="url(#ah-e)"/>
+      <text class="elabel" x="258" y="113">evolvedFrom</text>
+      <text class="elabel" x="258" y="217">evolvedFrom</text>
+      <text class="elabel" x="258" y="321">evolvedFrom</text>
+      <text class="elabel" x="568" y="30">requires</text>
+      <text class="elabel" x="568" y="100">requires</text>
+      <text class="elabel" x="568" y="170">requires</text>
+      <text class="elabel" x="568" y="240">grounded_in</text>
+      <text class="elabel" x="200" y="455">enables</text>
+      <text class="elabel" x="378" y="455">enables</text>
+      <text class="elabel" x="544" y="455">evokes</text>
+      <text class="elabel" x="724" y="455">contrasts</text>
       <g class="gnode hub" data-n="apartment" transform="translate(368,252)">
         <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle">아파트</text>
         <text class="sub" x="92" y="50" text-anchor="middle">apartment · space_type</text></g>
@@ -487,23 +516,23 @@ svg.graph{max-height:62svh;min-width:46rem}
 
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="w_h2">Den은 정보를 만들지 않습니다.<br>고릅니다.</h2>
-  <p class="sec-lede reveal d2" data-i18n="w_lede">요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.</p>
+  <p class="sec-lede reveal d2" data-i18n="w_lede">요약해 주는 도구는 많습니다. Den은 근거가 붙은 것만 골라 건넵니다.</p>
   <div class="rows">
     <div class="row reveal">
       <div class="h" data-i18n="r1h">문단째로 주면<br>Agent도 헤맵니다</div>
-      <div class="b" data-i18n="r1b">"중정"은 하나의 개념입니다. 그 아래에 그늘·냉각·바람·정적이 각각 근거를 달고 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.</div>
+      <div class="b" data-i18n="r1b">"아파트"는 하나의 개념입니다. 인술라에서 이어진 계보와 오늘의 대피공간 기준이 같은 노드에 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r2h">"~라고 합니다"는<br>근거가 아닙니다</div>
-      <div class="b" data-i18n="r2b">모든 인과에 출처가 붙습니다. 붙지 않은 것은 그래프에 들어오지 못합니다.</div>
+      <div class="h" data-i18n="r2h">수치에는<br>조문이 따라옵니다</div>
+      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 §4.3.1·4.3.2 가 함께 옵니다. 근거 없는 수치는 그래프에 들어오지 못합니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r3h">조건 없는 지혜는<br>현장에서 사고가 됩니다</div>
-      <div class="b" data-i18n="r3b">중정은 건조기후에서만 시원합니다. Den은 언제·어디서 참인지를 함께 건넵니다.</div>
+      <div class="h" data-i18n="r3h">조건 없는 지식은<br>현장에서 사고가 됩니다</div>
+      <div class="b" data-i18n="r3b">전단력이 커지면 스터럽 간격은 절반이 됩니다. Den은 언제 그 값이 참인지를 함께 건넵니다.</div>
     </div>
     <div class="row reveal">
       <div class="h" data-i18n="r4h">축열은 물리,<br>아늑함은 주장입니다</div>
-      <div class="b" data-i18n="r4b">Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 말합니다.</div>
+      <div class="b" data-i18n="r4b">Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 표시합니다.</div>
     </div>
   </div>
 </section>
@@ -534,12 +563,10 @@ svg.graph{max-height:62svh;min-width:46rem}
   </div>
 
   <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다. -->
-  
-  <p class="preview-note" data-i18n="ch_note">채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.</p>
 </section>
 
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="p_h2">현장에서 틀리면<br>다시 못 짓습니다</h2>
+  <h2 class="display reveal d1" data-i18n="p_h2">실무를 위한<br>정확한 지식을 제공합니다.</h2>
   <p class="sec-lede reveal d2" data-i18n="p_lede">"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.</p>
   <div class="compare">
     <div class="pane reveal">
@@ -598,7 +625,6 @@ svg.graph{max-height:62svh;min-width:46rem}
 
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="o_h2">Den의 여정에 기여해 주세요</h2>
-  <div class="honest reveal d2" data-i18n="o_body">건축·도시·토목·시공·유지관리 — 쓰시는 것만으로 기여가 됩니다.</div>
 
   <div class="waitlist reveal">
     <h2 class="display" data-i18n="wl_h2">당신의 Agent에게,<br>건축의 맥락을.</h2>
@@ -627,7 +653,7 @@ svg.graph{max-height:62svh;min-width:46rem}
       ab2t:'범위 밖 — 비건축', ab2w:'지어내지 않는다', ab2q:'양자컴퓨터 오류정정 방식은?',
       ab2a:'관련 전공자료 없음.',
       ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
-      ch_note:'채널마다 다른 키를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.',
+      ch_note:'',
       eyebrow:'지식이 아니라, 이유를 주입합니다',
       h1:'당신의 Agent는|건축을 [정말로] 알고 있나요?',
       lede:'AI는 사실을 압니다. 이유는 모릅니다.<br>왜 이 형식에 도달했는지, 어떤 조건에서만 참인지는 알지 못합니다.<br>Den은 그 이유의 사슬을 그래프로 만들어 Agent에게 큐레이팅합니다.',
@@ -640,19 +666,19 @@ svg.graph{max-height:62svh;min-width:46rem}
       lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg5:'법규·대조 requires', lg4:'계보 evolvedFrom',
       info_k:'개념을 선택하세요',
       info_d:'정의·관계·근거 등급이 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
-      w_lede:'요약해 주는 도구는 많습니다. Den은 걸러서, 맞는 것만 건넵니다.',
+      w_lede:'요약해 주는 도구는 많습니다. Den은 근거가 붙은 것만 골라 건넵니다.',
       r1h:'문단째로 주면<br>Agent도 헤맵니다',
-      r1b:'"중정"은 하나의 개념입니다. 그 아래에 그늘·냉각·바람·정적이 각각 근거를 달고 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.',
-      r2h:'"~라고 합니다"는<br>근거가 아닙니다',
-      r2b:'모든 인과에 출처가 붙습니다. 붙지 않은 것은 그래프에 들어오지 못합니다.',
-      r3h:'조건 없는 지혜는<br>현장에서 사고가 됩니다',
-      r3b:'중정은 건조기후에서만 시원합니다. Den은 언제·어디서 참인지를 함께 건넵니다.',
+      r1b:'"아파트"는 하나의 개념입니다. 인술라에서 이어진 계보와 오늘의 대피공간 기준이 같은 노드에 붙습니다. 문단을 검색하는 게 아니라 개념을 건넵니다.',
+      r2h:'수치에는<br>조문이 따라옵니다',
+      r2b:'스터럽 간격을 물으면 KDS 14 20 22 §4.3.1·4.3.2 가 함께 옵니다. 근거 없는 수치는 그래프에 들어오지 못합니다.',
+      r3h:'조건 없는 지식은<br>현장에서 사고가 됩니다',
+      r3b:'전단력이 커지면 스터럽 간격은 절반이 됩니다. Den은 언제 그 값이 참인지를 함께 건넵니다.',
       r4h:'축열은 물리,<br>아늑함은 주장입니다',
-      r4b:'Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 말합니다.', h_h2:'쓰시던 Agent 그대로',
+      r4b:'Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 표시합니다.', h_h2:'쓰시던 Agent 그대로',
       h_lede:'설치할 앱도, 바꿀 습관도 없습니다.',
       sp1t:'1 — 연결', sp1d:'설정 한 줄. Claude·ChatGPT·Gemini 어디서나.',
       sp2t:'2 — 질의', sp2d:'평소처럼 물어보시면 됩니다.',
-      sp3t:'3 — 이유 사슬', sp3d:'답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.', p_h2:'현장에서 틀리면<br>다시 못 짓습니다',
+      sp3t:'3 — 이유 사슬', sp3d:'답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.', p_h2:'실무를 위한<br>정확한 지식을 제공합니다.',
       p_lede:'"RC 보 스터럽 최대 간격은?" — 실무자가 매일 확인하는 질문입니다.',
       pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
       pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
@@ -664,7 +690,7 @@ svg.graph{max-height:62svh;min-width:46rem}
       pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
       pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
       pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'Den의 여정에 기여해 주세요',
-      o_body:'건축·도시·토목·시공·유지관리 — 쓰시는 것만으로 기여가 됩니다.',
+      o_body:'',
       wl_h2:'당신의 Agent에게,<br>건축의 맥락을.', wl_cta:'얼리 액세스 신청',
       ft1:'인간 공간 이해의 온톨로지', ft2:'© 2026 Den', ftg:'베타 가이드',
       eras:[
@@ -696,7 +722,7 @@ svg.graph{max-height:62svh;min-width:46rem}
       ab2t:'Out of scope — non-architecture', ab2w:'does not invent', ab2q:'How does quantum error correction work?',
       ab2a:'No relevant domain material.',
       ab2n:'— The empty response <b>is</b> the honest answer. Your Agent reads this signal, says "outside Den\'s scope", and does not drag in clauses that do not exist.',
-      ch_note:'Use a different key per channel — if one leaks, the rest stay protected.',
+      ch_note:'',
       eyebrow:'We inject reasons, not just knowledge',
       h1:'Does your Agent|[really] know architecture?',
       lede:'AI knows facts. It does not know why.<br>Why a form was arrived at, and when it holds — that it cannot tell you.<br>Den builds that chain of reasons and curates it for your Agent.',
@@ -709,19 +735,19 @@ svg.graph{max-height:62svh;min-width:46rem}
       lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg5:'statutory / contrast', lg4:'lineage evolvedFrom',
       info_k:'Select a concept',
       info_d:'Definition, relation and evidence tier.', w_h2:'Den does not create information.<br>It selects.',
-      w_lede:'Plenty of tools summarize. Den filters, and hands over only what holds.',
+      w_lede:'Plenty of tools summarize. Den hands over only what carries its evidence.',
       r1h:'A graph of atomic concepts,<br>not paragraphs',
-      r1b:'"Courtyard" is one concept. Shade, cooling, breeze and hush hang beneath it, each with its own evidence. Not paragraphs retrieved — a concept handed over.',
-      r2h:'Evidence and sources<br>on every relation',
-      r2b:'Den\'s relations are not generative associations. Every causal link carries <b>researched evidence with sources</b>, and only what passes our validation gates enters the graph. Your agent receives not just an answer, but <b>why it can be said</b>.',
-      r3h:'Knowledge without scope<br>is superstition',
-      r3b:'"Courtyards are cool" is true only in arid climates. Every causal link in Den is scoped by <b>era, culture, climate, and technology level</b> — so arid-climate wisdom never gets misapplied to a subarctic project.',
+      r1b:'"Apartment" is one concept. The lineage from the Roman insula and today\'s refuge-area rule hang on the same node. Not paragraphs retrieved — a concept handed over.',
+      r2h:'Every figure<br>arrives with its clause',
+      r2b:'Ask about stirrup spacing and KDS 14 20 22 §4.3.1·4.3.2 comes with it. Figures without a source never enter the graph.',
+      r3h:'Knowledge without conditions<br>becomes an accident on site',
+      r3b:'Past a shear threshold the spacing halves. Den tells you when the number holds.',
       r4h:'An epistemology that separates<br>physics from feeling',
-      r4b:'"Mud brick stores heat" (physical causation) and "enclosure feels safe" (an emotional claim) are different kinds of knowledge. Den <b>tags them separately</b>, and marks contested theories as contested — honestly.', h_h2:'The Agent you already use',
+      r4b:'Den does not mix the two. What is contested is marked contested.', h_h2:'The Agent you already use',
       h_lede:'Nothing to install. Nothing to relearn.',
       sp1t:'1 — Connect', sp1d:'One line of MCP config connects your agent to Den. No new app, no workflow change.',
       sp2t:'2 — Ask', sp2d:'Ask your agent as you always do. When needed, it calls Den\'s <code>answer-why</code> and <code>path-between</code> tools on its own.',
-      sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.', p_h2:'Get it wrong on site,<br>and you don\'t rebuild.',
+      sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.', p_h2:'Precise knowledge,<br>for practice.',
       p_lede:'"Is the courtyard house worth applying to housing today?" — one question, two answers.',
       pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Is a courtyard house worth applying?', pnq2:'Is a courtyard house worth applying?',
       pn1b:'Courtyard houses are a traditional form with good daylighting, ventilation, and privacy. Introducing a courtyard in modern housing can bring natural light and openness. However, floor-area efficiency and construction cost should be considered.',
@@ -733,7 +759,7 @@ svg.graph{max-height:62svh;min-width:46rem}
       pc3:'Courtyard → family privacy · enclosure-security <span class="sc">(valid regardless of climate)</span>',
       pn2b:'On a humid temperate site, <b>the cooling argument weakens</b> — while privacy and centrality remain. Don\'t copy the form; examine its conditions.',
       pn2s:'Source returned by Den: KDS 14 20 22 §4.3.1·4.3.2', o_h2:'Join Den\'s journey',
-      o_body:'Architecture, urbanism, civil, construction, maintenance — using it is already a contribution.',
+      o_body:'',
       wl_h2:'Give your Agent<br>the context.', wl_cta:'Request early access',
       ft1:'An ontology of human spatial understanding', ft2:'© 2026 Den', ftg:'Beta guide',
       eras:[
