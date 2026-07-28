@@ -458,7 +458,9 @@ html{scroll-snap-type:y proximity}
    → 무대(.j-stage)에서 자른다. body{overflow-x:hidden} 은 html 스크롤을 못 막으므로
      html 에도 명시한다(실측: html scrollWidth 434 > clientWidth 390). */
 .j-stage{overflow:hidden}
-html{overflow-x:hidden}
+/* ★html 에 overflow 를 걸면 안 된다(2026-07-28 실측): html 이 스크롤 컨테이너가 되어
+   하위 position:sticky 가 무효화된다 — .j-sticky 가 고정되지 않고 흘러가
+   여정(01~08)이 통째로 망가졌다(sticky.top -504→-4284). 넘침은 .j-stage 에서만 자른다. */
 </style>
 
 <div id="pbar"></div>
