@@ -464,9 +464,9 @@ html{scroll-snap-type:y proximity}
 
 /* 등장 애니메이션 대기 위치가 좁은 화면에서 화면 밖으로 나간다(.rv-r 는 +4.5rem → 432px).
    **국소 컨테이너에서만** 자른다 — html/body 에 overflow 를 걸면 sticky 가 깨진다(실측). */
-.rows{overflow:hidden}
+.rows,.compare{overflow:hidden}
 /* 모바일에서는 가로 이동 자체를 줄인다(세로 등장으로 충분하고 넘칠 여지가 없다) */
-@media (max-width:720px){
+@media (max-width:1024px){
   .reveal.rv-l,.reveal.rv-r{transform:translateY(2.5rem)}
 }
 </style>
