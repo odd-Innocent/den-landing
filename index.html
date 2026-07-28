@@ -451,6 +451,14 @@ html{scroll-snap-type:y proximity}
 @media (max-width:720px){
   .graph-shell{display:none}
 }
+
+/* ══ 가로 넘침 수리 (2026-07-28, 렌더링 검증이 첫 실행에서 검출)
+   .j-era 는 전환 대기 위치가 translateX(7.5rem) 이라 화면 밖 474px 까지 나간다.
+   .j-sticky 에 overflow:hidden 이 있지만 sticky 라 문서 폭 계산을 막지 못했다.
+   → 무대(.j-stage)에서 자른다. body{overflow-x:hidden} 은 html 스크롤을 못 막으므로
+     html 에도 명시한다(실측: html scrollWidth 434 > clientWidth 390). */
+.j-stage{overflow:hidden}
+html{overflow-x:hidden}
 </style>
 
 <div id="pbar"></div>
