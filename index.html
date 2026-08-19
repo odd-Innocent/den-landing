@@ -31,9 +31,54 @@
 <meta name="twitter:title" content="Den — 당신의 Agent는 건축을 정말로 알고 있나요?">
 <meta name="twitter:description" content="수치에는 조문이, 관계에는 근거가 붙습니다.">
 <meta name="twitter:image" content="https://den.archi/assets/logo/og.png">
+<link rel="canonical" href="https://den.archi/">
+
+<!-- 구조화 데이터(2026-08-19): 검색엔진에 den 이 **무엇인지** 알려 준다. robots·sitemap 과
+     함께 없었다 — 랜딩이 검색에 존재하지 않는 상태였다. 여기 적는 수치는 전부 실측이며
+     자동 검증한다(machine/growth_claims.py). 근거 없는 문장은 이 블록에 넣지 않는다. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "den",
+  "alternateName": "den — AEC 지식 그래프 MCP 서버",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://den.archi/",
+  "description": "den은 한국 건설기준(KDS·KCS·KS·법령)을 조문 번호까지 붙여 답하는 MCP 서버입니다. 근거가 없으면 답하지 않습니다.",
+  "inLanguage": "ko",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW",
+             "description": "베타 기간 무료 — 얼리 액세스 신청 후 승인"},
+  "featureList": [
+    "KDS·KCS·KS·건설 관련 법령 조문 인용",
+    "근거가 없으면 기권",
+    "같은 질의에 같은 답(결정론적 서빙)",
+    "Claude Desktop·ChatGPT 등 MCP 클라이언트 연결"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "den은 무엇을 하나요?",
+     "acceptedAnswer": {"@type": "Answer",
+      "text": "건축·건설 기준을 물으면 KDS·KCS·KS·법령의 조문 번호를 붙여 답합니다. 근거를 찾지 못하면 추측하지 않고 답하지 않습니다."}},
+    {"@type": "Question", "name": "기존 AI에 물어보는 것과 무엇이 다릅니까?",
+     "acceptedAnswer": {"@type": "Answer",
+      "text": "답에 출처 조문이 붙고, 확실하지 않을 때 침묵합니다. 국가기술자격 문제 192문항을 같은 조건에서 비교했을 때 den을 붙인 쪽이 8.9%p 높았고, 기능장 +20.0%p·관리사 +15.0%p로 전문 심화 영역일수록 차이가 컸습니다. 공개 기출이라 양쪽 모두 암기분이 섞여 있어 절대 점수는 실제보다 높습니다 — 유효한 것은 차이뿐입니다."}},
+    {"@type": "Question", "name": "어떻게 사용합니까?",
+     "acceptedAnswer": {"@type": "Answer",
+      "text": "Claude Desktop 확장(den.mcpb)을 설치하거나 MCP 클라이언트에서 https://mcp.den.archi/mcp 에 연결합니다. 얼리 액세스 승인 후 대시보드에서 API 키를 직접 발급합니다."}},
+    {"@type": "Question", "name": "못 하는 것은 무엇입니까?",
+     "acceptedAnswer": {"@type": "Answer",
+      "text": "건축계획·실내건축 등 정성적 판단 영역은 아직 약합니다. 계약 문서 해석(지체상금 면제·설계변경·하자담보) 역시 현재 회수하지 못하는 것으로 측정됐습니다. 확실하지 않은 영역에서는 답하지 않습니다."}}
+  ]
+}
+</script>
 </head>
 <body>
-<title>den — 지어내지 않는 건설기준</title>
 <style>/* ===== 비율 스케일: 디자인 캔버스 1600x900. 어떤 해상도든 같은 구도가 비례 축소/확대 ===== */
 html{font-size:clamp(12px, min(1.04vw, 1.85vh), 23px)}
 @media (max-width:899px){html{font-size:clamp(12.5px, 3.6vw, 16px)}}
