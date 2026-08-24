@@ -724,7 +724,21 @@ html{scroll-snap-type:y proximity}
       <div class="d" data-i18n="sp3d">답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.</div></div>
   </div>
 
-  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다. -->
+  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다.
+       ★2026-08-24 총괄 138회차 — 주석만 남고 **블록이 비어 있었다**(C310). 그래서 표지가
+       "설정 한 줄"이라 말해 놓고 그 한 줄을 끝내 안 보여줬고, 연결을 말하는 자리가
+       FAQ JSON-LD 하나(=사람이 아니라 검색·LLM 이 읽는 자리)뿐이었다.
+       순서는 136·137회차 실측을 따른다 — 외부 계정의 질의가 실제로 도착한 경로는
+       OAuth 하나뿐이고(oauth 6발급 4사용 ↔ web 9/0 · cli 5/0) 키를 먼저 말하면
+       죽은 채널로 보낸다. ∴ 키 없는 커넥터가 첫째, 키는 마지막이다. -->
+  <div class="steps" style="margin-top:20px">
+    <div class="step reveal"><div class="t" data-i18n="cn1t">키 없이 — 웹 커넥터</div>
+      <div class="d" data-i18n="cn1d">Claude·ChatGPT 의 커스텀 커넥터에 주소만 넣고 인증은 <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code></div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="cn2t">Claude Desktop — 한 번에</div>
+      <div class="d" data-i18n="cn2d"><a href="den.mcpb">den.mcpb</a> 를 받아 여시면 설정이 끝납니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="cn3t">그 밖의 클라이언트</div>
+      <div class="d" data-i18n="cn3d">커넥터 인증을 지원하지 않을 때만 키를 씁니다 — <a href="beta.html">연결 안내</a>.</div></div>
+  </div>
 </section>
 
 <section class="wrap">
@@ -848,6 +862,9 @@ html{scroll-snap-type:y proximity}
       h_lede:'설치할 앱도, 바꿀 습관도 없습니다.',
       sp1t:'1 — 연결', sp1d:'설정 한 줄. Claude·ChatGPT·Gemini 어디서나.',
       sp2t:'2 — 질의', sp2d:'평소처럼 물어보시면 됩니다.',
+      cn1t:'키 없이 — 웹 커넥터', cn1d:'Claude·ChatGPT 의 커스텀 커넥터에 주소만 넣고 인증은 <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop — 한 번에', cn2d:'<a href="den.mcpb">den.mcpb</a> 를 받아 여시면 설정이 끝납니다.',
+      cn3t:'그 밖의 클라이언트', cn3d:'커넥터 인증을 지원하지 않을 때만 키를 씁니다 — <a href="beta.html">연결 안내</a>.',
       sp3t:'3 — 이유 사슬', sp3d:'답과 함께 <b>근거</b>가 옵니다 — 인과 경로, 적용 조건, 출처.', p_h2:'실무를 위한<br>정확한 지식을 제공합니다.',
       p_lede:'',
       pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
@@ -917,6 +934,9 @@ html{scroll-snap-type:y proximity}
       h_lede:'Nothing to install. Nothing to relearn.',
       sp1t:'1 — Connect', sp1d:'One line of MCP config connects your agent to Den. No new app, no workflow change.',
       sp2t:'2 — Ask', sp2d:'Ask your agent as you always do. When needed, it calls Den\'s <code>answer-why</code> and <code>path-between</code> tools on its own.',
+      cn1t:'No key — web connector', cn1d:'Paste the URL into a custom connector in Claude or ChatGPT and choose <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop — one click', cn2d:'Download <a href="den.mcpb">den.mcpb</a> and open it. That is the whole setup.',
+      cn3t:'Other clients', cn3d:'Use a key only if your client cannot do connector auth — <a href="beta.html">setup guide</a>.',
       sp3t:'3 — Chains of reasons', sp3d:'What returns is not just an answer but a <b>chain of evidence</b> — causal path, scope conditions, sources. The judgment stays with you and your agent.', p_h2:'Precise knowledge,<br>for practice.',
       p_lede:'',
       pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Is a courtyard house worth applying?', pnq2:'Is a courtyard house worth applying?',
