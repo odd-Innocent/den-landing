@@ -32,7 +32,15 @@ ul{padding-left:20px;color:var(--mut)} li{margin:6px 0} li b{color:var(--ink)}
 <p class="note">den은 <b>원격 서버</b>입니다. 설치할 프로그램이 없고, 쓰시는 도구에
 <b>주소와 키를 알려주기만</b> 하면 됩니다. 아래에서 하나만 하시면 됩니다.</p>
 
-<div class="card"><b class="t">Ⓐ claude.ai 웹·모바일 — 가장 간단</b>
+<div class="card" style="border-width:2px"><b class="t">★ 키 없이 연결 — claude.ai · ChatGPT 커넥터 (가장 빠릅니다)</b>
+<span class="step">1</span>커스텀 커넥터 추가 화면에서 이름 <code>Den</code>, URL에 <b>키를 빼고</b> 아래만 붙여넣기:
+<pre>https://mcp.den.archi/mcp</pre>
+<span class="step">2</span>인증 방식을 고르는 칸이 있으면 <b>OAuth</b> 를 고르십시오(ChatGPT는 <b>인증 없음</b>이 아닙니다).<br>
+<span class="step">3</span>저장하면 den 로그인 창이 뜹니다 — 베타 계정으로 로그인하면 그 자리에서 연결이 끝납니다.
+<p class="note" style="margin-top:10px"><b>키를 복사해 붙일 필요가 없고, 주소에 키가 남지 않습니다.</b>
+아래 Ⓐ·Ⓑ 는 주소에 키를 넣는 방식입니다 — 쓰시는 도구가 커넥터 인증을 지원하지 않을 때만 쓰십시오.</p></div>
+
+<div class="card"><b class="t">Ⓐ claude.ai 웹·모바일 — 주소에 키를 넣는 방식</b>
 <span class="step">1</span>설정 → <b>커넥터(Connectors)</b> → <b>커스텀 커넥터 추가</b><br>
 <span class="step">2</span>이름 <code>Den</code>, URL에 아래를 붙여넣기:
 <pre>https://mcp.den.archi/mcp/&#123;개인키&#125;</pre>
