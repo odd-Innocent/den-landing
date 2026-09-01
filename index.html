@@ -1451,12 +1451,26 @@ html{scroll-snap-type:y proximity}
 <script>
 (function(){
   // 흰명단 — 여기 없는 값은 **버린다**(임의 문자열이 우리 로그로 흘러들지 않게).
-  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb'];
+  // ★이 목록은 machine/key_label.SOURCES 의 부분집합이어야 한다. 여기만 늘리면
+  //  방문은 채널별로 세면서 **가입은 서버가 통째로 버린다**(2026-09-01 실측 결함).
+  //  지키는 자: machine/tests/test_src_vocab_parity.py
+  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb','direct'];
   try {
     var f = new URLSearchParams(location.search).get('from');
     if (f && OK.indexOf(f) >= 0) {
       var img = document.getElementById('pv');
       if (img) img.src = 'https://mcp.den.archi/pv.gif?from=' + encodeURIComponent(f);
+
+      // ★2026-09-01 총괄 251회차 — **CTA 가 표지를 덮어쓰고 있었다.**
+      //  den.archi/?from=github 으로 들어와도 신청 버튼은 `?from=landing` 으로
+      //  하드코딩돼 있어, 서버가 보는 출처는 언제나 landing 이었다.
+      //  ∴ 등재·공개게시 경유 **가입**은 구조적으로 0 밖에 못 나왔다 —
+      //  PF-08 의 09-28 기각 판정이 그 0 위에 설 뻔했다(실패할 수 없는 시험).
+      //  들어온 표지를 그대로 신청 링크에 넘긴다. 없으면 종전대로 landing 이다.
+      var as = document.querySelectorAll('a[href*="mcp.den.archi/signup"]');
+      for (var i = 0; i < as.length; i++) {
+        as[i].href = as[i].href.replace(/([?&]from=)[^&]*/, '$1' + encodeURIComponent(f));
+      }
     }
   } catch (e) { /* 표지가 없으면 비콘은 원래대로 간다 — 분모는 안 잃는다 */ }
 })();
