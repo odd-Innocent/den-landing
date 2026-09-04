@@ -1367,6 +1367,9 @@ html{scroll-snap-type:y proximity}
       document.querySelectorAll('.instinct, section').forEach(function(el){
         pages.push(el.offsetTop);
       });
+      // ★문서 끝을 항상 한 페이지로 둔다(2026-09-04). 휠은 섹션 머리로만 가므로, 마지막 섹션이
+      //   한 화면보다 길면 그 아래(얼리 액세스 버튼)에 영영 못 닿는다 — 오늘 실제로 났다(CEO 보고).
+      pages.push(Math.max(0, document.documentElement.scrollHeight - vh));
       pages.sort(function(a,b){return a-b});
     }
     buildPages();
