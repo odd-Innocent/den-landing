@@ -547,7 +547,7 @@ html{scroll-snap-type:y proximity}
     <h1 class="display" id="kinetic" data-i18n-h1="1">당신의 Agent는|건축을 [정말로] 알고 있나요?</h1>
     <p class="lede" data-i18n="lede"><b>당신의 Agent 에게, AEC 전문 지식을.</b><br>조문만이 아니라 왜·순서·비교·종류까지, 근거와 함께. 모르면 침묵합니다.<br>쓰시던 ChatGPT·Claude에 그대로 연결됩니다.</p>
     <div class="cta-row">
-      <a class="btn magnetic" href="https://mcp.den.archi/signup?from=landing" data-i18n="cta">얼리 액세스 신청</a>
+      <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">얼리 액세스 신청</a>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
@@ -859,7 +859,7 @@ html{scroll-snap-type:y proximity}
 
   <div class="waitlist reveal">
     <h2 class="display" data-i18n="wl_h2">먼저 확인해 보십시오</h2>
-    <a class="btn magnetic" href="https://mcp.den.archi/signup?from=landing" data-i18n="wl_cta">얼리 액세스 신청</a>
+    <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="wl_cta">얼리 액세스 신청</a>
   </div>
   <footer style="padding:26px 0 0">
     <span><b>Den</b> · <span data-i18n="ft1">인간 공간 이해의 온톨로지</span></span>
@@ -1534,7 +1534,7 @@ html{scroll-snap-type:y proximity}
      ∴ `?from=smithery` 도달은 레버가 통하든 안 통하든 **0 밖에 못 나왔다** — 09-06
      판정이 그 0 위에 서 있었다(실패할 수 없는 시험).
      ★새 수집이 아니다. 보내는 것은 아래 흰명단에 든 **채널 이름 한 낱말**뿐이고,
-     그것은 우리 CTA 가 이미 `?from=landing` 으로 보내던 것과 같은 종류다.
+     그것은 우리 CTA 가 채널 표지를 넘길 때 보내는 것과 같은 종류다.
      흰명단 밖 값·질의 원문·referrer·쿠키·이메일은 여전히 아무것도 안 보낸다. -->
 <img id="pv" src="https://mcp.den.archi/pv.gif" alt="" width="1" height="1"
      referrerpolicy="no-referrer" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
@@ -1543,24 +1543,23 @@ html{scroll-snap-type:y proximity}
   // 흰명단 — 여기 없는 값은 **버린다**(임의 문자열이 우리 로그로 흘러들지 않게).
   // ★이 목록은 machine/key_label.SOURCES 의 부분집합이어야 한다. 여기만 늘리면
   //  방문은 채널별로 세면서 **가입은 서버가 통째로 버린다**(2026-09-01 실측 결함).
-  //  지키는 자: machine/tests/test_src_vocab_parity.py
-  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb','geeknews','disquiet','linkedin','xcom','threads','careerly','openchat','demo','direct'];
+  //  지키는 자: test_src_vocab_parity.py · test_landing_source_transport.py(실제 JS 대조)
+  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb','geeknews','disquiet','linkedin','xcom','threads','careerly','openchat','demo','direct','developer_community','aec_community','practice_article','mcp_directory','cursor','practical_reason_sequence','a220-txx'];
   try {
-    var f = new URLSearchParams(location.search).get('from');
+    var f = (new URLSearchParams(location.search).get('from') || '').toLowerCase();
     if (f && OK.indexOf(f) >= 0) {
       var img = document.getElementById('pv');
       if (img) img.src = 'https://mcp.den.archi/pv.gif?from=' + encodeURIComponent(f);
-
-      // ★2026-09-01 총괄 251회차 — **CTA 가 표지를 덮어쓰고 있었다.**
-      //  den.archi/?from=github 으로 들어와도 신청 버튼은 `?from=landing` 으로
-      //  하드코딩돼 있어, 서버가 보는 출처는 언제나 landing 이었다.
-      //  ∴ 등재·공개게시 경유 **가입**은 구조적으로 0 밖에 못 나왔다 —
-      //  PF-08 의 09-28 기각 판정이 그 0 위에 설 뻔했다(실패할 수 없는 시험).
-      //  들어온 표지를 그대로 신청 링크에 넘긴다. 없으면 종전대로 landing 이다.
-      var as = document.querySelectorAll('a[href*="mcp.den.archi/signup"]');
-      for (var i = 0; i < as.length; i++) {
-        as[i].href = as[i].href.replace(/([?&]from=)[^&]*/, '$1' + encodeURIComponent(f));
-      }
+    }
+    // A600: 출처(from)와 우리 랜딩 경유(via)는 서로 다른 사실이다.
+    // 무표식 방문도 via는 실리며, 허용되지 않은 출처를 만들지 않는다.
+    var as = document.querySelectorAll('a[href*="mcp.den.archi/signup"]');
+    for (var i = 0; i < as.length; i++) {
+      var signup = new URL(as[i].href);
+      signup.searchParams.set('via', 'landing');
+      if (f && OK.indexOf(f) >= 0) signup.searchParams.set('from', f);
+      else signup.searchParams.delete('from');
+      as[i].href = signup.toString();
     }
   } catch (e) { /* 표지가 없으면 비콘은 원래대로 간다 — 분모는 안 잃는다 */ }
 })();
