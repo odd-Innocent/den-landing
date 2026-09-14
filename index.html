@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>den — 당신의 Agent 에게, AEC 전문 지식을 · AEC 지식 큐레이션 MCP</title>
+<title>den — 당신의 Agent 에게, AEC 전문 지식을 · AEC 지식 전문 큐레이팅 시스템</title>
 <!-- 웹폰트 로드(2026-07-26): 종전에는 font-family 에 Pretendard 를 적기만 하고 불러오지 않아,
      설치되지 않은 기기에서 Malgun Gothic 등으로 떨어져 조판이 무너졌다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -17,14 +17,13 @@
      게시 저장소에 올라간 적도 없어 404 였다(publish_landing.sh 기본값이 index.html 뿐). -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png">
 <link rel="apple-touch-icon" href="assets/logo/den-mark-ember.png">
-<meta name="naver-site-verification" content="8b63f93cd988f133012dbd24e587631c">
-<meta name="description" content="den 은 AEC 전문 지식을 큐레이션해 Agent 에 공급하는 MCP 서버입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다.">
+<meta name="description" content="den 은 AEC 지식 전문 큐레이팅 시스템입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Den">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://den.archi/">
 <meta property="og:title" content="den — 당신의 Agent 에게, AEC 전문 지식을.">
-<meta property="og:description" content="den 은 AEC 전문 지식을 큐레이션해 Agent 에 공급하는 MCP 서버입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다.">
+<meta property="og:description" content="den 은 AEC 지식 전문 큐레이팅 시스템입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다.">
 <meta property="og:image" content="https://den.archi/assets/logo/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -46,7 +45,7 @@
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "url": "https://den.archi/",
-  "description": "den 은 AEC 전문 지식을 큐레이션해 Agent 에 공급하는 MCP 서버입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다. 근거가 없으면 답하지 않습니다.",
+  "description": "den 은 AEC 지식 전문 큐레이팅 시스템입니다. 기준·법령 조문과 실무·이론·공정·인과가 한 그래프에 있어 왜·순서·비교까지 답합니다. 근거가 없으면 답하지 않습니다. 근거가 없으면 답하지 않습니다.",
   "inLanguage": "ko",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW",
              "description": "베타 기간 무료 — 얼리 액세스 신청 후 승인"},
@@ -743,7 +742,7 @@ html{scroll-snap-type:y proximity}
   </div>
 </section>
 
-<!-- 큐레이션 시연(2026-09-04, CEO 포지셔닝 "AEC 전문 지식 큐레이션"): 조문 검색이 아니라 왜·순서를 **실제 응답**으로 보여준다.
+<!-- 큐레이션 시연(2026-09-04 · 설명구 2026-09-14 "AEC 지식 전문 큐레이팅 시스템"): 조문 검색이 아니라 왜·순서를 **실제 응답**으로 보여준다.
      응답은 2026-09-03 정본 팩에서 den_engine.answer_why / scenario 가 반환한 것을 옮겼다(총괄 scratch curation_responses2.txt · 지어낸 값 없음). -->
 <section class="wrap" id="curation-sec">
   <h2 class="display reveal d1" data-i18n="cu_h2">조문 검색이 아니라, 큐레이션입니다</h2>
@@ -942,7 +941,7 @@ html{scroll-snap-type:y proximity}
       cu2s:'단계마다 requires·grounded_in 엣지로 조문과 규칙이 붙습니다. 순서 근거가 없는 단계는 병렬(맥락 의존)로 표기합니다.',
       faq_h2:'den 은 어떤 MCP 인가요?',
       f1q:'건축 MCP · 건설 MCP · AEC MCP 서버를 찾고 계신가요?',
-      f1a:'den 은 한국 AEC 전문 지식을 큐레이션해 Agent 에 공급하는 원격 MCP 서버입니다. 한국 건설기준 KDS·KCS·KS 와 건축 법령, 그리고 구조·시공·설비·재료·계획의 전문 지식을 한 그래프에서 답합니다.',
+      f1a:'den 은 원격 MCP 로 제공되는 AEC 지식 전문 큐레이팅 시스템입니다. 한국 건설기준 KDS·KCS·KS 와 건축 법령, 그리고 구조·시공·설비·재료·계획의 전문 지식을 한 그래프에서 답합니다.',
       f2q:'기준·조문을 검색해 주는 MCP 와 무엇이 다른가요?',
       f2a:'조문 검색은 "어디에 쓰여 있나"를 답합니다. den 은 "왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가"까지 답하고, 근거가 없으면 답하지 않습니다.',
       f3q:'어떤 도구가 있나요?',
@@ -1034,7 +1033,7 @@ html{scroll-snap-type:y proximity}
       cu2s:'Each stage carries requires and grounded_in edges to clauses and rules. Stages without precedence grounds are marked parallel (context-dependent).',
       faq_h2:'What kind of MCP server is den?',
       f1q:'Looking for an architecture, construction or AEC MCP server?',
-      f1a:'den is a remote MCP server that curates Korean AEC expertise for your agent: the national construction standards KDS·KCS·KS, building statutes, and domain knowledge across structure, construction, MEP, materials and planning, on one graph.',
+      f1a:'den is an AEC knowledge curation system served as a remote MCP server: the national construction standards KDS·KCS·KS, building statutes, and domain knowledge across structure, construction, MEP, materials and planning, on one graph.',
       f2q:'How is it different from a clause-lookup MCP?',
       f2a:'Clause lookup answers "where is it written". den also answers "why it holds · what comes first · how two methods differ", and stays silent when it has no grounds.',
       f3q:'Which tools does it have?',
