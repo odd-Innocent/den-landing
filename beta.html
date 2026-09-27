@@ -2,102 +2,118 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Den 베타 가이드 — 5분 안에 연결하기</title>
+<title>den 클라이언트별 연결 안내 — AEC 전문 지식 큐레이팅 시스템</title>
+<meta name="description" content="AEC 전문 지식 큐레이팅 시스템 den 의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth 로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
 <style>
-:root{--bg:#ECE7DD;--panel:#F4F0E8;--ink:#262016;--mut:#6E6252;--line:rgba(38,32,22,.16);--ember:#A64F16;--ember-soft:rgba(166,79,22,.12)}
-@media (prefers-color-scheme: dark){:root{--bg:#161210;--panel:#1C1712;--ink:#EDE3D3;--mut:#A29383;--line:rgba(234,224,208,.14);--ember:#E98B3D;--ember-soft:rgba(233,139,61,.14)}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;line-height:1.7}
+:root{--bg:#ECE7DD;--panel:#F4F0E8;--ink:#262016;--mut:#4A4237;--line:rgba(38,32,22,.16);--ember:#8D4313;--ember-soft:rgba(166,79,22,.10)}
+@media (prefers-color-scheme: dark){:root{--bg:#161210;--panel:#1C1712;--ink:#EDE3D3;--mut:#B5A898;--line:rgba(234,224,208,.14);--ember:#E98B3D;--ember-soft:rgba(233,139,61,.12)}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
 .wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
-a{color:var(--ember)} h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin:0 0 8px}
+a{color:var(--ember)} h1{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:0 0 8px}
 h2{font-size:20px;font-weight:800;margin:44px 0 12px;letter-spacing:-.02em}
-.sub{color:var(--mut);margin:0 0 32px}
+.sub{color:var(--mut);margin:0 0 24px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
-.card b.t{display:block;margin-bottom:6px}
+.card h3{font-size:16px;margin:0 0 8px}
+.card ol,.card ul{margin:0;padding-left:20px}
 code,pre{font-family:'JetBrains Mono',Consolas,monospace;font-size:13px}
-pre{background:var(--ember-soft);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
-.step{color:var(--ember);font-weight:800;margin-right:6px}
-ul{padding-left:20px;color:var(--mut)} li{margin:6px 0} li b{color:var(--ink)}
-.note{font-size:13px;color:var(--mut);border-left:3px solid var(--ember);padding:8px 14px;background:var(--ember-soft);border-radius:0 8px 8px 0}
+pre{background:var(--ember-soft);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin:8px 0}
+ul,ol{padding-left:20px} li{margin:6px 0}
+.note{font-size:14px;color:var(--mut);border-left:3px solid var(--ember);padding:8px 14px;background:var(--ember-soft);border-radius:0 8px 8px 0}
 .back{font-size:13px}
 .cta{display:inline-block;background:var(--ember);color:var(--bg);text-decoration:none;font-weight:800;border-radius:8px;padding:11px 20px;margin:2px 0 10px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<p class="back"><a href="./">← Den</a></p>
-<h1>Den 베타 가이드</h1>
-<p class="sub">발급받은 <b>개인 키</b> 하나로, 당신의 Agent 에게, AEC 전문 지식을. 지금 쓰는 AI Agent 에 den 의 큐레이팅을 꽂습니다 — 조문만이 아니라 왜·순서·비교·종류까지, 근거와 함께. 5분이면 됩니다.</p>
+<p class="back"><a href="./">den 소개</a></p>
+<h1>클라이언트별 연결 안내</h1>
+<p class="sub">AEC 전문 지식 큐레이팅 시스템 den 의 연결 절차입니다.</p>
 
-<h2>연결 방법 — 쓰시는 도구를 고르십시오</h2>
-<p class="note">den은 <b>원격 서버</b>입니다. 설치할 프로그램이 없고, 쓰시는 도구에
-<b>주소와 키를 알려주기만</b> 하면 됩니다. 아래에서 하나만 하시면 됩니다.</p>
+<h2>연결 전제</h2>
+<ul>
+<li>사용 신청이 승인된 계정으로 진행합니다.</li>
+<li>den 은 원격 서버이며, 설치 프로그램이 필요하지 않습니다.</li>
+<li>키 방식 클라이언트의 키는 승인 후 대시보드에서 발급합니다.</li>
+</ul>
 
-<div class="card" style="border-width:2px"><b class="t">★ 키 없이 연결 — claude.ai · ChatGPT 커넥터 (가장 빠릅니다)</b>
-<span class="step">1</span>커스텀 커넥터 추가 화면에서 이름 <code>Den</code>, URL에 <b>키를 빼고</b> 아래만 붙여넣기:
+<h2>웹 커넥터 — Claude · ChatGPT (OAuth, 키 불필요)</h2>
+<div class="card">
+<ol>
+<li>mcp.den.archi 에 로그인합니다.</li>
+<li>대시보드에서 커넥터 주소를 복사합니다.</li>
+<li>Claude·ChatGPT 의 커스텀 커넥터에 주소를 등록합니다. 인증 방식은 OAuth 입니다.</li>
+</ol>
 <pre>https://mcp.den.archi/mcp</pre>
-<span class="step">2</span>인증 방식을 고르는 칸이 있으면 <b>OAuth</b> 를 고르십시오(ChatGPT는 <b>인증 없음</b>이 아닙니다).<br>
-<span class="step">3</span>저장하면 den 로그인 창이 뜹니다 — 베타 계정으로 로그인하면 그 자리에서 연결이 끝납니다.
-<p class="note" style="margin-top:10px"><b>키를 복사해 붙일 필요가 없고, 주소에 키가 남지 않습니다.</b>
-아래 Ⓐ·Ⓑ 는 주소에 키를 넣는 방식입니다 — 쓰시는 도구가 커넥터 인증을 지원하지 않을 때만 쓰십시오.</p></div>
+<ul>
+<li>커넥터 이름은 <code>den</code> 으로 입력합니다.</li>
+<li>ChatGPT 의 인증 방식 칸에서는 OAuth 를 선택합니다.</li>
+<li>저장하면 den 로그인 창이 열리고, 로그인하면 연결이 완료됩니다.</li>
+<li>주소에 키가 포함되지 않습니다.</li>
+</ul>
+</div>
 
-<div class="card"><b class="t">Ⓐ claude.ai 웹·모바일 — 주소에 키를 넣는 방식</b>
-<span class="step">1</span>설정 → <b>커넥터(Connectors)</b> → <b>커스텀 커넥터 추가</b><br>
-<span class="step">2</span>이름 <code>Den</code>, URL에 아래를 붙여넣기:
+<h2>키 방식 클라이언트</h2>
+<p class="note">커넥터 인증을 지원하지 않는 클라이언트에만 사용합니다. <code>{개인키}</code> 자리에 대시보드에서 발급한 키를 넣습니다.</p>
+
+<div class="card"><h3>claude.ai 웹·모바일 — 주소에 키를 넣는 방식</h3>
+<ol>
+<li>설정 → 커넥터(Connectors) → 커스텀 커넥터 추가를 엽니다.</li>
+<li>이름에 <code>den</code>, URL 에 아래 주소를 입력합니다.</li>
+<li>저장하면 채팅에서 den 도구가 활성화됩니다.</li>
+</ol>
 <pre>https://mcp.den.archi/mcp/&#123;개인키&#125;</pre>
-<span class="step">3</span>저장 — 채팅에서 바로 Den 도구가 활성화됩니다.
-<p class="note" style="margin-top:10px">이 화면은 별도 인증 입력란이 없어 <b>키가 주소에 포함</b>됩니다.
-화면 공유·캡처 시 노출에 주의하십시오.</p></div>
+<p class="note">이 방식은 키가 주소에 포함됩니다. 화면 공유·캡처 시 키가 노출될 수 있습니다.</p></div>
 
-<div class="card"><b class="t">Ⓑ ChatGPT — 개발자 모드</b>
-<span class="step">1</span>설정 → <b>보안 및 로그인</b> → <b>개발자 모드</b> 켜기<br>
-<span class="step">2</span>설정 → <b>앱·커넥터</b>에서 커스텀 MCP 추가, 인증은 <b>인증 없음</b> 선택<br>
-<span class="step">3</span>URL에 아래를 붙여넣기(키가 주소에 포함됩니다):
+<div class="card"><h3>ChatGPT — 개발자 모드</h3>
+<ol>
+<li>설정 → 보안 및 로그인 → 개발자 모드를 켭니다.</li>
+<li>설정 → 앱·커넥터에서 커스텀 MCP 를 추가하고, 인증은 "인증 없음"을 선택합니다.</li>
+<li>URL 에 아래 주소를 입력합니다. 키가 주소에 포함됩니다.</li>
+</ol>
 <pre>https://mcp.den.archi/mcp/&#123;개인키&#125;</pre></div>
 
-<div class="card"><b class="t">Ⓒ Claude Desktop — 강의·발표용 권장</b>
-<span class="step">1</span><a href="den.mcpb">den.mcpb 다운로드</a><br>
-<span class="step">2</span>Claude Desktop → <b>설정 → 확장(Extensions)</b> → <b>Install Extension…</b> → 내려받은 파일 선택<br>
-<span class="step">3</span>설치 창에 개인키 입력 — OS 키체인에 안전하게 저장됩니다.
-<p class="note" style="margin-top:10px">파일 하나로 끝나는 방식이라, 컴퓨터에 익숙하지 않으셔도 무리가 없습니다.</p></div>
+<div class="card"><h3>Claude Desktop</h3>
+<ol>
+<li><a href="den.mcpb">den.mcpb</a> 를 내려받습니다.</li>
+<li>Claude Desktop → 설정 → 확장(Extensions) → Install Extension… 에서 내려받은 파일을 선택합니다.</li>
+<li>설치 창에 키를 입력합니다. 키는 OS 키체인에 저장됩니다.</li>
+</ol></div>
 
-<div class="card"><b class="t">Ⓓ Claude Code (터미널)</b>
+<div class="card"><h3>Claude Code (터미널)</h3>
 <pre>claude mcp add --transport http den https://mcp.den.archi/mcp --header "Authorization: Bearer &#123;개인키&#125;"</pre></div>
 
-<div class="card"><b class="t">Ⓔ Codex CLI</b>
-키를 환경변수에 두고 참조합니다(평문 저장 회피).
+<div class="card"><h3>Codex CLI</h3>
+<p>키는 환경변수에 두고 참조합니다. 평문 저장을 피하기 위한 방식입니다.</p>
 <pre>export DEN_KEY="&#123;개인키&#125;"
 codex mcp add den --url https://mcp.den.archi/mcp --bearer-token-env-var DEN_KEY</pre></div>
 
-<div class="card"><b class="t">Ⓕ Antigravity (Gemini)</b>
-<code>~/.gemini/config/mcp_config.json</code> 에 아래를 넣으십시오.
+<div class="card"><h3>Antigravity (Gemini)</h3>
+<p><code>~/.gemini/config/mcp_config.json</code> 에 아래 설정을 입력합니다.</p>
 <pre>{"mcpServers":{"den":{"serverUrl":"https://mcp.den.archi/mcp",
   "headers":{"Authorization":"Bearer &#123;개인키&#125;"}}}}</pre>
-편집기 에이전트 패널 → <b>MCP Servers</b> → <b>Manage MCP Servers</b> → <b>View raw config</b></div>
+<p>편집기 에이전트 패널 → MCP Servers → Manage MCP Servers → View raw config 에서 편집합니다.</p></div>
 
-<p class="note">채널마다 <b>다른 키</b>를 쓰시길 권합니다 — 한 채널이 유출돼도 나머지가 보호됩니다.
-대시보드에서 채널별로 따로 발급하실 수 있습니다.</p>
+<p class="note">채널마다 별도의 키 사용을 권장합니다. 한 채널의 키가 유출되어도 다른 채널의 키는 영향을 받지 않습니다. 대시보드에서 채널별로 발급합니다.</p>
 
-<h2>이렇게 물어보세요 (예시 5)</h2>
+<h2>질의 요령</h2>
 <ul>
-<li>"부산 수영구 대지인데, 중정형 카페가 기후적으로 맞을까? <b>Den으로 확인해줘</b>"</li>
-<li>"이 평면(방 구성 설명)에서 문제될 부분을 <b>Den review_plan으로 검토</b>해줘"</li>
-<li>"좁은 진입로→낮은 복도→높은 거실 시퀀스의 <b>감정선을 Den으로</b> 읽어줘"</li>
-<li>"필로티가 자유평면을 가능하게 한 이유를 <b>Den 근거로</b> 설명해줘"</li>
-<li>"직통계단 보행거리 기준이 뭐였지? <b>Den에서 조항이랑 같이</b>"</li>
+<li>넓은 질의는 개념 단위로 나누어 질의합니다.</li>
+<li>대지가 있으면 지역을 먼저 지정합니다. den 은 기후·관할 조건을 정한 뒤 이후 응답에 적용합니다.</li>
+<li>미보유 표시는 해당 주제를 아직 보유하지 않았다는 뜻입니다.</li>
 </ul>
 
-<h2>잘 쓰는 팁</h2>
+<h2>한계</h2>
 <ul>
-<li><b>넓은 질문은 개념으로 쪼개기</b> — "OO건물 왜 유명해?"보다 그 건물의 원리(필로티·자유평면)로 물으면 근거가 깊게 나옵니다.</li>
-<li><b>대지를 먼저</b> — 지역을 말하면 Den이 기후·관할을 잡고, 이후 답이 그 조건으로 필터링됩니다.</li>
-<li><b>"모름"은 신뢰의 표시</b> — Den이 "해당 축 미탑재/경로 없음"이라 하면 그 주제는 아직 그래프 밖입니다. 억지 답을 주지 않는 게 설계입니다. (그리고 그 질문은 다음 날 그래프가 자라는 재료가 됩니다)</li>
+<li>보유 범위 밖 질의에는 응답하지 않습니다.</li>
+<li>커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다.</li>
+<li>응답은 법률·설계 자문이 아닙니다.</li>
+<li>구조 안전·법규 적합성·시공 판단은 자격 있는 전문가의 검토 대상입니다.</li>
 </ul>
+<p><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보</a></p>
 
-<p class="note"><b>안전 고지</b> — Den의 응답은 근거 있는 참고 정보입니다. 구조 안전·법규 적합성·시공 판단은 반드시 전문가 검토를 거치세요. <a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보</a></p>
-
-<h2>키가 없다면</h2>
-<p><a class="cta" href="https://mcp.den.archi/signup?from=landing">베타 참여 신청</a></p>
-<p class="note">메일로 신청하셔도 됩니다 — <a href="mailto:support@den.archi?subject=%5BDen%5D%20%EB%B2%A0%ED%83%80%20%EC%B0%B8%EC%97%AC%20%EC%8B%A0%EC%B2%AD">support@den.archi</a>. 어느 쪽이든 승인 시 개인 키를 보내드립니다.</p>
+<h2>사용 신청</h2>
+<p><a class="cta" href="https://mcp.den.archi/signup?from=landing">사용 신청</a></p>
+<p class="note">메일 신청: <a href="mailto:support@den.archi?subject=%5Bden%5D%20%EC%82%AC%EC%9A%A9%20%EC%8B%A0%EC%B2%AD">support@den.archi</a>. 승인 후 대시보드에서 키를 발급합니다.</p>
 </div>
 <!-- ★2026-08-25 성장(A076 ⑴) — 비콘이 index.html 에만 있어 이 페이지로 **직접** 온
      사람은 분모에서 조용히 사라졌다. 08-31 A060 판정은 분모<분자면 접는 판정이라,
