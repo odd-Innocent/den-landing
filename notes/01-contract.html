@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>계약 문서에는 조문이 안 붙습니다 — den</title>
+<title>계약 문서 질의의 근거 순위 — den</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32-dark.png">
 <link rel="canonical" href="https://den.archi/notes/01-contract.html">
-<meta name="description" content="den이 매일 돌리는 38문항 중 3문항이 계속 실패합니다. 셋 다 계약서였고, 실패하는 이유는 같았습니다.">
+<meta name="description" content="계약 문서(지체상금 특약·설계변경 승인 절차·하자담보 기간) 질의에서 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="den">
 <meta property="og:url" content="https://den.archi/notes/01-contract.html">
-<meta property="og:title" content="계약 문서에는 조문이 안 붙습니다">
-<meta property="og:description" content="den이 매일 돌리는 38문항 중 3문항이 계속 실패합니다. 셋 다 계약서였습니다.">
+<meta property="og:title" content="계약 문서 질의의 근거 순위">
+<meta property="og:description" content="계약 문서(지체상금 특약·설계변경 승인 절차·하자담보 기간) 질의에서 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.">
 <meta property="og:image" content="https://den.archi/assets/logo/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -59,95 +59,50 @@ hr{border:0;border-top:1px solid var(--line);margin:3rem 0}
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="/notes/">← den이 답하지 못한 것</a>
-  <span class="date">2026-08-19</span>
-  <h1>계약 문서에는 조문이 안 붙습니다</h1>
+  <a class="back" href="/notes/">← 한계 기록</a>
+  <span class="date">관측 2026-08-19 · 상태 확인 2026-09-27</span>
+  <h1>계약 문서 질의의 근거 순위</h1>
 
-  <p class="lede">den은 매일 아침 38문항을 스스로 풉니다. 배포해도 되는지 판단하는
-  기준선이고, 통과하지 못하면 그날 배포는 멈춥니다. 지금 <strong>35문항을 통과하고
-  3문항을 실패</strong>합니다. 셋 다 계약서였습니다.</p>
+  <p class="lede">계약 문서 질의에서 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.
+  den 의 배포 전 점검에서 계약 문서 문항이 이 이유로 통과하지 못합니다.</p>
 
-  <h2>실패하는 세 문항</h2>
+  <h2>대상 질의</h2>
+  <ul>
+    <li>지체상금 특약</li>
+    <li>설계변경 승인 절차</li>
+    <li>하자담보 기간</li>
+  </ul>
 
-  <p>지체상금 특약, 설계변경 승인 절차, 하자담보 기간. 현장에서 가장 자주 다투는
-  것들입니다. 그래서 골든 문항으로 넣었고, 그래서 계속 빨간불입니다.</p>
+  <h2>관측 내용</h2>
+  <ul>
+    <li>지체상금 특약 질의의 1순위 응답은 den 자체 분석입니다. 출처 구분은 <span class="tag no">규범 인용 아님</span> 입니다.</li>
+    <li>같은 질의의 2순위 응답은 국가계약법 제26조와 공사계약일반조건 제25조·제26조를 인용합니다. 출처 구분은 <span class="tag yes">조문 있음</span> 입니다.</li>
+    <li>하자담보 특약 질의는 <code>relevance: low</code> 로 반환됩니다.</li>
+  </ul>
 
-  <p>다만 실패의 모양이 예상과 달랐습니다. den이 <em>답을 못 하는</em> 게 아닙니다.
-  실제로 물어보면 이렇게 답합니다.</p>
+  <h2>원인</h2>
+  <ul>
+    <li>KDS·KCS 는 정해진 수치와 요건을 규정합니다.</li>
+    <li>계약 조건은 당사자가 정하며, 국가계약법은 상한과 절차의 틀을 규정합니다.</li>
+    <li>특약의 유효성은 특약 문구와 사실관계에 따라 달라집니다.</li>
+    <li>계약 문서 질의에는 인용할 조문이 적어 den 자체 분석이 앞 순위로 반환됩니다.</li>
+  </ul>
 
-  <figure class="q">
-    <span class="lbl">질의</span>
-    시공계약 특약: 우천·관급자재 지연에도 공기연장 불인정, 지체상금 일 0.15%.
-  </figure>
+  <h2>조치 계획</h2>
+  <ul>
+    <li>국가계약법·공사계약일반조건·건설산업기본법의 해당 조문을 1순위 근거로 반환하도록 검색 순위를 수정합니다.</li>
+    <li>특약의 유효성 판정은 den 의 범위에 포함하지 않습니다.</li>
+    <li>den 은 계약 검토에 필요한 조문 위치까지 제공합니다. 계약 검토 판단은 법률 전문가가 수행합니다.</li>
+  </ul>
 
-  <figure>
-    <span class="lbl">den 응답 · 상위 2건</span>
-    <p style="margin:0 0 .875rem">우천, 불가항력, 관급자재 지연, 발주자 지시 지연까지
-    일괄적으로 공기연장을 불인정하는 문구는 <strong>책임 없는 지연과 지체상금 리스크를
-    혼동</strong>한다.
-    <span class="src"><span class="tag no">규범 인용 아님</span> den 내부 종합 — 계약 리스크 분류</span></p>
-    <p style="margin:0">지체상금·공기연장의 성립은 확정된 준공기준일, 실제 이행일, 지연
-    원인·책임, 인정된 연장기간의 대조다. <strong>준공이 늦었다는 결과만으로</strong>
-    지체상금이나 공기연장 권리가 함께 확정되지는 않는다.
-    <span class="src"><span class="tag yes">조문 있음</span> 국가계약법 제26조 · 공사계약일반조건 제25조·제26조</span></p>
-  </figure>
-
-  <p>내용은 실무에서 쓸 만합니다. 그런데 <strong>가장 먼저 나온 답에 조문이 안 붙어
-  있습니다.</strong> den 자신이 정리한 판단이고, 근거가 되는 법령은 두 번째로 밀렸습니다.</p>
-
-  <p>골든 문항은 이걸 실패로 봅니다. 조문 없는 답을 통과시키면, den이 다른 데서
-  조문 없이 답해도 아무도 못 잡기 때문입니다.</p>
-
-  <h2>왜 계약에서만 이럴까</h2>
-
-  <p>기준서와 계약서는 성질이 다릅니다.</p>
-
-  <p>KDS·KCS는 <strong>이미 정해진 값</strong>을 씁니다. 옥내소화전 방수구는 바닥에서
-  1.5m 이하. 찾아서 붙이면 끝입니다.</p>
-
-  <p>계약은 <strong>당사자가 만드는 것</strong>입니다. 지체상금 일 0.15%가 맞는지 틀린지
-  정해 둔 조문이 없습니다. 국가계약법이 정하는 것은 상한과 절차의 틀이고, 그 안에서
-  무엇이 유효한지는 특약 문구와 사실관계로 갈립니다. den이 자기 판단을 앞세운 이유가
-  여기 있습니다 — 붙일 조문 자체가 얇습니다.</p>
-
-  <p>그렇다고 넘어갈 문제는 아닙니다. 조문이 얇으면 <strong>얇다고 말해야</strong>지,
-  자기 정리를 조문 자리에 놓으면 안 됩니다. 그게 den이 하지 않기로 한 것입니다.</p>
-
-  <h2>세 번째 문항은 더 정직하게 실패합니다</h2>
-
-  <figure class="q">
-    <span class="lbl">질의</span>
-    방수 하자담보 10년 특약, 제조사 시스템 보증은 5년, 유지관리 매뉴얼 미제출.
-  </figure>
-
-  <p>여기서 den은 <code>relevance: low</code>, 확신 <code>0.574</code>를 반환합니다.
-  <strong>자신 없다고 표시한 것입니다.</strong> 클라이언트는 이 신호를 그대로 사용자에게
-  넘기게 돼 있습니다.</p>
-
-  <p>답을 만들어내는 것보다 이쪽이 낫다고 봅니다. 하자담보는 법정 기간과 상업 보증과
-  유지관리 의무가 서로 다른 근거에서 나오는데, 그걸 한 덩어리로 그럴듯하게 묶어 주면
-  검토하는 사람이 더 헤맵니다.</p>
+  <h2>상태</h2>
+  <p>미해결입니다. 해결 시 이 기록을 갱신합니다.
+  <a href="https://github.com/odd-Innocent/den_archi_mcp">공개 저장소</a>에도 알려진 한계로 기록되어 있습니다.</p>
 
   <hr>
 
-  <h2>고칠 것과 안 고칠 것</h2>
-
-  <p><strong>고칩니다</strong> — 국가계약법·공사계약일반조건·건설산업기본법의 해당
-  조문을 첫 번째 근거로 올리는 것. 두 번째에 있던 것이 첫 번째로 오면 되는 문제라
-  회수 순위의 일입니다.</p>
-
-  <p><strong>안 고칩니다</strong> — 특약의 유효성을 den이 판정하게 만드는 것. 그건
-  법률 판단이고 den이 할 일이 아닙니다. 계약 검토는 계속 사람이 하십시오.
-  den은 <em>어느 조문을 펴야 하는지</em>까지만 하겠습니다.</p>
-
-  <p>이 세 문항은 <a href="https://github.com/odd-Innocent/den_archi_mcp">공개 저장소</a>에
-  알려진 실패로 적어 두었습니다. 통과하면 여기에 다시 쓰겠습니다.</p>
-
-  <hr>
-
-  <p class="foot">den은 한국 건설기준을 조문 번호까지 붙여 답하는 MCP 서버입니다.
-  베타 기간 무료이며 <a href="/">den.archi</a>에서 신청하실 수 있습니다.<br>
-  틀린 답을 만나시면 알려 주십시오. 사례로 기록해서 그 조문부터 다시 봅니다.</p>
+  <p class="foot">den 은 AEC 전문 지식 큐레이팅 시스템입니다. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.
+  사용 신청은 <a href="/">den.archi</a> 에서 합니다. 오답 제보는 support@den.archi 로 접수합니다.</p>
 </div>
 </body>
 </html>
