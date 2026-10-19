@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CEO 10-19 다크 전용(gates/CEO_1019_다크모드): 기기 설정과 무관하게 다크 디자인 하나로 보인다. -->
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#151110">
 <title>Den | AEC 전문 지식 큐레이팅 시스템 (건축 · 건설 MCP)</title>
 <!-- 웹폰트 로드(2026-07-26): 종전에는 font-family 에 Pretendard 를 적기만 하고 불러오지 않아,
      설치되지 않은 기기에서 Malgun Gothic 등으로 떨어져 조판이 무너졌다. -->
@@ -550,8 +553,7 @@ html{scroll-snap-type:y proximity}
            라이트 배경엔 잉크색, 다크 배경엔 흰색 판본을 쓴다(원본은 흰색 단색이라
            라이트용은 알파를 보존한 채 RGB만 잉크색으로 바꾼 변형본). -->
       <picture>
-        <source srcset="assets/logo/den-full-light.png" media="(prefers-color-scheme: dark)">
-        <img class="logo" src="assets/logo/den-full-dark.png" alt="Den" width="96" height="40">
+        <img class="logo" src="assets/logo/den-full-light.png" alt="Den" width="96" height="40">
       </picture>
     </div>
     <button id="langbtn" type="button">EN</button>
