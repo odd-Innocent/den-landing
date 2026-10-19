@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>den — AEC 전문 지식 큐레이팅 시스템 · 건축 MCP · 건설 MCP · AEC MCP</title>
+<title>Den | AEC 전문 지식 큐레이팅 시스템 (건축 · 건설 MCP)</title>
 <!-- 웹폰트 로드(2026-07-26): 종전에는 font-family 에 Pretendard 를 적기만 하고 불러오지 않아,
      설치되지 않은 기기에서 Malgun Gothic 등으로 떨어져 조판이 무너졌다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -17,18 +17,18 @@
      게시 저장소에 올라간 적도 없어 404 였다(publish_landing.sh 기본값이 index.html 뿐). -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png">
 <link rel="apple-touch-icon" href="assets/logo/den-mark-ember.png">
-<meta name="description" content="AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령·별표를 제공합니다.">
+<meta name="description" content="AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Den">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://den.archi/">
-<meta property="og:title" content="den — AEC 전문 지식 큐레이팅 시스템">
-<meta property="og:description" content="AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령·별표를 제공합니다.">
+<meta property="og:title" content="Den | AEC 전문 지식 큐레이팅 시스템">
+<meta property="og:description" content="AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.">
 <meta property="og:image" content="https://den.archi/assets/logo/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="den — AEC 전문 지식 큐레이팅 시스템">
+<meta name="twitter:title" content="Den | AEC 전문 지식 큐레이팅 시스템">
 <meta name="twitter:description" content="AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.">
 <meta name="twitter:image" content="https://den.archi/assets/logo/og.png">
 <link rel="canonical" href="https://den.archi/">
@@ -40,12 +40,12 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "den",
+  "name": "Den",
   "alternateName": "AEC 전문 지식 큐레이팅 시스템",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "url": "https://den.archi/",
-  "description": "AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령·별표를 제공합니다.",
+  "description": "AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.",
   "inLanguage": "ko",
   "keywords": "건축 MCP, 건설 MCP, AEC MCP, 건축법 MCP, 건설기준 MCP",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW",
@@ -63,18 +63,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "den 은 무엇을 합니까?",
+      "name": "Den은 무엇을 합니까?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "건축·건설 기준을 물으면 출처를 붙여 답합니다. 근거를 찾지 못하면 추측하지 않고 답하지 않습니다."
+        "text": "건축·건설 기준을 물으면 출처를 붙여 답합니다. 근거를 찾지 못하면 추측하지 않고 미보유로 표시합니다."
       }
     },
     {
       "@type": "Question",
-      "name": "기존 AI 에 물어보는 것과 무엇이 다릅니까?",
+      "name": "일반 AI 답변과 무엇이 다릅니까?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "답에 출처가 붙고, 근거가 없으면 답하지 않습니다. 국가기술자격 기출 문항을 같은 조건으로 비교했을 때 den 을 붙인 쪽이 높았고, 전문 심화 급수일수록 차이가 컸습니다. 공개 기출이라 양쪽 모두 암기분이 섞여 있습니다."
+        "text": "답에 출처가 붙고, 근거가 없으면 미보유로 표시합니다. 국가기술자격 기출 문항을 같은 조건으로 비교했을 때 Den을 연결한 쪽의 점수가 높았고, 전문 심화 급수일수록 차이가 컸습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있습니다."
       }
     },
     {
@@ -82,21 +82,21 @@
       "name": "어떻게 사용합니까?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "사용 신청이 승인된 계정으로 진행합니다. Claude·ChatGPT 의 커스텀 커넥터에 https://mcp.den.archi/mcp 를 등록하고, 인증 방식은 OAuth 입니다. OAuth 를 지원하지 않는 클라이언트(Claude Desktop 확장 den.mcpb · CLI)는 대시보드에서 발급한 키로 연결합니다."
+        "text": "사용 신청이 승인된 계정으로 진행합니다. Claude와 ChatGPT의 커스텀 커넥터에 https://mcp.den.archi/mcp를 등록하고 OAuth로 인증합니다. OAuth를 지원하지 않는 클라이언트(Claude Desktop 확장 den.mcpb, CLI)는 대시보드에서 발급한 키로 연결합니다."
       }
     },
     {
       "@type": "Question",
-      "name": "못 하는 것은 무엇입니까?",
+      "name": "아직 다루지 못하는 영역은 무엇입니까?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "건축계획·실내건축 등 정성적 판단 영역은 아직 약합니다. 계약 문서 해석(지체상금 면제·설계변경·하자담보)도 아직 근거를 찾지 못합니다. 근거가 없는 영역에서는 답하지 않습니다."
+        "text": "건축계획·실내건축 등 정성적 판단 영역은 아직 약합니다. 계약 문서 해석(지체상금 면제·설계변경·하자담보)도 아직 근거를 찾지 못합니다. 근거가 없는 영역은 미보유로 표시합니다."
       }
     }
   ]
 }
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"den 은 어떤 MCP 서버입니까?","acceptedAnswer":{"@type":"Answer","text":"den 은 원격 MCP 로 제공되는 AEC 전문 지식 큐레이팅 시스템입니다. 건축 MCP · 건설 MCP · AEC MCP 로 분류됩니다. 한국 건설기준 KDS·KCS·KS 와 건축 법령, 그리고 구조·시공·설비·재료·계획의 전문 지식을 한 그래프에서 답합니다."}},{"@type":"Question","name":"기준·조문을 검색하는 MCP 와 무엇이 다릅니까?","acceptedAnswer":{"@type":"Answer","text":"조문 검색은 \"어디에 쓰여 있나\"를 답합니다. den 은 \"왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가\"까지 답하고, 근거가 없으면 답하지 않습니다."}},{"@type":"Question","name":"어떤 도구가 있습니까?","acceptedAnswer":{"@type":"Answer","text":"기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude·ChatGPT 의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 커버리지는 부분적이며, 보유하지 않은 것은 보유하지 않았다고 말합니다."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Den은 어떤 서비스입니까?","acceptedAnswer":{"@type":"Answer","text":"Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다."}},{"@type":"Question","name":"기준·조문을 검색하는 MCP와 무엇이 다릅니까?","acceptedAnswer":{"@type":"Answer","text":"조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다."}},{"@type":"Question","name":"어떤 도구가 있습니까?","acceptedAnswer":{"@type":"Answer","text":"기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다."}}]}</script>
 </head>
 <body>
 <style>/* ===== 비율 스케일: 디자인 캔버스 1600x900. 어떤 해상도든 같은 구도가 비례 축소/확대 ===== */
@@ -563,7 +563,7 @@ html{scroll-snap-type:y proximity}
   <div id="torch" aria-hidden="true"></div>
   <div class="wrap">
     <h1 class="display" id="kinetic" data-i18n-h1="1">AEC 전문 지식|[큐레이팅] 시스템</h1>
-    <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조문만이 아니라 왜·순서·비교·종류까지 근거와 함께 답합니다. 근거가 없으면 답하지 않습니다.<br>쓰시던 ChatGPT·Claude 에 그대로 연결됩니다.</p>
+    <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.</p>
     <div class="cta-row">
       <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">사용 신청</a>
     </div>
@@ -606,17 +606,17 @@ html{scroll-snap-type:y proximity}
 
 
 <section class="wrap" id="graph-sec">
-  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.</p>
+  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 「아파트」 질문에 실제로 반환한 관계입니다. 개념에 마우스를 올리면 정의와 근거가 표시됩니다.</p>
 
   <div class="graph-shell reveal d2">
     <div class="graph-head">
-      <span class="graph-title" data-i18n="g_title">apartment — Den 이 실제로 반환한 관계</span>
+      <span class="graph-title" data-i18n="g_title">아파트 · Den이 실제로 반환한 관계</span>
       <div class="legend">
-          <span><i class="lg"></i><span data-i18n="lg1">물리 인과 causes</span></span>
-          <span><i class="lg en"></i><span data-i18n="lg2">가능 조건 enables</span></span>
-          <span><i class="lg ev"></i><span data-i18n="lg3">정서 evokes</span></span>
-          <span><i class="lg ge"></i><span data-i18n="lg4">계보 evolvedFrom</span></span>
-          <span><i class="lg pt"></i><span data-i18n="lg5">법규·대조 requires</span></span>
+          <span><i class="lg"></i><span data-i18n="lg1">물리 인과</span></span>
+          <span><i class="lg en"></i><span data-i18n="lg2">가능 조건</span></span>
+          <span><i class="lg ev"></i><span data-i18n="lg3">정서</span></span>
+          <span><i class="lg ge"></i><span data-i18n="lg4">계보</span></span>
+          <span><i class="lg pt"></i><span data-i18n="lg5">법규·대조</span></span>
         </div>
     </div>
     <div class="graph-body">
@@ -640,20 +640,20 @@ html{scroll-snap-type:y proximity}
       <path class="gedge enables" data-e="apartment,household-autonomy" d="M438,324 C438,386 406,406 406,468" marker-end="url(#ah-e)"/>
       <path class="gedge evokes" data-e="apartment,anonymity" d="M482,324 C482,386 572,406 572,468" marker-end="url(#ah-d)"/>
       <path class="gedge part" data-e="apartment,suburban-house" d="M526,324 C526,386 752,406 752,468" marker-end="url(#ah-e)"/>
-      <text class="elabel" x="258" y="113">evolvedFrom</text>
-      <text class="elabel" x="258" y="217">evolvedFrom</text>
-      <text class="elabel" x="258" y="321">evolvedFrom</text>
-      <text class="elabel" x="568" y="30">requires</text>
-      <text class="elabel" x="568" y="100">requires</text>
-      <text class="elabel" x="568" y="170">requires</text>
-      <text class="elabel" x="568" y="240">grounded_in</text>
-      <text class="elabel" x="200" y="455">enables</text>
-      <text class="elabel" x="378" y="455">enables</text>
-      <text class="elabel" x="544" y="455">evokes</text>
-      <text class="elabel" x="724" y="455">contrasts</text>
+      <text class="elabel" x="258" y="113" data-i18n="el_evo">계보</text>
+      <text class="elabel" x="258" y="217" data-i18n="el_evo">계보</text>
+      <text class="elabel" x="258" y="321" data-i18n="el_evo">계보</text>
+      <text class="elabel" x="568" y="30" data-i18n="el_req">법규 요건</text>
+      <text class="elabel" x="568" y="100" data-i18n="el_req">법규 요건</text>
+      <text class="elabel" x="568" y="170" data-i18n="el_req">법규 요건</text>
+      <text class="elabel" x="568" y="240" data-i18n="el_gr">근거 조문</text>
+      <text class="elabel" x="200" y="455" data-i18n="el_en">가능 조건</text>
+      <text class="elabel" x="378" y="455" data-i18n="el_en">가능 조건</text>
+      <text class="elabel" x="544" y="455" data-i18n="el_ev">정서</text>
+      <text class="elabel" x="724" y="455" data-i18n="el_ct">대조</text>
       <g class="gnode hub" data-n="apartment" transform="translate(368,252)">
         <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle">아파트</text>
-        <text class="sub" x="92" y="50" text-anchor="middle">apartment · space_type</text></g>
+        <text class="sub" x="92" y="50" text-anchor="middle" data-i18n="gs_apt">공간 유형</text></g>
       <g class="gnode" data-n="insula" transform="translate(28,96)">
         <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">인술라</text>
         <text class="sub" x="95" y="41" text-anchor="middle">로마 임대주거</text></g>
@@ -665,156 +665,119 @@ html{scroll-snap-type:y proximity}
         <text class="sub" x="95" y="41" text-anchor="middle">파리 층별 계층</text></g>
       <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(668,14)">
         <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">대피공간 3㎡</text>
-        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(668,84)">
         <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">세대 대피공간 2㎡</text>
-        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(668,154)">
         <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">특별피난계단 16층</text>
-        <text class="sub" x="118" y="41" text-anchor="middle">spec_value · KR</text></g>
+        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(668,224)">
         <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">리모델링 완화</text>
-        <text class="sub" x="118" y="41" text-anchor="middle">norm_clause · KR</text></g>
+        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_norm">국내 규범 조문</text></g>
       <g class="gnode" data-n="urban-density" transform="translate(150,468)">
         <rect width="156" height="54"/><text x="78" y="23" text-anchor="middle">도시 밀도</text>
-        <text class="sub" x="78" y="41" text-anchor="middle">quality</text></g>
+        <text class="sub" x="78" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
       <g class="gnode" data-n="household-autonomy" transform="translate(322,468)">
         <rect width="168" height="54"/><text x="84" y="23" text-anchor="middle">세대 독립성</text>
-        <text class="sub" x="84" y="41" text-anchor="middle">quality</text></g>
+        <text class="sub" x="84" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
       <g class="gnode emo" data-n="anonymity" transform="translate(506,468)">
         <rect width="132" height="54"/><text x="66" y="23" text-anchor="middle">익명성</text>
-        <text class="sub" x="66" y="41" text-anchor="middle">정서 — claimed</text></g>
+        <text class="sub" x="66" y="41" text-anchor="middle" data-i18n="gs_emo">정서 (주장)</text></g>
       <g class="gnode" data-n="suburban-house" transform="translate(654,468)">
         <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle">교외 단독주택</text>
         <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
     </svg>
     </div>
     <div class="info" id="info">
-      <div class="info-top"><span class="k" data-i18n="info_k">개념을 선택하십시오</span></div>
-      <div class="info-body"><span class="d" data-i18n="info_d">정의와 근거가 표시됩니다.</span></div>
+      <div class="info-top"><span class="k" data-i18n="info_k">개념 선택</span></div>
+      <div class="info-body"><span class="d" data-i18n="info_d">개념을 선택하면 정의와 근거가 표시됩니다.</span></div>
     </div>
   </div>
 </section>
 
+<!-- CEO 10-19 웹 문안(gates/CEO_1019_웹문안): 서사 뒤 절 순서 — 지식을 다루는 방식 → 응답 예시 → 연결 전후 비교 → 보유 범위 밖 처리 → 기출 비교 → 연결 방법 → 자주 묻는 질문 → 베타 사용 신청. 40,000년 서사는 CEO 결정(감성 칸)으로 문구 · 자리 그대로. -->
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="w_h2">Den은 정보를 만들지 않습니다.<br>고릅니다.</h2>
-  <p class="sec-lede reveal d2" data-i18n="w_lede">요약해 주는 도구는 많습니다. Den은 근거가 붙은 것만 골라 건넵니다.</p>
+  <h2 class="display reveal d1" data-i18n="w_h2">Den이 지식을 다루는 방식</h2>
+  <p class="sec-lede reveal d2" data-i18n="w_lede">Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.</p>
   <div class="rows">
     <div class="row reveal">
-      <div class="h" data-i18n="r1h">문단째로 주면<br>Agent도 헤맵니다</div>
-      <div class="b" data-i18n="r1b">"아파트"는 하나의 개념입니다. 인술라에서 이어진 계보와 오늘의 대피공간 기준이 같은 노드에 붙습니다. 문단을 검색하는 것이 아니라 개념을 건넵니다.</div>
+      <div class="h" data-i18n="r1h">문단 대신 개념 단위</div>
+      <div class="b" data-i18n="r1b">「아파트」 개념 하나에 인술라에서 이어진 계보와 대피공간 기준이 함께 연결됩니다. 에이전트는 문단을 찾는 대신 개념과 근거를 받습니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r2h">수치에는<br>출처가 따라옵니다</div>
-      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 §4.3.1·4.3.2 가 함께 옵니다. 근거 없는 수치는 그래프에 들어오지 못합니다.</div>
+      <div class="h" data-i18n="r2h">수치와 출처</div>
+      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r3h">값에는<br>적용 조건이 붙습니다</div>
-      <div class="b" data-i18n="r3b">전단력이 커지면 스터럽 간격은 절반이 됩니다. Den은 언제 그 값이 참인지를 함께 건넵니다.</div>
+      <div class="h" data-i18n="r3h">수치와 적용 조건</div>
+      <div class="b" data-i18n="r3b">전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.</div>
     </div>
     <div class="row reveal">
-      <div class="h" data-i18n="r4h">축열은 물리,<br>아늑함은 주장입니다</div>
-      <div class="b" data-i18n="r4b">Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 표시합니다.</div>
+      <div class="h" data-i18n="r4h">사실과 주장의 구분</div>
+      <div class="b" data-i18n="r4b">축열 같은 물리 현상과 아늑함 같은 해석을 나눠 담고, 학설 사이에 논쟁이 있는 내용은 논쟁 중으로 표시합니다.</div>
     </div>
-  </div>
-</section>
-
-<section class="wrap">
-    <h2 class="display reveal d1" data-i18n="e_h2">모델을 바꿔도<br>86.5% 였습니다.</h2>
-    <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프론티어 모델 2종이 국가기술자격 기출 192문항을 같은 조건으로 풀었습니다. 단독 점수는 166/192로 정확히 같았습니다.</p>
-    <div class="stats reveal d2">
-      <div class="stat"><div class="n" data-count="86.5" data-dec="1" data-suffix="%">86.5%</div><div class="l" data-i18n="e1">모델 A·B 단독 — 동일</div></div>
-      <div class="stat hi"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den을 붙였을 때</div></div>
-      <div class="stat"><div class="n" data-count="8.9" data-dec="1" data-prefix="+" data-suffix="%p">+8.9%p</div><div class="l" data-i18n="e3">Den이 만든 차이</div></div>
-      <div class="stat hi"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 급수에서의 차이</div></div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r5h">응답 기록</div>
+      <div class="b" data-i18n="r5b">응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.</div>
     </div>
-    <p class="sec-lede reveal d2" data-i18n="e_kick">모델을 바꾸는 것으로는 오르지 않았습니다. Den을 붙였을 때 올랐습니다.</p>
-    <p class="fine reveal d2" data-i18n="e_note">※ 모델 A 는 86.5→95.3(+8.9%p), 모델 B 는 86.5→93.8(+7.3%p)입니다. 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다.</p>
-  </section>
-
-<section class="wrap">
-  <h2 class="display reveal d1" data-i18n="h_h2">쓰시던 Agent 그대로</h2>
-  <p class="sec-lede reveal d2" data-i18n="h_lede">설치할 앱도, 바꿀 습관도 없습니다.</p>
-  <div class="steps">
-    <div class="step reveal"><div class="t" data-i18n="sp1t">1 — 연결</div>
-      <div class="d" data-i18n="sp1d">커넥터 주소 하나로 연결합니다. Claude·ChatGPT 등 MCP 클라이언트에서 사용합니다.</div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2 — 질의</div>
-      <div class="d" data-i18n="sp2d">평소처럼 물어보시면 됩니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3 — 근거</div>
-      <div class="d" data-i18n="sp3d">답과 함께 <b>근거</b>(인과 경로 · 적용 조건 · 출처)가 옵니다.</div></div>
-  </div>
-
-  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다.
-       ★2026-08-24 총괄 138회차 — 주석만 남고 **블록이 비어 있었다**(C310). 그래서 표지가
-       "설정 한 줄"이라 말해 놓고 그 한 줄을 끝내 안 보여줬고, 연결을 말하는 자리가
-       FAQ JSON-LD 하나(=사람이 아니라 검색·LLM 이 읽는 자리)뿐이었다.
-       순서는 136·137회차 실측을 따른다 — 외부 계정의 질의가 실제로 도착한 경로는
-       OAuth 하나뿐이고(oauth 6발급 4사용 ↔ web 9/0 · cli 5/0) 키를 먼저 말하면
-       죽은 채널로 보낸다. ∴ 키 없는 커넥터가 첫째, 키는 마지막이다. -->
-  <div class="steps" style="margin-top:20px">
-    <div class="step reveal"><div class="t" data-i18n="cn1t">키 없이 — 웹 커넥터</div>
-      <div class="d" data-i18n="cn1d">Claude·ChatGPT 의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b> 로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="cn2t">Claude Desktop — 한 번에</div>
-      <div class="d" data-i18n="cn2d"><a href="den.mcpb">den.mcpb</a> 를 받아 열면 설정이 완료됩니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="cn3t">그 밖의 클라이언트</div>
-      <div class="d" data-i18n="cn3d">커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.</div></div>
   </div>
 </section>
 
 <!-- 큐레이션 시연(2026-09-04 · 설명구 2026-09-14 "AEC 전문 지식 큐레이팅 시스템"): 조문 검색이 아니라 왜·순서를 **실제 응답**으로 보여준다.
      응답은 2026-09-03 정본 팩에서 den_engine.answer_why / scenario 가 반환한 것을 옮겼다(총괄 scratch curation_responses2.txt · 지어낸 값 없음). -->
 <section class="wrap" id="curation-sec">
-  <h2 class="display reveal d1" data-i18n="cu_h2">조문 검색이 아니라, 큐레이션입니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="cu_lede">"어디에 쓰여 있나"만이 아니라 "왜 그런가 · 무엇이 먼저인가"에 den 이 실제로 반환한 응답입니다.</p>
+  <h2 class="display reveal d1" data-i18n="cu_h2">응답 예시</h2>
+  <p class="sec-lede reveal d2" data-i18n="cu_lede">이유와 공정 순서를 묻는 질문에 Den이 실제로 반환한 응답입니다.</p>
   <div class="compare">
     <div class="pane den reveal">
-      <div class="ph"><span data-i18n="cu1t">왜 — 인과 설명</span> <span class="who" data-i18n="cu1w">도구: answer_why</span></div>
+      <div class="ph"><span data-i18n="cu1t">인과 설명</span> <span class="who" data-i18n="cu1w"></span></div>
       <div class="pb">
         <p class="q" data-i18n="cu1q">왜 콘크리트에 양생이 필요한가?</p>
         <div class="chain">
-          <div class="cstep"><span class="rel">causes · consensus</span><br><span data-i18n="cu1c1">양생 → 압축강도 발현 <span class="sc">수분·온도를 유지해 수화가 계속된다</span></span></div>
-          <div class="cstep"><span class="rel">causes · consensus</span><br><span data-i18n="cu1c2">양생 → 내구성 <span class="sc">조기 건조·동결·과열에 따른 균열과 강도 저하를 줄인다</span></span></div>
-          <div class="cstep"><span class="rel">norm_clause · kr-norm</span><br><span data-i18n="cu1c3">"보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에 필요한 강도를 얻을 수 있게 실시하여야 한다"</span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_cc">물리 인과 · 합의</span><br><span data-i18n="cu1c1">양생 → 압축강도 발현 <span class="sc">수분·온도를 유지해 수화가 계속된다</span></span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_cc">물리 인과 · 합의</span><br><span data-i18n="cu1c2">양생 → 내구성 <span class="sc">조기 건조·동결·과열에 따른 균열과 강도 저하를 줄인다</span></span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="cu1c3">"보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에 필요한 강도를 얻을 수 있게 실시하여야 한다"</span></div>
         </div>
-        <div class="src-line" data-i18n="cu1s">근거: KCS 14 20 콘크리트공사 · KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고(reference)로 따로 표시되어 국내 규범과 섞이지 않습니다.</div>
+        <div class="src-line" data-i18n="cu1s">근거: KCS 14 20 콘크리트공사, KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고 자료로 따로 표시합니다.</div>
       </div>
     </div>
     <div class="pane den reveal d1">
-      <div class="ph"><span data-i18n="cu2t">순서 — 공정 구성</span> <span class="who" data-i18n="cu2w">도구: scenario</span></div>
+      <div class="ph"><span data-i18n="cu2t">공정 순서</span> <span class="who" data-i18n="cu2w"></span></div>
       <div class="pb">
         <p class="q" data-i18n="cu2q">철근콘크리트 골조 시공 순서는?</p>
-        <p data-i18n="cu2a">철근콘크리트 골조 1개층 시공은 6단계입니다. LLM 이 아니라 그래프의 선후 관계로 구성합니다.</p>
+        <p data-i18n="cu2a">철근콘크리트 골조 1개 층 시공을 6단계로 구성했습니다. 단계 순서는 지식 그래프에 기록된 선후 관계를 따릅니다.</p>
         <div class="chain">
-          <div class="cstep"><span class="rel">parallel start</span><br><span data-i18n="cu2c1">① 기둥·벽 배근 ∥ ② 기둥·벽 거푸집</span></div>
-          <div class="cstep"><span class="rel">requires</span><br><span data-i18n="cu2c2">③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생</span></div>
-          <div class="cstep"><span class="rel d">gap · 정직 표기</span><br><span data-i18n="cu2c3">먹매김·거푸집 해체는 아직 정본 노드가 없어 <b>갭으로 보고</b>합니다 — 지어내지 않습니다.</span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_ps">동시 시작</span><br><span data-i18n="cu2c1">① 기둥·벽 배근 ∥ ② 기둥·벽 거푸집</span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_rq">선행 조건</span><br><span data-i18n="cu2c2">③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생</span></div>
+          <div class="cstep"><span class="rel d" data-i18n="rl_gap">미보유 표시</span><br><span data-i18n="cu2c3">먹매김과 거푸집 해체는 근거가 되는 원문이 아직 없어 <b>미보유</b>로 표시합니다.</span></div>
         </div>
-        <div class="src-line" data-i18n="cu2s">단계마다 requires·grounded_in 엣지로 조문과 규칙이 붙습니다. 순서 근거가 없는 단계는 병렬(맥락 의존)로 표기합니다.</div>
+        <div class="src-line" data-i18n="cu2s">각 단계에는 근거 조문과 실무 규칙이 연결되어 있고, 순서 근거가 없는 단계는 동시 진행으로 표시합니다.</div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="p_h2">실무를 위한<br>정확한 지식을 제공합니다.</h2>
+  <h2 class="display reveal d1" data-i18n="p_h2">Den 연결 전후 답변 비교</h2>
   <div class="compare">
     <div class="pane reveal">
-      <div class="ph"><span data-i18n="pn1t">일반 Agent</span> <span class="who" data-i18n="pn1w">지식: 사전학습</span></div>
+      <div class="ph"><span data-i18n="pn1t">Den 연결 전</span> <span class="who" data-i18n="pn1w">모델 학습 지식</span></div>
       <div class="pb">
         <p class="q" data-i18n="pnq">RC 보 스터럽 최대 간격은?</p>
         <p data-i18n="pn1b">수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.</p>
-        <p style="font-size:12.5px" data-i18n="pn1n">— 맞는 설명입니다. 다만 <b>전단력이 커지면 이 값이 절반이 됩니다.</b> 그 조건이 빠져 있습니다.</p>
+        <p style="font-size:12.5px" data-i18n="pn1n">일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.</p>
       </div>
     </div>
     <div class="pane den reveal d1">
-      <div class="ph"><span data-i18n="pn2t">Den을 주입한 Agent</span> <span class="who" data-i18n="pn2w">지식: Den 전공자료</span></div>
+      <div class="ph"><span data-i18n="pn2t">Den 연결 후</span> <span class="who" data-i18n="pn2w">Den 지식팩</span></div>
       <div class="pb">
         <p class="q" data-i18n="pnq2">RC 보 스터럽 최대 간격은?</p>
-        <p data-i18n="pn2a">조건에 따라 두 갈래입니다.</p>
+        <p data-i18n="pn2a">조건에 따라 두 가지로 나뉩니다.</p>
         <div class="chain">
-          <div class="cstep"><span class="rel">norm_clause · kr-norm</span><br><span data-i18n="pc1">Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span></span></div>
-          <div class="cstep"><span class="rel">norm_clause · kr-norm</span><br><span data-i18n="pc2">Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하 — 절반</span></span></div>
-          <div class="cstep"><span class="rel">norm_clause · kr-norm</span><br><span data-i18n="pc3">Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span></span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc1">Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span></span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc2">Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하(절반)</span></span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc3">Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span></span></div>
         </div>
         <p data-i18n="pn2b">전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.</p>
         <div class="src-line" data-i18n="pn2s">Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2</div>
@@ -826,29 +789,70 @@ html{scroll-snap-type:y proximity}
 <!-- 11 기권 시연(2026-07-26 개편, PI 채택): Den 의 핵심 차별점을 **말이 아니라 보여준다**.
      범위 안이면 근거를 붙여 답하고, 범위 밖이면 침묵한다 — 그럴듯한 오답이 환각보다 나쁘기 때문. -->
 <section class="wrap" id="abstain-sec">
-  <h2 class="display reveal d1" data-i18n="ab_h2">근거가 없으면, 답하지 않습니다</h2>
-  <p class="sec-lede reveal d2" data-i18n="ab_lede">언어 모델은 모르는 것 앞에서도 문장을 만들 수 있습니다. Den은 근거가 없으면 문장을 만들지 않습니다.</p>
+  <h2 class="display reveal d1" data-i18n="ab_h2">보유 범위 밖 질문의 처리</h2>
+  <p class="sec-lede reveal d2" data-i18n="ab_lede">언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.</p>
   <div class="compare">
     <div class="pane den reveal">
-      <div class="ph"><span data-i18n="ab1t">범위 안 — 건축</span> <span class="who" data-i18n="ab1w">근거를 붙여 답합니다</span></div>
+      <div class="ph"><span data-i18n="ab1t">보유 범위 안</span> <span class="who" data-i18n="ab1w">근거와 함께 답변</span></div>
       <div class="pb">
         <p class="q" data-i18n="ab1q">철근 최소 피복두께 기준은?</p>
         <div class="chain">
-          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c1">수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm</span></div>
-          <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c2">흙·옥외공기에 직접 노출 — D19 이상 50mm · D16 이하 40mm</span></div>
-            <div class="cstep"><span class="rel">practice_rule</span><br><span data-i18n="ab1c3">직접 접하지 않음 — 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c1">수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm</span></div>
+          <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c2">흙·옥외공기에 직접 노출: D19 이상 50mm · D16 이하 40mm</span></div>
+            <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c3">직접 접하지 않음: 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
         </div>
-        <div class="src-line" data-i18n="ab1s">근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준 — Den이 답과 함께 반환합니다.</div>
+        <div class="src-line" data-i18n="ab1s">근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준. Den이 답과 함께 반환합니다.</div>
       </div>
     </div>
     <div class="pane reveal d1">
-      <div class="ph"><span data-i18n="ab2t">범위 밖 — 비건축</span> <span class="who" data-i18n="ab2w">지어내지 않습니다</span></div>
+      <div class="ph"><span data-i18n="ab2t">보유 범위 밖</span> <span class="who" data-i18n="ab2w">미보유 표시</span></div>
       <div class="pb">
         <p class="q" data-i18n="ab2q">양자컴퓨터 오류정정 방식은?</p>
-        <p data-i18n="ab2a" style="opacity:.85">관련 전공자료가 없습니다.</p>
-        <p style="font-size:12.5px" data-i18n="ab2n">— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.</p>
+        <p data-i18n="ab2a" style="opacity:.85">관련 자료를 보유하고 있지 않습니다.</p>
+        <p style="font-size:12.5px" data-i18n="ab2n">에이전트는 이 신호를 받아 Den의 보유 범위 밖이라고 안내하고, 다른 조문으로 빈칸을 채우지 않습니다.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="wrap">
+    <h2 class="display reveal d1" data-i18n="e_h2">국가기술자격 기출 비교</h2>
+    <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프론티어 모델 2개가 국가기술자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 두 모델 모두 166문항(86.5%)이었습니다.</p>
+    <div class="stats reveal d2">
+      <div class="stat"><div class="n" data-count="86.5" data-dec="1" data-suffix="%">86.5%</div><div class="l" data-i18n="e1">모델 A·B 단독</div></div>
+      <div class="stat hi"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den 연결 시 (모델 A)</div></div>
+      <div class="stat"><div class="n" data-count="8.9" data-dec="1" data-prefix="+" data-suffix="%p">+8.9%p</div><div class="l" data-i18n="e3">모델 A 상승 폭</div></div>
+      <div class="stat hi"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 급수 상승 폭</div></div>
+    </div>
+    <p class="fine reveal d2" data-i18n="e_note">모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.</p>
+  </section>
+
+<section class="wrap">
+  <h2 class="display reveal d1" data-i18n="h_h2">연결 방법</h2>
+  <p class="sec-lede reveal d2" data-i18n="h_lede">지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="t" data-i18n="sp1t">1. 연결</div>
+      <div class="d" data-i18n="sp1d">Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.</div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2. 질문</div>
+      <div class="d" data-i18n="sp2d">평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3. 근거 확인</div>
+      <div class="d" data-i18n="sp3d">답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.</div></div>
+  </div>
+
+  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다.
+       ★2026-08-24 총괄 138회차 — 주석만 남고 **블록이 비어 있었다**(C310). 그래서 표지가
+       "설정 한 줄"이라 말해 놓고 그 한 줄을 끝내 안 보여줬고, 연결을 말하는 자리가
+       FAQ JSON-LD 하나(=사람이 아니라 검색·LLM 이 읽는 자리)뿐이었다.
+       순서는 136·137회차 실측을 따른다 — 외부 계정의 질의가 실제로 도착한 경로는
+       OAuth 하나뿐이고(oauth 6발급 4사용 ↔ web 9/0 · cli 5/0) 키를 먼저 말하면
+       죽은 채널로 보낸다. ∴ 키 없는 커넥터가 첫째, 키는 마지막이다. -->
+  <div class="steps" style="margin-top:20px">
+    <div class="step reveal"><div class="t" data-i18n="cn1t">웹 커넥터 (키 불필요)</div>
+      <div class="d" data-i18n="cn1d">Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="cn2t">Claude Desktop</div>
+      <div class="d" data-i18n="cn2d">설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="cn3t">그 밖의 클라이언트</div>
+      <div class="d" data-i18n="cn3d">커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.</div></div>
   </div>
 </section>
 
@@ -856,17 +860,18 @@ html{scroll-snap-type:y proximity}
 <section class="wrap" id="faq">
   <h2 class="display reveal d1" data-i18n="faq_h2">자주 묻는 질문</h2>
   <div class="honest reveal d2">
-    <p><b data-i18n="f1q">den 은 어떤 MCP 서버입니까?</b><br><span data-i18n="f1a">den 은 원격 MCP 로 제공되는 AEC 전문 지식 큐레이팅 시스템입니다. 건축 MCP · 건설 MCP · AEC MCP 로 분류됩니다. 한국 건설기준 KDS·KCS·KS 와 건축 법령, 그리고 구조·시공·설비·재료·계획의 전문 지식을 한 그래프에서 답합니다.</span></p>
-    <p><b data-i18n="f2q">기준·조문을 검색하는 MCP 와 무엇이 다릅니까?</b><br><span data-i18n="f2a">조문 검색은 "어디에 쓰여 있나"를 답합니다. den 은 "왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가"까지 답하고, 근거가 없으면 답하지 않습니다.</span></p>
-    <p><b data-i18n="f3q">어떤 도구가 있습니까?</b><br><span data-i18n="f3a">기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude·ChatGPT 의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 커버리지는 부분적이며, 보유하지 않은 것은 보유하지 않았다고 말합니다.</span></p>
+    <p><b data-i18n="f1q">Den은 어떤 서비스입니까?</b><br><span data-i18n="f1a">Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다.</span></p>
+    <p><b data-i18n="f2q">기준·조문을 검색하는 MCP와 무엇이 다릅니까?</b><br><span data-i18n="f2a">조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.</span></p>
+    <p><b data-i18n="f3q">어떤 도구가 있습니까?</b><br><span data-i18n="f3a">기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.</span></p>
   </div>
 </section>
 
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="o_h2">Den의 여정에 함께해 주십시오</h2>
-  <div class="honest reveal d2" data-i18n="o_body">커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.</div>
+  <h2 class="display reveal d1" data-i18n="o_h2">베타 사용 신청</h2>
+  <p class="sec-lede reveal d2" data-i18n="o_beta">Den은 무료 베타로 운영합니다. 사용 신청이 승인되면 커넥터를 연결해 사용할 수 있습니다.</p>
+  <div class="honest reveal d2" data-i18n="o_body">보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.</div>
   <div class="honest reveal d3" style="margin-top:1.25rem">
-    <a href="/notes/" style="color:var(--ember);text-decoration:none" data-i18n="o_notes">den 한계 기록 →</a>
+    <a href="/notes/" style="color:var(--ember);text-decoration:none" data-i18n="o_notes">Den 한계 기록 →</a>
   </div>
 
 
@@ -877,7 +882,7 @@ html{scroll-snap-type:y proximity}
   </div>
   <footer style="padding:26px 0 0">
     <span><b>Den</b> · <span data-i18n="ft1">AEC 전문 지식 큐레이팅 시스템</span></span>
-    <span style="display:flex;gap:1rem"><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none">개인정보</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
+    <span style="display:flex;gap:1rem"><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none">개인정보 처리방침</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
   </footer>
 </section>
 
@@ -889,80 +894,80 @@ html{scroll-snap-type:y proximity}
 
   /* ================= i18n ================= */
   var I18N = {
-    ko: { ab_h2:'근거가 없으면, 답하지 않습니다',
-      ab_lede:'언어 모델은 모르는 것 앞에서도 문장을 만들 수 있습니다. Den은 근거가 없으면 문장을 만들지 않습니다.',
-      ab1t:'범위 안 — 건축', ab1w:'근거를 붙여 답합니다', ab1q:'철근 최소 피복두께 기준은?',
+    ko: { r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 사용 신청이 승인되면 커넥터를 연결해 사용할 수 있습니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
+      ab_lede:'언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.',
+      ab1t:'보유 범위 안', ab1w:'근거와 함께 답변', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
-      ab1c3:'직접 접하지 않음 — 보·기둥 40mm · 슬래브 D35 이하 20mm', ab1c2:'흙·옥외공기에 직접 노출 — D19 이상 50mm · D16 이하 40mm',
-      ab1s:'근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준 — Den이 답과 함께 반환합니다.',
-      ab2t:'범위 밖 — 비건축', ab2w:'지어내지 않습니다', ab2q:'양자컴퓨터 오류정정 방식은?',
-      ab2a:'관련 전공자료가 없습니다.',
-      ab2n:'— 빈 응답이 <b>정직한 답</b>입니다. Agent는 이 신호를 받아 "Den 범위 밖"이라고 말하고, 없는 조문을 끌어오지 않습니다.',
+      ab1c3:'직접 접하지 않음: 보·기둥 40mm · 슬래브 D35 이하 20mm', ab1c2:'흙·옥외공기에 직접 노출: D19 이상 50mm · D16 이하 40mm',
+      ab1s:'근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준. Den이 답과 함께 반환합니다.',
+      ab2t:'보유 범위 밖', ab2w:'미보유 표시', ab2q:'양자컴퓨터 오류정정 방식은?',
+      ab2a:'관련 자료를 보유하고 있지 않습니다.',
+      ab2n:'에이전트는 이 신호를 받아 Den의 보유 범위 밖이라고 안내하고, 다른 조문으로 빈칸을 채우지 않습니다.',
       ch_note:'',
       eyebrow:'',
       h1:'AEC 전문 지식|[큐레이팅] 시스템',
-      lede:'<b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조문만이 아니라 왜·순서·비교·종류까지 근거와 함께 답합니다. 근거가 없으면 답하지 않습니다.<br>쓰시던 ChatGPT·Claude 에 그대로 연결됩니다.',
+      lede:'<b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.',
       cta:'사용 신청',
       jeyebrow:'인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 우리는 같은 본능으로 공간을 읽습니다.',
       instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'',
-      g_lede:'Den이 "아파트"에 대해 실제로 반환한 관계입니다. 개념에 마우스를 올려 보십시오.',
-      g_title:'apartment — Den 이 실제로 반환한 관계',
-      lg1:'물리 인과 causes', lg2:'가능 조건 enables', lg3:'정서 evokes', lg5:'법규·대조 requires', lg4:'계보 evolvedFrom',
-      info_k:'개념을 선택하십시오',
-      info_d:'정의와 근거가 표시됩니다.', w_h2:'Den은 정보를 만들지 않습니다.<br>고릅니다.',
-      w_lede:'요약해 주는 도구는 많습니다. Den은 근거가 붙은 것만 골라 건넵니다.',
-      r1h:'문단째로 주면<br>Agent도 헤맵니다',
-      r1b:'"아파트"는 하나의 개념입니다. 인술라에서 이어진 계보와 오늘의 대피공간 기준이 같은 노드에 붙습니다. 문단을 검색하는 것이 아니라 개념을 건넵니다.',
-      r2h:'수치에는<br>출처가 따라옵니다',
-      r2b:'스터럽 간격을 물으면 KDS 14 20 22 §4.3.1·4.3.2 가 함께 옵니다. 근거 없는 수치는 그래프에 들어오지 못합니다.',
-      r3h:'값에는<br>적용 조건이 붙습니다',
-      r3b:'전단력이 커지면 스터럽 간격은 절반이 됩니다. Den은 언제 그 값이 참인지를 함께 건넵니다.',
-      r4h:'축열은 물리,<br>아늑함은 주장입니다',
-      r4b:'Den은 둘을 섞지 않습니다. 논쟁적인 것은 논쟁적이라고 표시합니다.', h_h2:'쓰시던 Agent 그대로',
-      h_lede:'설치할 앱도, 바꿀 습관도 없습니다.',
-      sp1t:'1 — 연결', sp1d:'커넥터 주소 하나로 연결합니다. Claude·ChatGPT 등 MCP 클라이언트에서 사용합니다.',
-      sp2t:'2 — 질의', sp2d:'평소처럼 물어보시면 됩니다.',
-      cn1t:'키 없이 — 웹 커넥터', cn1d:'Claude·ChatGPT 의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b> 로 인증합니다.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop — 한 번에', cn2d:'<a href="den.mcpb">den.mcpb</a> 를 받아 열면 설정이 완료됩니다.',
+      g_lede:'Den이 「아파트」 질문에 실제로 반환한 관계입니다. 개념에 마우스를 올리면 정의와 근거가 표시됩니다.',
+      g_title:'아파트 · Den이 실제로 반환한 관계',
+      lg1:'물리 인과', lg2:'가능 조건', lg3:'정서', lg5:'법규·대조', lg4:'계보',
+      info_k:'개념 선택',
+      info_d:'개념을 선택하면 정의와 근거가 표시됩니다.', w_h2:'Den이 지식을 다루는 방식',
+      w_lede:'Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.',
+      r1h:'문단 대신 개념 단위',
+      r1b:'「아파트」 개념 하나에 인술라에서 이어진 계보와 대피공간 기준이 함께 연결됩니다. 에이전트는 문단을 찾는 대신 개념과 근거를 받습니다.',
+      r2h:'수치와 출처',
+      r2b:'스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.',
+      r3h:'수치와 적용 조건',
+      r3b:'전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.',
+      r4h:'사실과 주장의 구분',
+      r4b:'축열 같은 물리 현상과 아늑함 같은 해석을 나눠 담고, 학설 사이에 논쟁이 있는 내용은 논쟁 중으로 표시합니다.', h_h2:'연결 방법',
+      h_lede:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.',
+      sp1t:'1. 연결', sp1d:'Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.',
+      sp2t:'2. 질문', sp2d:'평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.',
+      cn1t:'웹 커넥터 (키 불필요)', cn1d:'Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop', cn2d:'설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.',
       cn3t:'그 밖의 클라이언트', cn3d:'커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.',
-      sp3t:'3 — 근거', sp3d:'답과 함께 <b>근거</b>(인과 경로 · 적용 조건 · 출처)가 옵니다.', p_h2:'실무를 위한<br>정확한 지식을 제공합니다.',
+      sp3t:'3. 근거 확인', sp3d:'답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.', p_h2:'Den 연결 전후 답변 비교',
       p_lede:'',
-      pn1t:'일반 Agent', pn1w:'지식: 사전학습', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
+      pn1t:'Den 연결 전', pn1w:'모델 학습 지식', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
       pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
-      pn1n:'— 맞는 설명입니다. 다만 <b>전단력이 커지면 이 값이 절반이 됩니다.</b> 그 조건이 빠져 있습니다.',
-      pn2t:'Den을 주입한 Agent', pn2w:'지식: Den 전공자료',
-      pn2a:'조건에 따라 두 갈래입니다.',
+      pn1n:'일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.',
+      pn2t:'Den 연결 후', pn2w:'Den 지식팩',
+      pn2a:'조건에 따라 두 가지로 나뉩니다.',
       pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span>',
-      pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하 — 절반</span>',
+      pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하(절반)</span>',
       pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
       pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
-      pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'Den의 여정에 함께해 주십시오',
-      o_body:'커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.',
-      o_notes:'den 한계 기록 →',
+      pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'베타 사용 신청',
+      o_body:'보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.',
+      o_notes:'Den 한계 기록 →',
       wl_h2:'AI 에이전트에 AEC 규범·실무 지식을<br>출처와 함께 제공합니다.', wl_cta:'사용 신청',
       ft1:'AEC 전문 지식 큐레이팅 시스템', ft2:'© 2026 Den', ftg:'클라이언트별 연결 안내',
       ftc:'문의 support@den.archi',
-      cu_h2:'조문 검색이 아니라, 큐레이션입니다',
-      cu_lede:'"어디에 쓰여 있나"만이 아니라 "왜 그런가 · 무엇이 먼저인가"에 den 이 실제로 반환한 응답입니다.',
-      cu1t:'왜 — 인과 설명', cu1w:'도구: answer_why', cu1q:'왜 콘크리트에 양생이 필요한가?',
+      cu_h2:'응답 예시',
+      cu_lede:'이유와 공정 순서를 묻는 질문에 Den이 실제로 반환한 응답입니다.',
+      cu1t:'인과 설명', cu1w:'', cu1q:'왜 콘크리트에 양생이 필요한가?',
       cu1c1:'양생 → 압축강도 발현 <span class="sc">수분·온도를 유지해 수화가 계속된다</span>',
       cu1c2:'양생 → 내구성 <span class="sc">조기 건조·동결·과열에 따른 균열과 강도 저하를 줄인다</span>',
       cu1c3:'"보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에 필요한 강도를 얻을 수 있게 실시하여야 한다"',
-      cu1s:'근거: KCS 14 20 콘크리트공사 · KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고(reference)로 따로 표시되어 국내 규범과 섞이지 않습니다.',
-      cu2t:'순서 — 공정 구성', cu2w:'도구: scenario', cu2q:'철근콘크리트 골조 시공 순서는?',
-      cu2a:'철근콘크리트 골조 1개층 시공은 6단계입니다. LLM 이 아니라 그래프의 선후 관계로 구성합니다.',
+      cu1s:'근거: KCS 14 20 콘크리트공사, KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고 자료로 따로 표시합니다.',
+      cu2t:'공정 순서', cu2w:'', cu2q:'철근콘크리트 골조 시공 순서는?',
+      cu2a:'철근콘크리트 골조 1개 층 시공을 6단계로 구성했습니다. 단계 순서는 지식 그래프에 기록된 선후 관계를 따릅니다.',
       cu2c1:'① 기둥·벽 배근 ∥ ② 기둥·벽 거푸집',
       cu2c2:'③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생',
-      cu2c3:'먹매김·거푸집 해체는 아직 정본 노드가 없어 <b>갭으로 보고</b>합니다 — 지어내지 않습니다.',
-      cu2s:'단계마다 requires·grounded_in 엣지로 조문과 규칙이 붙습니다. 순서 근거가 없는 단계는 병렬(맥락 의존)로 표기합니다.',
+      cu2c3:'먹매김과 거푸집 해체는 근거가 되는 원문이 아직 없어 <b>미보유</b>로 표시합니다.',
+      cu2s:'각 단계에는 근거 조문과 실무 규칙이 연결되어 있고, 순서 근거가 없는 단계는 동시 진행으로 표시합니다.',
       faq_h2:'자주 묻는 질문',
-      f1q:'den 은 어떤 MCP 서버입니까?',
-      f1a:'den 은 원격 MCP 로 제공되는 AEC 전문 지식 큐레이팅 시스템입니다. 건축 MCP · 건설 MCP · AEC MCP 로 분류됩니다. 한국 건설기준 KDS·KCS·KS 와 건축 법령, 그리고 구조·시공·설비·재료·계획의 전문 지식을 한 그래프에서 답합니다.',
-      f2q:'기준·조문을 검색하는 MCP 와 무엇이 다릅니까?',
-      f2a:'조문 검색은 "어디에 쓰여 있나"를 답합니다. den 은 "왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가"까지 답하고, 근거가 없으면 답하지 않습니다.',
+      f1q:'Den은 어떤 서비스입니까?',
+      f1a:'Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다.',
+      f2q:'기준·조문을 검색하는 MCP와 무엇이 다릅니까?',
+      f2a:'조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.',
       f3q:'어떤 도구가 있습니까?',
-      f3a:'기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude·ChatGPT 의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 커버리지는 부분적이며, 보유하지 않은 것은 보유하지 않았다고 말합니다.',
+      f3a:'기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.',
       eras:[
         ['야외','Open Air','지붕 없는 밤 — 인류는 시야와 도주로로 안전을 쟀습니다. 그 계산은 지금도 우리 안에 있습니다.'],
         ['동굴','The Den','첫 번째 벽이 생겼습니다. 등 뒤가 안전해지자 비로소 마음이 다른 곳을 볼 수 있었습니다.'],
@@ -974,16 +979,15 @@ html{scroll-snap-type:y proximity}
         ['가상','Virtual','몸 없이 거주하는 첫 세대가 왔습니다. 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.']
       ],
       langbtn:'EN',
-    e_h2:'모델을 바꿔도<br>86.5% 였습니다.',
-      e_lede:'서로 다른 프론티어 모델 2종이 국가기술자격 기출 192문항을 같은 조건으로 풀었습니다. 단독 점수는 166/192로 정확히 같았습니다.',
-      e1:'모델 A·B 단독 — 동일',
-      e2:'Den을 붙였을 때',
-      e3:'Den이 만든 차이',
-      e4:'기능장 급수에서의 차이',
-      e_kick:'모델을 바꾸는 것으로는 오르지 않았습니다. Den을 붙였을 때 올랐습니다.',
-      e_note:'※ 모델 A 는 86.5→95.3(+8.9%p), 모델 B 는 86.5→93.8(+7.3%p)입니다. 공개 기출이라 양쪽 모두 LLM의 암기분이 포함돼 절대 점수는 실제보다 높습니다.'
+    e_h2:'국가기술자격 기출 비교',
+      e_lede:'서로 다른 프론티어 모델 2개가 국가기술자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 두 모델 모두 166문항(86.5%)이었습니다.',
+      e1:'모델 A·B 단독',
+      e2:'Den 연결 시 (모델 A)',
+      e3:'모델 A 상승 폭',
+      e4:'기능장 급수 상승 폭',
+      e_note:'모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.'
     },
-      en: { ab_h2:'Without grounds, it does not answer',
+      en: { r5h:'Response Record', r5b:'Each response includes a record of the knowledge pack version, the evidence items and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After an access request is approved, the connector can be added to an AI agent.', rl_cc:'causes · consensus', rl_nc:'norm_clause · kr-norm', rl_ps:'parallel start', rl_rq:'requires', rl_gap:'gap · 정직 표기', rl_pr:'practice_rule', gs_apt:'apartment · space_type', gs_spec:'spec_value · KR', gs_norm:'norm_clause · KR', gs_q:'quality', gs_emo:'정서 — claimed', el_evo:'evolvedFrom', el_req:'requires', el_gr:'grounded_in', el_en:'enables', el_ev:'evokes', el_ct:'contrasts',  ab_h2:'Without grounds, it does not answer',
       ab_lede:'A language model can produce a sentence even when it does not know. Den does not produce one without grounds.',
       ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
       ab1c1:'Cast under water 100mm · permanently buried against earth 75mm',
@@ -1074,25 +1078,24 @@ html{scroll-snap-type:y proximity}
       e2:'With Den',
       e3:'What Den added',
       e4:'Gap at the Master Craftsman tier',
-      e_kick:'Changing the model did not move it. Adding Den did.',
       e_note:'※ Model A went from 86.5 to 95.3 (+8.9%p) and Model B from 86.5 to 93.8 (+7.3%p). These are public past exams, so both models include memorized answers and the absolute scores read high.',
     },
   
   };
   var GDATA = {
       ko: {
-        'apartment':{ko:'아파트',kind:'space_type · L1 골격',def:'한 건물에 독립 세대들이 반복 수용된 집합주거.',chips:[['phys','L1 골격']],src:'Den 실제 반환'},
-        'insula':{ko:'인술라',kind:'physical_object · evolvedFrom',def:'로마 도시의 하층·중간층 다수가 거주한 다층 집합주거 또는 임대 블록으로, 단독 상류층 주택인 도무스와 사회적·공간적으로 대비된다.',chips:[['','evolvedFrom']],src:'계보'},
-        'tenement':{ko:'테너먼트',kind:'physical_object · evolvedFrom',def:'산업도시 노동자를 수용한 협소·과밀 다층 임대주택.',chips:[['','evolvedFrom']],src:'계보'},
-        'haussmann-apartment':{ko:'오스만 아파트',kind:'physical_object · evolvedFrom',def:'층별 계층분화를 가진 파리 부르주아 임대 아파트.',chips:[['','evolvedFrom']],src:'계보'},
-        'kr-spec-apartment-refuge-common-3m2':{ko:'대피공간 3㎡',kind:'spec_value · requires',def:'아파트 4층 이상 인접 세대 공동 대피공간 최소 바닥면적에 적용되는 KR 법규 수치 기준: 3 m2.',chips:[['phys','requires']],src:'KR 법규 수치'},
-        'kr-spec-apartment-refuge-private-2m2':{ko:'세대 대피공간 2㎡',kind:'spec_value · requires',def:'아파트 4층 이상 각 세대별 대피공간 최소 바닥면적에 적용되는 KR 법규 수치 기준: 2 m2.',chips:[['phys','requires']],src:'KR 법규 수치'},
-        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'특별피난계단 16층',kind:'spec_value · requires',def:'공동주택 특별피난계단 설치 대상 상층 기준에 적용되는 KR 법규 수치 기준: 16 floor_count.',chips:[['phys','requires']],src:'KR 법규 수치'},
-        'kr-ba-08-remodel':{ko:'리모델링 완화',kind:'norm_clause · grounded_in',def:'리모델링이 쉬운 공동주택은 용적률ㆍ높이ㆍ일조 기준의 일부 완화를 받을 수 있다. 완화 폭은 하위령 기준 안에서 제한된다.',chips:[['phys','grounded_in']],src:'KR 조문'},
-        'urban-density':{ko:'도시 밀도',kind:'quality · enables',def:'한정 면적에 인구가 조밀하게 집중된 상태.',chips:[['phys','enables']],src:'가능 조건'},
-        'household-autonomy':{ko:'세대 독립성',kind:'quality · enables',def:'각 집이 조리, 수면, 저장, 수리, 전시, 의례를 자체적으로 수행할 수 있어 마을 안에서 독립성과 반복성을 갖는 성질.',chips:[['phys','enables']],src:'가능 조건'},
-        'anonymity':{ko:'익명성',kind:'emotion_instinct · evokes',def:'밀집 주거에서 서로를 모르는 익명적 감각.',chips:[['claim','evokes']],src:'정서 — 주장(claimed)'},
-        'suburban-house':{ko:'교외 단독주택',kind:'physical_object · contrasts',def:'자동차·융자로 대량공급된 교외 단독주택.',chips:[['','contrasts']],src:'대조 축'}
+        'apartment':{ko:'아파트',kind:'공간 유형',def:'한 건물에 독립 세대들이 반복 수용된 집합주거.',chips:[['phys','공간 유형']],src:'Den 실제 반환'},
+        'insula':{ko:'인술라',kind:'건축 유형 · 계보',def:'로마 도시의 하층·중간층 다수가 거주한 다층 집합주거 또는 임대 블록으로, 단독 상류층 주택인 도무스와 사회적·공간적으로 대비된다.',chips:[['','계보']],src:'계보'},
+        'tenement':{ko:'테너먼트',kind:'건축 유형 · 계보',def:'산업도시 노동자를 수용한 협소·과밀 다층 임대주택.',chips:[['','계보']],src:'계보'},
+        'haussmann-apartment':{ko:'오스만 아파트',kind:'건축 유형 · 계보',def:'층별 계층분화를 가진 파리 부르주아 임대 아파트.',chips:[['','계보']],src:'계보'},
+        'kr-spec-apartment-refuge-common-3m2':{ko:'대피공간 3㎡',kind:'국내 법규 수치',def:'아파트 4층 이상 인접 세대 공동 대피공간 최소 바닥면적에 적용되는 국내 법규 수치 기준 3㎡.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
+        'kr-spec-apartment-refuge-private-2m2':{ko:'세대 대피공간 2㎡',kind:'국내 법규 수치',def:'아파트 4층 이상 각 세대별 대피공간 최소 바닥면적에 적용되는 국내 법규 수치 기준 2㎡.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
+        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'특별피난계단 16층',kind:'국내 법규 수치',def:'공동주택 특별피난계단 설치 대상 상층 기준에 적용되는 국내 법규 수치 기준 16층.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
+        'kr-ba-08-remodel':{ko:'리모델링 완화',kind:'국내 규범 조문',def:'리모델링이 쉬운 공동주택은 용적률ㆍ높이ㆍ일조 기준의 일부 완화를 받을 수 있다. 완화 폭은 하위령 기준 안에서 제한된다.',chips:[['phys','근거 조문']],src:'국내 조문'},
+        'urban-density':{ko:'도시 밀도',kind:'성질 · 가능 조건',def:'한정 면적에 인구가 조밀하게 집중된 상태.',chips:[['phys','가능 조건']],src:'가능 조건'},
+        'household-autonomy':{ko:'세대 독립성',kind:'성질 · 가능 조건',def:'각 집이 조리, 수면, 저장, 수리, 전시, 의례를 자체적으로 수행할 수 있어 마을 안에서 독립성과 반복성을 갖는 성질.',chips:[['phys','가능 조건']],src:'가능 조건'},
+        'anonymity':{ko:'익명성',kind:'정서',def:'밀집 주거에서 서로를 모르는 익명적 감각.',chips:[['claim','정서 (주장)']],src:'정서 (주장)'},
+        'suburban-house':{ko:'교외 단독주택',kind:'건축 유형 · 대조',def:'자동차·융자로 대량공급된 교외 단독주택.',chips:[['','대조']],src:'대조 축'}
       },
       en: {
         'apartment':{ko:'Apartment',kind:'space_type · L1 backbone',def:'Repeated independent households stacked in one building.',chips:[['phys','L1 backbone']],src:'Den live output'},
