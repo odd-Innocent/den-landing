@@ -52,7 +52,7 @@
   "inLanguage": "ko",
   "keywords": "건축 MCP, 건설 MCP, AEC MCP, 건축법 MCP, 건설기준 MCP",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW",
-             "description": "베타 기간에는 무료입니다. 사용 신청이 승인된 계정으로 사용합니다."},
+             "description": "베타 기간에는 무료입니다. 가입한 계정으로 사용합니다."},
   "featureList": [
     "기준·조문 찾기", "연결 근거 확인", "용어 정의", "인과 설명", "공정 순서 구성", "두 공법 대조",
     "종류 열거", "대지 조건 확인", "평면 법규 검토", "개념 연결 찾기", "선후 관계 따라가기"
@@ -85,7 +85,7 @@
       "name": "어떻게 사용합니까?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "사용 신청이 승인된 계정으로 진행합니다. Claude와 ChatGPT의 커스텀 커넥터에 https://mcp.den.archi/mcp를 등록하고 OAuth로 인증합니다. OAuth를 지원하지 않는 클라이언트(Claude Desktop 확장 den.mcpb, CLI)는 대시보드에서 발급한 키로 연결합니다."
+        "text": "가입한 계정으로 진행합니다. Claude와 ChatGPT의 커스텀 커넥터에 https://mcp.den.archi/mcp를 등록하고 OAuth로 인증합니다. OAuth를 지원하지 않는 클라이언트(Claude Desktop 확장 den.mcpb, CLI)는 대시보드에서 발급한 키로 연결합니다."
       }
     },
     {
@@ -567,7 +567,7 @@ html{scroll-snap-type:y proximity}
     <h1 class="display" id="kinetic" data-i18n-h1="1">AEC 전문 지식|[큐레이팅] 시스템</h1>
     <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.</p>
     <div class="cta-row">
-      <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">사용 신청</a>
+      <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">시작하기</a>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
@@ -698,7 +698,7 @@ html{scroll-snap-type:y proximity}
   </div>
 </section>
 
-<!-- CEO 10-19 웹 문안(gates/CEO_1019_웹문안): 서사 뒤 절 순서 — 지식을 다루는 방식 → 응답 예시 → 연결 전후 비교 → 보유 범위 밖 처리 → 기출 비교 → 연결 방법 → 자주 묻는 질문 → 베타 사용 신청. 40,000년 서사는 CEO 결정(감성 칸)으로 문구 · 자리 그대로. -->
+<!-- CEO 10-19 웹 문안(gates/CEO_1019_웹문안): 서사 뒤 절 순서 — 지식을 다루는 방식 → 응답 예시 → 연결 전후 비교 → 보유 범위 밖 처리 → 기출 비교 → 연결 방법 → 자주 묻는 질문 → 베타 가입(CEO 11-14 낱말 개정). 40,000년 서사는 CEO 결정(감성 칸)으로 문구 · 자리 그대로. -->
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="w_h2">Den이 지식을 다루는 방식</h2>
   <p class="sec-lede reveal d2" data-i18n="w_lede">Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.</p>
@@ -869,18 +869,15 @@ html{scroll-snap-type:y proximity}
 </section>
 
 <section class="wrap">
-  <h2 class="display reveal d1" data-i18n="o_h2">베타 사용 신청</h2>
-  <p class="sec-lede reveal d2" data-i18n="o_beta">Den은 무료 베타로 운영합니다. 사용 신청이 승인되면 커넥터를 연결해 사용할 수 있습니다.</p>
+  <h2 class="display reveal d1" data-i18n="o_h2">베타 가입</h2>
+  <p class="sec-lede reveal d2" data-i18n="o_beta">Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.</p>
   <div class="honest reveal d2" data-i18n="o_body">보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.</div>
-  <div class="honest reveal d3" style="margin-top:1.25rem">
-    <a href="/notes/" style="color:var(--ember);text-decoration:none" data-i18n="o_notes">Den 한계 기록 →</a>
-  </div>
 
 
 
   <div class="waitlist reveal">
     <h2 class="display" data-i18n="wl_h2">AI 에이전트에 AEC 규범·실무 지식을<br>출처와 함께 제공합니다.</h2>
-    <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="wl_cta">사용 신청</a>
+    <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="wl_cta">시작하기</a>
   </div>
   <footer style="padding:26px 0 0">
     <span><b>Den</b> · <span data-i18n="ft1">AEC 전문 지식 큐레이팅 시스템</span></span>
@@ -896,7 +893,7 @@ html{scroll-snap-type:y proximity}
 
   /* ================= i18n ================= */
   var I18N = {
-    ko: { r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 사용 신청이 승인되면 커넥터를 연결해 사용할 수 있습니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
+    ko: { r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
       ab_lede:'언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.',
       ab1t:'보유 범위 안', ab1w:'근거와 함께 답변', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
@@ -909,7 +906,7 @@ html{scroll-snap-type:y proximity}
       eyebrow:'',
       h1:'AEC 전문 지식|[큐레이팅] 시스템',
       lede:'<b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.',
-      cta:'사용 신청',
+      cta:'시작하기',
       jeyebrow:'인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 우리는 같은 본능으로 공간을 읽습니다.',
       instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'',
@@ -944,10 +941,9 @@ html{scroll-snap-type:y proximity}
       pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하(절반)</span>',
       pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
       pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
-      pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'베타 사용 신청',
+      pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'베타 가입',
       o_body:'보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.',
-      o_notes:'Den 한계 기록 →',
-      wl_h2:'AI 에이전트에 AEC 규범·실무 지식을<br>출처와 함께 제공합니다.', wl_cta:'사용 신청',
+      wl_h2:'AI 에이전트에 AEC 규범·실무 지식을<br>출처와 함께 제공합니다.', wl_cta:'시작하기',
       ft1:'AEC 전문 지식 큐레이팅 시스템', ft2:'© 2026 Den', ftg:'클라이언트별 연결 안내',
       ftc:'문의 support@den.archi',
       cu_h2:'응답 예시',
@@ -989,7 +985,7 @@ html{scroll-snap-type:y proximity}
       e4:'기능장 급수 상승 폭',
       e_note:'모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.'
     },
-      en: { r5h:'Response Record', r5b:'Each response includes a record of the knowledge pack version, the evidence items and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After an access request is approved, the connector can be added to an AI agent.', rl_cc:'causes · consensus', rl_nc:'norm_clause · kr-norm', rl_ps:'parallel start', rl_rq:'requires', rl_gap:'gap · 정직 표기', rl_pr:'practice_rule', gs_apt:'apartment · space_type', gs_spec:'spec_value · KR', gs_norm:'norm_clause · KR', gs_q:'quality', gs_emo:'정서 — claimed', el_evo:'evolvedFrom', el_req:'requires', el_gr:'grounded_in', el_en:'enables', el_ev:'evokes', el_ct:'contrasts',  ab_h2:'Without grounds, it does not answer',
+      en: { r5h:'Response Record', r5b:'Each response includes a record of the knowledge pack version, the evidence items and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'causes · consensus', rl_nc:'norm_clause · kr-norm', rl_ps:'parallel start', rl_rq:'requires', rl_gap:'gap · 정직 표기', rl_pr:'practice_rule', gs_apt:'apartment · space_type', gs_spec:'spec_value · KR', gs_norm:'norm_clause · KR', gs_q:'quality', gs_emo:'정서 — claimed', el_evo:'evolvedFrom', el_req:'requires', el_gr:'grounded_in', el_en:'enables', el_ev:'evokes', el_ct:'contrasts',  ab_h2:'Without grounds, it does not answer',
       ab_lede:'A language model can produce a sentence even when it does not know. Den does not produce one without grounds.',
       ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
       ab1c1:'Cast under water 100mm · permanently buried against earth 75mm',
@@ -1002,7 +998,7 @@ html{scroll-snap-type:y proximity}
       eyebrow:'',
       h1:'AEC Expert Knowledge|[Curation] System',
       lede:'<b>den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.</b><br>Beyond clauses, it explains why, in what order, how two methods differ and which kinds exist, each with its grounds. Without grounds, it does not answer.<br>It connects to ChatGPT and Claude as they are.',
-      cta:'Request Access',
+      cta:'Get Started',
       jeyebrow:'40,000 years of understanding space',
       instbig:'The person who sat with their back to the fire, watching the dark — and we, choosing the [seat against the wall] in a café today — read space with the same instinct.',
       instsmall:'That instinct made the cave, the hearth, the settlement, the city.<br>Den restores that lineage as data.', g_h2:'',
@@ -1037,10 +1033,9 @@ html{scroll-snap-type:y proximity}
       pc2:'If Vs <b>exceeds</b> that → s ≤ d/4 <span class="sc">and ≤ 300 mm — half</span>',
       pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">and ≥ 0.35·bw·s/fyt</span>',
       pn2b:'Design yield strength of shear reinforcement fyt is 500 MPa or less; welded deformed wire fabric 600 MPa or less.',
-      pn2s:'Grounds returned by Den: KDS 14 20 22 §4.3.1·4.3.2', o_h2:'Join Den\'s journey',
+      pn2s:'Grounds returned by Den: KDS 14 20 22 §4.3.1·4.3.2', o_h2:'Sign Up',
       o_body:'Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice.',
-      o_notes:'den limitations record →',
-      wl_h2:'Korean AEC codes and practice knowledge<br>for AI agents, with sources.', wl_cta:'Request Access',
+      wl_h2:'Korean AEC codes and practice knowledge<br>for AI agents, with sources.', wl_cta:'Get Started',
       ft1:'AEC Expert Knowledge Curation System', ft2:'© 2026 Den', ftg:'Connection Guide',
       ftc:'Contact support@den.archi',
       cu_h2:'Curation, not clause lookup',
@@ -1567,7 +1562,7 @@ html{scroll-snap-type:y proximity}
   // ★이 목록은 machine/key_label.SOURCES 의 부분집합이어야 한다. 여기만 늘리면
   //  방문은 채널별로 세면서 **가입은 서버가 통째로 버린다**(2026-09-01 실측 결함).
   //  지키는 자: test_src_vocab_parity.py · test_landing_source_transport.py(실제 JS 대조)
-  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb','punkpeye','tensorblock','den_repo','den_registry','geeknews','disquiet','linkedin','xcom','threads','careerly','openchat','demo','direct','developer_community','aec_community','practice_article','mcp_directory','cursor','practical_reason_sequence','a220-txx'];
+  var OK = ['smithery','landing','glama','pulsemcp','mcpso','github','mcpb','punkpeye','tensorblock','den_repo','den_registry','geeknews','disquiet','linkedin','xcom','threads','careerly','openchat','demo','direct','developer_community','aec_community','practice_article','mcp_directory','cursor','practical_reason_sequence','a220-txx','youtube','shorts','instagram','naver_blog','seminar','expo','press','newsletter'];
   try {
     var f = (new URLSearchParams(location.search).get('from') || '').toLowerCase();
     if (f && OK.indexOf(f) >= 0) {
