@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- CEO 10-19 다크 전용(gates/CEO_1019_다크모드): 기기 설정과 무관하게 다크 디자인 하나로 보인다. -->
+<!-- 다크 전용(2026-10-19): 기기 설정과 무관하게 다크 디자인 하나로 보인다. -->
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#151110">
-<title>Den | AEC 전문 지식 큐레이팅 시스템 (건축 · 건설 MCP)</title>
+<title>Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)</title>
 <!-- 웹폰트 로드(2026-07-26): 종전에는 font-family 에 Pretendard 를 적기만 하고 불러오지 않아,
      설치되지 않은 기기에서 Malgun Gothic 등으로 떨어져 조판이 무너졌다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -18,8 +18,10 @@
 <!-- 링크 미리보기·파비콘(2026-07-27): og/twitter 메타가 **하나도 없어서** 카카오톡·슬랙·
      트위터 어디에 붙여넣어도 로고가 뜨지 않았다. assets/logo/og.png 는 로컬에만 있고
      게시 저장소에 올라간 적도 없어 404 였다(publish_landing.sh 기본값이 index.html 뿐). -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png">
-<link rel="apple-touch-icon" href="assets/logo/den-mark-ember.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-light.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <meta name="description" content="AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Den">
@@ -56,46 +58,6 @@
   "featureList": [
     "기준·조문 찾기", "연결 근거 확인", "용어 정의", "인과 설명", "공정 순서 구성", "두 공법 대조",
     "종류 열거", "대지 조건 확인", "평면 법규 검토", "개념 연결 찾기", "선후 관계 따라가기"
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Den은 무엇을 합니까?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "건축·건설 기준을 물으면 출처를 붙여 답합니다. 근거를 찾지 못하면 추측하지 않고 미보유로 표시합니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "일반 AI 답변과 무엇이 다릅니까?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "답에 출처가 붙고, 근거가 없으면 미보유로 표시합니다. 국가기술자격 기출 문항을 같은 조건으로 비교했을 때 Den을 연결한 쪽의 점수가 높았고, 전문 심화 급수일수록 차이가 컸습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있습니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "어떻게 사용합니까?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "가입한 계정으로 진행합니다. Claude와 ChatGPT의 커스텀 커넥터에 https://mcp.den.archi/mcp를 등록하고 OAuth로 인증합니다. OAuth를 지원하지 않는 클라이언트(Claude Desktop 확장 den.mcpb, CLI)는 대시보드에서 발급한 키로 연결합니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "아직 다루지 못하는 영역은 무엇입니까?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "건축계획·실내건축 등 정성적 판단 영역은 아직 약합니다. 계약 문서 해석(지체상금 면제·설계변경·하자담보)도 아직 근거를 찾지 못합니다. 근거가 없는 영역은 미보유로 표시합니다."
-      }
-    }
   ]
 }
 </script>
@@ -605,7 +567,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   <div class="hero-glow" id="hglow"></div>
   <div id="torch" aria-hidden="true"></div>
   <div class="wrap">
-    <h1 class="display" id="kinetic" data-i18n-h1="1">AEC 전문 지식|[큐레이팅] 시스템</h1>
+    <h1 class="display" id="kinetic" data-i18n-h1="1">AEC 전문 지식 큐레이팅 시스템</h1>
     <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.</p>
     <div class="cta-row">
       <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">시작하기</a>
@@ -659,7 +621,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 </div>
 
 <div class="instinct wrap">
-  <p class="big display" id="instinct-big" data-i18n-words="1">3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 우리는 같은 본능으로 공간을 읽습니다.</p>
+  <p class="big display" id="instinct-big" data-i18n-words="1">3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 벽을 등진 자리부터 채우는 우리는 같은 본능으로 공간을 읽습니다.</p>
   <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.</p>
 </div>
 
@@ -714,41 +676,41 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       <text class="elabel" x="544" y="455" data-i18n="el_ev">정서</text>
       <text class="elabel" x="724" y="455" data-i18n="el_ct">대조</text>
       <g class="gnode hub" data-n="apartment" transform="translate(368,252)">
-        <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle">아파트</text>
+        <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle" data-graph-i18n="0">아파트</text>
         <text class="sub" x="92" y="50" text-anchor="middle" data-i18n="gs_apt">공간 유형</text></g>
       <g class="gnode" data-n="insula" transform="translate(28,96)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">인술라</text>
-        <text class="sub" x="95" y="41" text-anchor="middle">로마 임대주거</text></g>
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="1">인술라</text>
+        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="2">로마 임대주거</text></g>
       <g class="gnode" data-n="tenement" transform="translate(28,200)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">테너먼트</text>
-        <text class="sub" x="95" y="41" text-anchor="middle">산업도시 노동자</text></g>
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="3">테너먼트</text>
+        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="4">산업도시 노동자</text></g>
       <g class="gnode" data-n="haussmann-apartment" transform="translate(28,304)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle">오스만 아파트</text>
-        <text class="sub" x="95" y="41" text-anchor="middle">파리 층별 계층</text></g>
+        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="5">오스만 아파트</text>
+        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="6">파리 층별 계층</text></g>
       <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(668,14)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">대피공간 3㎡</text>
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="7">대피공간 3㎡</text>
         <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(668,84)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">세대 대피공간 2㎡</text>
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="8">세대 대피공간 2㎡</text>
         <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(668,154)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">특별피난계단 16층</text>
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="9">특별피난계단 16층</text>
         <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
       <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(668,224)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle">리모델링 완화</text>
+        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="10">리모델링 완화</text>
         <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_norm">국내 규범 조문</text></g>
       <g class="gnode" data-n="urban-density" transform="translate(150,468)">
-        <rect width="156" height="54"/><text x="78" y="23" text-anchor="middle">도시 밀도</text>
+        <rect width="156" height="54"/><text x="78" y="23" text-anchor="middle" data-graph-i18n="11">도시 밀도</text>
         <text class="sub" x="78" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
       <g class="gnode" data-n="household-autonomy" transform="translate(322,468)">
-        <rect width="168" height="54"/><text x="84" y="23" text-anchor="middle">세대 독립성</text>
+        <rect width="168" height="54"/><text x="84" y="23" text-anchor="middle" data-graph-i18n="12">세대 독립성</text>
         <text class="sub" x="84" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
       <g class="gnode emo" data-n="anonymity" transform="translate(506,468)">
-        <rect width="132" height="54"/><text x="66" y="23" text-anchor="middle">익명성</text>
+        <rect width="132" height="54"/><text x="66" y="23" text-anchor="middle" data-graph-i18n="13">익명성</text>
         <text class="sub" x="66" y="41" text-anchor="middle" data-i18n="gs_emo">정서 (주장)</text></g>
       <g class="gnode" data-n="suburban-house" transform="translate(654,468)">
-        <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle">교외 단독주택</text>
-        <text class="sub" x="98" y="41" text-anchor="middle">대조 축</text></g>
+        <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle" data-graph-i18n="14">교외 단독주택</text>
+        <text class="sub" x="98" y="41" text-anchor="middle" data-graph-i18n="15">대조 축</text></g>
     </svg>
     </div>
     <div class="info" id="info">
@@ -758,7 +720,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   </div>
 </section>
 
-<!-- CEO 10-19 웹 문안(gates/CEO_1019_웹문안): 서사 뒤 절 순서 — 지식을 다루는 방식 → 응답 예시 → 연결 전후 비교 → 보유 범위 밖 처리 → 기출 비교 → 연결 방법 → 자주 묻는 질문 → 베타 가입(CEO 11-14 낱말 개정). 40,000년 서사는 CEO 결정(감성 칸)으로 문구 · 자리 그대로. -->
+<!-- 2026-10-19 웹 문안: 서사 뒤 절은 지식 처리, 응답 예시, 비교, 범위 밖 처리, 기출 비교, 연결 방법, FAQ, 베타 가입 순서다. 40,000년 서사의 문구와 자리는 그대로 둔다. -->
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="w_h2">Den이 지식을 다루는 방식</h2>
   <p class="sec-lede reveal d2" data-i18n="w_lede">Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.</p>
@@ -787,7 +749,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 </section>
 
 <!-- 큐레이션 시연(2026-09-04 · 설명구 2026-09-14 "AEC 전문 지식 큐레이팅 시스템"): 조문 검색이 아니라 왜·순서를 **실제 응답**으로 보여준다.
-     응답은 2026-09-03 정본 팩에서 den_engine.answer_why / scenario 가 반환한 것을 옮겼다(총괄 scratch curation_responses2.txt · 지어낸 값 없음). -->
+     응답은 2026-09-03 정본 팩에서 den_engine.answer_why / scenario 가 반환한 검증된 원문을 옮겼다. -->
 <section class="wrap" id="curation-sec">
   <h2 class="display reveal d1" data-i18n="cu_h2">응답 예시</h2>
   <p class="sec-lede reveal d2" data-i18n="cu_lede">이유와 공정 순서를 묻는 질문에 Den이 실제로 반환한 응답입니다.</p>
@@ -901,13 +863,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       <div class="d" data-i18n="sp3d">답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.</div></div>
   </div>
 
-  <!-- 12 연결 3방법(2026-07-26 개편, PI 채택): beta.html 로 이탈시키지 않고 여기서 바로 보여준다.
-       ★2026-08-24 총괄 138회차 — 주석만 남고 **블록이 비어 있었다**(C310). 그래서 표지가
-       "설정 한 줄"이라 말해 놓고 그 한 줄을 끝내 안 보여줬고, 연결을 말하는 자리가
-       FAQ JSON-LD 하나(=사람이 아니라 검색·LLM 이 읽는 자리)뿐이었다.
-       순서는 136·137회차 실측을 따른다 — 외부 계정의 질의가 실제로 도착한 경로는
-       OAuth 하나뿐이고(oauth 6발급 4사용 ↔ web 9/0 · cli 5/0) 키를 먼저 말하면
-       죽은 채널로 보낸다. ∴ 키 없는 커넥터가 첫째, 키는 마지막이다. -->
+  <!-- 연결 세 방법을 이 페이지에서 바로 보여준다. 실측상 작동한 OAuth 경로를 먼저 두고, 키 연결은 마지막에 둔다. -->
   <div class="steps" style="margin-top:20px">
     <div class="step reveal"><div class="t" data-i18n="cn1t">웹 커넥터 (키 불필요)</div>
       <div class="d" data-i18n="cn1d">Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
@@ -918,7 +874,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   </div>
 </section>
 
-<!-- 검색어 안내 절(2026-09-04, CEO: 큐레이션 포지셔닝 + 검색 노출). 검색어는 사람이 치는 말, 본문은 정본 문안(docs/brand/den_positioning.md). -->
+<!-- 검색어 안내 절(2026-09-04): 큐레이션 포지셔닝과 검색 노출을 위한 정본 문안이다. -->
 <section class="wrap" id="faq">
   <h2 class="display reveal d1" data-i18n="faq_h2">자주 묻는 질문</h2>
   <div class="honest reveal d2">
@@ -944,8 +900,8 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
           <p data-i18n="gf1p">동굴에서 도시까지, 사람이 공간에서 얻은 기준은 법령과 설계기준, 시방서로 쌓였습니다. Den은 그 기준을 에이전트가 읽는 지식으로 정리해 출처와 함께 제공합니다.</p>
         </article>
         <article class="graft-block">
-          <h3 data-i18n="gf2h">에이전트와 일하는 사람에게</h3>
-          <p data-i18n="gf2p">설계와 시공의 질문을 에이전트에게 맡길 때, 조항과 수치마다 붙은 출처로 근거를 확인할 수 있습니다. 보유하지 않은 내용은 미보유로 표시합니다.</p>
+          <h3 data-i18n="gf2h">에이전트와 일하는 실무자와 회사</h3>
+          <p data-i18n="gf2p">설계, 엔지니어링, 시공, 유지관리 업무에 AI 에이전트를 쓰는 실무자와 건설 AX를 준비하는 회사가 대상입니다. 조항과 수치마다 붙은 출처로 근거를 확인할 수 있고, 보유하지 않은 내용은 미보유로 표시합니다.</p>
         </article>
         <article class="graft-block">
           <h3 data-i18n="gf3h">접목하는 방법</h3>
@@ -962,7 +918,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   </section>
   <footer style="padding:26px 0 0">
     <span><b>Den</b> · <span data-i18n="ft1">AEC 전문 지식 큐레이팅 시스템</span></span>
-    <span style="display:flex;gap:1rem"><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none">개인정보 처리방침</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
+    <span style="display:flex;gap:1rem"><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_terms">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_privacy">개인정보 처리방침</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
   </footer>
 </section>
 
@@ -974,7 +930,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 
   /* ================= i18n ================= */
   var I18N = {
-    ko: { r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
+    ko: { doc_title:'Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)', doc_desc:'AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.', ft_terms:'이용약관', ft_privacy:'개인정보 처리방침', r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
       ab_lede:'언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.',
       ab1t:'보유 범위 안', ab1w:'근거와 함께 답변', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
@@ -1026,7 +982,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       o_body:'보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.',
       wl_h2:'불가의 새 자리',
       gf1h:'이야기 속 Den의 자리', gf1p:'동굴에서 도시까지, 사람이 공간에서 얻은 기준은 법령과 설계기준, 시방서로 쌓였습니다. Den은 그 기준을 에이전트가 읽는 지식으로 정리해 출처와 함께 제공합니다.',
-      gf2h:'에이전트와 일하는 사람에게', gf2p:'설계와 시공의 질문을 에이전트에게 맡길 때, 조항과 수치마다 붙은 출처로 근거를 확인할 수 있습니다. 보유하지 않은 내용은 미보유로 표시합니다.',
+      gf2h:'에이전트와 일하는 실무자와 회사', gf2p:'설계, 엔지니어링, 시공, 유지관리 업무에 AI 에이전트를 쓰는 실무자와 건설 AX를 준비하는 회사가 대상입니다. 조항과 수치마다 붙은 출처로 근거를 확인할 수 있고, 보유하지 않은 내용은 미보유로 표시합니다.',
       gf3h:'접목하는 방법', gf3p:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.', wl_cta:'Den 큐레이팅 시스템 접목하기',
       ft1:'AEC 전문 지식 큐레이팅 시스템', ft2:'© 2026 Den', ftg:'클라이언트별 연결 안내',
       ftc:'문의 support@den.archi',
@@ -1070,101 +1026,101 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       e4:'기능장 급수 상승 폭',
       e_note:'모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.'
     },
-      en: { r5h:'Response Record', r5b:'Each response includes a record of the knowledge pack version, the evidence items and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'causes · consensus', rl_nc:'norm_clause · kr-norm', rl_ps:'parallel start', rl_rq:'requires', rl_gap:'gap · 정직 표기', rl_pr:'practice_rule', gs_apt:'apartment · space_type', gs_spec:'spec_value · KR', gs_norm:'norm_clause · KR', gs_q:'quality', gs_emo:'정서 — claimed', el_evo:'evolvedFrom', el_req:'requires', el_gr:'grounded_in', el_en:'enables', el_ev:'evokes', el_ct:'contrasts',  ab_h2:'Without grounds, it does not answer',
-      ab_lede:'A language model can produce a sentence even when it does not know. Den does not produce one without grounds.',
-      ab1t:'In scope — architecture', ab1w:'answers with grounds', ab1q:'Minimum concrete cover for rebar?',
-      ab1c1:'Cast under water 100mm · permanently buried against earth 75mm',
-      ab1c3:'Not directly exposed — beams/columns 40mm · slabs D35− 20mm', ab1c2:'Directly exposed to earth or weather — D19+ 50mm · D16− 40mm',
-      ab1s:'Source: KDS 14 20 50 — returned by Den alongside the answer.',
-      ab2t:'Out of scope — non-architecture', ab2w:'does not invent', ab2q:'How does quantum error correction work?',
-      ab2a:'No relevant domain material.',
-      ab2n:'— The empty response <b>is</b> the honest answer. The agent reads this signal, reports that the query is outside Den\'s scope, and does not bring in clauses that do not exist.',
+      en: { doc_title:'Den | AEC Expert Knowledge Curation System (AEC MCP for Korean Building Codes)', doc_desc:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.', ft_terms:'Terms (Korean)', ft_privacy:'Privacy Policy (Korean)', r5h:'Response Records', r5b:'Each response includes a record of the knowledge pack version, the source items, and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'Physical causality · consensus', rl_nc:'Korean standard clause', rl_ps:'Concurrent start', rl_rq:'Prerequisite', rl_gap:'outside curated scope', rl_pr:'Practice rule', gs_apt:'Space type', gs_spec:'Korean statutory value', gs_norm:'Korean standard clause', gs_q:'Property', gs_emo:'emotion (claimed)', el_evo:'Lineage', el_req:'Statutory requirement', el_gr:'Source clause', el_en:'Enabling condition', el_ev:'Emotion', el_ct:'Contrast', ab_h2:'Handling Questions Outside the Curated Scope',
+      ab_lede:'A language model can produce a sentence without a source. When no source is found, Den returns a signal that the question is outside the curated scope instead of an answer.',
+      ab1t:'Within the curated scope', ab1w:'Answer with sources', ab1q:'What is the minimum concrete cover for reinforcement?',
+      ab1c1:'Cast underwater: 100mm · permanently buried against earth: 75mm',
+      ab1c3:'Not directly exposed: beams and columns 40mm · slabs D35 or smaller 20mm', ab1c2:'Directly exposed to earth or outdoor air: D19 or larger 50mm · D16 or smaller 40mm',
+      ab1s:'Source: KDS 14 20 50 Concrete Structure Reinforcement Detailing Design Standard. Den returns the source with the answer.',
+      ab2t:'Outside the curated scope', ab2w:'Marked as outside the curated scope', ab2q:'How does quantum computer error correction work?',
+      ab2a:'The curated scope has no material on this topic.',
+      ab2n:'The agent receives this signal, reports that the question is outside the curated scope of Den, and does not fill the blank with other clauses.',
       ch_note:'',
       eyebrow:'',
       h1:'AEC Expert Knowledge|[Curation] System',
-      lede:'<b>den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.</b><br>Beyond clauses, it explains why, in what order, how two methods differ and which kinds exist, each with its grounds. Without grounds, it does not answer.<br>It connects to ChatGPT and Claude as they are.',
+      lede:'<b>Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.</b><br>A source is attached to each clause and value, and content outside the curated scope is marked as such.<br>Claude and ChatGPT connect through one connector address.',
       cta:'Get Started',
-      jeyebrow:'40,000 years of understanding space',
-      instbig:'The person who sat with their back to the fire, watching the dark — and we, choosing the [seat against the wall] in a café today — read space with the same instinct.',
-      instsmall:'That instinct made the cave, the hearth, the settlement, the city.<br>Den restores that lineage as data.', g_h2:'',
-      g_lede:'What Den actually returns for "apartment." Hover a concept.',
-      g_title:'apartment — what Den actually returns',
-      lg1:'physical causes', lg2:'enabling condition', lg3:'emotional evokes', lg5:'statutory / contrast', lg4:'lineage evolvedFrom',
-      info_k:'Select a concept',
-      info_d:'Definition and evidence appear here.', w_h2:'Den does not create information.<br>It selects.',
-      w_lede:'Plenty of tools summarize. Den hands over only what comes with its evidence.',
-      r1h:'A graph of atomic concepts,<br>not paragraphs',
-      r1b:'"Apartment" is one concept. The lineage from the Roman insula and today\'s refuge-area rule attach to the same node. Den hands over a concept, not retrieved paragraphs.',
-      r2h:'Every figure<br>arrives with its source',
-      r2b:'Ask about stirrup spacing and KDS 14 20 22 §4.3.1·4.3.2 comes with it. Figures without a source never enter the graph.',
-      r3h:'Each value<br>comes with its conditions',
-      r3b:'Past a shear threshold the spacing halves. Den states when the number applies.',
-      r4h:'An epistemology that separates<br>physics from feeling',
-      r4b:'Den does not mix the two. What is contested is marked contested.', h_h2:'Works with Existing Agents',
-      h_lede:'There is nothing to install and nothing to relearn.',
-      sp1t:'1 — Connect', sp1d:'One connector address connects an agent to Den. The app and the workflow stay the same.',
-      sp2t:'2 — Ask', sp2d:'The agent is asked as usual. When needed, it calls Den\'s <code>answer_why</code> and <code>path_between</code> tools on its own.',
-      cn1t:'No key — web connector', cn1d:'The address is registered as a custom connector in Claude or ChatGPT, with <b>OAuth</b> as the authentication method.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop — one click', cn2d:'Opening the downloaded <a href="den.mcpb">den.mcpb</a> completes the setup.',
-      cn3t:'Other clients', cn3d:'Clients without connector authentication connect with a key. The steps are in the <a href="beta.html">setup guide</a>.',
-      sp3t:'3 — Evidence', sp3d:'The answer arrives with its <b>evidence</b>: causal path, scope conditions and sources. The judgment stays with the user and the agent.', p_h2:'Precise knowledge,<br>for practice.',
+      jeyebrow:'40,000 Years of Understanding Space',
+      instbig:'A person watching the dark with a back to the fire 30,000 years ago and a person choosing a [seat against the wall] in a café today read space through the same instinct.',
+      instsmall:'That instinct built the cave, the hearth, the settlement, and the city.<br>Den reconstructs the lineage as data.', g_h2:'',
+      g_lede:'These are the relations Den returned for a question about the apartment. Hovering over a concept shows its definition and sources.',
+      g_title:'Apartment · relations returned by Den',
+      lg1:'Physical causality', lg2:'Enabling condition', lg3:'Emotion', lg5:'Statute · contrast', lg4:'Lineage',
+      info_k:'Concept Selection',
+      info_d:'Selecting a concept displays its definition and source.', w_h2:'How Den Handles Knowledge',
+      w_lede:'Den provides only knowledge that has a basis in the source text, organized by concept.',
+      r1h:'Concept Units Instead of Paragraphs',
+      r1b:'The apartment concept connects both its lineage from the insula and its refuge-space requirements. The agent receives concepts and sources instead of paragraphs.',
+      r2h:'Values and Sources',
+      r2b:'A question about stirrup spacing returns KDS 14 20 22 4.3.1·4.3.2 with the answer. Values without a source are excluded from the knowledge pack.',
+      r3h:'Values and Conditions',
+      r3b:'The maximum stirrup spacing is halved when the shear force exceeds the threshold. Den provides the condition under which each value applies.',
+      r4h:'Separation of Facts and Claims',
+      r4b:'Physical phenomena such as heat storage are separated from interpretations such as coziness. Content disputed among theories is marked as disputed.', h_h2:'Connection Method',
+      h_lede:'The connector address is registered in the AI agent already in use.',
+      sp1t:'1. Connect', sp1d:'The connector address is registered in an MCP client such as Claude or ChatGPT.',
+      sp2t:'2. Ask', sp2d:'A question is asked as usual, and the agent calls Den when needed.',
+      cn1t:'Web Connector (No Key Required)', cn1d:'The address is entered as a custom connector in Claude or ChatGPT and authenticated with <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop', cn2d:'The installation file (<a href="den.mcpb">den.mcpb</a>) is downloaded and run, and the key issued by the dashboard is entered during installation.',
+      cn3t:'Other Clients', cn3d:'Clients without connector authentication connect with a key. The procedure is available in the <a href="beta.html">connection guide</a>.',
+      sp3t:'3. Check Sources', sp3d:'The answer includes sources, conditions of application, and causal paths.', p_h2:'Comparison Before and After Connecting Den',
       p_lede:'',
-      pn1t:'Generic Agent', pn1w:'knowledge: pretraining', pnq:'Maximum stirrup spacing in an RC beam?', pnq2:'Maximum stirrup spacing in an RC beam?',
-      pn1b:'Vertical stirrup spacing is generally d/2 or less, and not more than 600 mm. Check the minimum shear reinforcement as well.',
-      pn1n:'— Correct. However, <b>once the shear force is large the limit halves.</b> That condition is missing.',
-      pn2t:'Agent + Den', pn2w:'knowledge: den curated material',
-      pn2a:'Two branches, depending on the condition.',
-      pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">and ≤ 600 mm</span>',
-      pc2:'If Vs <b>exceeds</b> that → s ≤ d/4 <span class="sc">and ≤ 300 mm — half</span>',
-      pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">and ≥ 0.35·bw·s/fyt</span>',
-      pn2b:'Design yield strength of shear reinforcement fyt is 500 MPa or less; welded deformed wire fabric 600 MPa or less.',
-      pn2s:'Grounds returned by Den: KDS 14 20 22 §4.3.1·4.3.2', o_h2:'Sign Up',
+      pn1t:'Before Connecting Den', pn1w:'Model training knowledge', pnq:'What is the maximum stirrup spacing in an RC beam?', pnq2:'What is the maximum stirrup spacing in an RC beam?',
+      pn1b:'The maximum vertical stirrup spacing is generally 1/2 of effective depth d or less and 600mm or less. The minimum amount of shear reinforcement also requires review.',
+      pn1n:'This statement is correct in general. It omits the condition that <b>the spacing is halved when the shear force exceeds the threshold.</b>',
+      pn2t:'After Connecting Den', pn2w:'Den knowledge pack',
+      pn2a:'The answer has two cases according to the condition.',
+      pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">and 600mm or less</span>',
+      pc2:'If Vs <b>exceeds</b> this value → s ≤ d/4 <span class="sc">and 300mm or less (half)</span>',
+      pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">and at least 0.35·bw·s/fyt</span>',
+      pn2b:'The design yield strength fyt of shear reinforcement is 500MPa or less. Welded deformed wire fabric is 600MPa or less.',
+      pn2s:'Source returned by Den: KDS 14 20 22 Concrete Structure Shear and Torsion Design Standard §4.3.1·4.3.2', o_h2:'Sign Up',
       o_body:'Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice.',
-      wl_h2:'A new seat by the fire',
-      gf1h:'Den\'s place in this story', gf1p:'From the cave to the city, the criteria people gained from space accumulated as statutes, design standards and specifications. Den organizes those criteria into knowledge that agents can read, and provides it with sources.',
-      gf2h:'For people who work with agents', gf2p:'When design and construction questions go to an agent, the source attached to each clause and figure makes the grounds checkable. Items Den does not have are stated as such in the response.',
-      gf3h:'How to connect', gf3p:'Register the connector address in the AI agent already in use.', wl_cta:'Connect the Den Curation System',
+      wl_h2:'A New Seat by the Fire',
+      gf1h:'The Place of Den in the Story', gf1p:'From the cave to the city, the standards people gained from space have accumulated as statutes, design standards, and specifications. Den organizes those standards into knowledge that agents can read and provides it with sources.',
+      gf2h:'For Practitioners and Companies Working with Agents', gf2p:'Den is for practitioners who use AI agents in design, engineering, construction, and operation and maintenance, and for companies preparing AI transformation (AX) in construction. The source attached to each clause and value shows the basis of an answer, and content outside the curated scope is marked as such.',
+      gf3h:'Integration Method', gf3p:'The connector address is registered in the AI agent already in use.', wl_cta:'Integrate the Den Curation System',
       ft1:'AEC Expert Knowledge Curation System', ft2:'© 2026 Den', ftg:'Connection Guide',
       ftc:'Contact support@den.archi',
-      cu_h2:'Curation, not clause lookup',
-      cu_lede:'What den actually returned when asked not "where is it written" but "why" and "what comes first".',
-      cu1t:'Why — causal explanation', cu1w:'tool: answer_why', cu1q:'Why does concrete need curing?',
-      cu1c1:'Curing → compressive strength <span class="sc">moisture and temperature kept so hydration continues</span>',
-      cu1c2:'Curing → durability <span class="sc">less cracking and strength loss from early drying, freezing or overheating</span>',
-      cu1c3:'"After insulated curing ends, curing continues until the strength required at the control age is reached"',
-      cu1s:'Grounds: KCS 14 20 Concrete Work · KCS 14 20 40:2024 Cold-Weather Concrete 3.4.2 (6). Foreign sources are labelled reference and never mixed with domestic norms.',
-      cu2t:'Order — work sequence', cu2w:'tool: scenario', cu2q:'In what order is an RC frame built?',
-      cu2a:'One storey of RC frame has 6 stages, composed from precedence edges on the graph rather than by an LLM.',
-      cu2c1:'① Column/wall rebar ∥ ② Column/wall formwork',
-      cu2c2:'③ Embedments and inspection → ④ Concrete placing → ⑤ Compaction → ⑥ Curing',
-      cu2c3:'Layout marking and formwork removal have no canonical node yet, so they are <b>reported as gaps</b> — not invented.',
-      cu2s:'Each stage carries requires and grounded_in edges to clauses and rules. Stages without precedence grounds are marked parallel (context-dependent).',
+      cu_h2:'Response Examples',
+      cu_lede:'These are responses Den returned to questions about reasons and work sequence.',
+      cu1t:'Causal Explanation', cu1w:'', cu1q:'Why does concrete require curing?',
+      cu1c1:'Curing → compressive strength development <span class="sc">hydration continues when moisture and temperature are maintained</span>',
+      cu1c2:'Curing → durability <span class="sc">reduces cracking and strength loss caused by early drying, freezing, or overheating</span>',
+      cu1c3:'"After insulated curing ends, curing shall continue so that the strength required for the expected load at the control age is obtained"',
+      cu1s:'Source: KCS 14 20 Concrete Work, KCS 14 20 40:2024 Cold Weather Concrete 3.4.2 (6). Foreign literature is identified separately as reference material.',
+      cu2t:'Work Sequence', cu2w:'', cu2q:'What is the construction sequence for a reinforced concrete frame?',
+      cu2a:'Construction of 1 floor of a reinforced concrete frame is arranged in 6 stages. The order of stages follows the precedence relations recorded in the knowledge graph.',
+      cu2c1:'① Column and wall reinforcement ∥ ② Column and wall formwork',
+      cu2c2:'③ Embedded items and inspection → ④ Concrete placement → ⑤ Compaction → ⑥ Curing',
+      cu2c3:'Layout marking and formwork removal have no supporting original source and are marked as <b>outside the curated scope</b>.',
+      cu2s:'Each stage connects to source clauses and practice rules. Stages without a source for their order are marked as concurrent.',
       faq_h2:'Frequently Asked Questions',
-      f1q:'What kind of MCP server is den?',
-      f1a:'den is an AEC Expert Knowledge Curation System served as a remote MCP server. It is classed as an architecture, construction and AEC MCP server. It covers the national construction standards KDS·KCS·KS, building statutes, and domain knowledge across structure, construction, MEP, materials and planning, on one graph.',
-      f2q:'How is it different from a clause-lookup MCP?',
-      f2a:'Clause lookup answers "where is it written". den also answers "why · what comes first · how two methods differ", and it does not answer without grounds.',
-      f3q:'Which tools does it have?',
-      f3a:'The tools are clause search and term definitions, causal explanation, work sequence, comparison of two methods, enumeration of kinds, site context, floor-plan review against statutes and concept paths. The address is registered as a custom connector in Claude or ChatGPT. Coverage is partial, and den identifies what lies outside its curated scope.',
+      f1q:'What service does Den provide?',
+      f1a:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It is provided as a remote MCP server and covers KDS, KCS, KS, building-related statutes, and practice knowledge in structures, construction, building services, materials, and planning.',
+      f2q:'How does Den differ from an MCP that searches standards and clauses?',
+      f2a:'Clause search identifies the location of a clause. Den adds conditions of application and sources to clauses and values, answers questions about reasons and work sequence with sources, and marks content as outside the curated scope when no source is found.',
+      f3q:'Which tools are available?',
+      f3a:'The tools cover standards and clause search, term definitions, causal explanations, work sequences, comparisons of two methods, type enumeration, site conditions, floor-plan compliance review, and concept connections. The connector address can be registered as a custom connector in Claude and ChatGPT. Coverage is partial, and items outside the curated scope are identified in the response.',
       eras:[
-        ['Open Air','E0','Nights without a roof — safety was measured in sightlines and escape routes. That calculus still runs in us.'],
+        ['Open Air','E0','On nights without a roof, safety was measured in sightlines and escape routes. That calculation still runs in people today.'],
         ['The Den','Cave','The first wall appeared. With a safe back, the mind could finally look elsewhere.'],
-        ['Hearth','Fire','Fire created the center. Today\'s living rooms and tables began here.'],
-        ['Pit-House','Earth','People dug down to bank warmth. It was humanity\'s first insulation design.'],
-        ['Settling','Roots','We chose not to leave. Houses became things people keep, and land became someone\'s.'],
+        ['Hearth','Fire','Fire created the center. The living rooms and tables of today began here.'],
+        ['Pit-House','Earth','People dug down to store warmth. It was the first insulation design in human history.'],
+        ['Settling','Roots','People chose not to leave. Houses became things to keep, and land came to belong to someone.'],
         ['City','Surplus','Surplus made neighbors, and neighbors made rules.'],
         ['High-Rise','Steel','Steel and the elevator folded land vertically.'],
-        ['Virtual','Now','The first generation to dwell without a body has arrived. The instincts remain, and Den maps them.'],
-        ['Agent','Next','A new seat has opened by the fire. Agents have begun to read space alongside people. Den selects knowledge and passes it on with its sources, so that agents can read the standards of space that people built up over 40,000 years.']
+        ['Virtual','Now','The first generation to dwell without a body has arrived. The instinct remains the same, and Den maps it.'],
+        ['Agent','Next','A new seat has opened by the fire. Agents have begun to read space alongside people. Den selects knowledge and provides it with sources, so that agents can read the standards of space that people built up over 40,000 years.']
       ],
       langbtn:'한국어',
-      e_h2:'Swapping the model<br>left it at 86.5%.',
-      e_lede:'Two different frontier models answered 192 national licensing exam questions under the same conditions. Alone, both scored exactly 166/192.',
-      e1:'Model A · B alone — identical',
-      e2:'With Den',
-      e3:'What Den added',
-      e4:'Gap at the Master Craftsman tier',
-      e_note:'※ Model A went from 86.5 to 95.3 (+8.9%p) and Model B from 86.5 to 93.8 (+7.3%p). These are public past exams, so both models include memorized answers and the absolute scores read high.',
+      e_h2:'National Technical Qualification Exam Comparison',
+      e_lede:'Frontier models from 2 different providers answered the same 192 national technical qualification exam questions under the same conditions, and each scored 166 correct answers (86.5%) on its own.',
+      e1:'Models A and B alone',
+      e2:'Model A with Den',
+      e3:'Model A improvement',
+      e4:'Master Craftsman level improvement',
+      e_note:'Model A rose from 86.5% to 95.3%, and Model B rose from 86.5% to 93.8%. Because the questions are public past exams, both models include memorized items, so the scores are higher than accuracy in actual work.',
     },
   
   };
@@ -1193,12 +1149,24 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
         'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'Special escape stair, 16F',kind:'spec_value · requires',def:'KR statutory trigger for special escape stairs in multi-unit housing: 16 floors.',chips:[['phys','requires']],src:'KR statutory value'},
         'kr-ba-08-remodel':{ko:'Remodelling relief',kind:'norm_clause · grounded_in',def:'Multi-unit housing designed for easy remodelling may receive partial relief on floor-area ratio, height and daylight rules, bounded by subordinate decree.',chips:[['phys','grounded_in']],src:'KR statutory clause'},
         'urban-density':{ko:'Urban density',kind:'quality · enables',def:'Population densely concentrated within a limited area.',chips:[['phys','enables']],src:'enabling condition'},
-        'household-autonomy':{ko:'Household autonomy',kind:'quality · enables',def:'Each dwelling can cook, sleep, store, repair, display and ritualize on its own — autonomous and repeatable within the settlement.',chips:[['phys','enables']],src:'enabling condition'},
-        'anonymity':{ko:'Anonymity',kind:'emotion_instinct · evokes',def:'The sense of not knowing one another in dense housing.',chips:[['claim','evokes']],src:'affective — claimed'},
+        'household-autonomy':{ko:'Household autonomy',kind:'quality · enables',def:'Each dwelling can cook, sleep, store, repair, display and conduct rituals independently, which makes it autonomous and repeatable within the settlement.',chips:[['phys','enables']],src:'enabling condition'},
+        'anonymity':{ko:'Anonymity',kind:'emotion_instinct · evokes',def:'The sense of not knowing one another in dense housing.',chips:[['claim','evokes']],src:'emotion (claimed)'},
         'suburban-house':{ko:'Suburban house',kind:'physical_object · contrasts',def:'The detached suburban house, mass-supplied by car and mortgage.',chips:[['','contrasts']],src:'contrast axis'}
       }
     };
+  var ATOM_CODES = ['hearth','central-court','malqaf','flying-buttress','ondol','tsuboniwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha','voussoir','engawa','impluvium','ziggurat','mashrabiya','hypocaust','tumulus','agora','jali','trullo','genkan','caravanserai'];
+  var STATIC_TEXT = {
+    ko: {
+      atoms:['화덕','중정','풍탑','플라잉버트레스','온돌','쓰보니와','능보','치남파','카나트','스토아','펜덴티브','하하월','홍예석','툇마루','임플루비움','지구라트','마슈라비야','하이포코스트','봉분','아고라','잘리','트룰로','겐칸','카라반세라이'],
+      graph:['아파트','인술라','로마 임대주거','테너먼트','산업도시 노동자','오스만 아파트','파리 층별 계층','대피공간 3㎡','세대 대피공간 2㎡','특별피난계단 16층','리모델링 완화','도시 밀도','세대 독립성','익명성','교외 단독주택','대조 축']
+    },
+    en: {
+      atoms:['hearth','courtyard','windcatcher','flying buttress','ondol','tsubo-niwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha wall','voussoir','toenmaru','impluvium','ziggurat','mashrabiya','hypocaust','burial mound','agora','jali','trullo','genkan','caravanserai'],
+      graph:['apartment','insula','Roman rental housing','tenement','industrial-city workers','Haussmann apartment','Paris, class by floor','refuge space 3㎡','unit refuge space 2㎡','special escape stairs, 16 floors','remodeling relaxation','urban density','unit independence','anonymity','suburban detached house','contrast axis']
+    }
+  };
   var lang = 'ko';
+  var selectedGraphId = '';
   try{ lang = localStorage.getItem('den-lang') || 'ko'; }catch(e){}
 
   function splitKinetic(el, tpl){
@@ -1243,9 +1211,27 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 
   var journeyRefresh = function(){};
 
+  function renderMarquee(){
+    var mt = document.getElementById('mtrack');
+    var names = STATIC_TEXT[lang].atoms;
+    var half = ATOM_CODES.map(function(code,i){ return '<span><b>'+code+'</b><i>·</i>'+names[i]+'</span>'; }).join('');
+    mt.innerHTML = half + half;
+  }
+
+  function applyStaticText(){
+    var graph = STATIC_TEXT[lang].graph;
+    document.querySelectorAll('[data-graph-i18n]').forEach(function(el){
+      el.textContent = graph[Number(el.getAttribute('data-graph-i18n'))];
+    });
+    renderMarquee();
+  }
+
   function applyLang(){
     var D = I18N[lang];
     document.documentElement.lang = (lang==='ko'?'ko':'en');
+    document.title = D.doc_title;
+    var description = document.querySelector('meta[name="description"]');
+    if (description) description.content = D.doc_desc;
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var k = el.getAttribute('data-i18n');
       if (D[k]!==undefined) el.innerHTML = D[k];
@@ -1254,6 +1240,8 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
     splitKinetic(document.getElementById('kinetic'), D.h1);
     var ib = document.getElementById('instinct-big');
     splitWords(ib, D.instbig); litWords();
+    applyStaticText();
+    if (selectedGraphId) show(selectedGraphId);
     var intro = document.querySelector('[data-j-intro]');
     if (intro) intro.textContent = D.jeyebrow;
     D.eras.forEach(function(e,i){
@@ -1354,12 +1342,6 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       b.addEventListener('mouseleave', function(){ b.style.transform=''; });
     });
   }
-
-  /* ================= marquee ================= */
-  var ATOMS = ['hearth 화덕','central-court 중정','malqaf 풍탑','flying-buttress 플라잉버트레스','ondol 온돌','tsuboniwa 쓰보니와','bastion 능보','chinampa 치남파','qanat 카나트','stoa 스토아','pendentive 펜덴티브','ha-ha 하하월','voussoir 홍예석','engawa 툇마루','impluvium 임플루비움','ziggurat 지구라트','mashrabiya 마슈라비야','hypocaust 하이포코스트','tumulus 봉분','agora 아고라','jali 잘리','trullo 트룰로','genkan 겐칸','caravanserai 카라반세라이'];
-  var mt = document.getElementById('mtrack');
-  var half = ATOMS.map(function(a){ var p=a.split(' '); return '<span><b>'+p[0]+'</b><i>·</i>'+p.slice(1).join(' ')+'</span>'; }).join('');
-  mt.innerHTML = half + half;
 
   /* ================= 문서 전체 쪽 넘김 + 여정 전환 엔진 ================= */
   var pbar = document.getElementById('pbar');
@@ -1850,6 +1832,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   }
   function show(id){
     var d = GDATA[lang][id]; if(!d) return;
+    selectedGraphId = id;
     var chips = d.chips.map(function(c){
       return '<span class="chip '+c[0]+'">'+c[1]+'</span>';}).join('');
     // 2단 구조(2026-07-27, PI): 상단=개념명·관계, 하단=설명.
@@ -1890,22 +1873,9 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 })();
 </script>
 
-<!-- 방문 계측 비콘 (2026-08-24 지시 A060 ㉠) — 이 한 줄이 den.archi 방문의 **분모**다.
-     den.archi 는 GitHub Pages 가 서빙해 우리 로그에 아무것도 안 남는다. 그래서
-     `?from=landing` 표지로 분자(여기서 앱으로 넘어간 사람)는 재면서 분모(여기 온 사람)를
-     못 재 왔고, 그 탓에 전환율을 한 번도 못 냈다.
-     싣는 것은 없다 — 질의 원문·이메일·계정·쿠키·질의문자열 아무것도 안 보낸다.
-     남는 것은 우리 서버 접근 로그의 한 줄(IP·시각·경로)뿐이다.
-     되돌리려면 이 한 줄을 지운다. 받는 자리: mcp.den.archi /pv.gif (server/web_app.py)
-
-     2026-08-25 지시 A081 ㉮ — **출처 표지를 하나 실어 보낸다.**
-     Smithery 에 등록한 홈페이지는 `https://den.archi/?from=smithery` 인데, 그 방문은
-     GitHub Pages 가 받으므로 우리 로그에 안 남고, 비콘은 표지를 안 달고 왔다.
-     ∴ `?from=smithery` 도달은 레버가 통하든 안 통하든 **0 밖에 못 나왔다** — 09-06
-     판정이 그 0 위에 서 있었다(실패할 수 없는 시험).
-     ★새 수집이 아니다. 보내는 것은 아래 흰명단에 든 **채널 이름 한 낱말**뿐이고,
-     그것은 우리 CTA 가 채널 표지를 넘길 때 보내는 것과 같은 종류다.
-     흰명단 밖 값·질의 원문·referrer·쿠키·이메일은 여전히 아무것도 안 보낸다. -->
+<!-- 방문 계측 비콘: GitHub Pages 방문의 분모와 허용된 유입 채널을 기록한다.
+     질의 원문, 이메일, 계정, 쿠키, 질의문자열, referrer는 보내지 않는다.
+     서버 접근 로그에는 IP, 시각, 경로와 아래 허용 목록의 채널 이름만 남는다. -->
 <img id="pv" src="https://mcp.den.archi/pv.gif" alt="" width="1" height="1"
      referrerpolicy="no-referrer" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
 <script>
