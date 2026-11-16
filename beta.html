@@ -2,8 +2,21 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark">
-<title>den 클라이언트별 연결 안내 — AEC 전문 지식 큐레이팅 시스템</title>
-<meta name="description" content="AEC 전문 지식 큐레이팅 시스템 den 의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth 로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
+<title>Den 클라이언트별 연결 안내 | AEC 전문 지식 큐레이팅 시스템</title>
+<meta name="description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
+<link rel="canonical" href="https://den.archi/beta.html">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-light.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<meta property="og:title" content="Den 클라이언트별 연결 안내 | AEC 전문 지식 큐레이팅 시스템">
+<meta property="og:description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
+<meta property="og:url" content="https://den.archi/beta.html">
+<meta property="og:image" content="https://den.archi/assets/logo/og.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Den">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{--bg:#ECE7DD;--panel:#F4F0E8;--ink:#262016;--mut:#4A4237;--line:rgba(38,32,22,.16);--ember:#8D4313;--ember-soft:rgba(166,79,22,.10)}
 :root{--bg:#161210;--panel:#1C1712;--ink:#EDE3D3;--mut:#B5A898;--line:rgba(234,224,208,.14);--ember:#E98B3D;--ember-soft:rgba(233,139,61,.12)}
@@ -25,18 +38,18 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 </head>
 <body>
 <div class="wrap">
-<p class="back"><a href="./">den 소개</a></p>
+<p class="back"><a href="./" aria-label="Den 처음으로"><img src="assets/logo/den-full-light.png" alt="Den" width="78" height="28" style="display:block;height:28px;width:auto"></a></p>
 <h1>클라이언트별 연결 안내</h1>
-<p class="sub">AEC 전문 지식 큐레이팅 시스템 den 의 연결 절차입니다.</p>
+<p class="sub">AEC 전문 지식 큐레이팅 시스템 Den의 연결 절차입니다.</p>
 
 <h2>연결 전제</h2>
 <ul>
 <li>가입한 계정으로 진행합니다.</li>
-<li>den 은 원격 서버이며, 설치 프로그램이 필요하지 않습니다.</li>
+<li>Den은 원격 서버입니다. 웹 커넥터는 주소 등록만으로 연결하고, Claude Desktop은 설치 파일(den.mcpb)로 연결합니다.</li>
 <li>키 방식 클라이언트의 키는 대시보드에서 발급합니다.</li>
 </ul>
 
-<h2>웹 커넥터 — Claude · ChatGPT (OAuth, 키 불필요)</h2>
+<h2>웹 커넥터(Claude · ChatGPT, OAuth, 키 불필요)</h2>
 <div class="card">
 <ol>
 <li>mcp.den.archi에서 가입합니다.</li>
@@ -45,30 +58,30 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 <li>인증 창에서 로그인합니다.</li>
 </ol>
 <ul>
-<li>커넥터 이름은 <code>den</code> 으로 입력합니다.</li>
-<li>ChatGPT 의 인증 방식 칸에서는 OAuth 를 선택합니다.</li>
-<li>저장하면 den 로그인 창이 열리고, 로그인하면 연결이 완료됩니다.</li>
+<li>커넥터 이름은 <code>Den</code> 으로 입력합니다.</li>
+<li>ChatGPT의 인증 방식 입력란에서는 OAuth를 선택합니다.</li>
+<li>저장하면 Den 로그인 창이 열리고, 로그인하면 연결이 완료됩니다.</li>
 <li>주소에 키가 포함되지 않습니다.</li>
 </ul>
 </div>
 
 <h2>키 방식 클라이언트</h2>
-<p class="note">커넥터 인증을 지원하지 않는 클라이언트에만 사용합니다. <code>{개인키}</code> 자리에 대시보드에서 발급한 키를 넣습니다.</p>
+<p class="note">커넥터 인증을 지원하지 않는 클라이언트에만 사용합니다. <code>{개인키}</code> 자리에 대시보드에서 발급한 키를 입력합니다.</p>
 
-<div class="card"><h3>claude.ai 웹·모바일 — 주소에 키를 넣는 방식</h3>
+<div class="card"><h3>claude.ai 웹·모바일(주소에 키를 입력하는 방식)</h3>
 <ol>
 <li>설정 → 커넥터(Connectors) → 커스텀 커넥터 추가를 엽니다.</li>
-<li>이름에 <code>den</code>, URL 에 아래 주소를 입력합니다.</li>
-<li>저장하면 채팅에서 den 도구가 활성화됩니다.</li>
+<li>이름에 <code>Den</code>, URL에 아래 주소를 입력합니다.</li>
+<li>저장하면 채팅에서 Den 도구가 활성화됩니다.</li>
 </ol>
 <pre>https://mcp.den.archi/mcp/&#123;개인키&#125;</pre>
 <p class="note">이 방식은 키가 주소에 포함됩니다. 화면 공유·캡처 시 키가 노출될 수 있습니다.</p></div>
 
-<div class="card"><h3>ChatGPT — 개발자 모드</h3>
+<div class="card"><h3>ChatGPT(개발자 모드)</h3>
 <ol>
 <li>설정 → 보안 및 로그인 → 개발자 모드를 켭니다.</li>
-<li>설정 → 앱·커넥터에서 커스텀 MCP 를 추가하고, 인증은 "인증 없음"을 선택합니다.</li>
-<li>URL 에 아래 주소를 입력합니다. 키가 주소에 포함됩니다.</li>
+<li>설정 → 앱·커넥터에서 커스텀 MCP를 추가하고, 인증은 "인증 없음"을 선택합니다.</li>
+<li>URL에 아래 주소를 입력합니다. 키가 주소에 포함됩니다.</li>
 </ol>
 <pre>https://mcp.den.archi/mcp/&#123;개인키&#125;</pre></div>
 
@@ -91,24 +104,24 @@ codex mcp add den --url https://mcp.den.archi/mcp --bearer-token-env-var DEN_KEY
 <p><code>~/.gemini/config/mcp_config.json</code> 에 아래 설정을 입력합니다.</p>
 <pre>{"mcpServers":{"den":{"serverUrl":"https://mcp.den.archi/mcp",
   "headers":{"Authorization":"Bearer &#123;개인키&#125;"}}}}</pre>
-<p>편집기 에이전트 패널 → MCP Servers → Manage MCP Servers → View raw config 에서 편집합니다.</p></div>
+<p>편집기 에이전트 패널 → MCP Servers → Manage MCP Servers → View raw config에서 편집합니다.</p></div>
 
 <p class="note">채널마다 별도의 키 사용을 권장합니다. 한 채널의 키가 유출되어도 다른 채널의 키는 영향을 받지 않습니다. 대시보드에서 채널별로 발급합니다.</p>
 
 <h2>질의 예시</h2>
-<p>연결한 뒤 평소 쓰는 말로 질의합니다. 괄호 안은 den 이 쓰는 기능입니다.</p>
+<p>연결한 뒤 평소 쓰는 말로 질의합니다. 괄호 안은 Den이 쓰는 기능입니다.</p>
 <ul>
-<li>&quot;부산 수영구 대지인데, 중정형 카페가 기후적으로 맞을까? den 으로 확인해 줘&quot; <span style="color:var(--mut)">(대지 조건 확인)</span></li>
-<li>&quot;이 평면(방 구성 설명)에서 법규상 문제될 부분을 den 으로 검토해 줘&quot; <span style="color:var(--mut)">(평면 법규 검토)</span></li>
-<li>&quot;철근콘크리트 골조 1개층 시공 순서를 den 으로 정리해 줘&quot; <span style="color:var(--mut)">(공정 순서 구성)</span></li>
-<li>&quot;필로티가 자유평면을 가능하게 한 이유를 den 근거로 설명해 줘&quot; <span style="color:var(--mut)">(인과 설명)</span></li>
-<li>&quot;직통계단 보행거리 기준이 뭐였지? den 에서 조항이랑 같이 알려 줘&quot; <span style="color:var(--mut)">(기준·조문 찾기)</span></li>
+<li>&quot;부산 수영구 대지인데, 중정형 카페가 기후적으로 맞을까? Den으로 확인해 줘&quot; <span style="color:var(--mut)">(대지 조건 확인)</span></li>
+<li>&quot;이 평면(방 구성 설명)에서 법규상 문제될 부분을 Den으로 검토해 줘&quot; <span style="color:var(--mut)">(평면 법규 검토)</span></li>
+<li>&quot;철근콘크리트 골조 1개층 시공 순서를 Den으로 정리해 줘&quot; <span style="color:var(--mut)">(공정 순서 구성)</span></li>
+<li>&quot;필로티가 자유평면을 가능하게 한 이유를 Den 근거로 설명해 줘&quot; <span style="color:var(--mut)">(인과 설명)</span></li>
+<li>&quot;직통계단 보행거리 기준이 뭐였지? Den에서 조항이랑 같이 알려 줘&quot; <span style="color:var(--mut)">(기준·조문 찾기)</span></li>
 </ul>
 
 <h2>질의 요령</h2>
 <ul>
 <li>넓은 질의는 개념 단위로 나누어 질의합니다.</li>
-<li>대지가 있으면 지역을 먼저 지정합니다. den 은 기후·관할 조건을 정한 뒤 이후 응답에 적용합니다.</li>
+<li>대지가 있으면 지역을 먼저 지정합니다. Den은 기후·관할 조건을 정한 뒤 이후 응답에 적용합니다.</li>
 <li>미보유 표시는 해당 주제를 아직 보유하지 않았다는 뜻입니다.</li>
 </ul>
 
@@ -118,17 +131,7 @@ codex mcp add den --url https://mcp.den.archi/mcp --bearer-token-env-var DEN_KEY
 <p><a class="cta" href="https://mcp.den.archi/signup?from=landing">시작하기</a></p>
 <p class="note">문의: <a href="mailto:support@den.archi">support@den.archi</a></p>
 </div>
-<!-- ★2026-08-25 성장(A076 ⑴) — 비콘이 index.html 에만 있어 이 페이지로 **직접** 온
-     사람은 분모에서 조용히 사라졌다. 08-31 A060 판정은 분모<분자면 접는 판정이라,
-     안 세는 페이지가 하나 있으면 살아 있는 레버를 우리 계측 구멍으로 죽인다.
-     싣는 것은 index.html 과 같다(IP·시각·경로 한 줄 · 새 수집 없음). -->
-<!-- 방문 계측 비콘 (2026-08-24 지시 A060 ㉠) — 이 한 줄이 den.archi 방문의 **분모**다.
-     den.archi 는 GitHub Pages 가 서빙해 우리 로그에 아무것도 안 남는다. 그래서
-     `?from=landing` 표지로 분자(여기서 앱으로 넘어간 사람)는 재면서 분모(여기 온 사람)를
-     못 재 왔고, 그 탓에 전환율을 한 번도 못 냈다.
-     싣는 것은 없다 — 질의 원문·이메일·계정·쿠키·질의문자열 아무것도 안 보낸다.
-     남는 것은 우리 서버 접근 로그의 한 줄(IP·시각·경로)뿐이다.
-     되돌리려면 이 한 줄을 지운다. 받는 자리: mcp.den.archi /pv.gif (server/web_app.py) -->
+<!-- 익명 방문 집계를 위한 1픽셀 이미지입니다. -->
 <img src="https://mcp.den.archi/pv.gif" alt="" width="1" height="1"
      referrerpolicy="no-referrer" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
 </body>
