@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark">
 <title>Den 클라이언트별 연결 안내 | AEC 전문 지식 큐레이팅 시스템</title>
-<meta name="description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
+<meta name="description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 콘솔의 「키 · 연결된 앱」 화면에서 발급한 키로 연결합니다.">
 <link rel="canonical" href="https://den.archi/beta.html">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-light.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32-dark.png" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <meta property="og:title" content="Den 클라이언트별 연결 안내 | AEC 전문 지식 큐레이팅 시스템">
-<meta property="og:description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 키로 연결합니다.">
+<meta property="og:description" content="AEC 전문 지식 큐레이팅 시스템 Den의 클라이언트별 연결 절차입니다. 웹 커넥터는 OAuth로 연결하고, 커넥터 인증을 지원하지 않는 클라이언트는 콘솔의 「키 · 연결된 앱」 화면에서 발급한 키로 연결합니다.">
 <meta property="og:url" content="https://den.archi/beta.html">
 <meta property="og:image" content="https://den.archi/assets/logo/og.png">
 <meta property="og:type" content="website">
@@ -46,7 +46,7 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 <ul>
 <li>가입한 계정으로 진행합니다.</li>
 <li>Den은 원격 서버입니다. 웹 커넥터는 주소 등록만으로 연결하고, Claude Desktop은 설치 파일(den.mcpb)로 연결합니다.</li>
-<li>키 방식 클라이언트의 키는 대시보드에서 발급합니다.</li>
+<li>키 방식 클라이언트의 키는 콘솔의 「키 · 연결된 앱」 화면에서 발급합니다.</li>
 </ul>
 
 <h2>웹 커넥터(Claude · ChatGPT, OAuth, 키 불필요)</h2>
@@ -58,7 +58,7 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 <li>인증 창에서 로그인합니다.</li>
 </ol>
 <ul>
-<li>커넥터 이름은 <code>Den</code> 으로 입력합니다.</li>
+<li>커넥터 이름은 <code>Den</code>으로 입력합니다.</li>
 <li>ChatGPT의 인증 방식 입력란에서는 OAuth를 선택합니다.</li>
 <li>저장하면 Den 로그인 창이 열리고, 로그인하면 연결이 완료됩니다.</li>
 <li>주소에 키가 포함되지 않습니다.</li>
@@ -66,7 +66,7 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 </div>
 
 <h2>키 방식 클라이언트</h2>
-<p class="note">커넥터 인증을 지원하지 않는 클라이언트에만 사용합니다. <code>{개인키}</code> 자리에 대시보드에서 발급한 키를 입력합니다.</p>
+<p class="note">커넥터 인증을 지원하지 않는 클라이언트에만 사용합니다. <code>{개인키}</code> 자리에 「키 · 연결된 앱」 화면에서 발급한 키를 입력합니다.</p>
 
 <div class="card"><h3>claude.ai 웹·모바일(주소에 키를 입력하는 방식)</h3>
 <ol>
@@ -87,8 +87,8 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 
 <div class="card"><h3>Claude Desktop</h3>
 <ol>
-<li><a href="den.mcpb">den.mcpb</a> 를 내려받습니다.</li>
-<li>Claude Desktop → 설정 → 확장(Extensions) → Install Extension… 에서 내려받은 파일을 선택합니다.</li>
+<li><a href="den.mcpb">den.mcpb</a>를 내려받습니다.</li>
+<li>Claude Desktop → 설정 → 확장(Extensions) → Install Extension…에서 내려받은 파일을 선택합니다.</li>
 <li>설치 창에 키를 입력합니다. 키는 OS 키체인에 저장됩니다.</li>
 </ol></div>
 
@@ -101,12 +101,12 @@ ul,ol{padding-left:20px} li{margin:6px 0}
 codex mcp add den --url https://mcp.den.archi/mcp --bearer-token-env-var DEN_KEY</pre></div>
 
 <div class="card"><h3>Antigravity (Gemini)</h3>
-<p><code>~/.gemini/config/mcp_config.json</code> 에 아래 설정을 입력합니다.</p>
+<p><code>~/.gemini/config/mcp_config.json</code>에 아래 설정을 입력합니다.</p>
 <pre>{"mcpServers":{"den":{"serverUrl":"https://mcp.den.archi/mcp",
   "headers":{"Authorization":"Bearer &#123;개인키&#125;"}}}}</pre>
 <p>편집기 에이전트 패널 → MCP Servers → Manage MCP Servers → View raw config에서 편집합니다.</p></div>
 
-<p class="note">채널마다 별도의 키 사용을 권장합니다. 한 채널의 키가 유출되어도 다른 채널의 키는 영향을 받지 않습니다. 대시보드에서 채널별로 발급합니다.</p>
+<p class="note">채널마다 별도의 키 사용을 권장합니다. 한 채널의 키가 유출되어도 다른 채널의 키는 영향을 받지 않습니다. 「키 · 연결된 앱」 화면에서 채널별로 발급합니다.</p>
 
 <h2>질의 예시</h2>
 <p>연결한 뒤 평소 쓰는 말로 질의합니다. 괄호 안은 Den이 쓰는 기능입니다.</p>
@@ -125,7 +125,7 @@ codex mcp add den --url https://mcp.den.archi/mcp --bearer-token-env-var DEN_KEY
 <li>미보유 표시는 해당 주제를 아직 보유하지 않았다는 뜻입니다.</li>
 </ul>
 
-<p><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보</a></p>
+<p><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보 처리방침</a></p>
 
 <h2>가입</h2>
 <p><a class="cta" href="https://mcp.den.archi/signup?from=landing">시작하기</a></p>
