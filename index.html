@@ -61,7 +61,6 @@
   ]
 }
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Den은 어떤 서비스입니까?","acceptedAnswer":{"@type":"Answer","text":"Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다."}},{"@type":"Question","name":"기준·조문을 검색하는 MCP와 무엇이 다릅니까?","acceptedAnswer":{"@type":"Answer","text":"조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다."}},{"@type":"Question","name":"어떤 도구가 있습니까?","acceptedAnswer":{"@type":"Answer","text":"기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다."}}]}</script>
 </head>
 <body>
 <style>/* ===== 비율 스케일: 디자인 캔버스 1600x900. 어떤 해상도든 같은 구도가 비례 축소/확대 ===== */
@@ -117,16 +116,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:40;opa
 a{color:var(--ember)}
 ::selection{background:var(--ember-soft)}
 
-/* ---------- progress bar ---------- */
-#pbar{position:fixed;top:0;left:0;height:2.5px;width:0;background:linear-gradient(90deg,var(--ember),var(--dusk));z-index:60}
-
 /* ---------- header ---------- */
 header{padding:1rem 0;position:fixed;top:0;left:0;right:0;z-index:50;
   background:linear-gradient(var(--bg) 70%,transparent)}
 /* 머리는 고정이다. 글이 많은 절에서는 로고 줄 밑으로 지나가는 글을 바탕색으로 가리고,
    여정의 그림 위에서는 그림을 덜 가리게 옅은 그늘만 둔다(html.j-live 는 여정 무대가 화면에 있을 때 붙는다). */
 html.j-live header{background:linear-gradient(rgba(21,17,16,.72),transparent)}
-header .wrap{display:flex;justify-content:space-between;align-items:center}
+header .wrap{max-width:none;display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:baseline;gap:0.75rem}
 .brand .name{font-weight:900;font-size:var(--t-xl);letter-spacing:-.02em}
 .brand .logo{display:block;height:2.05rem;width:auto;filter:drop-shadow(0 0 12px var(--ember-soft))}
@@ -137,43 +133,18 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
   padding:0.375rem 1rem;font-size:var(--t-xs);font-weight:700;cursor:pointer;letter-spacing:.06em;
   transition:color .2s,border-color .2s}
 #langbtn:hover{color:var(--ember);border-color:var(--ember)}
+.header-actions{display:flex;align-items:center;gap:.625rem}
+.top-cta{min-height:2.5rem;padding:0 1.125rem;display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:var(--t-xs);font-weight:800}
+.top-cta:hover{border-color:var(--ember);color:var(--ember)}
 
-/* ---------- hero ---------- */
-.hero{height:100svh;min-height:35rem;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center;padding:0}
-#embers{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-#torch{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}
-.hero-glow{position:absolute;left:-12%;top:-30%;width:66%;height:130%;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse at 30% 40%,var(--glow),transparent 62%);will-change:transform}
-.hero .wrap{z-index:2;will-change:transform,opacity}
-.eyebrow{font-size:var(--t-2xs);letter-spacing:.24em;color:var(--ember);text-transform:uppercase;margin:0 0 0.875rem;font-weight:700}
-h1{font-size:3.75rem;line-height:1.14;margin:0 0 1.25rem;font-weight:900;letter-spacing:-.04em;
-  text-wrap:balance;max-width:14.5em}
+/* ---------- 표제와 버튼 ---------- */
+h1{font-size:3.75rem;line-height:1.14;margin:0 0 1.25rem;font-weight:900;letter-spacing:-.04em;text-wrap:balance;max-width:14.5em}
 h1 .em{color:var(--ember)}
-h1 .ch{display:inline-block;will-change:transform}
-h1 .ch{opacity:0;transform:translateY(.55em) rotate(3deg);
-  transition:opacity .35s ease,transform .5s cubic-bezier(.22,1.4,.36,1)}
+h1 .ch{display:inline-block;will-change:transform;opacity:0;transform:translateY(.55em) rotate(3deg);transition:opacity .35s ease,transform .5s cubic-bezier(.22,1.4,.36,1)}
 h1.on .ch{opacity:1;transform:none}
-.hero p.lede{max-width:36.25rem;font-size:var(--t-lg);color:var(--mut);margin:0 0 1.625rem}
-.hero p.lede b{color:var(--ink);font-weight:600}
-.cta-row{display:flex;gap:0.875rem;align-items:center;flex-wrap:wrap}
-.btn{display:inline-block;background:var(--ember);color:var(--ember-ink);text-decoration:none;
-  padding:0.8125rem 1.75rem;border-radius:0.5625rem;font-weight:800;font-size:var(--t-md);border:1px solid transparent;
-  transition:box-shadow .2s ease,filter .2s ease;will-change:transform}
-.btn:hover{filter:brightness(1.08);box-shadow:0 0.625rem 2rem -0.625rem var(--ember)}
+.btn{display:inline-block;background:var(--ember);color:var(--ember-ink);text-decoration:none;padding:.8125rem 1.75rem;border-radius:.5625rem;font-weight:800;font-size:var(--t-md);border:1px solid transparent;transition:box-shadow .2s ease,filter .2s ease;will-change:transform}
+.btn:hover{filter:brightness(1.08);box-shadow:0 .625rem 2rem -.625rem var(--ember)}
 .btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.cta-note{font-size:var(--t-xs);color:var(--mut)}
-
-/* ---------- marquee ---------- */
-.marquee{border-top:1px solid var(--line);background:var(--bg2);
-  overflow:hidden;white-space:nowrap;position:absolute;bottom:0;left:0;right:0;z-index:2}
-.marquee .track{display:inline-block;padding:0.8125rem 0;will-change:transform}
-.marquee span{font-size:var(--t-sm);color:var(--mut);margin:0 1.625rem;letter-spacing:.02em}
-.marquee b{color:var(--ink);font-weight:700}
-.marquee i{font-style:normal;color:var(--ember);margin:0 0.25rem}
-.marquee .track{animation:mq 28s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-@keyframes mq{to{transform:translateX(-50%)}}
 
 /* ---------- journey (scrollytelling) ---------- */
 .journey{height:730vh;position:relative;background:#151110}
@@ -209,6 +180,10 @@ h1.on .ch{opacity:1;transform:none}
 .j-cap h1{font-size:clamp(2.5rem,4.4vw,4.25rem)}
 .j-cap p{max-width:37em;margin:1.25rem 0 0;color:rgba(237,227,211,.84);font-size:clamp(.875rem,1.12vw,1.0625rem);line-height:1.78;text-wrap:pretty}
 .j-cap .cap-cta{min-height:3rem;margin-top:1.5rem;padding:0 1.25rem;display:inline-flex;align-items:center;border-radius:999px;background:var(--ember);color:var(--ember-ink);text-decoration:none;font-size:.875rem;font-weight:800;box-shadow:0 .625rem 2rem rgba(12,7,3,.3);pointer-events:auto}
+.j-cap[data-era="0"]{width:min(35rem,46vw)}
+.j-cap[data-era="0"] h1 em{font-style:normal;color:var(--ember)}
+.j-cap[data-era="0"] .lede{margin-top:1.25rem;color:rgba(237,227,211,.84);font-size:clamp(.875rem,1.12vw,1.0625rem);line-height:1.78}
+.j-cap[data-era="0"] .lede b{color:#EDE3D3;font-weight:650}
 .scroll-cue{margin-top:1.875rem;display:inline-flex;align-items:center;gap:.625rem;color:var(--mut);font:500 .625rem/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase}
 .scroll-cue::before{content:'';width:1px;height:2.25rem;background:linear-gradient(var(--ember),transparent);animation:jcue 1.8s ease-in-out infinite}
 @keyframes jcue{50%{transform:translateY(7px);opacity:.45}}
@@ -224,6 +199,8 @@ h1.on .ch{opacity:1;transform:none}
   .j-shade{background:linear-gradient(180deg,rgba(10,8,8,.78),rgba(10,8,8,.54) 30%,transparent 54%,rgba(9,7,7,.26))}
   .j-cap{left:max(1rem,env(safe-area-inset-left,0px));right:max(1rem,env(safe-area-inset-right,0px));top:max(7.25rem,calc(env(safe-area-inset-top,0px) + 6.75rem));width:auto;transform:translateY(1.125rem)}
   .j-cap h1,.j-cap h2{font-size:clamp(2.25rem,11vw,3.625rem)}.j-cap h1{font-size:clamp(2.125rem,9.7vw,3.125rem)}
+  /* 좁은 화면에서는 0번 화면의 글도 화면 폭을 쓴다(넓은 화면용 폭 46vw 가 남으면 표제가 세 줄로 꺾인다). */
+  .j-cap[data-era="0"]{width:auto}
   .j-cap p{max-width:32.5rem;margin-top:.875rem;font-size:.8125rem;line-height:1.65}.j-cap .chapter{margin-bottom:.625rem;font-size:.5625rem}
   .j-cap .cap-cta{min-height:2.75rem;margin-top:1rem;padding:0 1rem;font-size:.75rem}.scroll-cue{margin-top:1rem}.scroll-cue::before{height:1.5625rem}
   .j-rail{width:min(20.625rem,calc(100% - 2.75rem))}.j-rail button{overflow:hidden;color:transparent;font-size:0}
@@ -281,103 +258,8 @@ section{min-height:100svh;display:flex;flex-direction:column;justify-content:cen
 h2{font-size:2.125rem;line-height:1.28;margin:0 0 0.625rem;font-weight:800;letter-spacing:-.03em;text-wrap:balance}
 .sec-lede{max-width:40rem;color:var(--mut);margin:0 0 1.375rem;font-size:var(--t-lg)}
 
-/* ---------- graph ---------- */
-#graph-sec{max-width:none;padding:1.25rem 2vw 0.75rem}
-#graph-sec h2{font-size:var(--t-lg);margin-bottom:0.3rem;opacity:.8}
-#graph-sec .sec-lede{display:none}
-#graph-sec .sec-eyebrow{display:none}
-.graph-shell{border:1px solid var(--line);border-radius:1rem;background:var(--panel);overflow:hidden;
-  box-shadow:0 1.5rem 4.375rem -2.75rem rgba(0,0,0,.45)}
-.graph-head{display:flex;justify-content:space-between;align-items:center;gap:0.75rem;
-  padding:0.625rem 1.125rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.graph-title{font-size:var(--t-xl);font-weight:700}
-.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:var(--t-md);color:var(--mut)}
-.legend span{display:inline-flex;align-items:center;gap:0.375rem;white-space:nowrap}
-.lg{display:inline-block;width:1.375rem;height:0;border-top:2.5px solid var(--ember)}
-.lg.en{border-top-width:1.5px}
-.lg.ev{border-top:2px dashed var(--dusk)}
-.lg.ge{border-top:2px solid var(--strata)}
-.lg.pt{border-top:2px dotted var(--strata)}
-.graph-body{overflow-x:auto}
-svg.graph{display:block;max-height:78svh;min-width:40rem;width:100%;height:auto;margin:0 auto}
-.gnode{cursor:pointer}
-.gnode rect{fill:var(--bg);stroke:var(--line);stroke-width:1.2;rx:9}
-.gnode.hub rect{stroke:var(--ember);stroke-width:1.8;fill:var(--ember-soft)}
-.gnode.emo rect{stroke:var(--dusk);fill:var(--dusk-soft)}
-.gnode text{fill:var(--ink);font-size:var(--t-lg);font-weight:700;font-family:inherit}
-.gnode .sub{fill:var(--mut);font-size:var(--t-sm);font-weight:500}
-.gnode.active rect{stroke-width:2.4}
-.gedge{fill:none;stroke-linecap:round}
-.gedge.causes{stroke:var(--ember);stroke-width:2.4}
-.gedge.enables{stroke:var(--ember);stroke-width:1.4;opacity:.85}
-.gedge.evokes{stroke:var(--dusk);stroke-width:2}
-.gedge.geneal{stroke:var(--strata);stroke-width:2}
-.gedge.part{stroke:var(--strata);stroke-width:1.6;stroke-dasharray:2 4}
-.gedge.causes,.gedge.enables{stroke-dasharray:9 7;animation:flow 1.1s linear infinite}
-.gedge.evokes{stroke-dasharray:6 5;animation:flow 1.6s linear infinite}
-@keyframes flow{to{stroke-dashoffset:-16}}
-.gedge.dim{opacity:.12}
-.gnode.dim{opacity:.25}
-.elabel{font-size:var(--t-xs);fill:var(--mut);font-family:'JetBrains Mono','SF Mono',Consolas,monospace}
-.ehead{fill:var(--ember)} .ehead.g{fill:var(--strata)} .ehead.d{fill:var(--dusk)}
-.info{display:flex;gap:1rem;align-items:flex-start;padding:0.5625rem 1rem;border-top:1px solid var(--line);min-height:3.4rem;flex-wrap:wrap}
-.info .k{font-weight:800;font-size:var(--t-lg);white-space:nowrap}
-.info .k .en{color:var(--mut);font-weight:500;font-size:var(--t-xs);margin-left:0.375rem}
-.info .d{color:var(--mut);font-size:1rem;max-width:35rem;flex:1;min-width:15rem}
-.info .chips{display:flex;gap:0.375rem;flex-wrap:wrap}
-.chip{font-size:var(--t-sm);padding:3px 0.5625rem;border-radius:6.1875rem;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
-.chip.phys{border-color:var(--ember);color:var(--ember)}
-.chip.claim{border-color:var(--dusk);color:var(--dusk)}
-.info .src{font-size:var(--t-sm);color:var(--mut)}
-
-/* ---------- rows / stats / steps / compare (v2 유지) ---------- */
-.rows{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:12.5rem 1fr;gap:1.375rem;padding:1.125rem 0;border-bottom:1px solid var(--line)}
-.row .h{font-weight:800;font-size:var(--t-lg);line-height:1.45;letter-spacing:-.02em}
-.row .b{color:var(--mut);font-size:var(--t-md);max-width:41.25rem;line-height:1.6}
-.row .b b{color:var(--ink);font-weight:600}
-@media(max-width:720px){.row{grid-template-columns:1fr;gap:0.5rem}}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11.875rem,1fr));gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:1rem;overflow:hidden;margin-top:0.5rem}
-.stat{background:var(--panel);padding:1.125rem 1.125rem}
-.stat .n{font-size:2.25rem;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stat .n .plus{color:var(--ember)}
-.stat .l{font-size:var(--t-xs);color:var(--mut);margin-top:0.25rem}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.375rem;margin-top:0.625rem}
-.step{border-top:2px solid var(--ember);padding-top:1rem}
-.step .t{font-weight:800;margin-bottom:0.375rem}
-.step .d{color:var(--mut);font-size:var(--t-md)}
-.step .d code{font-size:var(--t-xs);background:var(--bg2);padding:2px 0.375rem;border-radius:0.3125rem}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:0.5rem}
-@media(max-width:820px){.compare{grid-template-columns:1fr}}
-.pane{border:1px solid var(--line);border-radius:1rem;background:var(--panel);overflow:hidden;
-  transition:transform .25s ease,box-shadow .25s ease}
-.pane:hover{transform:translateY(-3px);box-shadow:0 1.125rem 3.125rem -1.875rem rgba(0,0,0,.4)}
-.pane .ph{padding:0.75rem 1.125rem;border-bottom:1px solid var(--line);font-size:var(--t-xs);font-weight:800;
-  display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
-.pane .ph .who{color:var(--mut);font-weight:500}
-.pane.den .ph{background:var(--ember-soft)}
-.pane .pb{padding:1rem 1.125rem;font-size:var(--t-md);color:var(--mut)}
-.pane .pb p{margin:0 0 0.75rem}
-.pane .pb .q{color:var(--ink);font-weight:700;margin-bottom:0.875rem}
-.chain{border-left:2.5px solid var(--ember);padding:2px 0 2px 0.875rem;margin:0.75rem 0;color:var(--ink)}
-.chain .cstep{font-size:var(--t-sm);padding:2px 0}
-.chain .cstep .rel{color:var(--ember);font-size:var(--t-2xs);letter-spacing:.04em;font-weight:700}
-.chain .cstep .rel.d{color:var(--dusk)}
-.chain .cstep .sc{color:var(--mut);font-size:var(--t-2xs)}
-.pane .src-line{font-size:var(--t-2xs);color:var(--mut);border-top:1px dashed var(--line);padding-top:0.625rem;margin-top:0.875rem}
-.preview-note{font-size:var(--t-xs);color:var(--mut);margin-top:0.75rem}
-.honest{border-left:3px solid var(--strata);background:var(--bg2);padding:0.875rem 1.25rem;border-radius:0 0.625rem 0.625rem 0;
-  max-width:40rem;font-size:var(--t-md);color:var(--mut);margin-top:0.25rem}
-.honest b{color:var(--ink)}
-.waitlist{background:var(--bg2);border:1px solid var(--line);border-radius:1rem;padding:1.875rem 1.875rem;margin:1.75rem 0 0;
-  position:relative;overflow:hidden}
-.waitlist::before{content:'';position:absolute;right:-18%;top:-40%;width:60%;height:180%;pointer-events:none;
-  background:radial-gradient(ellipse at 60% 50%,var(--glow),transparent 62%)}
-.waitlist h2{margin-bottom:0.5rem;position:relative}
-.waitlist p{color:var(--mut);max-width:35rem;margin:0 0 1.5rem;position:relative}
-.waitlist .btn{position:relative}
-#graft{display:block;position:relative;left:50%;width:100vw;min-height:100svh;margin:4rem 0 0;transform:translateX(-50%);overflow:hidden;
+/* 접목 절과 바닥글이 한 화면에 함께 들어오게, 절의 높이에서 바닥글 높이(4.5rem)를 뺀다. */
+#graft{display:block;position:relative;left:50%;width:100vw;min-height:calc(100svh - 4.5rem);margin:4rem 0 0;transform:translateX(-50%);overflow:hidden;
   padding:8.125rem max(1rem,6vw) 6.875rem;background:#151110}
 #graft::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(16,12,12,.82),rgba(16,12,12,.94)),url('assets/journey/era9.webp') center 62%/cover no-repeat;filter:blur(3px);transform:scale(1.015)}
 #graft::after{content:'';position:absolute;left:50%;top:58%;width:min(42vw,36.875rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(233,139,61,.18),rgba(233,139,61,.045) 37%,transparent 69%);pointer-events:none}
@@ -389,6 +271,8 @@ svg.graph{display:block;max-height:78svh;min-width:40rem;width:100%;height:auto;
 .graft-steps{margin-top:1.5rem;display:grid;gap:1rem}.graft-step{display:grid;grid-template-columns:5.125rem 1fr;gap:.75rem}
 .graft-step strong{color:var(--ember);font-size:.8125rem}.graft-step span{color:rgba(237,227,211,.72);font-size:.75rem;line-height:1.55}
 #graft .graft-action{min-width:min(100%,21.25rem);min-height:3.625rem;margin:3.25rem auto 0;padding:0 1.625rem;display:flex;align-items:center;justify-content:center;width:max-content;border-radius:999px;font-size:.9375rem;box-shadow:0 .875rem 2.8125rem rgba(233,139,61,.18)}
+.graft-more{display:block;width:max-content;margin:1rem auto 0;color:var(--mut);font-size:var(--t-xs);text-decoration:none}
+.graft-more:hover{color:var(--ember)}
 @media(max-width:899px){.graft-grid{grid-template-columns:1fr}.graft-block{min-height:0}}
 @media(max-width:520px){#graft{padding-top:6.25rem}.graft-step{grid-template-columns:4.5rem 1fr}}
 footer{color:var(--mut);font-size:var(--t-2xs);display:flex;justify-content:space-between;gap:0.75rem;flex-wrap:wrap}
@@ -410,55 +294,21 @@ h2{font-size:clamp(1.5rem,1.16rem+1.7vw,2.125rem)}
 .j-era h3{font-size:clamp(2.75rem,1.2rem+6.5vw,4.25rem)}
 .instinct .big{font-size:clamp(1.5rem,1.05rem+2.1vw,2.5rem)}
 
-/* 그래프 시연 80% — 다른 섹션 프레임과 크기를 맞춘다(PI 2026-07-27) */
-
-/* 그래프: 크기만 80%로. 내용은 den 반환 그대로 전부 싣는다(PI 2026-07-27) */
-.graph-shell{max-width:53rem;margin-left:auto;margin-right:auto}
-svg.graph{max-height:62svh;min-width:46rem}
-
-
-/* ══ 2026-07-27 PI 지적 반영 ═══════════════════════════════
-
-   ① 본능 섹션: 우측 벽 비주얼 위로 잔불이 아래→위로 지나가 어색하다.
-      벽 **안에서** 빛이 배어나오도록 호흡시킨다(입자는 그대로 두되 벽이 주역이 되게). */
-@keyframes wallbreath{
-  0%,100%{opacity:.55;transform:scale(1) translateY(0)}
-  50%    {opacity:1;  transform:scale(1.07) translateY(-1.5%)}
-}
-/* 벽이 있는 구간에서는 잔불을 눌러 시선을 벽으로 모은다 */
+@keyframes wallbreath{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.07) translateY(-1.5%)}}
 .instinct{isolation:isolate}
-
-/* ② 그래프 정보 패널이 노드마다 글 길이가 달라 높이가 변한다 → 레이아웃이 덜컹거린다.
-   최소 높이를 고정해 호버 중 흔들림을 없앤다. */
-.info{min-height:5.5rem;align-items:center}
-.info .d{min-height:2.8rem}
-
-/* ③ 간선 라벨이 엣지·노드와 겹쳐 읽히지 않는다 → 배경색 후광을 둘러 분리한다. */
-.elabel{paint-order:stroke;stroke:var(--panel);stroke-width:3.5px;stroke-linejoin:round}
-.gnode text{paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
-.gnode.hub text{stroke:var(--ember-soft)}
-
-/* ④ 마지막 CTA 는 제목 아래가 아니라 오른쪽 끝에(PI) */
-.waitlist{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-.waitlist h2{margin:0;flex:1 1 20rem}
-.waitlist .btn{flex:0 0 auto;margin-left:auto}
-@media (max-width:720px){
-  .waitlist{flex-direction:column;align-items:flex-start}
-  .waitlist .btn{margin-left:0}
-}
 
 /* ══ 2026-07-27 가독성 (PI: "글씨가 잘 안 보인다") ══════════
    측정: --mut 4.82:1 · --ember 4.54:1 — WCAG 최소선(4.5)을 겨우 넘는 값이었다.
    최소선은 "읽을 수 있다" 이지 "편하다" 가 아니다. 본문을 AAA(7:1) 로 올린다.
    --strata 는 3.30 으로 본문 기준 **미달**이었다 → 4.92.
    여기에 잔불이 전 페이지를 덮으면서(같은 날 내 변경) 글자 뒤 노이즈가 겹쳤다 → 알파 하향. */
-.sec-lede,.info .d,.instinct .small,.row .b,.step .d{color:var(--mut);font-weight:450}
+.instinct .small{color:var(--mut);font-weight:450}
 .fine,.src-line,.preview-note{color:var(--mut)}
 /* 잔불이 글 위로 비치지 않도록 본문 레이어를 확실히 올린다.
    머리(header)는 이 목록에 넣지 않는다: 여기에 들어 있으면 위의 `header{position:fixed;z-index:50}` 가 꺼져
    첫 화면을 지나면 로고가 화면에서 사라진다.
    머리는 고정이라 잔불(z-index 낮음)보다 이미 위에 있다. */
-section,.instinct,.hero,footer{position:relative;z-index:1}
+section,.instinct,footer{position:relative;z-index:1}
 
 /* ══ 모바일 스크롤 정합 (2026-07-27, PI) ═══════════════════
    증상: 위로 스크롤하면 칸이 딱 맞고, 아래로 스크롤하면 밀린다.
@@ -467,22 +317,6 @@ section,.instinct,.hero,footer{position:relative;z-index:1}
    해법: 100dvh(현재 실제 뷰포트) — 주소창 상태와 무관하게 항상 화면을 채운다.
         vh 는 구형 브라우저 폴백. (그래프 max-height 는 svh 유지 — 그건 '넘치지 않게'
         하는 상한이라 가장 작은 값이 맞다.) */
-
-/* ══ 2026-07-27 PI 지적 2차 ════════════════════════════════ */
-
-/* ① den 이 만든 값(95.3% · +20.0%p)만 다른 색으로 — 나머지는 기준선이다 */
-.stat.hi .n{color:var(--ember)}
-.stat.hi .l{color:var(--ink);font-weight:600}
-
-.info-top{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;
-          min-height:1.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--line)}
-.info-body{display:flex;flex-direction:column;gap:0.25rem;
-           height:4.25rem;overflow-y:auto;padding-top:0.5rem}
-.info-body .d{max-width:none;min-height:0}
-.info .src{font-size:var(--t-sm);color:var(--mut)}
-@media (max-width:720px){ .info-body{height:5.5rem} }
-
-
 
 /* ══ 여정 챕터 스냅 (2026-07-27, PI) ═══════════════════════
    요구: 01~08 은 딱딱 맞고, 그 이후는 자연스럽게.
@@ -516,67 +350,21 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 .j-fill,.j-dot{transition:width .38s cubic-bezier(.22,.9,.3,1),left .38s cubic-bezier(.22,.9,.3,1)}
 @media (prefers-reduced-motion:reduce){ .j-fill,.j-dot{transition:none} }
 
-/* ══ 모바일 (2026-07-27, PI "모바일에서는 관계 그래프 안 보여주는 게 낫다")
-   가로 920 viewBox 를 360px 에 넣으면 한글이 7px, 세로로 다시 그리면 화면 3배 길이가 된다.
-   둘 다 얻는 게 없어 **모바일에서는 그래프를 내린다.** 데스크톱에서는 그대로 보인다. */
-@media (max-width:720px){
-  .graph-shell{display:none}
-}
-
-/* ══ 가로 넘침 수리 (2026-07-28, 렌더링 검증이 첫 실행에서 검출)
-   .j-era 는 전환 대기 위치가 translateX(7.5rem) 이라 화면 밖 474px 까지 나간다.
-   .j-sticky 에 overflow:hidden 이 있지만 sticky 라 문서 폭 계산을 막지 못했다.
-   → 무대(.j-stage)에서 자른다. body{overflow-x:hidden} 은 html 스크롤을 못 막으므로
-     html 에도 명시한다(실측: html scrollWidth 434 > clientWidth 390). */
+/* sticky 를 깨뜨리지 않고 장면의 전환 대기 위치만 자른다. */
 .j-stage{overflow:hidden}
-/* ★html 에 overflow 를 걸면 안 된다(2026-07-28 실측): html 이 스크롤 컨테이너가 되어
-   하위 position:sticky 가 무효화된다 — .j-sticky 가 고정되지 않고 흘러가
-   여정(01~08)이 통째로 망가졌다(sticky.top -504→-4284). 넘침은 .j-stage 에서만 자른다. */
-
-/* 등장 애니메이션 대기 위치가 좁은 화면에서 화면 밖으로 나간다(.rv-r 는 +4.5rem → 432px).
-   **국소 컨테이너에서만** 자른다 — html/body 에 overflow 를 걸면 sticky 가 깨진다(실측). */
-.rows,.compare{overflow:hidden}
-/* 모바일에서는 가로 이동 자체를 줄인다(세로 등장으로 충분하고 넘칠 여지가 없다) */
-@media (max-width:1024px){
-  .reveal.rv-l,.reveal.rv-r{transform:translateY(2.5rem)}
-}
 </style>
-
-<div id="pbar"></div>
-<!-- 잔불(2026-07-27): .hero(height:100svh·overflow:hidden) 안에 있어 첫 화면에서만
-     보였다 — PI "내리는 동안 배경이 심심하다". 구현은 원래 있던 canvas 그대로 두고
-     고정 레이어로만 끌어올린다. (중복 구현을 새로 만들었다가 같은 id 충돌로
-     getContext 가 죽어 페이지 전체가 멈춘 적이 있다 — §20.48) -->
-<canvas id="embers" aria-hidden="true"></canvas>
 
 <header>
   <div class="wrap">
-    <div class="brand">
-      <!-- 로고(2026-07-26): D의 속공간에 동굴·화덕·사람 — den/ember 은유의 형상.
-           라이트 배경엔 잉크색, 다크 배경엔 흰색 판본을 쓴다(원본은 흰색 단색이라
-           라이트용은 알파를 보존한 채 RGB만 잉크색으로 바꾼 변형본). -->
-      <picture>
-        <img class="logo" src="assets/logo/den-full-light.png" alt="Den" width="96" height="40">
-      </picture>
+    <a class="brand" href="#journey" aria-label="Den 첫 화면">
+      <img class="logo" src="assets/logo/den-full-light.png" alt="Den" width="96" height="40">
+    </a>
+    <div class="header-actions">
+      <button id="langbtn" type="button">EN</button>
+      <a class="top-cta" href="#graft" data-i18n="top_cta">접목하기</a>
     </div>
-    <button id="langbtn" type="button">EN</button>
   </div>
 </header>
-
-<div class="hero">
-  <div class="hero-glow" id="hglow"></div>
-  <div id="torch" aria-hidden="true"></div>
-  <div class="wrap">
-    <h1 class="display" id="kinetic" data-i18n-h1="1">AEC 전문 지식 큐레이팅 시스템</h1>
-    <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.</p>
-    <div class="cta-row">
-      <a class="btn magnetic" href="https://mcp.den.archi/signup?via=landing" data-i18n="cta">시작하기</a>
-    </div>
-  </div>
-  <div class="marquee" aria-hidden="true">
-    <div class="track" id="mtrack"></div>
-  </div>
-</div>
 
 <div class="journey" id="journey" data-chapter="0" data-visual="0.00" aria-label="인류가 공간을 이해해 온 여정">
   <div class="j-snaps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -585,7 +373,8 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
     <p class="j-count" id="jcount" aria-live="polite"></p>
 
     <article class="j-cap" data-era="0" aria-hidden="false">
-      <h1 data-j-intro>인류가 공간을 이해해 온 40,000년</h1>
+      <h1 data-i18n-h1="1">AEC 전문 지식<br><em>큐레이팅</em> 시스템</h1>
+      <p class="lede" data-i18n="lede"><b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.</p>
       <span class="scroll-cue" aria-hidden="true"></span>
     </article>
 
@@ -625,273 +414,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   <p class="small reveal d1" data-i18n="instsmall">그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.</p>
 </div>
 
-<!-- 09 전환점(2026-07-26 개편): 여정이 끝난 감정을 실무 문제로 넘긴다.
-     PI 결정 — 히어로와 01~08 여정의 감성은 그대로 두고, 그 '이후'를 다시 쓴다. -->
-
-
-<section class="wrap" id="graph-sec">
-  <p class="sec-lede reveal d2" data-i18n="g_lede">Den이 「아파트」 질문에 실제로 반환한 관계입니다. 개념에 마우스를 올리면 정의와 근거가 표시됩니다.</p>
-
-  <div class="graph-shell reveal d2">
-    <div class="graph-head">
-      <span class="graph-title" data-i18n="g_title">아파트 · Den이 실제로 반환한 관계</span>
-      <div class="legend">
-          <span><i class="lg"></i><span data-i18n="lg1">물리 인과</span></span>
-          <span><i class="lg en"></i><span data-i18n="lg2">가능 조건</span></span>
-          <span><i class="lg ev"></i><span data-i18n="lg3">정서</span></span>
-          <span><i class="lg ge"></i><span data-i18n="lg4">계보</span></span>
-          <span><i class="lg pt"></i><span data-i18n="lg5">법규·대조</span></span>
-        </div>
-    </div>
-    <div class="graph-body">
-    <svg class="graph" viewBox="0 0 920 590" role="img" aria-label="courtyard-house why-chain graph">
-      <defs>
-        <marker id="ah-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" class="ehead"/></marker>
-        <marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" class="ehead g"/></marker>
-        <marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" class="ehead d"/></marker>
-      </defs>
-      <path class="gedge geneal" data-e="apartment,insula" d="M368,268 C278,268 308,124 218,124" marker-end="url(#ah-g)"/>
-      <path class="gedge geneal" data-e="apartment,tenement" d="M368,288 C278,288 308,228 218,228" marker-end="url(#ah-g)"/>
-      <path class="gedge geneal" data-e="apartment,haussmann-apartment" d="M368,308 C278,308 308,332 218,332" marker-end="url(#ah-g)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-common-3m2" d="M552,265 C634,265 586,41 668,41" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-refuge-private-2m2" d="M552,280 C634,280 586,111 668,111" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-spec-apartment-special-stair-trigger-floor-16" d="M552,296 C634,296 586,181 668,181" marker-end="url(#ah-e)"/>
-      <path class="gedge part" data-e="apartment,kr-ba-08-remodel" d="M552,311 C634,311 586,251 668,251" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="apartment,urban-density" d="M394,324 C394,386 228,406 228,468" marker-end="url(#ah-e)"/>
-      <path class="gedge enables" data-e="apartment,household-autonomy" d="M438,324 C438,386 406,406 406,468" marker-end="url(#ah-e)"/>
-      <path class="gedge evokes" data-e="apartment,anonymity" d="M482,324 C482,386 572,406 572,468" marker-end="url(#ah-d)"/>
-      <path class="gedge part" data-e="apartment,suburban-house" d="M526,324 C526,386 752,406 752,468" marker-end="url(#ah-e)"/>
-      <text class="elabel" x="258" y="113" data-i18n="el_evo">계보</text>
-      <text class="elabel" x="258" y="217" data-i18n="el_evo">계보</text>
-      <text class="elabel" x="258" y="321" data-i18n="el_evo">계보</text>
-      <text class="elabel" x="568" y="30" data-i18n="el_req">법규 요건</text>
-      <text class="elabel" x="568" y="100" data-i18n="el_req">법규 요건</text>
-      <text class="elabel" x="568" y="170" data-i18n="el_req">법규 요건</text>
-      <text class="elabel" x="568" y="240" data-i18n="el_gr">근거 조문</text>
-      <text class="elabel" x="200" y="455" data-i18n="el_en">가능 조건</text>
-      <text class="elabel" x="378" y="455" data-i18n="el_en">가능 조건</text>
-      <text class="elabel" x="544" y="455" data-i18n="el_ev">정서</text>
-      <text class="elabel" x="724" y="455" data-i18n="el_ct">대조</text>
-      <g class="gnode hub" data-n="apartment" transform="translate(368,252)">
-        <rect width="184" height="72"/><text x="92" y="30" text-anchor="middle" data-graph-i18n="0">아파트</text>
-        <text class="sub" x="92" y="50" text-anchor="middle" data-i18n="gs_apt">공간 유형</text></g>
-      <g class="gnode" data-n="insula" transform="translate(28,96)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="1">인술라</text>
-        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="2">로마 임대주거</text></g>
-      <g class="gnode" data-n="tenement" transform="translate(28,200)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="3">테너먼트</text>
-        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="4">산업도시 노동자</text></g>
-      <g class="gnode" data-n="haussmann-apartment" transform="translate(28,304)">
-        <rect width="190" height="56"/><text x="95" y="23" text-anchor="middle" data-graph-i18n="5">오스만 아파트</text>
-        <text class="sub" x="95" y="41" text-anchor="middle" data-graph-i18n="6">파리 층별 계층</text></g>
-      <g class="gnode" data-n="kr-spec-apartment-refuge-common-3m2" transform="translate(668,14)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="7">대피공간 3㎡</text>
-        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
-      <g class="gnode" data-n="kr-spec-apartment-refuge-private-2m2" transform="translate(668,84)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="8">세대 대피공간 2㎡</text>
-        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
-      <g class="gnode" data-n="kr-spec-apartment-special-stair-trigger-floor-16" transform="translate(668,154)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="9">특별피난계단 16층</text>
-        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_spec">국내 법규 수치</text></g>
-      <g class="gnode" data-n="kr-ba-08-remodel" transform="translate(668,224)">
-        <rect width="236" height="54"/><text x="118" y="23" text-anchor="middle" data-graph-i18n="10">리모델링 완화</text>
-        <text class="sub" x="118" y="41" text-anchor="middle" data-i18n="gs_norm">국내 규범 조문</text></g>
-      <g class="gnode" data-n="urban-density" transform="translate(150,468)">
-        <rect width="156" height="54"/><text x="78" y="23" text-anchor="middle" data-graph-i18n="11">도시 밀도</text>
-        <text class="sub" x="78" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
-      <g class="gnode" data-n="household-autonomy" transform="translate(322,468)">
-        <rect width="168" height="54"/><text x="84" y="23" text-anchor="middle" data-graph-i18n="12">세대 독립성</text>
-        <text class="sub" x="84" y="41" text-anchor="middle" data-i18n="gs_q">성질</text></g>
-      <g class="gnode emo" data-n="anonymity" transform="translate(506,468)">
-        <rect width="132" height="54"/><text x="66" y="23" text-anchor="middle" data-graph-i18n="13">익명성</text>
-        <text class="sub" x="66" y="41" text-anchor="middle" data-i18n="gs_emo">정서 (주장)</text></g>
-      <g class="gnode" data-n="suburban-house" transform="translate(654,468)">
-        <rect width="196" height="54"/><text x="98" y="23" text-anchor="middle" data-graph-i18n="14">교외 단독주택</text>
-        <text class="sub" x="98" y="41" text-anchor="middle" data-graph-i18n="15">대조 축</text></g>
-    </svg>
-    </div>
-    <div class="info" id="info">
-      <div class="info-top"><span class="k" data-i18n="info_k">개념 선택</span></div>
-      <div class="info-body"><span class="d" data-i18n="info_d">개념을 선택하면 정의와 근거가 표시됩니다.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 2026-10-19 웹 문안: 서사 뒤 절은 지식 처리, 응답 예시, 비교, 범위 밖 처리, 기출 비교, 연결 방법, FAQ, 베타 가입 순서다. 40,000년 서사의 문구와 자리는 그대로 둔다. -->
-<section class="wrap">
-  <h2 class="display reveal d1" data-i18n="w_h2">Den이 지식을 다루는 방식</h2>
-  <p class="sec-lede reveal d2" data-i18n="w_lede">Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.</p>
-  <div class="rows">
-    <div class="row reveal">
-      <div class="h" data-i18n="r1h">문단 대신 개념 단위</div>
-      <div class="b" data-i18n="r1b">「아파트」 개념 하나에 인술라에서 이어진 계보와 대피공간 기준이 함께 연결됩니다. 에이전트는 문단을 찾는 대신 개념과 근거를 받습니다.</div>
-    </div>
-    <div class="row reveal">
-      <div class="h" data-i18n="r2h">수치와 출처</div>
-      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.</div>
-    </div>
-    <div class="row reveal">
-      <div class="h" data-i18n="r3h">수치와 적용 조건</div>
-      <div class="b" data-i18n="r3b">전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.</div>
-    </div>
-    <div class="row reveal">
-      <div class="h" data-i18n="r4h">사실과 주장의 구분</div>
-      <div class="b" data-i18n="r4b">축열 같은 물리 현상과 아늑함 같은 해석을 나눠 담고, 학설 사이에 논쟁이 있는 내용은 논쟁 중으로 표시합니다.</div>
-    </div>
-    <div class="row reveal">
-      <div class="h" data-i18n="r5h">응답 기록</div>
-      <div class="b" data-i18n="r5b">응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.</div>
-    </div>
-  </div>
-</section>
-
-<!-- 큐레이션 시연(2026-09-04 · 설명구 2026-09-14 "AEC 전문 지식 큐레이팅 시스템"): 조문 검색이 아니라 왜·순서를 **실제 응답**으로 보여준다.
-     응답은 2026-09-03 정본 팩에서 den_engine.answer_why / scenario 가 반환한 검증된 원문을 옮겼다. -->
-<section class="wrap" id="curation-sec">
-  <h2 class="display reveal d1" data-i18n="cu_h2">응답 예시</h2>
-  <p class="sec-lede reveal d2" data-i18n="cu_lede">이유와 공정 순서를 묻는 질문에 Den이 실제로 반환한 응답입니다.</p>
-  <div class="compare">
-    <div class="pane den reveal">
-      <div class="ph"><span data-i18n="cu1t">인과 설명</span> <span class="who" data-i18n="cu1w"></span></div>
-      <div class="pb">
-        <p class="q" data-i18n="cu1q">왜 콘크리트에 양생이 필요한가?</p>
-        <div class="chain">
-          <div class="cstep"><span class="rel" data-i18n="rl_cc">물리 인과 · 합의</span><br><span data-i18n="cu1c1">양생 → 압축강도 발현 <span class="sc">수분·온도를 유지해 수화가 계속된다</span></span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_cc">물리 인과 · 합의</span><br><span data-i18n="cu1c2">양생 → 내구성 <span class="sc">조기 건조·동결·과열에 따른 균열과 강도 저하를 줄인다</span></span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="cu1c3">"보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에 필요한 강도를 얻을 수 있게 실시하여야 한다"</span></div>
-        </div>
-        <div class="src-line" data-i18n="cu1s">근거: KCS 14 20 콘크리트공사, KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고 자료로 따로 표시합니다.</div>
-      </div>
-    </div>
-    <div class="pane den reveal d1">
-      <div class="ph"><span data-i18n="cu2t">공정 순서</span> <span class="who" data-i18n="cu2w"></span></div>
-      <div class="pb">
-        <p class="q" data-i18n="cu2q">철근콘크리트 골조 시공 순서는?</p>
-        <p data-i18n="cu2a">철근콘크리트 골조 1개 층 시공을 6단계로 구성했습니다. 단계 순서는 지식 그래프에 기록된 선후 관계를 따릅니다.</p>
-        <div class="chain">
-          <div class="cstep"><span class="rel" data-i18n="rl_ps">동시 시작</span><br><span data-i18n="cu2c1">① 기둥·벽 배근 ∥ ② 기둥·벽 거푸집</span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_rq">선행 조건</span><br><span data-i18n="cu2c2">③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생</span></div>
-          <div class="cstep"><span class="rel d" data-i18n="rl_gap">미보유 표시</span><br><span data-i18n="cu2c3">먹매김과 거푸집 해체는 근거가 되는 원문이 아직 없어 <b>미보유</b>로 표시합니다.</span></div>
-        </div>
-        <div class="src-line" data-i18n="cu2s">각 단계에는 근거 조문과 실무 규칙이 연결되어 있고, 순서 근거가 없는 단계는 동시 진행으로 표시합니다.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2 class="display reveal d1" data-i18n="p_h2">Den 연결 전후 답변 비교</h2>
-  <div class="compare">
-    <div class="pane reveal">
-      <div class="ph"><span data-i18n="pn1t">Den 연결 전</span> <span class="who" data-i18n="pn1w">모델 학습 지식</span></div>
-      <div class="pb">
-        <p class="q" data-i18n="pnq">RC 보 스터럽 최대 간격은?</p>
-        <p data-i18n="pn1b">수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.</p>
-        <p style="font-size:12.5px" data-i18n="pn1n">일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.</p>
-      </div>
-    </div>
-    <div class="pane den reveal d1">
-      <div class="ph"><span data-i18n="pn2t">Den 연결 후</span> <span class="who" data-i18n="pn2w">Den 지식팩</span></div>
-      <div class="pb">
-        <p class="q" data-i18n="pnq2">RC 보 스터럽 최대 간격은?</p>
-        <p data-i18n="pn2a">조건에 따라 두 가지로 나뉩니다.</p>
-        <div class="chain">
-          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc1">Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span></span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc2">Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하(절반)</span></span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_nc">국내 규범 조문</span><br><span data-i18n="pc3">Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span></span></div>
-        </div>
-        <p data-i18n="pn2b">전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.</p>
-        <div class="src-line" data-i18n="pn2s">Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 11 기권 시연(2026-07-26 개편, PI 채택): Den 의 핵심 차별점을 **말이 아니라 보여준다**.
-     범위 안이면 근거를 붙여 답하고, 범위 밖이면 침묵한다 — 그럴듯한 오답이 환각보다 나쁘기 때문. -->
-<section class="wrap" id="abstain-sec">
-  <h2 class="display reveal d1" data-i18n="ab_h2">보유 범위 밖 질문의 처리</h2>
-  <p class="sec-lede reveal d2" data-i18n="ab_lede">언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.</p>
-  <div class="compare">
-    <div class="pane den reveal">
-      <div class="ph"><span data-i18n="ab1t">보유 범위 안</span> <span class="who" data-i18n="ab1w">근거와 함께 답변</span></div>
-      <div class="pb">
-        <p class="q" data-i18n="ab1q">철근 최소 피복두께 기준은?</p>
-        <div class="chain">
-          <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c1">수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm</span></div>
-          <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c2">흙·옥외공기에 직접 노출: D19 이상 50mm · D16 이하 40mm</span></div>
-            <div class="cstep"><span class="rel" data-i18n="rl_pr">실무 규칙</span><br><span data-i18n="ab1c3">직접 접하지 않음: 보·기둥 40mm · 슬래브 D35 이하 20mm</span></div>
-        </div>
-        <div class="src-line" data-i18n="ab1s">근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준. Den이 답과 함께 반환합니다.</div>
-      </div>
-    </div>
-    <div class="pane reveal d1">
-      <div class="ph"><span data-i18n="ab2t">보유 범위 밖</span> <span class="who" data-i18n="ab2w">미보유 표시</span></div>
-      <div class="pb">
-        <p class="q" data-i18n="ab2q">양자컴퓨터 오류정정 방식은?</p>
-        <p data-i18n="ab2a" style="opacity:.85">관련 자료를 보유하고 있지 않습니다.</p>
-        <p style="font-size:12.5px" data-i18n="ab2n">에이전트는 이 신호를 받아 Den의 보유 범위 밖이라고 안내하고, 다른 조문으로 빈칸을 채우지 않습니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap">
-    <h2 class="display reveal d1" data-i18n="e_h2">국가기술자격 기출 비교</h2>
-    <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프론티어 모델 2개가 국가기술자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 두 모델 모두 166문항(86.5%)이었습니다.</p>
-    <div class="stats reveal d2">
-      <div class="stat"><div class="n" data-count="86.5" data-dec="1" data-suffix="%">86.5%</div><div class="l" data-i18n="e1">모델 A·B 단독</div></div>
-      <div class="stat hi"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den 연결 시 (모델 A)</div></div>
-      <div class="stat"><div class="n" data-count="8.9" data-dec="1" data-prefix="+" data-suffix="%p">+8.9%p</div><div class="l" data-i18n="e3">모델 A 상승 폭</div></div>
-      <div class="stat hi"><div class="n" data-count="20.0" data-dec="1" data-prefix="+" data-suffix="%p">+20.0%p</div><div class="l" data-i18n="e4">기능장 급수 상승 폭</div></div>
-    </div>
-    <p class="fine reveal d2" data-i18n="e_note">모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.</p>
-  </section>
-
-<section class="wrap">
-  <h2 class="display reveal d1" data-i18n="h_h2">연결 방법</h2>
-  <p class="sec-lede reveal d2" data-i18n="h_lede">지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.</p>
-  <div class="steps">
-    <div class="step reveal"><div class="t" data-i18n="sp1t">1. 연결</div>
-      <div class="d" data-i18n="sp1d">Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.</div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2. 질문</div>
-      <div class="d" data-i18n="sp2d">평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3. 근거 확인</div>
-      <div class="d" data-i18n="sp3d">답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.</div></div>
-  </div>
-
-  <!-- 연결 세 방법을 이 페이지에서 바로 보여준다. 실측상 작동한 OAuth 경로를 먼저 두고, 키 연결은 마지막에 둔다. -->
-  <div class="steps" style="margin-top:20px">
-    <div class="step reveal"><div class="t" data-i18n="cn1t">웹 커넥터 (키 불필요)</div>
-      <div class="d" data-i18n="cn1d">Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="cn2t">Claude Desktop</div>
-      <div class="d" data-i18n="cn2d">설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="cn3t">그 밖의 클라이언트</div>
-      <div class="d" data-i18n="cn3d">커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.</div></div>
-  </div>
-</section>
-
-<!-- 검색어 안내 절(2026-09-04): 큐레이션 포지셔닝과 검색 노출을 위한 정본 문안이다. -->
-<section class="wrap" id="faq">
-  <h2 class="display reveal d1" data-i18n="faq_h2">자주 묻는 질문</h2>
-  <div class="honest reveal d2">
-    <p><b data-i18n="f1q">Den은 어떤 서비스입니까?</b><br><span data-i18n="f1a">Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다.</span></p>
-    <p><b data-i18n="f2q">기준·조문을 검색하는 MCP와 무엇이 다릅니까?</b><br><span data-i18n="f2a">조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.</span></p>
-    <p><b data-i18n="f3q">어떤 도구가 있습니까?</b><br><span data-i18n="f3a">기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.</span></p>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2 class="display reveal d1" data-i18n="o_h2">베타 가입</h2>
-  <p class="sec-lede reveal d2" data-i18n="o_beta">Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.</p>
-  <div class="honest reveal d2" data-i18n="o_body">보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.</div>
-
-
-
-  <section id="graft">
+<section id="graft">
     <div class="graft-inner">
       <h2 class="display" data-i18n="wl_h2">불가의 새 자리</h2>
       <div class="graft-grid">
@@ -914,13 +437,13 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
         </article>
       </div>
       <a class="btn magnetic graft-action" href="https://mcp.den.archi/signup?via=landing" data-i18n="wl_cta">Den 큐레이팅 시스템 접목하기</a>
+      <a class="graft-more" href="about.html" data-i18n="gf_more">응답 예시와 연결 방법</a>
     </div>
   </section>
-  <footer style="padding:26px 0 0">
+  <footer style="box-sizing:border-box;min-height:4.5rem;align-items:center;padding:1rem 1.5rem">
     <span><b>Den</b> · <span data-i18n="ft1">AEC 전문 지식 큐레이팅 시스템</span></span>
-    <span style="display:flex;gap:1rem"><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_terms">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_privacy">개인정보 처리방침</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
+    <span style="display:flex;flex-wrap:wrap;gap:.375rem 1rem"><a href="about.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_about">소개</a><a href="beta.html" style="color:var(--ember);text-decoration:none" data-i18n="ftg">클라이언트별 연결 안내</a><a href="terms.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_terms">이용약관</a><a href="privacy.html" style="color:var(--mut);text-decoration:none" data-i18n="ft_privacy">개인정보 처리방침</a><a href="mailto:support@den.archi" style="color:var(--mut);text-decoration:none" data-i18n="ftc">문의 support@den.archi</a><span data-i18n="ft2">© 2026 Den</span></span>
   </footer>
-</section>
 
 <script>
 (function(){
@@ -930,82 +453,24 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 
   /* ================= i18n ================= */
   var I18N = {
-    ko: { doc_title:'Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)', doc_desc:'AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.', ft_terms:'이용약관', ft_privacy:'개인정보 처리방침', r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
-      ab_lede:'언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.',
-      ab1t:'보유 범위 안', ab1w:'근거와 함께 답변', ab1q:'철근 최소 피복두께 기준은?',
-      ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
-      ab1c3:'직접 접하지 않음: 보·기둥 40mm · 슬래브 D35 이하 20mm', ab1c2:'흙·옥외공기에 직접 노출: D19 이상 50mm · D16 이하 40mm',
-      ab1s:'근거: KDS 14 20 50 콘크리트구조 철근상세 설계기준. Den이 답과 함께 반환합니다.',
-      ab2t:'보유 범위 밖', ab2w:'미보유 표시', ab2q:'양자컴퓨터 오류정정 방식은?',
-      ab2a:'관련 자료를 보유하고 있지 않습니다.',
-      ab2n:'에이전트는 이 신호를 받아 Den의 보유 범위 밖이라고 안내하고, 다른 조문으로 빈칸을 채우지 않습니다.',
-      ch_note:'',
-      eyebrow:'',
+    ko:{
+      doc_title:'Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)',
+      doc_desc:'AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.',
       h1:'AEC 전문 지식|[큐레이팅] 시스템',
       lede:'<b>AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.</b><br>조항과 수치마다 출처를 붙이고, 보유하지 않은 내용은 미보유로 표시합니다.<br>Claude와 ChatGPT에는 커넥터 주소 하나로 연결할 수 있습니다.',
-      cta:'시작하기',
-      jeyebrow:'인류가 공간을 이해해 온 40,000년',
+      top_cta:'접목하기', jeyebrow:'인류가 공간을 이해해 온 40,000년',
       instbig:'3만 년 전, 불가에 등을 대고 어둠을 살피던 사람과 오늘 카페에서 [벽을 등진 자리]부터 채우는 우리는 같은 본능으로 공간을 읽습니다.',
-      instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.', g_h2:'',
-      g_lede:'Den이 「아파트」 질문에 실제로 반환한 관계입니다. 개념에 마우스를 올리면 정의와 근거가 표시됩니다.',
-      g_title:'아파트 · Den이 실제로 반환한 관계',
-      lg1:'물리 인과', lg2:'가능 조건', lg3:'정서', lg5:'법규·대조', lg4:'계보',
-      info_k:'개념 선택',
-      info_d:'개념을 선택하면 정의와 근거가 표시됩니다.', w_h2:'Den이 지식을 다루는 방식',
-      w_lede:'Den은 원문에 근거가 있는 지식만 개념 단위로 정리해 제공합니다.',
-      r1h:'문단 대신 개념 단위',
-      r1b:'「아파트」 개념 하나에 인술라에서 이어진 계보와 대피공간 기준이 함께 연결됩니다. 에이전트는 문단을 찾는 대신 개념과 근거를 받습니다.',
-      r2h:'수치와 출처',
-      r2b:'스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.',
-      r3h:'수치와 적용 조건',
-      r3b:'전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.',
-      r4h:'사실과 주장의 구분',
-      r4b:'축열 같은 물리 현상과 아늑함 같은 해석을 나눠 담고, 학설 사이에 논쟁이 있는 내용은 논쟁 중으로 표시합니다.', h_h2:'연결 방법',
-      h_lede:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.',
+      instsmall:'그 본능이 동굴을, 화덕을, 정주를, 도시를 만들었습니다.<br>Den은 그 계보를 데이터로 복원합니다.',
       sp1t:'1. 연결', sp1d:'Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.',
       sp2t:'2. 질문', sp2d:'평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.',
-      cn1t:'웹 커넥터 (키 불필요)', cn1d:'Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop', cn2d:'설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.',
-      cn3t:'그 밖의 클라이언트', cn3d:'커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.',
-      sp3t:'3. 근거 확인', sp3d:'답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.', p_h2:'Den 연결 전후 답변 비교',
-      p_lede:'',
-      pn1t:'Den 연결 전', pn1w:'모델 학습 지식', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
-      pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
-      pn1n:'일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.',
-      pn2t:'Den 연결 후', pn2w:'Den 지식팩',
-      pn2a:'조건에 따라 두 가지로 나뉩니다.',
-      pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span>',
-      pc2:'Vs가 이를 <b>초과</b>하면 → s ≤ d/4 <span class="sc">그리고 300mm 이하(절반)</span>',
-      pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">그리고 0.35·bw·s/fyt 이상</span>',
-      pn2b:'전단철근의 설계기준항복강도 fyt는 500MPa 이하입니다. 용접이형철망은 600MPa 이하입니다.',
-      pn2s:'Den이 반환한 근거: KDS 14 20 22 콘크리트구조 전단 및 비틀림 설계기준 §4.3.1·4.3.2', o_h2:'베타 가입',
-      o_body:'보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다.',
+      sp3t:'3. 근거 확인', sp3d:'답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.',
       wl_h2:'불가의 새 자리',
       gf1h:'이야기 속 Den의 자리', gf1p:'동굴에서 도시까지, 사람이 공간에서 얻은 기준은 법령과 설계기준, 시방서로 쌓였습니다. Den은 그 기준을 에이전트가 읽는 지식으로 정리해 출처와 함께 제공합니다.',
       gf2h:'에이전트와 일하는 실무자와 회사', gf2p:'설계, 엔지니어링, 시공, 유지관리 업무에 AI 에이전트를 쓰는 실무자와 건설 AX를 준비하는 회사가 대상입니다. 조항과 수치마다 붙은 출처로 근거를 확인할 수 있고, 보유하지 않은 내용은 미보유로 표시합니다.',
-      gf3h:'접목하는 방법', gf3p:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.', wl_cta:'Den 큐레이팅 시스템 접목하기',
+      gf3h:'접목하는 방법', gf3p:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.',
+      wl_cta:'Den 큐레이팅 시스템 접목하기', gf_more:'응답 예시와 연결 방법',
       ft1:'AEC 전문 지식 큐레이팅 시스템', ft2:'© 2026 Den', ftg:'클라이언트별 연결 안내',
-      ftc:'문의 support@den.archi',
-      cu_h2:'응답 예시',
-      cu_lede:'이유와 공정 순서를 묻는 질문에 Den이 실제로 반환한 응답입니다.',
-      cu1t:'인과 설명', cu1w:'', cu1q:'왜 콘크리트에 양생이 필요한가?',
-      cu1c1:'양생 → 압축강도 발현 <span class="sc">수분·온도를 유지해 수화가 계속된다</span>',
-      cu1c2:'양생 → 내구성 <span class="sc">조기 건조·동결·과열에 따른 균열과 강도 저하를 줄인다</span>',
-      cu1c3:'"보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에 필요한 강도를 얻을 수 있게 실시하여야 한다"',
-      cu1s:'근거: KCS 14 20 콘크리트공사, KCS 14 20 40:2024 한중 콘크리트 3.4.2 (6). 해외 문헌은 참고 자료로 따로 표시합니다.',
-      cu2t:'공정 순서', cu2w:'', cu2q:'철근콘크리트 골조 시공 순서는?',
-      cu2a:'철근콘크리트 골조 1개 층 시공을 6단계로 구성했습니다. 단계 순서는 지식 그래프에 기록된 선후 관계를 따릅니다.',
-      cu2c1:'① 기둥·벽 배근 ∥ ② 기둥·벽 거푸집',
-      cu2c2:'③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생',
-      cu2c3:'먹매김과 거푸집 해체는 근거가 되는 원문이 아직 없어 <b>미보유</b>로 표시합니다.',
-      cu2s:'각 단계에는 근거 조문과 실무 규칙이 연결되어 있고, 순서 근거가 없는 단계는 동시 진행으로 표시합니다.',
-      faq_h2:'자주 묻는 질문',
-      f1q:'Den은 어떤 서비스입니까?',
-      f1a:'Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다.',
-      f2q:'기준·조문을 검색하는 MCP와 무엇이 다릅니까?',
-      f2a:'조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.',
-      f3q:'어떤 도구가 있습니까?',
-      f3a:'기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.',
+      ft_terms:'이용약관', ft_privacy:'개인정보 처리방침', ftc:'문의 support@den.archi', ft_about:'소개',
       eras:[
         ['야외','Open Air','지붕 없는 밤 — 인류는 시야와 도주로로 안전을 쟀습니다. 그 계산은 지금도 우리 안에 있습니다.'],
         ['동굴','The Den','첫 번째 벽이 생겼습니다. 등 뒤가 안전해지자 비로소 마음이 다른 곳을 볼 수 있었습니다.'],
@@ -1017,91 +482,26 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
         ['가상','Virtual','몸 없이 거주하는 첫 세대가 왔습니다. 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.'],
         ['에이전트','Agent','불가에 새 자리가 하나 생겼습니다. 에이전트가 사람 곁에서 공간을 읽기 시작했습니다. 사람이 4만 년 동안 쌓은 공간의 기준을 에이전트도 읽도록, Den이 지식을 골라 출처와 함께 건넵니다.']
       ],
-      langbtn:'EN',
-    e_h2:'국가기술자격 기출 비교',
-      e_lede:'서로 다른 프론티어 모델 2개가 국가기술자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 두 모델 모두 166문항(86.5%)이었습니다.',
-      e1:'모델 A·B 단독',
-      e2:'Den 연결 시 (모델 A)',
-      e3:'모델 A 상승 폭',
-      e4:'기능장 급수 상승 폭',
-      e_note:'모델 A는 86.5%에서 95.3%로, 모델 B는 86.5%에서 93.8%로 올랐습니다. 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.'
+      langbtn:'EN'
     },
-      en: { doc_title:'Den | AEC Expert Knowledge Curation System (AEC MCP for Korean Building Codes)', doc_desc:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.', ft_terms:'Terms (Korean)', ft_privacy:'Privacy Policy (Korean)', r5h:'Response Records', r5b:'Each response includes a record of the knowledge pack version, the source items, and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'Physical causality · consensus', rl_nc:'Korean standard clause', rl_ps:'Concurrent start', rl_rq:'Prerequisite', rl_gap:'outside curated scope', rl_pr:'Practice rule', gs_apt:'Space type', gs_spec:'Korean statutory value', gs_norm:'Korean standard clause', gs_q:'Property', gs_emo:'emotion (claimed)', el_evo:'Lineage', el_req:'Statutory requirement', el_gr:'Source clause', el_en:'Enabling condition', el_ev:'Emotion', el_ct:'Contrast', ab_h2:'Handling Questions Outside the Curated Scope',
-      ab_lede:'A language model can produce a sentence without a source. When no source is found, Den returns a signal that the question is outside the curated scope instead of an answer.',
-      ab1t:'Within the curated scope', ab1w:'Answer with sources', ab1q:'What is the minimum concrete cover for reinforcement?',
-      ab1c1:'Cast underwater: 100mm · permanently buried against earth: 75mm',
-      ab1c3:'Not directly exposed: beams and columns 40mm · slabs D35 or smaller 20mm', ab1c2:'Directly exposed to earth or outdoor air: D19 or larger 50mm · D16 or smaller 40mm',
-      ab1s:'Source: KDS 14 20 50 Concrete Structure Reinforcement Detailing Design Standard. Den returns the source with the answer.',
-      ab2t:'Outside the curated scope', ab2w:'Marked as outside the curated scope', ab2q:'How does quantum computer error correction work?',
-      ab2a:'The curated scope has no material on this topic.',
-      ab2n:'The agent receives this signal, reports that the question is outside the curated scope of Den, and does not fill the blank with other clauses.',
-      ch_note:'',
-      eyebrow:'',
+    en:{
+      doc_title:'Den | AEC Expert Knowledge Curation System (AEC MCP for Korean Building Codes)',
+      doc_desc:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.',
       h1:'AEC Expert Knowledge|[Curation] System',
       lede:'<b>Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.</b><br>A source is attached to each clause and value, and content outside the curated scope is marked as such.<br>Claude and ChatGPT connect through one connector address.',
-      cta:'Get Started',
-      jeyebrow:'40,000 Years of Understanding Space',
+      top_cta:'Integrate', jeyebrow:'40,000 Years of Understanding Space',
       instbig:'A person watching the dark with a back to the fire 30,000 years ago and a person choosing a [seat against the wall] in a café today read space through the same instinct.',
-      instsmall:'That instinct built the cave, the hearth, the settlement, and the city.<br>Den reconstructs the lineage as data.', g_h2:'',
-      g_lede:'These are the relations Den returned for a question about the apartment. Hovering over a concept shows its definition and sources.',
-      g_title:'Apartment · relations returned by Den',
-      lg1:'Physical causality', lg2:'Enabling condition', lg3:'Emotion', lg5:'Statute · contrast', lg4:'Lineage',
-      info_k:'Concept Selection',
-      info_d:'Selecting a concept displays its definition and source.', w_h2:'How Den Handles Knowledge',
-      w_lede:'Den provides only knowledge that has a basis in the source text, organized by concept.',
-      r1h:'Concept Units Instead of Paragraphs',
-      r1b:'The apartment concept connects both its lineage from the insula and its refuge-space requirements. The agent receives concepts and sources instead of paragraphs.',
-      r2h:'Values and Sources',
-      r2b:'A question about stirrup spacing returns KDS 14 20 22 4.3.1·4.3.2 with the answer. Values without a source are excluded from the knowledge pack.',
-      r3h:'Values and Conditions',
-      r3b:'The maximum stirrup spacing is halved when the shear force exceeds the threshold. Den provides the condition under which each value applies.',
-      r4h:'Separation of Facts and Claims',
-      r4b:'Physical phenomena such as heat storage are separated from interpretations such as coziness. Content disputed among theories is marked as disputed.', h_h2:'Connection Method',
-      h_lede:'The connector address is registered in the AI agent already in use.',
+      instsmall:'That instinct built the cave, the hearth, the settlement, and the city.<br>Den reconstructs the lineage as data.',
       sp1t:'1. Connect', sp1d:'The connector address is registered in an MCP client such as Claude or ChatGPT.',
       sp2t:'2. Ask', sp2d:'A question is asked as usual, and the agent calls Den when needed.',
-      cn1t:'Web Connector (No Key Required)', cn1d:'The address is entered as a custom connector in Claude or ChatGPT and authenticated with <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop', cn2d:'The installation file (<a href="den.mcpb">den.mcpb</a>) is downloaded and run, and the key issued by the dashboard is entered during installation.',
-      cn3t:'Other Clients', cn3d:'Clients without connector authentication connect with a key. The procedure is available in the <a href="beta.html">connection guide</a>.',
-      sp3t:'3. Check Sources', sp3d:'The answer includes sources, conditions of application, and causal paths.', p_h2:'Comparison Before and After Connecting Den',
-      p_lede:'',
-      pn1t:'Before Connecting Den', pn1w:'Model training knowledge', pnq:'What is the maximum stirrup spacing in an RC beam?', pnq2:'What is the maximum stirrup spacing in an RC beam?',
-      pn1b:'The maximum vertical stirrup spacing is generally 1/2 of effective depth d or less and 600mm or less. The minimum amount of shear reinforcement also requires review.',
-      pn1n:'This statement is correct in general. It omits the condition that <b>the spacing is halved when the shear force exceeds the threshold.</b>',
-      pn2t:'After Connecting Den', pn2w:'Den knowledge pack',
-      pn2a:'The answer has two cases according to the condition.',
-      pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">and 600mm or less</span>',
-      pc2:'If Vs <b>exceeds</b> this value → s ≤ d/4 <span class="sc">and 300mm or less (half)</span>',
-      pc3:'Av,min = 0.0625√fck·(bw·s/fyt) <span class="sc">and at least 0.35·bw·s/fyt</span>',
-      pn2b:'The design yield strength fyt of shear reinforcement is 500MPa or less. Welded deformed wire fabric is 600MPa or less.',
-      pn2s:'Source returned by Den: KDS 14 20 22 Concrete Structure Shear and Torsion Design Standard §4.3.1·4.3.2', o_h2:'Sign Up',
-      o_body:'Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice.',
+      sp3t:'3. Check Sources', sp3d:'The answer includes sources, conditions of application, and causal paths.',
       wl_h2:'A New Seat by the Fire',
       gf1h:'The Place of Den in the Story', gf1p:'From the cave to the city, the standards people gained from space have accumulated as statutes, design standards, and specifications. Den organizes those standards into knowledge that agents can read and provides it with sources.',
       gf2h:'For Practitioners and Companies Working with Agents', gf2p:'Den is for practitioners who use AI agents in design, engineering, construction, and operation and maintenance, and for companies preparing AI transformation (AX) in construction. The source attached to each clause and value shows the basis of an answer, and content outside the curated scope is marked as such.',
-      gf3h:'Integration Method', gf3p:'The connector address is registered in the AI agent already in use.', wl_cta:'Integrate the Den Curation System',
+      gf3h:'Integration Method', gf3p:'The connector address is registered in the AI agent already in use.',
+      wl_cta:'Integrate the Den Curation System', gf_more:'Examples and setup',
       ft1:'AEC Expert Knowledge Curation System', ft2:'© 2026 Den', ftg:'Connection Guide',
-      ftc:'Contact support@den.archi',
-      cu_h2:'Response Examples',
-      cu_lede:'These are responses Den returned to questions about reasons and work sequence.',
-      cu1t:'Causal Explanation', cu1w:'', cu1q:'Why does concrete require curing?',
-      cu1c1:'Curing → compressive strength development <span class="sc">hydration continues when moisture and temperature are maintained</span>',
-      cu1c2:'Curing → durability <span class="sc">reduces cracking and strength loss caused by early drying, freezing, or overheating</span>',
-      cu1c3:'"After insulated curing ends, curing shall continue so that the strength required for the expected load at the control age is obtained"',
-      cu1s:'Source: KCS 14 20 Concrete Work, KCS 14 20 40:2024 Cold Weather Concrete 3.4.2 (6). Foreign literature is identified separately as reference material.',
-      cu2t:'Work Sequence', cu2w:'', cu2q:'What is the construction sequence for a reinforced concrete frame?',
-      cu2a:'Construction of 1 floor of a reinforced concrete frame is arranged in 6 stages. The order of stages follows the precedence relations recorded in the knowledge graph.',
-      cu2c1:'① Column and wall reinforcement ∥ ② Column and wall formwork',
-      cu2c2:'③ Embedded items and inspection → ④ Concrete placement → ⑤ Compaction → ⑥ Curing',
-      cu2c3:'Layout marking and formwork removal have no supporting original source and are marked as <b>outside the curated scope</b>.',
-      cu2s:'Each stage connects to source clauses and practice rules. Stages without a source for their order are marked as concurrent.',
-      faq_h2:'Frequently Asked Questions',
-      f1q:'What service does Den provide?',
-      f1a:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It is provided as a remote MCP server and covers KDS, KCS, KS, building-related statutes, and practice knowledge in structures, construction, building services, materials, and planning.',
-      f2q:'How does Den differ from an MCP that searches standards and clauses?',
-      f2a:'Clause search identifies the location of a clause. Den adds conditions of application and sources to clauses and values, answers questions about reasons and work sequence with sources, and marks content as outside the curated scope when no source is found.',
-      f3q:'Which tools are available?',
-      f3a:'The tools cover standards and clause search, term definitions, causal explanations, work sequences, comparisons of two methods, type enumeration, site conditions, floor-plan compliance review, and concept connections. The connector address can be registered as a custom connector in Claude and ChatGPT. Coverage is partial, and items outside the curated scope are identified in the response.',
+      ft_terms:'Terms (Korean)', ft_privacy:'Privacy Policy (Korean)', ftc:'Contact support@den.archi', ft_about:'About',
       eras:[
         ['Open Air','E0','On nights without a roof, safety was measured in sightlines and escape routes. That calculation still runs in people today.'],
         ['The Den','Cave','The first wall appeared. With a safe back, the mind could finally look elsewhere.'],
@@ -1113,60 +513,10 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
         ['Virtual','Now','The first generation to dwell without a body has arrived. The instinct remains the same, and Den maps it.'],
         ['Agent','Next','A new seat has opened by the fire. Agents have begun to read space alongside people. Den selects knowledge and provides it with sources, so that agents can read the standards of space that people built up over 40,000 years.']
       ],
-      langbtn:'한국어',
-      e_h2:'National Technical Qualification Exam Comparison',
-      e_lede:'Frontier models from 2 different providers answered the same 192 national technical qualification exam questions under the same conditions, and each scored 166 correct answers (86.5%) on its own.',
-      e1:'Models A and B alone',
-      e2:'Model A with Den',
-      e3:'Model A improvement',
-      e4:'Master Craftsman level improvement',
-      e_note:'Model A rose from 86.5% to 95.3%, and Model B rose from 86.5% to 93.8%. Because the questions are public past exams, both models include memorized items, so the scores are higher than accuracy in actual work.',
-    },
-  
-  };
-  var GDATA = {
-      ko: {
-        'apartment':{ko:'아파트',kind:'공간 유형',def:'한 건물에 독립 세대들이 반복 수용된 집합주거.',chips:[['phys','공간 유형']],src:'Den 실제 반환'},
-        'insula':{ko:'인술라',kind:'건축 유형 · 계보',def:'로마 도시의 하층·중간층 다수가 거주한 다층 집합주거 또는 임대 블록으로, 단독 상류층 주택인 도무스와 사회적·공간적으로 대비된다.',chips:[['','계보']],src:'계보'},
-        'tenement':{ko:'테너먼트',kind:'건축 유형 · 계보',def:'산업도시 노동자를 수용한 협소·과밀 다층 임대주택.',chips:[['','계보']],src:'계보'},
-        'haussmann-apartment':{ko:'오스만 아파트',kind:'건축 유형 · 계보',def:'층별 계층분화를 가진 파리 부르주아 임대 아파트.',chips:[['','계보']],src:'계보'},
-        'kr-spec-apartment-refuge-common-3m2':{ko:'대피공간 3㎡',kind:'국내 법규 수치',def:'아파트 4층 이상 인접 세대 공동 대피공간 최소 바닥면적에 적용되는 국내 법규 수치 기준 3㎡.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
-        'kr-spec-apartment-refuge-private-2m2':{ko:'세대 대피공간 2㎡',kind:'국내 법규 수치',def:'아파트 4층 이상 각 세대별 대피공간 최소 바닥면적에 적용되는 국내 법규 수치 기준 2㎡.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
-        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'특별피난계단 16층',kind:'국내 법규 수치',def:'공동주택 특별피난계단 설치 대상 상층 기준에 적용되는 국내 법규 수치 기준 16층.',chips:[['phys','법규 요건']],src:'국내 법규 수치'},
-        'kr-ba-08-remodel':{ko:'리모델링 완화',kind:'국내 규범 조문',def:'리모델링이 쉬운 공동주택은 용적률ㆍ높이ㆍ일조 기준의 일부 완화를 받을 수 있다. 완화 폭은 하위령 기준 안에서 제한된다.',chips:[['phys','근거 조문']],src:'국내 조문'},
-        'urban-density':{ko:'도시 밀도',kind:'성질 · 가능 조건',def:'한정 면적에 인구가 조밀하게 집중된 상태.',chips:[['phys','가능 조건']],src:'가능 조건'},
-        'household-autonomy':{ko:'세대 독립성',kind:'성질 · 가능 조건',def:'각 집이 조리, 수면, 저장, 수리, 전시, 의례를 자체적으로 수행할 수 있어 마을 안에서 독립성과 반복성을 갖는 성질.',chips:[['phys','가능 조건']],src:'가능 조건'},
-        'anonymity':{ko:'익명성',kind:'정서',def:'밀집 주거에서 서로를 모르는 익명적 감각.',chips:[['claim','정서 (주장)']],src:'정서 (주장)'},
-        'suburban-house':{ko:'교외 단독주택',kind:'건축 유형 · 대조',def:'자동차·융자로 대량공급된 교외 단독주택.',chips:[['','대조']],src:'대조 축'}
-      },
-      en: {
-        'apartment':{ko:'Apartment',kind:'space_type · L1 backbone',def:'Repeated independent households stacked in one building.',chips:[['phys','L1 backbone']],src:'Den live output'},
-        'insula':{ko:'Insula',kind:'physical_object · evolvedFrom',def:'Roman multi-storey rental block housing the urban lower and middle classes, socially and spatially opposed to the elite domus.',chips:[['','evolvedFrom']],src:'lineage'},
-        'tenement':{ko:'Tenement',kind:'physical_object · evolvedFrom',def:'Cramped, overcrowded multi-storey rental housing for industrial-city workers.',chips:[['','evolvedFrom']],src:'lineage'},
-        'haussmann-apartment':{ko:'Haussmann apartment',kind:'physical_object · evolvedFrom',def:'The Parisian bourgeois rental apartment, stratified floor by floor.',chips:[['','evolvedFrom']],src:'lineage'},
-        'kr-spec-apartment-refuge-common-3m2':{ko:'Refuge area 3 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for the shared refuge space between adjoining units above the 4th floor: 3 m².',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-spec-apartment-refuge-private-2m2':{ko:'Private refuge 2 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for each unit\'s own refuge space above the 4th floor: 2 m².',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'Special escape stair, 16F',kind:'spec_value · requires',def:'KR statutory trigger for special escape stairs in multi-unit housing: 16 floors.',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-ba-08-remodel':{ko:'Remodelling relief',kind:'norm_clause · grounded_in',def:'Multi-unit housing designed for easy remodelling may receive partial relief on floor-area ratio, height and daylight rules, bounded by subordinate decree.',chips:[['phys','grounded_in']],src:'KR statutory clause'},
-        'urban-density':{ko:'Urban density',kind:'quality · enables',def:'Population densely concentrated within a limited area.',chips:[['phys','enables']],src:'enabling condition'},
-        'household-autonomy':{ko:'Household autonomy',kind:'quality · enables',def:'Each dwelling can cook, sleep, store, repair, display and conduct rituals independently, which makes it autonomous and repeatable within the settlement.',chips:[['phys','enables']],src:'enabling condition'},
-        'anonymity':{ko:'Anonymity',kind:'emotion_instinct · evokes',def:'The sense of not knowing one another in dense housing.',chips:[['claim','evokes']],src:'emotion (claimed)'},
-        'suburban-house':{ko:'Suburban house',kind:'physical_object · contrasts',def:'The detached suburban house, mass-supplied by car and mortgage.',chips:[['','contrasts']],src:'contrast axis'}
-      }
-    };
-  var ATOM_CODES = ['hearth','central-court','malqaf','flying-buttress','ondol','tsuboniwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha','voussoir','engawa','impluvium','ziggurat','mashrabiya','hypocaust','tumulus','agora','jali','trullo','genkan','caravanserai'];
-  var STATIC_TEXT = {
-    ko: {
-      atoms:['화덕','중정','풍탑','플라잉버트레스','온돌','쓰보니와','능보','치남파','카나트','스토아','펜덴티브','하하월','홍예석','툇마루','임플루비움','지구라트','마슈라비야','하이포코스트','봉분','아고라','잘리','트룰로','겐칸','카라반세라이'],
-      graph:['아파트','인술라','로마 임대주거','테너먼트','산업도시 노동자','오스만 아파트','파리 층별 계층','대피공간 3㎡','세대 대피공간 2㎡','특별피난계단 16층','리모델링 완화','도시 밀도','세대 독립성','익명성','교외 단독주택','대조 축']
-    },
-    en: {
-      atoms:['hearth','courtyard','windcatcher','flying buttress','ondol','tsubo-niwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha wall','voussoir','toenmaru','impluvium','ziggurat','mashrabiya','hypocaust','burial mound','agora','jali','trullo','genkan','caravanserai'],
-      graph:['apartment','insula','Roman rental housing','tenement','industrial-city workers','Haussmann apartment','Paris, class by floor','refuge space 3㎡','unit refuge space 2㎡','special escape stairs, 16 floors','remodeling relaxation','urban density','unit independence','anonymity','suburban detached house','contrast axis']
+      langbtn:'한국어'
     }
   };
   var lang = 'ko';
-  var selectedGraphId = '';
   try{ lang = localStorage.getItem('den-lang') || 'ko'; }catch(e){}
 
   function splitKinetic(el, tpl){
@@ -1211,48 +561,29 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
 
   var journeyRefresh = function(){};
 
-  function renderMarquee(){
-    var mt = document.getElementById('mtrack');
-    var names = STATIC_TEXT[lang].atoms;
-    var half = ATOM_CODES.map(function(code,i){ return '<span><b>'+code+'</b><i>·</i>'+names[i]+'</span>'; }).join('');
-    mt.innerHTML = half + half;
-  }
-
-  function applyStaticText(){
-    var graph = STATIC_TEXT[lang].graph;
-    document.querySelectorAll('[data-graph-i18n]').forEach(function(el){
-      el.textContent = graph[Number(el.getAttribute('data-graph-i18n'))];
-    });
-    renderMarquee();
-  }
-
   function applyLang(){
-    var D = I18N[lang];
-    document.documentElement.lang = (lang==='ko'?'ko':'en');
-    document.title = D.doc_title;
-    var description = document.querySelector('meta[name="description"]');
-    if (description) description.content = D.doc_desc;
+    var D=I18N[lang];
+    document.documentElement.lang=(lang==='ko'?'ko':'en');
+    document.title=D.doc_title;
+    var description=document.querySelector('meta[name="description"]');
+    if(description)description.content=D.doc_desc;
     document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var k = el.getAttribute('data-i18n');
-      if (D[k]!==undefined) el.innerHTML = D[k];
+      var key=el.getAttribute('data-i18n');
+      if(D[key]!==undefined)el.innerHTML=D[key];
     });
-    document.getElementById('langbtn').textContent = D.langbtn;
-    splitKinetic(document.getElementById('kinetic'), D.h1);
-    var ib = document.getElementById('instinct-big');
-    splitWords(ib, D.instbig); litWords();
-    applyStaticText();
-    if (selectedGraphId) show(selectedGraphId);
-    var intro = document.querySelector('[data-j-intro]');
-    if (intro) intro.textContent = D.jeyebrow;
-    D.eras.forEach(function(e,i){
-      var era = i + 1;
-      var cap = document.querySelector('.j-cap[data-era="'+era+'"]');
-      var rail = document.querySelector('.j-rail [data-go="'+era+'"]');
-      if (!cap) return;
-      cap.querySelector('.chapter').textContent = lang==='ko' ? 'Chapter 0'+era+' — '+e[1] : e[1];
-      cap.querySelector('h2').textContent = e[0];
-      cap.querySelector('.j-copy').textContent = e[2];
-      if (rail) rail.textContent = e[0];
+    document.getElementById('langbtn').textContent=D.langbtn;
+    splitKinetic(document.querySelector('[data-i18n-h1]'),D.h1);
+    splitWords(document.getElementById('instinct-big'),D.instbig);
+    litWords();
+    D.eras.forEach(function(entry,index){
+      var era=index+1;
+      var cap=document.querySelector('.j-cap[data-era="'+era+'"]');
+      var button=document.querySelector('.j-rail [data-go="'+era+'"]');
+      if(!cap)return;
+      cap.querySelector('.chapter').textContent=lang==='ko'?'Chapter 0'+era+' — '+entry[1]:entry[1];
+      cap.querySelector('h2').textContent=entry[0];
+      cap.querySelector('.j-copy').textContent=entry[2];
+      if(button)button.textContent=entry[0];
     });
     journeyRefresh();
   }
@@ -1262,74 +593,6 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
     applyLang();
 
   });
-
-  /* ================= embers + torch + parallax ================= */
-  var cv = document.getElementById('embers');
-  var torch = document.getElementById('torch');
-  var hglow = document.getElementById('hglow');
-  var mx = -999, my = -999, tmx = -999, tmy = -999;
-  if (cv && !reduced) {
-    var ctx = cv.getContext('2d'), P = [], emberColor = '#E98B3D';
-    function readColor(){
-      emberColor = getComputedStyle(document.documentElement).getPropertyValue('--ember').trim() || emberColor;
-    }
-    readColor();
-    new MutationObserver(readColor).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-    try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readColor); }catch(e){}
-    function size(){
-      // 고정 레이어 — 뷰포트 기준(부모 기준이면 문서 전체 높이가 잡혀 낭비된다).
-      cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio;
-      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    }
-    size(); addEventListener('resize', size);
-    function spawn(init){
-      var h = cv.height/devicePixelRatio, w = cv.width/devicePixelRatio;
-      return { x: Math.random()*w, y: init? Math.random()*h : h+8,
-        r: .8+Math.random()*2.1, v: .25+Math.random()*.6,
-        sway: Math.random()*Math.PI*2, sa: .2+Math.random()*.55,
-        life: .3+Math.random()*.7 };
-    }
-    var _N = Math.min(64, Math.max(28, Math.round(innerWidth*innerHeight/26000)));
-      for (var i=0;i<_N;i++) P.push(spawn(true));
-    (function tick(){
-      var h = cv.height/devicePixelRatio, w = cv.width/devicePixelRatio;
-      ctx.clearRect(0,0,w,h);
-      for (var i=0;i<P.length;i++){
-        var p = P[i];
-        p.y -= p.v; p.sway += .013;
-        p.x += Math.sin(p.sway)*p.sa*.35;
-        // 커서 척력 — 불씨가 손길을 피해 흔들림
-        var dx = p.x - tmx, dy = p.y - tmy, d2 = dx*dx+dy*dy;
-        if (d2 < 8000){ var f = (8000-d2)/8000; p.x += dx*f*.03; p.y += dy*f*.03; }
-        var fade = Math.min(1, p.y/(h*.5));
-        if (p.y < -8) P[i] = spawn(false);
-        // 전 페이지로 확장(2026-07-27)하면서 알파를 낮춘다 — 히어로 전용이던 .6 은
-        // 밝은 본문 배경에서 글자 뒤 노이즈가 된다. 라이트 모드에서 더 눌러 준다.
-        var _isDark = getComputedStyle(document.documentElement)
-                        .getPropertyValue('--bg').trim().toLowerCase().indexOf('#1') === 0;
-        ctx.globalAlpha = (_isDark ? .42 : .22) * fade * p.life;
-        ctx.fillStyle = emberColor;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(tick);
-    })();
-  }
-  var hero = document.querySelector('.hero');
-  if (hero && !reduced && matchMedia('(pointer:fine)').matches){
-    hero.addEventListener('mousemove', function(e){
-      var r = hero.getBoundingClientRect();
-      mx = e.clientX - r.left; my = e.clientY - r.top;
-      torch.style.opacity = 1;
-    });
-    hero.addEventListener('mouseleave', function(){ torch.style.opacity = 0; mx=-999;my=-999; });
-    (function torchTick(){
-      tmx += (mx-tmx)*.08; tmy += (my-tmy)*.08;
-      torch.style.background = 'radial-gradient(35rem circle at '+tmx+'px '+tmy+'px, var(--glow), transparent 62%)';
-      if (hglow) hglow.style.transform = 'translate('+((tmx-400)*.02)+'px,'+((tmy-300)*.02)+'px)';
-      requestAnimationFrame(torchTick);
-    })();
-  }
 
   /* ================= magnetic buttons ================= */
   if (!reduced && matchMedia('(pointer:fine)').matches){
@@ -1344,9 +607,6 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   }
 
   /* ================= 문서 전체 쪽 넘김 + 여정 전환 엔진 ================= */
-  var pbar = document.getElementById('pbar');
-  var heroWrap = document.querySelector('.hero .wrap');
-  var heroEl = document.querySelector('.hero');
   var journey = document.getElementById('journey');
   var stage = document.getElementById('jsticky');
   var layers = Array.prototype.slice.call(stage.querySelectorAll('.j-layer'));
@@ -1741,8 +1001,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
     if(local>=-2&&local<=last+2){clearTimeout(settleTimer);settleTimer=setTimeout(function(){if(scrollAnimating||performance.now()<suppressScrollUntil)return;buildPages();var index=nearestPageIndex();if(Math.abs(scrollY-pages[index].pos)>2)animateScrollTo(pages[index].pos,pages[index].chapter);},140);}
   }
   function queueScroll(){
-    var y=scrollY,doc=document.documentElement.scrollHeight-innerHeight;pbar.style.width=(doc>0?y/doc*100:0)+'%';
-    if(heroWrap&&!reduced){var hp=Math.min(1,y/(heroEl.offsetHeight||1));heroWrap.style.transform='translateY('+(hp*-60)+'px)';heroWrap.style.opacity=String(1-hp*.9);}
+    var y=scrollY;
     if(!scrollRAF)scrollRAF=requestAnimationFrame(updateFromScroll);
   }
   addEventListener('scroll',queueScroll,{passive:true});
@@ -1769,103 +1028,22 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
   else{render(0);warmNeighbors();addEventListener('load',warmNeighbors,{once:true});motionChanged();}
   updateWords();queueScroll();setTimeout(buildPages,600);
 
-  /* ================= reveals / counters / instinct words ================= */
-  var toReveal = document.querySelectorAll('.reveal');
-  if (!reduced && 'IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ e.target.classList.toggle('in', e.isIntersecting); });
-    },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-    toReveal.forEach(function(el){ io.observe(el); });
-  } else { toReveal.forEach(function(el){ el.classList.add('in'); }); }
-  // 방향 변형 자동 부여: 행·페인·스텝이 좌우 번갈아 슬라이드
-  document.querySelectorAll('.row.reveal').forEach(function(el,i){ el.classList.add(i%2? 'rv-r':'rv-l'); });
-  document.querySelectorAll('.pane.reveal').forEach(function(el,i){ el.classList.add(i%2? 'rv-r':'rv-l'); });
-  document.querySelectorAll('.step.reveal').forEach(function(el,i){ el.classList.add('rv-s'); });
-  document.querySelectorAll('.stats.reveal, .graph-shell.reveal, .waitlist.reveal, .honest.reveal').forEach(function(el){ el.classList.add('rv-s'); });
-
-  var nums = document.querySelectorAll('.stat .n');
-  if (!reduced && 'IntersectionObserver' in window){
-    var io2 = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return; io2.unobserve(e.target);
-        var el = e.target, target = parseFloat(el.dataset.count);
-          var plus = el.dataset.plus ? '<span class="plus">+</span>' : '';
-          // 소수 자릿수·접두·접미(2026-07-27 벤치마크). 미지정 시 기존 정수 동작 그대로.
-          var dec = el.dataset.dec ? parseInt(el.dataset.dec,10) : 0;
-          var pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        var start = null;
-        function step(ts){
-          if(!start) start = ts;
-          var k = Math.min(1,(ts-start)/1400), ease = 1-Math.pow(1-k,3);
-          var _v = target*ease;
-            el.innerHTML = pre + (dec ? _v.toFixed(dec) : Math.round(_v).toLocaleString()) + suf + plus;
-          if(k<1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-    },{threshold:.4});
-    nums.forEach(function(n){ io2.observe(n); });
-  }
-
   function litWords(){
-    var ws = document.querySelectorAll('#instinct-big .w');
-    if (reduced || !('IntersectionObserver' in window)){ ws.forEach(function(w){w.classList.add('lit')}); return; }
-    var io3 = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return; io3.unobserve(e.target);
+    var words=document.querySelectorAll('#instinct-big .word');
+    if(reduced||!('IntersectionObserver' in window)){
+      words.forEach(function(word){word.classList.add('lit');});
+      return;
+    }
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting)return;
+        observer.unobserve(entry.target);
         lightWordsNow();
       });
     },{threshold:.35});
-    var big = document.getElementById('instinct-big');
-    if (big) io3.observe(big);
+    var big=document.getElementById('instinct-big');
+    if(big)observer.observe(big);
   }
-
-  /* ================= graph interaction ================= */
-  var info = document.getElementById('info');
-  var nodes = document.querySelectorAll('.gnode');
-  var edges = document.querySelectorAll('.gedge');
-  function touching(a,b){
-    var t=false;
-    edges.forEach(function(e){var p=e.dataset.e.split(',');
-      if((p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)) t=true;});
-    return t;
-  }
-  function show(id){
-    var d = GDATA[lang][id]; if(!d) return;
-    selectedGraphId = id;
-    var chips = d.chips.map(function(c){
-      return '<span class="chip '+c[0]+'">'+c[1]+'</span>';}).join('');
-    // 2단 구조(2026-07-27, PI): 상단=개념명·관계, 하단=설명.
-      // 설명 길이가 제각각이라 한 줄에 담으면 패널 높이가 변해 레이아웃이 밀렸다.
-      info.innerHTML =
-        '<div class="info-top">'
-      +   '<span class="k">'+d.ko+'<span class="en">'+id+' · '+d.kind+'</span></span>'
-      +   '<span class="chips">'+chips+'</span>'
-      + '</div>'
-      + '<div class="info-body">'
-      +   '<span class="d">'+d.def+'</span>'
-      +   '<span class="src">'+d.src+'</span>'
-      + '</div>';
-    nodes.forEach(function(n){
-      n.classList.toggle('dim', n.dataset.n!==id && !touching(n.dataset.n,id));
-      n.classList.toggle('active', n.dataset.n===id);
-    });
-    edges.forEach(function(e){
-      var pair = e.dataset.e.split(',');
-      e.classList.toggle('dim', pair.indexOf(id)<0);
-    });
-  }
-  function clearSel(){
-    nodes.forEach(function(n){n.classList.remove('dim','active')});
-    edges.forEach(function(e){e.classList.remove('dim')});
-  }
-  nodes.forEach(function(n){
-    n.addEventListener('mouseenter',function(){show(n.dataset.n)});
-    n.addEventListener('click',function(){show(n.dataset.n)});
-    n.setAttribute('tabindex','0');
-    n.addEventListener('focus',function(){show(n.dataset.n)});
-  });
-  document.querySelector('svg.graph').addEventListener('mouseleave',clearSel);
 
   /* init */
   applyLang();
@@ -1893,6 +1071,8 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
     }
     // A600: 출처(from)와 우리 랜딩 경유(via)는 서로 다른 사실이다.
     // 무표식 방문도 via는 실리며, 허용되지 않은 출처를 만들지 않는다.
+    var about = document.querySelectorAll('a[href^="about.html"]');
+    for (var j = 0; j < about.length; j++) about[j].href = f && OK.indexOf(f) >= 0 ? 'about.html?from=' + encodeURIComponent(f) : 'about.html';
     var as = document.querySelectorAll('a[href*="mcp.den.archi/signup"]');
     for (var i = 0; i < as.length; i++) {
       var signup = new URL(as[i].href);
