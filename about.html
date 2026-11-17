@@ -38,7 +38,7 @@
 <meta name="twitter:image" content="https://den.archi/assets/logo/og.png">
 <link rel="canonical" href="https://den.archi/about.html">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Den은 어떤 서비스입니까?","acceptedAnswer":{"@type":"Answer","text":"Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다."}},{"@type":"Question","name":"기준·조문을 검색하는 MCP와 무엇이 다릅니까?","acceptedAnswer":{"@type":"Answer","text":"조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다."}},{"@type":"Question","name":"어떤 도구가 있습니까?","acceptedAnswer":{"@type":"Answer","text":"기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Den은 어떤 서비스입니까?","acceptedAnswer":{"@type":"Answer","text":"Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다."}},{"@type":"Question","name":"기준·조문을 검색하는 MCP와 무엇이 다릅니까?","acceptedAnswer":{"@type":"Answer","text":"조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다."}},{"@type":"Question","name":"어떤 도구가 있습니까?","acceptedAnswer":{"@type":"Answer","text":"기준·조문 찾기, 용어 정의, 인과 설명, 공정 순서 구성, 두 공법 대조, 종류 열거, 대지 조건 확인, 평면 법규 검토, 개념 연결 찾기 등이 있습니다. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록해 연결합니다."}}]}</script>
 </head>
 <body>
 <style>/* ===== 비율 스케일: 디자인 캔버스 1600x900. 어떤 해상도든 같은 구도가 비례 축소/확대 ===== */
@@ -316,9 +316,14 @@ section,footer{position:relative;z-index:1}
   .graph-shell{display:none}
 }
 
-/* 등장 대기 위치가 문서 폭을 넓히지 않게 국소 컨테이너에서 자른다. */
+/* 등장 대기 위치가 문서 폭을 넓히지 않게 국소 컨테이너에서 자른다.
+   좁은 화면의 대기 위치는 등장 전(.in 이 붙기 전)에만 건다. 등장 뒤에도 남으면 마지막 행이 2.5rem 아래에 머물러
+   위 overflow 에 끝 줄이 잘린다(2026-11-18 · 휴대폰 390 · 태블릿 834 에서 마지막 행 끝 줄 17~19px 잘림 실측). */
 .rows,.compare{overflow:hidden}
-@media(max-width:1024px){.reveal.rv-l,.reveal.rv-r{transform:translateY(2.5rem)}}
+@media(max-width:1024px){.reveal.rv-l:not(.in),.reveal.rv-r:not(.in){transform:translateY(2.5rem)}}
+/* 휴대폰 세로 화면에서는 지식 처리 절(일곱 행)이 한 화면보다 길어 가운데 맞춤 여백이 없어지고, 다음 절 표제가
+   마지막 행 바로 아래에 붙는다(2026-11-18 · 360 · 390 · 430 폭 실측 간격 0). 절 위 안쪽 여백과 같은 4rem 을 띄운다. */
+@media(max-width:720px){.rows{margin-bottom:4rem}}
 
 /* 소개 면의 첫머리와 단추. 첫머리는 한 화면을 채우지 않고 머리 아래에서 바로 시작한다. */
 .btn{display:inline-block;background:var(--ember);color:var(--ember-ink);text-decoration:none;
@@ -454,11 +459,11 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
     </div>
     <div class="row reveal">
       <div class="h" data-i18n="r2h">수치와 출처</div>
-      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.</div>
+      <div class="b" data-i18n="r2b">스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 포함하지 않도록 관리합니다.</div>
     </div>
     <div class="row reveal">
       <div class="h" data-i18n="r3h">수치와 적용 조건</div>
-      <div class="b" data-i18n="r3b">전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.</div>
+      <div class="b" data-i18n="r3b">전단력이 기준을 초과하면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.</div>
     </div>
     <div class="row reveal">
       <div class="h" data-i18n="r4h">사실과 주장의 구분</div>
@@ -467,6 +472,14 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
     <div class="row reveal">
       <div class="h" data-i18n="r5h">응답 기록</div>
       <div class="b" data-i18n="r5b">응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.</div>
+    </div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r6h">다이나믹 온톨로지</div>
+      <div class="b" data-i18n="r6b">Den은 건설기준과 법령, 문헌을 출처와 함께 다이나믹 온톨로지로 구축해 제공합니다. 새로 생기는 개념도 기존 개념과의 관계로 이어 받아들입니다.</div>
+    </div>
+    <div class="row reveal">
+      <div class="h" data-i18n="r7h">사내 지식과의 연동</div>
+      <div class="b" data-i18n="r7b">사내 온톨로지 · RAG와 연동하면 사내 자료에 없는 공통 지식을 출처와 함께 보완하고, 에이전트는 더 정확하고 신뢰할 수 있게 작업합니다.</div>
     </div>
   </div>
 </section>
@@ -513,7 +526,7 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
       <div class="pb">
         <p class="q" data-i18n="pnq">RC 보 스터럽 최대 간격은?</p>
         <p data-i18n="pn1b">수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.</p>
-        <p style="font-size:12.5px" data-i18n="pn1n">일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.</p>
+        <p style="font-size:12.5px" data-i18n="pn1n">일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 초과할 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.</p>
       </div>
     </div>
     <div class="pane den reveal d1">
@@ -533,8 +546,7 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
   </div>
 </section>
 
-<!-- 11 기권 시연(2026-07-26 개편, PI 채택): Den 의 핵심 차별점을 **말이 아니라 보여준다**.
-     범위 안이면 근거를 붙여 답하고, 범위 밖이면 침묵한다 — 그럴듯한 오답이 환각보다 나쁘기 때문. -->
+<!-- 보유 범위 밖 질문의 처리 시연(2026-07-26 개편) -->
 <section class="wrap" id="abstain-sec">
   <h2 class="display reveal d1" data-i18n="ab_h2">보유 범위 밖 질문의 처리</h2>
   <p class="sec-lede reveal d2" data-i18n="ab_lede">언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.</p>
@@ -564,34 +576,34 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
 
 <section class="wrap">
     <h2 class="display reveal d1" data-i18n="e_h2">국가자격 기출 비교</h2>
-    <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프론티어 모델 2개가 국가자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 모델 A 167문항(87.0%), 모델 B 166문항(86.5%)이었습니다.</p>
+    <p class="sec-lede reveal d2" data-i18n="e_lede">서로 다른 프런티어 모델 2개가 국가자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 모델 A 167문항(87.0%), 모델 B 166문항(86.5%)이었습니다.</p>
     <div class="stats reveal d2">
       <div class="stat"><div class="n" data-count="87.0" data-dec="1" data-suffix="%">87.0%</div><div class="l" data-i18n="e1">모델 A 단독</div></div>
       <div class="stat hi"><div class="n" data-count="95.3" data-dec="1" data-suffix="%">95.3%</div><div class="l" data-i18n="e2">Den 연결 시 (모델 A)</div></div>
       <div class="stat"><div class="n" data-count="8.3" data-dec="1" data-prefix="+" data-suffix="%p">+8.3%p</div><div class="l" data-i18n="e3">모델 A 상승 폭</div></div>
       <div class="stat hi"><div class="n" data-count="9.4" data-dec="1" data-prefix="+" data-suffix="%p">+9.4%p</div><div class="l" data-i18n="e4">모델 B 상승 폭</div></div>
     </div>
-    <p class="fine reveal d2" data-i18n="e_note">모델 A는 87.0%에서 95.3%로, 모델 B는 86.5%에서 95.8%로 올랐습니다(2026년 11월 재측정). 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.</p>
+    <p class="fine reveal d2" data-i18n="e_note">모델 A는 87.0%에서 95.3%로, 모델 B는 86.5%에서 95.8%로 상승했습니다(2026년 11월 재측정). 공개 기출에는 모델이 암기한 문항이 포함되어 있어 정답률이 실제 업무 정확도보다 높게 측정됩니다.</p>
   </section>
 
 <section class="wrap">
   <h2 class="display reveal d1" data-i18n="h_h2">연결 방법</h2>
-  <p class="sec-lede reveal d2" data-i18n="h_lede">지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.</p>
+  <p class="sec-lede reveal d2" data-i18n="h_lede">가입한 계정으로 진행합니다.</p>
   <div class="steps">
-    <div class="step reveal"><div class="t" data-i18n="sp1t">1. 연결</div>
-      <div class="d" data-i18n="sp1d">Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.</div></div>
-    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2. 질문</div>
-      <div class="d" data-i18n="sp2d">평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.</div></div>
-    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3. 근거 확인</div>
-      <div class="d" data-i18n="sp3d">답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.</div></div>
+    <div class="step reveal"><div class="t" data-i18n="sp1t">1. 가입</div>
+      <div class="d" data-i18n="sp1d">mcp.den.archi에서 가입합니다.</div></div>
+    <div class="step reveal d1"><div class="t" data-i18n="sp2t">2. 커스텀 커넥터 등록</div>
+      <div class="d" data-i18n="sp2d">Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록합니다.</div></div>
+    <div class="step reveal d2"><div class="t" data-i18n="sp3t">3. 인증 창 로그인</div>
+      <div class="d" data-i18n="sp3d">인증 창에서 로그인합니다.</div></div>
   </div>
 
   <!-- 연결 세 방법을 이 페이지에서 바로 보여준다. 실측상 작동한 OAuth 경로를 먼저 두고, 키 연결은 마지막에 둔다. -->
   <div class="steps" style="margin-top:20px">
     <div class="step reveal"><div class="t" data-i18n="cn1t">웹 커넥터 (키 불필요)</div>
-      <div class="d" data-i18n="cn1d">Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
+      <div class="d" data-i18n="cn1d">Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록하고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code></div></div>
     <div class="step reveal d1"><div class="t" data-i18n="cn2t">Claude Desktop</div>
-      <div class="d" data-i18n="cn2d">설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.</div></div>
+      <div class="d" data-i18n="cn2d">설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 콘솔의 「키 · 연결된 앱」 화면에서 발급한 키를 입력합니다.</div></div>
     <div class="step reveal d2"><div class="t" data-i18n="cn3t">그 밖의 클라이언트</div>
       <div class="d" data-i18n="cn3d">커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.</div></div>
   </div>
@@ -603,7 +615,7 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
   <div class="honest reveal d2">
     <p><b data-i18n="f1q">Den은 어떤 서비스입니까?</b><br><span data-i18n="f1a">Den은 원격 MCP 서버로 제공하는 AEC 전문 지식 큐레이팅 시스템입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 구조·시공·설비·재료·계획 분야의 실무 지식을 출처와 함께 제공합니다.</span></p>
     <p><b data-i18n="f2q">기준·조문을 검색하는 MCP와 무엇이 다릅니까?</b><br><span data-i18n="f2a">조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.</span></p>
-    <p><b data-i18n="f3q">어떤 도구가 있습니까?</b><br><span data-i18n="f3a">기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.</span></p>
+    <p><b data-i18n="f3q">어떤 도구가 있습니까?</b><br><span data-i18n="f3a">기준·조문 찾기, 용어 정의, 인과 설명, 공정 순서 구성, 두 공법 대조, 종류 열거, 대지 조건 확인, 평면 법규 검토, 개념 연결 찾기 등이 있습니다. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록해 연결합니다.</span></p>
   </div>
 </section>
 
@@ -623,7 +635,7 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
   var reduced=/[?&]motion=off/.test(location.search);
   if(reduced)document.documentElement.classList.add('reduced');
   var I18N = {
-    ko: { ab_title:'Den 소개', ft_home:'첫 화면', doc_title:'Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)', doc_desc:'AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.', ft_terms:'이용약관', ft_privacy:'개인정보 처리방침', r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
+    ko: { ab_title:'Den 소개', ft_home:'첫 화면', doc_title:'Den | AEC 전문 지식 큐레이팅 시스템 (건설 AX · 건축 MCP · 건설 MCP)', doc_desc:'AEC 전문 지식 큐레이팅 시스템. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표를 다룹니다.', ft_terms:'이용약관', ft_privacy:'개인정보 처리방침', r5h:'응답 기록', r5b:'응답마다 지식팩 판, 근거 항목, 발행 시각을 담은 기록이 붙어, 나중에 어떤 근거로 답했는지 확인할 수 있습니다.', r6h:'다이나믹 온톨로지', r6b:'Den은 건설기준과 법령, 문헌을 출처와 함께 다이나믹 온톨로지로 구축해 제공합니다. 새로 생기는 개념도 기존 개념과의 관계로 이어 받아들입니다.', r7h:'사내 지식과의 연동', r7b:'사내 온톨로지 · RAG와 연동하면 사내 자료에 없는 공통 지식을 출처와 함께 보완하고, 에이전트는 더 정확하고 신뢰할 수 있게 작업합니다.', o_beta:'Den은 무료 베타로 운영합니다. 가입한 뒤 커넥터를 연결해 사용합니다.', rl_cc:'물리 인과 · 합의', rl_nc:'국내 규범 조문', rl_ps:'동시 시작', rl_rq:'선행 조건', rl_gap:'미보유 표시', rl_pr:'실무 규칙', gs_apt:'공간 유형', gs_spec:'국내 법규 수치', gs_norm:'국내 규범 조문', gs_q:'성질', gs_emo:'정서 (주장)', el_evo:'계보', el_req:'법규 요건', el_gr:'근거 조문', el_en:'가능 조건', el_ev:'정서', el_ct:'대조',  ab_h2:'보유 범위 밖 질문의 처리',
       ab_lede:'언어 모델은 근거가 없어도 문장을 만들 수 있습니다. Den은 근거를 찾지 못하면 답 대신 미보유 신호를 보냅니다.',
       ab1t:'보유 범위 안', ab1w:'근거와 함께 답변', ab1q:'철근 최소 피복두께 기준은?',
       ab1c1:'수중 타설 100mm · 흙에 접해 영구히 묻히는 부분 75mm',
@@ -647,22 +659,22 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
       r1h:'문단 대신 개념 단위',
       r1b:'「아파트」 개념 하나에 인술라에서 이어진 계보와 대피공간 기준이 함께 연결됩니다. 에이전트는 문단을 찾는 대신 개념과 근거를 받습니다.',
       r2h:'수치와 출처',
-      r2b:'스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 넣지 않도록 관리합니다.',
+      r2b:'스터럽 간격을 물으면 KDS 14 20 22 4.3.1·4.3.2가 함께 제공됩니다. 출처가 없는 수치는 지식팩에 포함하지 않도록 관리합니다.',
       r3h:'수치와 적용 조건',
-      r3b:'전단력이 기준을 넘으면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.',
+      r3b:'전단력이 기준을 초과하면 스터럽 최대 간격은 절반으로 줄어듭니다. Den은 수치가 성립하는 조건을 함께 제공합니다.',
       r4h:'사실과 주장의 구분',
       r4b:'축열 같은 물리 현상과 아늑함 같은 해석을 나눠 담고, 학설 사이에 논쟁이 있는 내용은 논쟁 중으로 표시합니다.', h_h2:'연결 방법',
-      h_lede:'지금 쓰는 AI 에이전트에 커넥터 주소를 등록해 사용합니다.',
-      sp1t:'1. 연결', sp1d:'Claude, ChatGPT 등 MCP 클라이언트에 커넥터 주소를 등록합니다.',
-      sp2t:'2. 질문', sp2d:'평소처럼 질문하면 에이전트가 필요할 때 Den을 호출합니다.',
-      cn1t:'웹 커넥터 (키 불필요)', cn1d:'Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop', cn2d:'설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 대시보드에서 발급한 키를 입력합니다.',
+      h_lede:'가입한 계정으로 진행합니다.',
+      sp1t:'1. 가입', sp1d:'mcp.den.archi에서 가입합니다.',
+      sp2t:'2. 커스텀 커넥터 등록', sp2d:'Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록합니다.',
+      cn1t:'웹 커넥터 (키 불필요)', cn1d:'Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록하고 <b>OAuth</b>로 인증합니다.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop', cn2d:'설치 파일(<a href="den.mcpb">den.mcpb</a>)을 내려받아 실행하고, 설치 중 콘솔의 「키 · 연결된 앱」 화면에서 발급한 키를 입력합니다.',
       cn3t:'그 밖의 클라이언트', cn3d:'커넥터 인증을 지원하지 않는 클라이언트는 키로 연결합니다. 절차는 <a href="beta.html">연결 안내</a>에 있습니다.',
-      sp3t:'3. 근거 확인', sp3d:'답과 함께 출처, 적용 조건, 인과 경로가 제공됩니다.', p_h2:'Den 연결 전후 답변 비교',
+      sp3t:'3. 인증 창 로그인', sp3d:'인증 창에서 로그인합니다.', p_h2:'Den 연결 전후 답변 비교',
       p_lede:'',
       pn1t:'Den 연결 전', pn1w:'모델 학습 지식', pnq:'RC 보 스터럽 최대 간격은?', pnq2:'RC 보 스터럽 최대 간격은?',
       pn1b:'수직 스터럽의 최대 간격은 일반적으로 유효깊이 d의 1/2 이하, 그리고 600mm 이하로 합니다. 최소 전단철근량도 함께 검토하시면 됩니다.',
-      pn1n:'일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 넘을 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.',
+      pn1n:'일반적인 경우에는 맞는 설명이지만, <b>전단력이 기준을 초과할 때 간격이 절반으로 줄어드는 조건</b>이 빠져 있습니다.',
       pn2t:'Den 연결 후', pn2w:'Den 지식팩',
       pn2a:'조건에 따라 두 가지로 나뉩니다.',
       pc1:'Vs ≤ (1/3)√fck·bw·d → s ≤ d/2 <span class="sc">그리고 600mm 이하</span>',
@@ -692,17 +704,17 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
       f2q:'기준·조문을 검색하는 MCP와 무엇이 다릅니까?',
       f2a:'조문 검색은 조항의 위치를 알려 줍니다. Den은 조항과 수치에 적용 조건과 출처를 붙이고, 이유와 공정 순서를 묻는 질문에도 근거와 함께 답하며, 근거가 없으면 미보유로 표시합니다.',
       f3q:'어떤 도구가 있습니까?',
-      f3a:'기준·조문 찾기와 용어 정의, 인과 설명, 공정 순서, 두 공법 대조, 종류 열거, 대지 조건, 평면 법규 검토, 개념 연결입니다. Claude와 ChatGPT의 커스텀 커넥터에 주소를 넣으면 연결됩니다. 보유 범위는 부분적이며, 보유하지 않은 내용은 응답에 명시합니다.',
+      f3a:'기준·조문 찾기, 용어 정의, 인과 설명, 공정 순서 구성, 두 공법 대조, 종류 열거, 대지 조건 확인, 평면 법규 검토, 개념 연결 찾기 등이 있습니다. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록해 연결합니다.',
       langbtn:'EN',
     e_h2:'국가자격 기출 비교',
-      e_lede:'서로 다른 프론티어 모델 2개가 국가자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 모델 A 167문항(87.0%), 모델 B 166문항(86.5%)이었습니다.',
+      e_lede:'서로 다른 프런티어 모델 2개가 국가자격 기출 192문항을 같은 조건으로 풀었고, 단독 점수는 모델 A 167문항(87.0%), 모델 B 166문항(86.5%)이었습니다.',
       e1:'모델 A 단독',
       e2:'Den 연결 시 (모델 A)',
       e3:'모델 A 상승 폭',
       e4:'모델 B 상승 폭',
-      e_note:'모델 A는 87.0%에서 95.3%로, 모델 B는 86.5%에서 95.8%로 올랐습니다(2026년 11월 재측정). 공개 기출이라 두 모델 모두 암기한 문항이 섞여 있어 실제 업무 정확도보다 높게 나옵니다.'
+      e_note:'모델 A는 87.0%에서 95.3%로, 모델 B는 86.5%에서 95.8%로 상승했습니다(2026년 11월 재측정). 공개 기출에는 모델이 암기한 문항이 포함되어 있어 정답률이 실제 업무 정확도보다 높게 측정됩니다.'
     },
-      en: { ab_title:'About Den', ft_home:'Home', doc_title:'Den | AEC Expert Knowledge Curation System (AEC MCP for Korean Building Codes)', doc_desc:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.', ft_terms:'Terms (Korean)', ft_privacy:'Privacy Policy (Korean)', r5h:'Response Records', r5b:'Each response includes a record of the knowledge pack version, the source items, and the time of issue, so the basis of an answer can be checked later.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'Physical causality · consensus', rl_nc:'Korean standard clause', rl_ps:'Concurrent start', rl_rq:'Prerequisite', rl_gap:'outside curated scope', rl_pr:'Practice rule', gs_apt:'Space type', gs_spec:'Korean statutory value', gs_norm:'Korean standard clause', gs_q:'Property', gs_emo:'emotion (claimed)', el_evo:'Lineage', el_req:'Statutory requirement', el_gr:'Source clause', el_en:'Enabling condition', el_ev:'Emotion', el_ct:'Contrast', ab_h2:'Handling Questions Outside the Curated Scope',
+      en: { ab_title:'About Den', ft_home:'Home', doc_title:'Den | AEC Expert Knowledge Curation System (AEC MCP for Korean Building Codes)', doc_desc:'Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. It covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.', ft_terms:'Terms (Korean)', ft_privacy:'Privacy Policy (Korean)', r5h:'Response Records', r5b:'Each response includes a record of the knowledge pack version, the source items, and the time of issue, so the basis of an answer can be checked later.', r6h:'Dynamic Ontology', r6b:'Den builds codes, statutes and literature, with their sources, into a dynamic ontology and provides it to agents. New concepts are taken in through their relations to existing ones.', r7h:'Integration with In-House Knowledge', r7b:'Linked with an in-house ontology and RAG, Den supplies the common knowledge that in-house data lacks, with sources, so agents work more accurately and reliably.', o_beta:'Den is offered as a free beta. After sign-up, the connector can be added to an AI agent.', rl_cc:'Physical causality · consensus', rl_nc:'Korean standard clause', rl_ps:'Concurrent start', rl_rq:'Prerequisite', rl_gap:'Outside curated scope', rl_pr:'Practice rule', gs_apt:'Space type', gs_spec:'Korean statutory value', gs_norm:'Korean standard clause', gs_q:'Property', gs_emo:'Emotion (claimed)', el_evo:'Lineage', el_req:'Statutory requirement', el_gr:'Source clause', el_en:'Enabling condition', el_ev:'Emotion', el_ct:'Contrast', ab_h2:'Handling Questions Outside the Curated Scope',
       ab_lede:'A language model can produce a sentence without a source. When no source is found, Den returns a signal that the question is outside the curated scope instead of an answer.',
       ab1t:'Within the curated scope', ab1w:'Answer with sources', ab1q:'What is the minimum concrete cover for reinforcement?',
       ab1c1:'Cast underwater: 100mm · permanently buried against earth: 75mm',
@@ -731,13 +743,13 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
       r3b:'The maximum stirrup spacing is halved when the shear force exceeds the threshold. Den provides the condition under which each value applies.',
       r4h:'Separation of Facts and Claims',
       r4b:'Physical phenomena such as heat storage are separated from interpretations such as coziness. Content disputed among theories is marked as disputed.', h_h2:'Connection Method',
-      h_lede:'The connector address is registered in the AI agent already in use.',
-      sp1t:'1. Connect', sp1d:'The connector address is registered in an MCP client such as Claude or ChatGPT.',
-      sp2t:'2. Ask', sp2d:'A question is asked as usual, and the agent calls Den when needed.',
-      cn1t:'Web Connector (No Key Required)', cn1d:'The address is entered as a custom connector in Claude or ChatGPT and authenticated with <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
-      cn2t:'Claude Desktop', cn2d:'The installation file (<a href="den.mcpb">den.mcpb</a>) is downloaded and run, and the key issued by the dashboard is entered during installation.',
+      h_lede:'Requires a Den account.',
+      sp1t:'1. Sign Up', sp1d:'Create an account at mcp.den.archi.',
+      sp2t:'2. Register the Connector', sp2d:'Register the connector address as a custom connector in Claude or ChatGPT.',
+      cn1t:'Web Connector (No Key Required)', cn1d:'The connector address is registered as a custom connector in Claude or ChatGPT and authenticated with <b>OAuth</b>.<br><code>https://mcp.den.archi/mcp</code>',
+      cn2t:'Claude Desktop', cn2d:'The installation file (<a href="den.mcpb">den.mcpb</a>) is downloaded and run, and a key issued on the Keys and Connected Apps screen of the Den console is entered during installation.',
       cn3t:'Other Clients', cn3d:'Clients without connector authentication connect with a key. The procedure is available in the <a href="beta.html">connection guide</a>.',
-      sp3t:'3. Check Sources', sp3d:'The answer includes sources, conditions of application, and causal paths.', p_h2:'Comparison Before and After Connecting Den',
+      sp3t:'3. Sign In', sp3d:'Sign in on the authorization screen.', p_h2:'Comparison Before and After Connecting Den',
       p_lede:'',
       pn1t:'Before Connecting Den', pn1w:'Model training knowledge', pnq:'What is the maximum stirrup spacing in an RC beam?', pnq2:'What is the maximum stirrup spacing in an RC beam?',
       pn1b:'The maximum vertical stirrup spacing is generally 1/2 of effective depth d or less and 600mm or less. The minimum amount of shear reinforcement also requires review.',
@@ -771,15 +783,15 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
       f2q:'How does Den differ from an MCP that searches standards and clauses?',
       f2a:'Clause search identifies the location of a clause. Den adds conditions of application and sources to clauses and values, answers questions about reasons and work sequence with sources, and marks content as outside the curated scope when no source is found.',
       f3q:'Which tools are available?',
-      f3a:'The tools cover standards and clause search, term definitions, causal explanations, work sequences, comparisons of two methods, type enumeration, site conditions, floor-plan compliance review, and concept connections. The connector address can be registered as a custom connector in Claude and ChatGPT. Coverage is partial, and items outside the curated scope are identified in the response.',
+      f3a:'The tools include standards and clause search, term definitions, causal explanations, work sequences, comparisons of two methods, type enumeration, site conditions, floor-plan compliance review, and concept connections. The connector address can be registered as a custom connector in Claude and ChatGPT.',
       langbtn:'한국어',
       e_h2:'National Qualification Exam Comparison',
-      e_lede:'Frontier models from 2 different providers answered the same 192 national qualification exam questions under the same conditions. On their own, Model A answered 167 correctly (87.0%) and Model B answered 166 correctly (86.5%).',
+      e_lede:'Two different frontier models answered the same 192 national qualification exam questions under the same conditions. On their own, Model A answered 167 correctly (87.0%) and Model B answered 166 correctly (86.5%).',
       e1:'Model A alone',
       e2:'Model A with Den',
       e3:'Model A improvement',
       e4:'Model B improvement',
-      e_note:'Model A rose from 87.0% to 95.3%, and Model B rose from 86.5% to 95.8% (re-measured in November 2026). Because the questions are public past exams, both models include memorized items, so the scores are higher than accuracy in actual work.',
+      e_note:'Model A rose from 87.0% to 95.3%, and Model B rose from 86.5% to 95.8% (measured in November 2026). Public past exams include items that the models have memorized, so the scores are higher than accuracy in actual work.',
     },
   
   };
@@ -799,18 +811,18 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
         'suburban-house':{ko:'교외 단독주택',kind:'건축 유형 · 대조',def:'자동차·융자로 대량공급된 교외 단독주택.',chips:[['','대조']],src:'대조 축'}
       },
       en: {
-        'apartment':{ko:'Apartment',kind:'space_type · L1 backbone',def:'Repeated independent households stacked in one building.',chips:[['phys','L1 backbone']],src:'Den live output'},
-        'insula':{ko:'Insula',kind:'physical_object · evolvedFrom',def:'Roman multi-storey rental block housing the urban lower and middle classes, socially and spatially opposed to the elite domus.',chips:[['','evolvedFrom']],src:'lineage'},
-        'tenement':{ko:'Tenement',kind:'physical_object · evolvedFrom',def:'Cramped, overcrowded multi-storey rental housing for industrial-city workers.',chips:[['','evolvedFrom']],src:'lineage'},
-        'haussmann-apartment':{ko:'Haussmann apartment',kind:'physical_object · evolvedFrom',def:'The Parisian bourgeois rental apartment, stratified floor by floor.',chips:[['','evolvedFrom']],src:'lineage'},
-        'kr-spec-apartment-refuge-common-3m2':{ko:'Refuge area 3 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for the shared refuge space between adjoining units above the 4th floor: 3 m².',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-spec-apartment-refuge-private-2m2':{ko:'Private refuge 2 m²',kind:'spec_value · requires',def:'KR statutory minimum floor area for each unit\'s own refuge space above the 4th floor: 2 m².',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'Special escape stair, 16F',kind:'spec_value · requires',def:'KR statutory trigger for special escape stairs in multi-unit housing: 16 floors.',chips:[['phys','requires']],src:'KR statutory value'},
-        'kr-ba-08-remodel':{ko:'Remodelling relief',kind:'norm_clause · grounded_in',def:'Multi-unit housing designed for easy remodelling may receive partial relief on floor-area ratio, height and daylight rules, bounded by subordinate decree.',chips:[['phys','grounded_in']],src:'KR statutory clause'},
-        'urban-density':{ko:'Urban density',kind:'quality · enables',def:'Population densely concentrated within a limited area.',chips:[['phys','enables']],src:'enabling condition'},
-        'household-autonomy':{ko:'Household autonomy',kind:'quality · enables',def:'Each dwelling can cook, sleep, store, repair, display and conduct rituals independently, which makes it autonomous and repeatable within the settlement.',chips:[['phys','enables']],src:'enabling condition'},
-        'anonymity':{ko:'Anonymity',kind:'emotion_instinct · evokes',def:'The sense of not knowing one another in dense housing.',chips:[['claim','evokes']],src:'emotion (claimed)'},
-        'suburban-house':{ko:'Suburban house',kind:'physical_object · contrasts',def:'The detached suburban house, mass-supplied by car and mortgage.',chips:[['','contrasts']],src:'contrast axis'}
+        'apartment':{ko:'Apartment',kind:'Space type',def:'Repeated independent households stacked in one building.',chips:[['phys','Space type']],src:'Returned by Den'},
+        'insula':{ko:'Insula',kind:'Building type · Lineage',def:'Roman multi-storey rental block housing the urban lower and middle classes, socially and spatially opposed to the elite domus.',chips:[['','Lineage']],src:'Lineage'},
+        'tenement':{ko:'Tenement',kind:'Building type · Lineage',def:'Cramped, overcrowded multi-storey rental housing for industrial-city workers.',chips:[['','Lineage']],src:'Lineage'},
+        'haussmann-apartment':{ko:'Haussmann apartment',kind:'Building type · Lineage',def:'The Parisian bourgeois rental apartment, stratified floor by floor.',chips:[['','Lineage']],src:'Lineage'},
+        'kr-spec-apartment-refuge-common-3m2':{ko:'Refuge space 3 m²',kind:'Korean statutory value',def:'Korean statutory minimum floor area for the shared refuge space between adjoining units on the 4th floor and above: 3 m².',chips:[['phys','Statutory requirement']],src:'Korean statutory value'},
+        'kr-spec-apartment-refuge-private-2m2':{ko:'Unit refuge space 2 m²',kind:'Korean statutory value',def:'Korean statutory minimum floor area for each unit\'s own refuge space on the 4th floor and above: 2 m².',chips:[['phys','Statutory requirement']],src:'Korean statutory value'},
+        'kr-spec-apartment-special-stair-trigger-floor-16':{ko:'Special escape stairs, 16F',kind:'Korean statutory value',def:'Korean statutory trigger for special escape stairs in multi-unit housing: 16 floors.',chips:[['phys','Statutory requirement']],src:'Korean statutory value'},
+        'kr-ba-08-remodel':{ko:'Remodeling relief',kind:'Korean standard clause',def:'Multi-unit housing designed for easy remodeling may receive partial relief on floor-area ratio, height and daylight rules, bounded by subordinate decree.',chips:[['phys','Source clause']],src:'Korean statutory clause'},
+        'urban-density':{ko:'Urban density',kind:'Property · Enabling condition',def:'Population densely concentrated within a limited area.',chips:[['phys','Enabling condition']],src:'Enabling condition'},
+        'household-autonomy':{ko:'Unit independence',kind:'Property · Enabling condition',def:'Each dwelling can cook, sleep, store, repair, display and conduct rituals independently, which makes it autonomous and repeatable within the settlement.',chips:[['phys','Enabling condition']],src:'Enabling condition'},
+        'anonymity':{ko:'Anonymity',kind:'Emotion',def:'The sense of not knowing one another in dense housing.',chips:[['claim','Emotion (claimed)']],src:'Emotion (claimed)'},
+        'suburban-house':{ko:'Suburban house',kind:'Building type · Contrast',def:'The detached suburban house, mass-supplied by car and mortgage.',chips:[['','Contrast']],src:'Contrast axis'}
       }
     };
   var ATOM_CODES = ['hearth','central-court','malqaf','flying-buttress','ondol','tsuboniwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha','voussoir','engawa','impluvium','ziggurat','mashrabiya','hypocaust','tumulus','agora','jali','trullo','genkan','caravanserai'];
@@ -821,7 +833,7 @@ section.about-hero{min-height:0;display:block;padding-top:9.5rem;padding-bottom:
     },
     en: {
       atoms:['hearth','courtyard','windcatcher','flying buttress','ondol','tsubo-niwa','bastion','chinampa','qanat','stoa','pendentive','ha-ha wall','voussoir','toenmaru','impluvium','ziggurat','mashrabiya','hypocaust','burial mound','agora','jali','trullo','genkan','caravanserai'],
-      graph:['apartment','insula','Roman rental housing','tenement','industrial-city workers','Haussmann apartment','Paris, class by floor','refuge space 3㎡','unit refuge space 2㎡','special escape stairs, 16 floors','remodeling relaxation','urban density','unit independence','anonymity','suburban detached house','contrast axis']
+      graph:['Apartment','Insula','Roman rental housing','Tenement','Industrial-city workers','Haussmann apartment','Paris, class by floor','Refuge space 3 m²','Unit refuge space 2 m²','Special escape stairs, 16F','Remodeling relief','Urban density','Unit independence','Anonymity','Suburban house','Contrast axis']
     }
   };
   var lang='ko',selectedGraphId='';
