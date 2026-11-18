@@ -472,12 +472,12 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       eras:[
         ['야외','Open Air','지붕 없는 밤, 인류는 시야와 도주로로 안전을 확보했습니다. 그 계산은 지금도 우리 안에 있습니다.'],
         ['동굴','The Den','첫 번째 벽이 생겼습니다. 등 뒤가 안전해지자 비로소 마음이 다른 곳을 볼 수 있었습니다.'],
-        ['화덕','Hearth','불이 중심을 만들었습니다. 오늘의 거실과 식탁이 여기서 시작됐습니다.'],
+        ['화덕','Hearth','불이 중심을 만들었습니다. 오늘의 거실과 식탁은 화덕에서 비롯되었습니다.'],
         ['움집','Pit-House','땅을 파 온기를 저장했습니다. 인류 최초의 단열 설계입니다.'],
-        ['정주','Settling','떠나지 않기로 했습니다. 집은 지어 두는 것이 되었고, 땅은 누군가의 것이 되었습니다.'],
+        ['정주','Settling','떠나지 않기로 했습니다. 집은 오래 두고 쓰는 거처가 되었고, 땅에는 주인이 생겼습니다.'],
         ['도시','City','잉여가 이웃을 만들고, 이웃이 규칙을 만들었습니다.'],
         ['고층','High-Rise','철과 엘리베이터가 땅을 수직으로 접었습니다.'],
-        ['가상','Virtual','몸 없이 거주하는 첫 세대가 왔습니다. 그러나 본능은 그대로입니다. Den이 그 본능의 지도를 그립니다.'],
+        ['가상','Virtual','몸 없이 거주하는 첫 세대가 왔습니다. 그러나 본능은 변하지 않았습니다. Den이 그 본능의 지도를 그립니다.'],
         ['에이전트','Agent','불가에 새 자리가 하나 생겼습니다. 에이전트가 사람 곁에서 공간을 읽기 시작했습니다. 사람이 4만 년 동안 쌓은 공간의 기준을 에이전트도 읽도록, Den이 지식을 골라 출처와 함께 건넵니다.']
       ],
       langbtn:'EN'
@@ -578,7 +578,7 @@ html.j-paging,html.j-pin{scroll-snap-type:none}
       var cap=document.querySelector('.j-cap[data-era="'+era+'"]');
       var button=document.querySelector('.j-rail [data-go="'+era+'"]');
       if(!cap)return;
-      cap.querySelector('.chapter').textContent=lang==='ko'?'Chapter 0'+era+' — '+entry[1]:entry[1];
+      cap.querySelector('.chapter').textContent=lang==='ko'?'Chapter 0'+era+' · '+entry[1]:entry[1];
       cap.querySelector('h2').textContent=entry[0];
       cap.querySelector('.j-copy').textContent=entry[2];
       if(button)button.textContent=entry[0];
